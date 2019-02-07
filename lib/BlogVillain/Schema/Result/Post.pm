@@ -1,4 +1,4 @@
-package Schema::Result::Article;
+package BlogVillain::Schema::Result::Post;
 use strict;
 use warnings;
 
@@ -6,7 +6,7 @@ use base qw/DBIx::Class::Core/;
 
 __PACKAGE__->load_components(qw/ Ordered /);
 __PACKAGE__->position_column('number');
-__PACKAGE__->table('article');
+__PACKAGE__->table('post');
 __PACKAGE__->add_columns(
 						number => 
 							{
@@ -26,7 +26,7 @@ __PACKAGE__->add_columns(
 							},
 						time =>
 							{
-								data_type => 'datetime',
+								data_type => 'timestamp',
 							},
 						);
 __PACKAGE__->set_primary_key(qw/ number /);

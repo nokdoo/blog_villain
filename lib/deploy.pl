@@ -3,7 +3,7 @@
 use warnings;
 use strict;
 use lib './';
-use Schema;
+use BlogVillain::Schema;
 use Data::Dumper;
 
 my $drivername = 'Pg';
@@ -14,10 +14,13 @@ my $dsn = "DBI:$drivername:dbname=$database;host=$hostname;port=$port";
 my $user = 'blog_villain';
 my $password = '1353';
 
-my $schema = Schema->connect(
+my $schema = BlogVillain::Schema->connect(
   $dsn,
   $user,
   $password,
 );
+print Dumper($schema);
 
-$schema->deploy( { add_drop_table => 0 } );
+# 값이 1일 때 적용됨
+#$schema->deploy( { add_drop_table => 1 } );
+

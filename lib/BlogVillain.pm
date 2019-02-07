@@ -1,6 +1,7 @@
 package BlogVillain;
 use Mojo::Base 'Mojolicious';
 use Data::Dumper;
+
 # This method will run once at server start
 sub startup {
   my $self = shift;
@@ -15,7 +16,9 @@ sub startup {
   my $r = $self->routes;
 
   # Normal route to controller
-  $r->get('/')->to('example#welcome');
+  $r->get('/')->to(template => 'home');
+
+  $r->get('post')->to(
 }
 
 1;

@@ -6,5 +6,8 @@
 	a
 	</div>
   	<%= content %>
+	<div style="width:100%; background-color:black;">
+	a
+	</div>
   </body>
 </html>
