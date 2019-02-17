@@ -10,11 +10,14 @@ use BlogVillain::Schema;
 use DateTime;
 
 my $schema = BlogVillain::Schema->connect('BLOGVILLAIN_DATABASE');
+my $datetime = DateTime->now;
 
 my $post_ma = $schema->resultset('Post')->create({
 	title => '1',
 	content => '1',
-	time => DateTime->now,
-});
+	time => $datetime,
+}) or die ;
+# print $post_ma->{_column_data}->{title}."\n";
+#$post_ma->delete or die;
 
 done_testing();

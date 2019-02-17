@@ -1,0 +1,7 @@
+=encoding utf8
+=pod
+
+pod -> database
+한글깨짐 발생
+
+=cut
