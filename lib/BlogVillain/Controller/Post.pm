@@ -1,13 +1,20 @@
 package BlogVillain::Controller::Post;
+
+use strict;
+use warnings;
 use Mojo::Base 'Mojolicious::Controller';
-use BlogVillain::Mojo::Post;
+use BlogVillain::Model::Post;
+use Data::Dumper;
 
 # This action will render a template
-sub post {
-  my $self = shift;
-
-  # Render template "example/welcome.html.ep" with message
-  $self->render(template => 'post');
+sub get {
+	my $self = shift;
+	my $title = $self->stash('title');
+	my $post = BlogVillain::Model::Post->new_post($title);
+	$post->makehtml();
+	print Dumper($post->{html});
+	$self->stash( body => $post->{html} );
+	$self->render(template => 'post');
 }
 
 1;

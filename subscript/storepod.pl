@@ -13,7 +13,7 @@ use POSIX qw ( strftime );
 
 my $schema = BlogVillain::Schema->connect('BLOGVILLAIN_DATABASE');
 
-my $dir = '../public/pod/';
+my $dir = '../public/post/';
 
 find(\&printfile, $dir);
 
@@ -25,12 +25,11 @@ sub printfile
 		$file =~ /.*\/(pod\/.*).pod/;
 		my $title = $1;
 		
-		return if $title eq 'pod/test';
+		return if $title eq 'post/test';
 		
 		my $mtime = ((stat($_))[9]);
 		my $time = strftime("%Y-%m-%dT%H:%M:%S", localtime($mtime));
 		my $content = readpod ( $_ );
-		print $content."\n\n";
 
 		$schema->resultset('Post')->create({
 			title => $title,
@@ -46,9 +45,8 @@ sub readpod
 {
 	my $file = shift;
 	local $/ = undef;
-	open(my $pod, '<', $file) or die "Could not open file '$file'";
+	open(my $pod, '<:encoding(utf8)', $file) or die "Could not open file '$file'";
 	my $a = <$pod>;
 	close $pod;
 	$a;
 }
-
