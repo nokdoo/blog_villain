@@ -1,7 +1,11 @@
 =encoding utf8
 =pod
 
-pod -> database
-한글깨짐 발생
+	pod -> database
+	한글깨짐 발생
+
+	pod->html 화면에 출력
+
+html에 css 추가하기
 
 =cut
