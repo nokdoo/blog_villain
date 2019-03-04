@@ -6,6 +6,8 @@
 
 	pod->html 화면에 출력
 
-html에 css 추가하기
+	html에 css 추가하기
+
+c, perl, java 등 주제 리스트 출력
 
 =cut

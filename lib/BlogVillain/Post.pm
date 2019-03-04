@@ -23,20 +23,8 @@ sub makehtml {
 	$p->index(1);
 	$p->output_string(\my $html);
 	$p->parse_string_document($self->{content});
-	#$self->{html} = $html;
-	
 	my $root = HTML::TreeBuilder->new_from_content($html);
 	$self->{html} = $root->{_body}->as_HTML;
-	#my $html2 = Mojo::DOM::HTML->new;
-	#$self->{html} = $html2->parse($root->{_body}->as_HTML);
-
-
 }
-
-sub makehtml2 {
-	my $self = shift;
-
-}
-
 
 1;

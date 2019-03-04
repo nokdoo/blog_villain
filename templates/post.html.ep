@@ -1,4 +1,9 @@
 % layout 'default';
-% title 'Welcome';
+%= stylesheet '/post/highlight/styles/obsidian.css'
+%= javascript '/post/highlight/highlight.pack.js', style=>'Obsidian'
+%= javascript begin 
+	hljs.initHighlightingOnLoad(); 
+% end
+% title $title;
 
 <%== $body %>

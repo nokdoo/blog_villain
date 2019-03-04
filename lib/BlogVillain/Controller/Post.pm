@@ -11,9 +11,9 @@ sub get {
 	my $self = shift;
 	my $title = $self->stash('title');
 	my $post = BlogVillain::Model::Post->new_post($title);
+	$title =~ s!/!::!g;
 	$post->makehtml();
-	print Dumper($post->{html});
-	$self->stash( body => $post->{html} );
+	$self->stash( body => $post->{html}, title => $title );
 	$self->render(template => 'post');
 }
 
