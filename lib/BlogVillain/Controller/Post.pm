@@ -12,8 +12,12 @@ sub get {
 	my $title = $self->stash('title');
 	my $post = BlogVillain::Model::Post->new_post($title);
 	$title =~ s!/!::!g;
-	$post->makehtml();
-	$self->stash( body => $post->{html}, title => $title );
+	$post->make_idx_and_content();
+	$self->stash ( 
+				content_of_post => join ('', (map { $_->as_HTML } @{$post->{content}})), 
+				index_of_post => $post->{index}->as_HTML,
+				title => $title
+	);
 	$self->render(template => 'post');
 }
 

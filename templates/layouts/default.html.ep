@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	%= stylesheet '/post/post.css'
+</head>
+
+<div style="background:yellow;padding:5px">
+	<h4 style="text-align:center">Resize the browser window to see the responsive effect.</h4>
+</div>
+
+
+<div class="header">
+  <h1>My Website</h1>
+  <p>With a <b>flexible</b> layout.</p>
+</div>
+
+<div class="navbar">
+  <a href="#">Link</a>
+  <a href="#">Link</a>
+  <a href="#">Link</a>
+  <a href="#">Link</a>
+</div>
+
+<div class="row">
+	<%= content %>
+</div>
+
+<div class="footer">
+  <h2>Footer</h2>
+</div>

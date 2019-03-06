@@ -6,4 +6,12 @@
 % end
 % title $title;
 
-<%== $body %>
+<div class="side">
+	<%== $index_of_post %>
+</div>
+
+<div class="main">
+	<%== $content_of_post %>
+</div>
+
+

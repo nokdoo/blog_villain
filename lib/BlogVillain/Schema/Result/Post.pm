@@ -19,7 +19,7 @@ __PACKAGE__->add_columns(
 								size => 100,
 								is_nullable => 0,
 							},
-						content =>
+						pod =>
 							{
 								data_type => 'text',
 								is_nullable => 0,
