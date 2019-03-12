@@ -9,15 +9,14 @@ use Data::Dumper;
 # This action will render a template
 sub post {
 	my $self = shift;
-	my $path = $self->stash('path');
-	my $post = BlogVillain::Model::Post->new_post($path);
+	my $fullname = $self->stash('fullname');
+	my $post = BlogVillain::Model::Post->new_post($fullname);
 	$post->make_idx_and_content();
 	$self->stash ( 
 				content_of_post => join ('', (map { $_->as_HTML } @{$post->{content}})), 
 				index_of_post => $post->{index}->as_HTML,
-				title => $post->{title}
+				name_of_post => $post->{name}
 	);
-	print Dumper($self->stash);
 	$self->render(template => 'post');
 }
 

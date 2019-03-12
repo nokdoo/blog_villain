@@ -17,7 +17,7 @@ sub startup {
 
   # Normal route to controller
   $r->get('/')->to(template => 'home');
-  $r->get('/s/:controller/*path')->to(action => 'post');
+  $r->get('/:controller/*fullname')->to(action => 'post');
 
 }
 

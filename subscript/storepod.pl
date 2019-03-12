@@ -24,19 +24,19 @@ sub printfile
 		my $file = $File::Find::name;
 		my $path_regex = qr |.*/post/(.*).pod|;
 		$file =~ $path_regex;
-		my $path = $1;
+		my $fullname = $1;
 		
-		return if $path eq 'test';
+		return if $fullname eq 'test';
 		
 		my $mtime = ((stat($_))[9]);
 		my $time = strftime("%Y-%m-%dT%H:%M:%S", localtime($mtime));
 		my $pod = readpod ( $_ );
 		$_ =~ s/.pod//;
-		my $title = $_;
+		my $name = $_;
 
 		$schema->resultset('Post')->create({
-			title => $title,
-			path => $path,
+			name => $name,
+			fullname => $fullname,
 			pod => $pod,
 			time => $time,
 		}) or die ;

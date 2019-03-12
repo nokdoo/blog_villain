@@ -4,7 +4,7 @@
 %= javascript begin 
 	hljs.initHighlightingOnLoad(); 
 % end
-% title $title;
+% title $name_of_post;
 <div class="index_of_post">
 	<%== $index_of_post %>
 </div>
