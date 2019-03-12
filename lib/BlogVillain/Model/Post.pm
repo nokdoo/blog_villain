@@ -10,10 +10,10 @@ use Data::Dumper;
 my $schema = BlogVillain::Schema->connect('BLOGVILLAIN_DATABASE');
 
 sub new_post {
-	my ($class, $title) = @_;
+	my ($class, $path) = @_;
 	my $post_result = $schema->resultset('Post')->find({
-		title => $title
-	}) or die ;
+		path => $path,
+	}) or die "Error: on [Model::Post]\t$path\n";
 	return BlogVillain::Post->new($post_result->{_column_data});
 }
 

@@ -1,6 +1,0 @@
-BLOGVILLAIN_DATABASE:
-    dsn:            "DBI:Pg:dbname=blog_villain;host=127.0.0.1;port=5432"
-    user:           "blog_villain"
-    password:       "1353"
-    dbd_opts:
-        AutoCommit: 1

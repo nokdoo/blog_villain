@@ -1,17 +1,14 @@
 % layout 'default';
-%= stylesheet '/post/highlight/styles/obsidian.css'
-%= javascript '/post/highlight/highlight.pack.js', style=>'Obsidian'
+%= stylesheet '/highlight/styles/obsidian.css'
+%= javascript '/highlight/highlight.pack.js', style=>'Obsidian'
 %= javascript begin 
 	hljs.initHighlightingOnLoad(); 
 % end
 % title $title;
-
-<div class="side">
+<div class="index_of_post">
 	<%== $index_of_post %>
 </div>
 
-<div class="main">
+<div class="content_of_post">
 	<%== $content_of_post %>
 </div>
-
-

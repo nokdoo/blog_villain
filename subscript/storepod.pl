@@ -22,18 +22,22 @@ sub printfile
 	if( -f $_ && $_ =~ /.*\.pod$/)
 	{
 		my $file = $File::Find::name;
-		$file =~ /.*\/(pod\/.*).pod/;
-		my $title = $1;
+		my $path_regex = qr |.*/post/(.*).pod|;
+		$file =~ $path_regex;
+		my $path = $1;
 		
-		return if $title eq 'post/test';
+		return if $path eq 'test';
 		
 		my $mtime = ((stat($_))[9]);
 		my $time = strftime("%Y-%m-%dT%H:%M:%S", localtime($mtime));
-		my $content = readpod ( $_ );
+		my $pod = readpod ( $_ );
+		$_ =~ s/.pod//;
+		my $title = $_;
 
 		$schema->resultset('Post')->create({
 			title => $title,
-			content => $content,
+			path => $path,
+			pod => $pod,
 			time => $time,
 		}) or die ;
 

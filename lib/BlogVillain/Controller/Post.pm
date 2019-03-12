@@ -7,17 +7,17 @@ use BlogVillain::Model::Post;
 use Data::Dumper;
 
 # This action will render a template
-sub get {
+sub post {
 	my $self = shift;
-	my $title = $self->stash('title');
-	my $post = BlogVillain::Model::Post->new_post($title);
-	$title =~ s!/!::!g;
+	my $path = $self->stash('path');
+	my $post = BlogVillain::Model::Post->new_post($path);
 	$post->make_idx_and_content();
 	$self->stash ( 
 				content_of_post => join ('', (map { $_->as_HTML } @{$post->{content}})), 
 				index_of_post => $post->{index}->as_HTML,
-				title => $title
+				title => $post->{title}
 	);
+	print Dumper($self->stash);
 	$self->render(template => 'post');
 }
 

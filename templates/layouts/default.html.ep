@@ -4,7 +4,7 @@
 	<title><%= title %></title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	%= stylesheet '/post/post.css'
+	%= stylesheet '/post.css'
 </head>
 
 <div style="background:yellow;padding:5px">
@@ -13,7 +13,7 @@
 
 
 <div class="header">
-  <h1>My Website</h1>
+  <h1><img src="/images/BV.png" height="70" width="70">Blog Villain</h1>
   <p>With a <b>flexible</b> layout.</p>
 </div>
 

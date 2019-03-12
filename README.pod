@@ -8,6 +8,20 @@
 
 	html에 css 추가하기
 
-c, perl, java 등 주제 리스트 출력
+javascript, css 경로에 자꾸 /post/가 붙는 현상 발생
+
+	페이지 레이아웃 추가
+
+
+	post 프린트 시 index, content 만 출력되도록...
+
+post 작성날짜 추가
+
+c, perl, java 등 리스트 출력
+
+post pod validation 기능
+
+글 작성 페이지 ....
+
 
 =cut
