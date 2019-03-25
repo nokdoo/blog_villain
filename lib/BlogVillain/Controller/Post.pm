@@ -9,15 +9,26 @@ use Data::Dumper;
 # This action will render a template
 sub post {
 	my $self = shift;
-	my $fullname = $self->stash('fullname');
-	my $post = BlogVillain::Model::Post->new_post($fullname);
+	my $fulltitle = $self->stash('fulltitle');
+	my $post = BlogVillain::Model::Post->new_post($fulltitle);
 	$post->make_idx_and_content();
 	$self->stash ( 
 				content_of_post => join ('', (map { $_->as_HTML } @{$post->{content}})), 
 				index_of_post => $post->{index}->as_HTML,
-				name_of_post => $post->{name}
+				title_of_post => $post->{title}
 	);
-	$self->render(template => 'post');
+	$self->render(template => 'post/post');
+}
+
+sub checksyntax {
+	my $self = shift;
+	my $post = BlogVillain::Post->new({pod => $self->req->body});
+	$post->make_idx_and_content();
+	if ( $post->validate() ) {
+		$self->render(text => join ('', (map { $_->as_HTML } @{$post->{content}})));
+	} else {
+		$self->render(json => $post->{all_errata});
+	}
 }
 
 1;

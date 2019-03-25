@@ -6,20 +6,20 @@ use base qw/ DBIx::Class::Core /;
 
 __PACKAGE__->table('post');
 __PACKAGE__->load_components(qw/ Ordered /);
-__PACKAGE__->position_column('fullname');
+__PACKAGE__->position_column('fulltitle');
 __PACKAGE__->add_columns(
 						number => 
 							{
 								data_type => 'integer',
 								is_auto_increment => 1,
 							},
-						name => 
+						title => 
 							{
 								data_type => 'varchar',
 								size => 50,
 								is_nullable => 0,
 							},
-						fullname =>
+						fulltitle =>
 							{
 								data_type => 'varchar',
 								size => 100,
@@ -36,10 +36,10 @@ __PACKAGE__->add_columns(
 							},
 						);
 __PACKAGE__->set_primary_key(qw/ number /);
-__PACKAGE__->add_unique_constraints( post_ukey_fullname => ['fullname'] );
+__PACKAGE__->add_unique_constraints( post_ukey_fulltitle => ['fulltitle'] );
 
 sub sqlt_deploy_hook {
    my ($self, $sqlt_table) = @_;
-   $sqlt_table->add_index(name=>'post_fullname_idx', fields=>['fullname']);
+   $sqlt_table->add_index(name=>'post_fulltitle_idx', fields=>['fulltitle']);
 }
 1;

@@ -1,17 +1,15 @@
 =encoding utf8
 =pod
 
-	pod -> database
-	한글깨짐 발생
+	pod -> database 시 한글깨짐 발생
 
 	pod->html 화면에 출력
 
 	html에 css 추가하기
 
-javascript, css 경로에 자꾸 /post/가 붙는 현상 발생
+	javascript, css 경로에 자꾸 /post/가 붙는 현상 발생
 
 	페이지 레이아웃 추가
-
 
 	post 프린트 시 index, content 만 출력되도록...
 
@@ -21,7 +19,14 @@ c, perl, java 등 리스트 출력
 
 post pod validation 기능
 
-글 작성 페이지 ....
+	글 작성 페이지 문법체크
 
+글 작성 페이지 모양 정리
+
+글 작성 페이지 fulltitle 처리
+
+글 작성 페이지를 통한 수정 기능 -> 글 리스트를 먼저 출력시키자.
+
+$controller->stash 의 예약어들이 각가 어떤 역할을 하는지 정리하기.
 
 =cut
