@@ -14,7 +14,7 @@ sub new_post {
 	my $post_result = $schema->resultset('Post')->find({
 		fulltitle => $fulltitle,
 	}) or die "Error: on [Model::Post]\t$fulltitle\n";
-	return BlogVillain::Post->new($post_result->{_column_data});
+	return BlogVillain::Post->new( { $post_result->get_columns } );
 }
 
 1;

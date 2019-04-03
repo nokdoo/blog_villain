@@ -1,25 +1,11 @@
 =encoding utf8
 =pod
 
-	pod -> database 시 한글깨짐 발생
-
-	pod->html 화면에 출력
-
-	html에 css 추가하기
-
-	javascript, css 경로에 자꾸 /post/가 붙는 현상 발생
-
-	페이지 레이아웃 추가
-
-	post 프린트 시 index, content 만 출력되도록...
-
 post 작성날짜 추가
 
-c, perl, java 등 리스트 출력
+c, perl, java 등 주제 리스트 출력
 
 post pod validation 기능
-
-	글 작성 페이지 문법체크
 
 글 작성 페이지 모양 정리
 
@@ -28,5 +14,18 @@ post pod validation 기능
 글 작성 페이지를 통한 수정 기능 -> 글 리스트를 먼저 출력시키자.
 
 $controller->stash 의 예약어들이 각가 어떤 역할을 하는지 정리하기.
+
+ postgres -> sqlite
+
+배포스크립트 작성
+
+ bash를 통해 프로젝트 위치를 환경변수에 등록
+    #환경변수 등록하는 bash 작성.
+	bash 를 실행하는 perl 스크립트.
+ YAML 파일에 환경변수가 들어가야 함. YAML 모듈을 이용해서 perl 스크립트 내의 변수 사용.
+ 	DB 종류별로 yaml 을 만들드록 하자. 
+	#일단 SQLite 용 yaml 출력하는 스크립트 완성
+ use lib 의 위치를 환경변수/lib 으로 변경
+
 
 =cut

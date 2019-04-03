@@ -17,6 +17,7 @@ sub startup {
 
   # Normal route to controller
   $r->get('/')->to(template => 'home');
+  $r->get('/about')->to(template => 'about');
 
 
   $r->post('/post/checksyntax')->to('post#checksyntax');

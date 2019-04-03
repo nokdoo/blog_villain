@@ -7,5 +7,10 @@ use Data::Dumper;
 use File::HomeDir;
 use DBI;
 use Cwd;
+use FindBin;
+use lib "$FindBin::Bin/./lib";
+use Directory;
 
-print cwd;
+my $root = Directory->root;
+
+print $root;

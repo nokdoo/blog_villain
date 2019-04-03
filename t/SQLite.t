@@ -6,7 +6,6 @@ use lib '../lib';
 use BlogVillain::Schema;
 use Data::Dumper;
 
-
 my $schema = BlogVillain::Schema->connect('BLOGVILLAIN_DATABASE');
 
 # print Dumper($schema);

@@ -13,7 +13,7 @@ sub post {
 	my $post = BlogVillain::Model::Post->new_post($fulltitle);
 	$post->make_idx_and_content();
 	$self->stash ( 
-				content_of_post => join ('', (map { $_->as_HTML } @{$post->{content}})), 
+				content_of_post => join ( '', ( map { $_->as_HTML } @{$post->{content}} ) ), 
 				index_of_post => $post->{index}->as_HTML,
 				title_of_post => $post->{title}
 	);
