@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use lib '../lib';
+use lib "$ENV{BLOGVILLAIN_HOME}/lib";
 
 use Data::Dumper;
 use Test::More;

@@ -2,7 +2,7 @@
 
 use warnings;
 use strict;
-use lib '../lib';
+use lib "$ENV{BLOGVILLAIN_HOME}/lib";
 use BlogVillain::Schema;
 use Data::Dumper;
 

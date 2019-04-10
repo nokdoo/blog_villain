@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use lib '../lib';
+use lib "$ENV{BLOGVILLAIN_HOME}/lib";
 
 use Data::Dumper;
 use Test::More;
@@ -13,11 +13,17 @@ use Encode;
 my $schema = BlogVillain::Schema->connect('BLOGVILLAIN_DATABASE');
 my $datetime = DateTime->now;
 
-my $post_row = $schema->resultset('Post')->find({
-	title => 'pod/perl/Set/Scalar',
-}) or die ;
-print Dumper($post_row);
-print $post_row->{_column_data}->{title};
-#$post_ma->delete or die;
+my @all_posts = $schema->resultset('Post')->search(undef,
+	{
+		select => [ 
+					'fulltitle', 
+					\"substr(fulltitle, 1, instr(fulltitle, '/')-1)"
+					#{ SUBSTR =>	[ 'fulltitle', 1, { INSTR => ['fulltitle', "'/'"],  } ], 
+					#	 -as => 'before_slash' } 
+				  ],
+		as => [ qw / fulltitle ti / ]
+	}
+)->all;
+print Dumper (@all_posts);
 
 done_testing();
