@@ -5,8 +5,8 @@ use warnings;
 use base qw/ DBIx::Class::Core /;
 
 __PACKAGE__->table('post');
-__PACKAGE__->load_components(qw/ Ordered /);
-__PACKAGE__->position_column('fulltitle');
+# __PACKAGE__->load_components(qw/ Ordered /);
+# __PACKAGE__->position_column('fulltitle');
 __PACKAGE__->add_columns(
 						number => 
 							{

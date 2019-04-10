@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 use lib "$ENV{BLOGVILLAIN_HOME}/lib";
+use feature qw / say /;
 
 use Data::Dumper;
 use Test::More;
@@ -13,7 +14,7 @@ use POSIX qw ( strftime );
 
 my $schema = BlogVillain::Schema->connect('BLOGVILLAIN_DATABASE');
 
-my $dir = '../public/post/';
+my $dir = "$ENV{BLOGVILLAIN_HOME}/public/post/";
 
 find(\&printfile, $dir);
 
@@ -25,8 +26,7 @@ sub printfile
 		my $path_regex = qr |.*/post/(.*).pod|;
 		$file =~ $path_regex;
 		my $fulltitle = $1;
-		
-		return if $fulltitle eq 'test';
+		say $_;
 		
 		my $mtime = ((stat($_))[9]);
 		my $time = strftime("%Y-%m-%dT%H:%M:%S", localtime($mtime));
