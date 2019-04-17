@@ -10,8 +10,9 @@ use Data::Dumper;
 my $schema = BlogVillain::Schema->connect('BLOGVILLAIN_DATABASE');
 
 sub new_post {
-	my ($class, $fulltitle) = @_;
+	my ($class, $category, $fulltitle) = @_;
 	my $post_result = $schema->resultset('Post')->find({
+		category => $category,
 		fulltitle => $fulltitle,
 	}) or die "Error: on [Model::Post]\t$fulltitle\n";
 	return BlogVillain::Post->new( { $post_result->get_columns } );

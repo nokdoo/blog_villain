@@ -17,12 +17,13 @@ sub startup {
 
   # Normal route to controller
   $r->get('/')->to(template => 'home');
+
   $r->get('/about')->to(template => 'about');
 
 
   $r->post('/post/checksyntax')->to('post#checksyntax');
   $r->get('/post/write')->to(template=>'post/write');
-  $r->get('/post/*fulltitle')->to('post#post');
+  $r->get('/post/:category/*fulltitle')->to('post#post');
 
 }
 

@@ -5,17 +5,21 @@ use warnings;
 use Mojo::Base 'Mojolicious::Controller';
 use BlogVillain::Model::Post;
 use Data::Dumper;
+use feature qw/ say /;
 
 # This action will render a template
 sub post {
 	my $self = shift;
+	my $category = $self->stash('category');
 	my $fulltitle = $self->stash('fulltitle');
-	my $post = BlogVillain::Model::Post->new_post($fulltitle);
+	say $category;
+	say $fulltitle;
+	my $post = BlogVillain::Model::Post->new_post($category, $fulltitle);
 	$post->make_idx_and_content;
 	$self->stash( 
-					content_of_post => join ( '', ( map { $_->as_HTML } @{ $post->{content} } ) ), 
-					index_of_post => $post->{index}->as_HTML,
-					title_of_post => $post->{title}
+					content => join ( '', ( map { $_->as_HTML } @{ $post->{content} } ) ), 
+					index => $post->{index}->as_HTML,
+					title => $post->{title}
 				);
 	$self->render(template => 'post/post');
 }
