@@ -4,6 +4,9 @@
 post 작성날짜 추가
 
 c, perl, java 등 주제 리스트 출력
+ Post 테이블이 참조하는 Category 테이블 생성, fk 등록
+ Post 테이블의 category 컬럼의 변경 때마다 Category 테이블도 같이 수정해주는 trigger 추가
+ pod -> database 스크립트 수정
 
 post pod validation 기능
 
