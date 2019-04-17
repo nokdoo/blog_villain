@@ -26,7 +26,11 @@ sub printfile
 		my $path_regex = qr |.*/post/(.*).pod|;
 		$file =~ $path_regex;
 		my $fulltitle = $1;
-		say $_;
+		my $category_regex = qr | (.*?)/ |x;
+		$fulltitle =~ $category_regex;
+		$fulltitle =~ s/$category_regex//;
+		my $category = $1;
+		say $category;
 		
 		my $mtime = ((stat($_))[9]);
 		my $time = strftime("%Y-%m-%dT%H:%M:%S", localtime($mtime));
@@ -36,6 +40,7 @@ sub printfile
 
 		$schema->resultset('Post')->create({
 			title => $title,
+			category => $category,
 			fulltitle => $fulltitle,
 			pod => $pod,
 			time => $time,

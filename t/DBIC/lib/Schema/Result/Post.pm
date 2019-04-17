@@ -1,4 +1,4 @@
-package BlogVillain::Schema::Result::Post;
+package Schema::Result::Post;
 use strict;
 use warnings;
 use Data::Dumper;
@@ -9,12 +9,12 @@ __PACKAGE__->table('post');
 # __PACKAGE__->load_components(qw/ Ordered /);
 # __PACKAGE__->position_column('fulltitle');
 __PACKAGE__->add_columns(
-						number =>
+						number => 
 							{
 								data_type => 'integer',
 								is_auto_increment => 1,
 							},
-						title =>
+						title => 
 							{
 								data_type => 'varchar',
 								size => 20,
@@ -45,16 +45,16 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key(qw/ number /);
 __PACKAGE__->add_unique_constraints( post_ukey_fulltitle => ['fulltitle'] );
 __PACKAGE__->belongs_to(
-						'category' =>
-							'BlogVillain::Schema::Result::Category',
-							{ 'foreign.category' => 'self.category' }
+						'category' => 
+							'Schema::Result::Category', 
+							{ 'foreign.category' => 'self.category' } 
 					   );
 
 sub sqlt_deploy_hook {
 	my ($self, $sqlt_table) = @_;
   	$sqlt_table->add_index(name=>'post_idx_fulltitle', fields=>['fulltitle']);
   	$sqlt_table->add_index(name=>'post_idx_category', fields=>['category']);
-
+	
 	my $sqlt_schema = $sqlt_table->schema;
 	$sqlt_schema->add_trigger(
 								name =>
