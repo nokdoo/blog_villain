@@ -1,10 +1,10 @@
 % layout 'default';
+% title $title;
 %= stylesheet '/highlight/styles/obsidian.css'
 %= javascript '/highlight/highlight.pack.js', style=>'Obsidian'
 %= javascript begin 
 	hljs.initHighlightingOnLoad(); 
 % end
-% title $title;
 <div class="index_of_post">
 	<div class="box_of_index">
 		<%== $index %>

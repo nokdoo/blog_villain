@@ -11,10 +11,9 @@ use DateTime;
 use Encode;
 
 my $schema = BlogVillain::Schema->connect('BLOGVILLAIN_DATABASE');
-my $datetime = DateTime->now;
+my @arr = map { $_->get_column('category') } $schema->resultset('Category')->search();
+# print Dumper($schema->resultset('Category')->search());
+print Dumper(\@arr);
 
-$schema->resultset('Subject')->create({
-	subject => 'pod/perl/Set/Scalar',
-}) or die ;
 
 done_testing();

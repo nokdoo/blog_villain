@@ -1,0 +1,9 @@
+% layout 'default';
+% title 'posts';
+%= stylesheet '/post/categories.css'
+
+<div>
+% foreach my $fulltitle ( @$fulltitles ) {
+    <%= link_to $fulltitle => "/post/$category/$fulltitle" %> <br/>
+% }
+</div>

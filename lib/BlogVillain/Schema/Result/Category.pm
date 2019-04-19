@@ -5,6 +5,7 @@ use warnings;
 use base qw/ DBIx::Class::Core /;
 
 __PACKAGE__->table('category');
+__PACKAGE__->load_components(qw/ Ordered /);
 __PACKAGE__->add_columns(
 						category =>
 							{

@@ -1,0 +1,9 @@
+% layout 'default';
+% title 'posts';
+%= stylesheet '/post/categories.css'
+
+<div>
+% foreach my $category ( @$categories ) {
+    <%= link_to $category => "/post/$category" %> <br/>
+% }
+</div>

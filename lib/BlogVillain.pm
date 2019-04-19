@@ -18,12 +18,16 @@ sub startup {
   # Normal route to controller
   $r->get('/')->to(template => 'home');
 
-  $r->get('/about')->to(template => 'about');
+  $r->get('about')->to(template => 'about');
 
+  
+  
+  $r->post('post/checksyntax')->to('post#check_syntax');
 
-  $r->post('/post/checksyntax')->to('post#checksyntax');
-  $r->get('/post/write')->to(template=>'post/write');
-  $r->get('/post/:category/*fulltitle')->to('post#post');
+  $r->get('post/categories')->to('post#get_categories');
+  $r->get('post/:category')->to('post#get_fulltitles');
+  $r->get('post/write')->to(template=>'post/write');
+  $r->get('post/:category/*fulltitle')->to('post#get');
 
 }
 
