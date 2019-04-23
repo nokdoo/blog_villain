@@ -1,1 +1,4 @@
 public/post/
+*.bak
+*.swp
+/local

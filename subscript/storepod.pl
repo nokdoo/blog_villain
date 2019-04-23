@@ -59,3 +59,4 @@ sub readpod
 	close $pod;
 	$a;
 }
+1;

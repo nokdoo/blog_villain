@@ -28,7 +28,7 @@ sub get {
     my $post      = BlogVillain::Model::Post->find( $category, $fulltitle );
     $post->make_idx_and_content;
     
-    my @content   = join '', map { $_->as_HTML } @{ $post->{content} };
+    my @content   = join q{}, map { $_->as_HTML } @{ $post->{content} };
     $self->stash(
         content => @content,
         index   => $post->{index}->as_HTML,
@@ -44,7 +44,7 @@ sub check_syntax {
     my $post = BlogVillain::Post->new($pod);
     $post->make_idx_and_content();
 
-    my @content = join '', map { $_->as_HTML } @{ $post->{content} }; 
+    my @content = join q{}, map { $_->as_HTML } @{ $post->{content} }; 
     if ( $post->validate() ) {
         $self->render('text' => @content );
     }
