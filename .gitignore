@@ -2,3 +2,4 @@ public/post/
 *.bak
 *.swp
 /local
+cpanfile.snapshot
