@@ -1,0 +1,195 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>perl/Exporter</title>
+<link rel="stylesheet" href="./p2h.css" type="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:nokdoot@nokdoot-desktop.(none)" />
+</head>
+
+<body id="_podtop_">
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#How-to-Export">How to Export</a></li>
+      <li><a href="#Selecting-What-to-Export">Selecting What to Export</a></li>
+      <li><a href="#How-to-Import">How to Import</a></li>
+    </ul>
+  </li>
+  <li><a href="#ADVANCED-FEATURES">ADVANCED FEATURES</a></li>
+  <li><a href="#GOOD-PRACTICES">GOOD PRACTICES</a>
+    <ul>
+      <li><a href="#Declaring-EXPORT_OK-and-Friends">Declaring @EXPORT_OK and Friends</a></li>
+      <li><a href="#Playing-Safe">Playing Safe</a></li>
+      <li><a href="#What-Not-to-Export">What Not to Export</a></li>
+    </ul>
+  </li>
+</ul>
+
+<a href="#_podtop_"><h1 id="NAME">NAME</h1></a>
+
+<p>Exporter - &#xBAA8;&#xB4C8;&#xC758; &#xAE30;&#xBCF8; <i>import</i> &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xAD6C;&#xD604;</p>
+
+<a href="#_podtop_"><h1 id="SYNOPSIS">SYNOPSIS</h1></a>
+
+<p><b>YourModule.pm</b> :</p>
+
+<pre><code>        package YourModule;
+        require Exporter;
+        our @ISA = qw(Exporter);
+        our @EXPORT_OK = qw(munge frobnicate);  # symbols to export on request</code></pre>
+
+<p>==</p>
+
+<pre><code>        ackage YourModule;
+        use Exporter &#39;import&#39;; # gives you Exporter&#39;s import() method directly
+        our @EXPORT_OK = qw(munge frobnicate);  # symbols to export on request</code></pre>
+
+<p>&#xB2E4;&#xB978; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0;&#xC11C; <b>YourModule</b>&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xAE30; &#xC6D0;&#xD55C;&#xB2E4;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC791;&#xC131;&#xD558;&#xBA74; &#xB41C;&#xB2E4;.</p>
+
+<pre><code>        use YourModule qw(frobnicate);      # import listed symbols
+        frobnicate ($left, $right)          # calls YourModule::frobnicate</code></pre>
+
+<a href="#_podtop_"><h1 id="DESCRIPTION">DESCRIPTION</h1></a>
+
+<p><b>Exporter</b> &#xBAA8;&#xB4C8;&#xC740; &#xC0AC;&#xC6A9;&#xC790;&#xC758; &#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;&#xC5D0; &#xD568;&#xC218;&#xC640; &#xBCC0;&#xC218;&#xB97C; export&#xD558;&#xB294; <i>import</i> &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xAD6C;&#xD604;&#xD55C;&#xB2E4;. Exporter&#xB294; &#xC77C;&#xBC18;&#xC801;&#xC778; &#xACBD;&#xC6B0;&#xC5D0; &#xCD5C;&#xC801;&#xD654;&#xB41C; &#xAD6C;&#xD604;&#xACFC; &#xC720;&#xC5F0;&#xD55C; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xB97C; &#xC81C;&#xACF5;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0;, &#xB9CE;&#xC740; &#xBAA8;&#xB4C8;&#xB4E4;&#xC774; <i>import</i>&#xB97C; &#xC9C1;&#xC811; &#xAD6C;&#xD604;&#xD558;&#xAE30;&#xBCF4;&#xB2E4;&#xB294; <b>Exporter</b>&#xB97C; &#xC0AC;&#xC6A9;&#xD55C;&#xB2E4;.</p>
+
+<p>&#xD384;&#xC740; <b>use module</b>&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xC790;&#xB3D9;&#xC801;&#xC73C;&#xB85C; <i>import</i>&#xB97C; &#xC2E4;&#xD589;&#xC2DC;&#xD0A8;&#xB2E4;. &#xBAA8;&#xB4C8;&#xC758; &#xAC1C;&#xB150;&#xACFC; <b>use</b>&#xC758; &#xB3D9;&#xC791;&#xC744; &#xC774;&#xD574;&#xD558;&#xB294; &#xAC83;&#xC740; Exporter&#xB97C; &#xC774;&#xD574;&#xD558;&#xB294;&#xB370; &#xC911;&#xC694;&#xD558;&#xB2E4;. &#xBAA8;&#xB4C8;&#xACFC; <b>use</b>&#xB294; <a target=_blank href="https://metacpan.org/pod/perlfunc">perlfunc</a>&#xACFC; <a target=_blank href="https://metacpan.org/pod/perlmod">perlmod</a>&#xC5D0; &#xBB38;&#xC11C;&#xB85C; &#xC791;&#xC131;&#xB418;&#xC5B4;&#xC788;&#xB2E4;.</p>
+
+<h2 id="How-to-Export">How to Export</h2>
+
+<p>&#xBAA8;&#xB4C8;&#xC5D0; &#xC788;&#xB294; <i>@EXPORT</i>, <i>@EXPORT_OK</i> &#xBC30;&#xC5F4;&#xC740; &#xC0AC;&#xC6A9;&#xC790;&#xC758; &#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;&#xB85C; export&#xB420; &#xD639;&#xC740; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xC694;&#xCCAD;&#xD560; symbol&#xC758; &#xB9AC;&#xC2A4;&#xD2B8;&#xB97C; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB2E4;. symbol&#xC740; function, scalar, array, hash, typeglob&#xB97C; &#xB098;&#xD0C0;&#xB0B8;&#xB2E4;. symbol&#xC740; &#xD568;&#xC218;&#xC758; &#xC570;&#xD37C;&#xC0CC;&#xB4DC;&#xB97C; &#xC81C;&#xC678;&#xD558;&#xACE0;&#xB294; &#xBAA8;&#xB450; &#xD480;&#xB124;&#xC784;&#xC73C;&#xB85C; &#xC791;&#xC131;&#xB418;&#xC5B4;&#xC57C; &#xD55C;&#xB2E4;.</p>
+
+<pre><code>        our @EXPORT    = qw(afunc $scalar @array);   # afunc is a function
+        our @EXPORT_OK = qw(&amp;bfunc %hash *typeglob); # explicit prefix on &amp;bfunc</code></pre>
+
+<h2 id="Selecting-What-to-Export">Selecting What to Export</h2>
+
+<p><b>&#xBA54;&#xC18C;&#xB4DC;&#xB97C; export&#xD558;&#xC9C0; &#xB9D0;&#xC790;</b></p>
+
+<p><b>&#xD2B9;&#xBCC4;&#xD55C; &#xC774;&#xC720;&#xAC00; &#xC5C6;&#xB2E4;&#xBA74; &#xC544;&#xBB34;&#xAC83;&#xB3C4; export&#xD558;&#xC9C0; &#xB9D0;&#xC790;</b></p>
+
+<p>export&#xD558;&#xB294; &#xAC83;&#xC740; &#xC0AC;&#xC6A9;&#xC790;&#xC758; &#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;&#xB97C; &#xC624;&#xC5FC;&#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xB2E4;. &#xAF2D; export&#xD574;&#xC57C; &#xD55C;&#xB2E4;&#xBA74;, <i>@EXPORT</i>&#xBCF4;&#xB2E4;&#xB294; <i>@EXPORT_OK</i>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xACE0;, &#xCDA9;&#xB3CC;&#xC744; &#xD53C;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC9E7;&#xAC70;&#xB098; &#xC77C;&#xBC18;&#xC801;&#xC778; symbol &#xC774;&#xB984;&#xC744; &#xC0AC;&#xC6A9;&#xC744; &#xD53C;&#xD558;&#xC790;.</p>
+
+<p>&#xC77C;&#xBC18;&#xC801;&#xC73C;&#xB85C; export&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xAC83;&#xB3C4; <i>YourModule::item_name</i> &#xB610;&#xB294; <i>&lt;$module-</i>ref-&gt;method&gt;&#xCC98;&#xB7FC; &#xC5EC;&#xC804;&#xD788; &#xBAA8;&#xB4C8; &#xBC16;&#xC5D0;&#xC11C; &#xC811;&#xADFC;&#xC774; &#xAC00;&#xB2A5;&#xD558;&#xB2E4;. &#xAD00;&#xC2B5;&#xC801;&#xC73C;&#xB85C; <b><i>_</i></b>&#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC11C; &#xBAA8;&#xB4C8; &#xB0B4;&#xBD80;&#xC5D0;&#xC11C;&#xB9CC; &#xC0AC;&#xC6A9;&#xB428;&#xC744; &#xC54C;&#xB9B0;&#xB2E4;.</p>
+
+<p>&#xC77C;&#xBC18;&#xC801;&#xC778; &#xADDC;&#xCE59;&#xC73C;&#xB85C;, &#xAC1D;&#xCCB4;&#xC9C0;&#xD5A5; &#xBAA8;&#xB4C8;&#xC744; &#xB9CC;&#xB4E4;&#xACE0; &#xC2F6;&#xB2E4;&#xBA74; &#xC544;&#xBB34;&#xAC83;&#xB3C4; export&#xD558;&#xC9C0; &#xB9D0;&#xC790;. &#xBAA8;&#xB4C8;&#xC774; &#xD568;&#xC218;&#xC758; collection&#xC774;&#xB77C;&#xBA74;, <i>@EXPORT</i>&#xB9CC;&#xC744; &#xC870;&#xC2EC;&#xC2A4;&#xB7FD;&#xAC8C; &#xC0AC;&#xC6A9;&#xD558;&#xC790;.</p>
+
+<p>&#xB2E4;&#xB978; &#xBAA8;&#xB4C8; &#xC124;&#xACC4; &#xAC00;&#xC774;&#xB4DC;&#xB77C;&#xC778;&#xC740; <a target=_blank href="https://metacpan.org/pod/perlmod">perlmod</a>&#xB97C; &#xBCF4;&#xC790;.</p>
+
+<h2 id="How-to-Import">How to Import</h2>
+
+<p>&#xBAA8;&#xB4C8;&#xC744; &#xB85C;&#xB4DC;&#xD558;&#xACE0; symbol&#xC744; import&#xD558;&#xC5EC; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC5D0;&#xB294; &#xC138; &#xAC00;&#xC9C0; &#xBC29;&#xBC95;&#xC774; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        use YourModule;</code></pre>
+
+<p>: <b>use</b>&#xB97C; &#xC0AC;&#xC6A9;&#xD55C; &#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;&#xC5D0; YourModule&#xC758; <i>@EXPORT</i> symbol&#xC744; &#xBAA8;&#xB450; import&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        use YourModule ();</code></pre>
+
+<p>: &#xBAA8;&#xB4C8;&#xC740; &#xB85C;&#xB4DC;&#xD558;&#xC9C0;&#xB9CC; &#xC544;&#xBB34;&#xB7F0; symbol&#xB3C4; import&#xD558;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</p>
+
+<pre><code>        use YourModule qw(...);</code></pre>
+
+<p>: &#xC791;&#xC131;&#xB41C; symbol&#xB9CC; &#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;&#xB85C; import&#xD55C;&#xB2E4;. &#xBAA8;&#xB4E0; symbol&#xC740; <i>@EXPORT</i> &#xB610;&#xB294; <i>@EXPORT_OK</i>&#xC5D0; &#xCD94;&#xAC00;&#xB418;&#xC5B4;&#xC57C; &#xD558;&#xBA70; &#xADF8;&#xB807;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; &#xC5D0;&#xB7EC;&#xAC00; &#xBC1C;&#xC0DD;&#xD55C;&#xB2E4;. Exporter&#xC758; &#xACE0;&#xAE09; &#xAE30;&#xB2A5;&#xB3C4; &#xC774;&#xC640; &#xAC19;&#xC9C0;&#xB9CC; &#xBB38;&#xBC95;&#xC801;&#xC73C;&#xB85C; &#xC644;&#xC804;&#xD788; &#xB2E4;&#xB974;&#xB2E4;.</p>
+
+<p>Exporter&#xC758; &#xACE0;&#xAE09; &#xAE30;&#xB2A5;&#xC744; &#xC54C;&#xACE0; &#xC2F6;&#xC9C0; &#xC54A;&#xB2E4;&#xBA74; &#xC5EC;&#xAE30;&#xAE4C;&#xC9C0;&#xAC00; Exporter&#xC758; &#xC804;&#xBD80;&#xB2E4;.</p>
+
+<a href="#_podtop_"><h1 id="ADVANCED-FEATURES">ADVANCED FEATURES</h1></a>
+
+<p>&#xC774; &#xB0B4;&#xC6A9;&#xC740; &#xD328;&#xC2A4;&#xD55C;&#xB2E4;.</p>
+
+<a href="#_podtop_"><h1 id="GOOD-PRACTICES">GOOD PRACTICES</h1></a>
+
+<h2 id="Declaring-EXPORT_OK-and-Friends">Declaring <i>@EXPORT_OK</i> and Friends</h2>
+
+<p><b>Exporter</b>&#xB97C; <i>strict</i>, <i>warnings</i>&#xC640; &#xD568;&#xAED8; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xD328;&#xD0A4;&#xC9C0; &#xBCC0;&#xC218; <i>@EXPORT_OK</i>, <i>@EXPORT</i>, <i>@ISA</i> &#xB4F1;&#xC5D0;&#xB294; <i>our</i>&#xB97C; &#xBD99;&#xC5EC;&#xC918;&#xC57C; &#xD55C;&#xB2E4;.</p>
+
+<pre><code>        our @ISA = qw(Exporter);
+        our @EXPORT_OK = qw(munge frobnicate);</code></pre>
+
+<h2 id="Playing-Safe">Playing Safe</h2>
+
+<p><i>require Exporter</i>&#xACFC; &#xD328;&#xD0A4;&#xC9C0; &#xBCC0;&#xC218;&#xC5D0; &#xD560;&#xB2F9;&#xD558;&#xB294; &#xAC83;&#xACFC; &#xAC19;&#xC740; &#xB7F0;&#xD0C0;&#xC784; &#xBA85;&#xB839;&#xC758; &#xC0AC;&#xC6A9;&#xC5D0; &#xC8FC;&#xC758;&#xC0AC;&#xB791;&#xD788; &#xC788;&#xC73C;&#xBA70;, &#xC774;&#xAC83;&#xC740; &#xBBF8;&#xC219;&#xD55C; &#xD504;&#xB85C;&#xADF8;&#xB798;&#xBA38;&#xC5D0;&#xAC8C;&#xB294; &#xB9E4;&#xC6B0; &#xBBF8;&#xBB18;&#xD558;&#xB2E4;. &#xC774;&#xAC83;&#xC740; &#xC0C1;&#xD638;&#xC801;&#xC73C;&#xB85C; &#xC7AC;&#xADC0;&#xC801;&#xC778; &#xBAA8;&#xB4C8;&#xC758; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xC5D0; &#xBC1C;&#xC0DD;&#xD558;&#xBA70;, &#xAD00;&#xB828;&#xB41C; construction&#xC744; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xC2DC;&#xAC04;&#xC5D0; &#xC601;&#xD5A5;&#xC744; &#xBC1B;&#xB294;&#xB2E4;.</p>
+
+<p>&#xC774;&#xAC83;&#xC5D0; &#xB300;&#xD574; &#xC0DD;&#xAC01;&#xD558;&#xC9C0; &#xC54A;&#xB294; &#xC774;&#xC0C1;&#xC801;&#xC778;(&#xC9C0;&#xC800;&#xBD84;&#xD558;&#xC9C0;&#xB9CC;) &#xBC29;&#xBC95;&#xC740; <i>BEGIN</i> &#xBE14;&#xB85D;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xC774;&#xB2E4;.</p>
+
+<pre><code>        package YourModule;
+        require Exporter;
+        our @ISA = qw(Exporter);
+        our @EXPORT_OK = qw(munge frobnicate);  # symbols to export on request</code></pre>
+
+<p>&#xC704;&#xC758; &#xCF54;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xCC98;&#xB7FC; &#xBC14;&#xB014; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        package YourModule;
+
+        use strict;
+        use warnings;
+
+        our (@ISA, @EXPORT_OK);
+        BEGIN {
+           require Exporter;
+           @ISA = qw(Exporter);
+           @EXPORT_OK = qw(munge frobnicate);  # symbols to export on request
+        }</code></pre>
+
+<p><i>BEGIN</i>&#xC740; <b>Exporter.pm</b> &#xBAA8;&#xB4C8;&#xC758; &#xB85C;&#xB4DC;&#xC640; <i>@ISA</i>, <i>@EXPORT_OK</i>&#xB85C;&#xC758; &#xD560;&#xB2F9;&#xC774; &#xC989;&#xC2DC; &#xC77C;&#xC5B4;&#xB098;&#xAC8C; &#xD55C;&#xB2E4;. <b>Exporter</b> &#xB85C;&#xB529;&#xACFC; &#xC0C1;&#xC18D;&#xC5D0;&#xB294; <i>base</i>, <i>parent</i>&#xC640; &#xAC19;&#xC740; &#xB300;&#xC548;&#xCC45;&#xC774; &#xC874;&#xC7AC;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        use base qw(Exporter);
+        # or
+        use parent qw(Exporter);</code></pre>
+
+<p>&#xC774;&#xAC83;&#xC740;</p>
+
+<pre><code>        BEGIN { 
+                require Exporter; 
+                @ISA = qw(Exporter); 
+        }</code></pre>
+
+<p>&#xC5D0; &#xB300;&#xD55C; &#xC88B;&#xC6B4; &#xB300;&#xC548;&#xCC45;&#xC774;&#xB2E4;. &#xCC28;&#xC774;&#xC810;&#xC740;, <i>base</i>&#xB294; &#xC120;&#xC5B8;&#xB41C; <i>field</i>&#xC640; &#xC0C1;&#xD638;&#xC791;&#xC6A9;&#xD558;&#xB294; &#xBC18;&#xBA74; <i>parent</i>&#xB294; IS-A &#xAD00;&#xACC4;&#xB97C; &#xB9CC;&#xB4E4;&#xAE30; &#xC704;&#xD574; &#xACFC;&#xAC70;&#xC758; <i>base</i>&#xC758; &#xBC84;&#xC804;&#xC744; &#xAC04;&#xC18C;&#xD654;&#xD55C; &#xAC83;&#xC774;&#xB2E4;.</p>
+
+<p>&#xC790;&#xC138;&#xD55C; &#xB0B4;&#xC6A9;&#xC740; <a target=_blank href="https://metacpan.org/pod/base">base</a>&#xC640; <a target=_blank href="https://metacpan.org/pod/parent">parent</a>&#xB97C; &#xBCF4;&#xC790;.</p>
+
+<p>&#xB7F0;&#xD0C0;&#xC784;&#xC774;&#xB0D0; &#xCEF4;&#xD30C;&#xC77C;&#xD0C0;&#xC784;&#xC774;&#xB0D0;&#xC5D0; &#xB300;&#xD55C; &#xD574;&#xACB0;&#xCC45;&#xC740; <a target=_blank href="https://metacpan.org/pod/Exporter::Easy">Exporter::Easy</a>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xC774;&#xB2E4;. &#xC774;&#xB294; <i>use</i>&#xC758; &#xBAA8;&#xB4E0; boilerplate&#xB97C; &#xD574;&#xACB0;&#xD574;&#xC900;&#xB2E4;.</p>
+
+<pre><code>        use Exporter::Easy (
+                OK =&gt; [ qw(munge frobnicate) ],
+        );
+        # @ISA setup is automatic
+        # all assignments happen at compile time</code></pre>
+
+<h2 id="What-Not-to-Export">What Not to Export</h2>
+
+<p>&#xC774;&#xBBF8; <a href="#Selecting-What-to-Export">&quot;Selecting What to Export&quot;</a>&#xC5D0;&#xC11C; &#xB2E4;&#xC74C;&#xC744; export&#xD558;&#xC9C0; &#xB9D0;&#xB77C;&#xACE0; &#xACBD;&#xACE0;&#xD588;&#xC5C8;&#xB2E4;.</p>
+
+<ul>
+
+<li><p>method name</p>
+
+</li>
+<li><p>anything by default</p>
+
+</li>
+<li><p>anything you don&#39;t need to</p>
+
+</li>
+</ul>
+
+<p>&#xC5EC;&#xAE30;&#xC5D0; &#xD55C; &#xAC00;&#xC9C0;&#xAC00; &#xB354; &#xCD94;&#xAC00;&#xB41C;&#xB2E4;. <b>&#xBCC0;&#xC218;&#xB97C; export&#xD558;&#xC9C0; &#xB9D0;&#xC790;.</b></p>
+
+<pre><code>        @EXPORT_OK = qw($svar @avar %hvar); # DON&#39;T!</code></pre>
+
+<p>set/get&#xC744; &#xC704;&#xD574;&#xC11C;&#xB294; accessor&#xB97C; &#xC81C;&#xACF5;&#xD558;&#xB294; &#xAC83;&#xC774; &#xCD5C;&#xC120;&#xC774;&#xB2E4;.</p>
+
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>perl/DBIx/Class/Schema/Config</title>
+<link rel="stylesheet" href="./p2h.css" type="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:nokdoot@nokdoot-desktop.(none)" />
+</head>
+
+<body id="_podtop_">
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+    </ul>
+  </li>
+</ul>
+
+<a href="#_podtop_"><h1 id="NAME">NAME</h1></a>
+
+<p>DBIx::Class::Schema::Config - DBIx::Class&#xC5D0; &#xB300;&#xD55C; &#xC790;&#xACA9; &#xC99D;&#xBA85; &#xAD00;&#xB9AC;.</p>
+
+<a href="#_podtop_"><h1 id="DESCRIPTION">DESCRIPTION</h1></a>
+
+<p><b>DBIx::Class::Schema::Config</b>&#xB294; <b>DBIx::Class::Schema</b>&#xC758; &#xD558;&#xC704; &#xD074;&#xB798;&#xC2A4;&#xB85C;&#xC11C;, &#xD30C;&#xC77C;&#xB85C;&#xBD80;&#xD130; &#xC790;&#xACA9; &#xC99D;&#xBA85; &#xBC0F; &#xC124;&#xC815;&#xC744; &#xB85C;&#xB4DC;&#xD560; &#xC218; &#xC788;&#xB2E4;. &#xC2E4;&#xC81C; &#xCF54;&#xB4DC;&#xB294; &#xC124;&#xC815; &#xD30C;&#xC77C;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xC774;&#xB984;&#xB9CC; &#xC54C;&#xBA74; &#xB41C;&#xB2E4;. &#xC774;&#xAC83;&#xC740; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4; &#xC790;&#xACA9; &#xC99D;&#xBA85;&#xC744; &#xAD00;&#xB9AC;&#xD558;&#xB294; &#xAC83;&#xC744; &#xAC04;&#xB2E8;&#xD558;&#xAC8C; &#xB9CC;&#xB4E0;&#xB2E4;.</p>
+
+<p>&#xC774;&#xBBF8; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xC788;&#xB294; <b>DBIx::Class::Schema</b>&#xB97C; &#xBCC0;&#xD658;&#xD558;&#xC5EC; <b>DBIx::Class::Schema::Config</b>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xC608;&#xC81C;&#xB294; <a target=_blank href="http://www.symkat.com/credential-management-in-dbix-class">http://www.symkat.com/credential-management-in-dbix-class</a>&#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<h2 id="SYNOPSIS">SYNOPSIS</h2>
+
+<p>/etc/dbic.yaml</p>
+
+<pre><code>        MY_DATABASE:
+                dsn: &quot;dbi:Pg:host=localhost;database=blog&quot;
+                user: &quot;TheDoctor&quot;
+                password: &quot;dnoPydoleM&quot;
+                TraceLevel: 1</code></pre>
+
+<p>My/Schema</p>
+
+<pre><code>        package My::Schema
+        use warnings;
+        use strict;
+         
+        use base &#39;DBIx::Class::Schema::Config&#39;;
+        __PACKAGE__-&gt;load_namespaces;</code></pre>
+
+<p>My/Code</p>
+
+<pre><code>        package My::Code;
+        use warnings;
+        use strict;
+        use My::Schema;
+         
+        my $schema = My::Schema-&gt;connect(&#39;MY_DATABASE&#39;);</code></pre>
+
+
+</body>
+
+</html>
+
+

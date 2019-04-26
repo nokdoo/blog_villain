@@ -1,0 +1,94 @@
+=encoding utf8
+
+=pod
+
+=head1 NAME
+
+L<DBIx::Class::Manual::Glossary|https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/Glossary.pod> - 용어사전
+
+=head1 DESCRIPTION
+
+DBIx::Class에서 사용되는 용어들을 정리한다.
+
+=head2 DB Schema
+	
+RDBMS의 물리적 schema를 참조한다
+
+데이터베이스는 MySQL과, schema는 RDBMS와 동의어다
+
+다음 DSN에서 xyz가 schema다.
+
+	dbi:DriverName:xyz@hostname:port
+	dbi:DriverName:database=xyz;host=hostname;port=port
+
+=head2 Inflation
+
+데이터베이스의 각 행을 언어의 object로 바꾸는 행위. B<DBIx::Class> 클래스는 데이터를 perl object로 inflate하도록 제공될 수 있다.
+
+=head2 Deflation
+
+L</Inflation>과 반대되는 개념. 컬럼 값을 나타내는 perl object를 데이터베이스로 저장하기 위해 B<DBIx::Class>의 method로 전달하는 것.
+
+=head2 ORM
+
+Object-relational mapping 또는 Object-relationship modeling. 데이터베이스의 행 내용을 언어의 object에 매핑하는 방법.
+
+B<DBIx::Class>는 ORM이다.
+
+=head2 Relationship
+
+B<DBIx::Class>에서 relationship은 두 테이블의 연결을 정의한다. relationship 조건은 각 테이블에 같은 값을 가지고 있는 컬럼목록을 나타낸다. relationship 조건은 테이블 간 B<SQL JOIN> 조건을 출력하는데 사용된다.
+
+=head2 Relationship bridge
+
+I<many_to_many>는 relationship bridge 중 하나다. 여러 relationship의 행을 검색하기 위해 L</"Accessor">를 정의한다.
+
+검색을 위한 테이블 B<join>에 bridge가 아닌, 이를 구성하는 relationship이 사용되어야 한다.
+
+=head2 Accessor
+
+perl object의 멤버에 접근하는 메서드
+
+=head2 Schema
+
+Schema object는 전체 테이블, 데이터베이스 연결을 나타낸다.
+
+하나 이상의 schema object가 생성될 수 있으며, 이들은 여러 사용자와 함께 여러 데이터베이스에 연결되고 L</"Result Class">이 정의하는 테이블을 공유한다.
+
+최소 하나의 B<DBIx::Class::Schema> 클래스가 데이터베이스마다 필요하다.
+
+=head2 Result Class
+
+B<Result Class>는 data source(table, view, query)와 datasource에서 생성된 L</Result> object에서 이용되는 메소드를 정의한다.
+
+프로그램에서 사용하는 각 data source마다 하나의 Result Class를 요구한다. 이들은 B<DBIx::Class::Core>로부터 상속받아야 한다.
+
+L<DBIx::Class::Manual::ResultClass|https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/ResultClass.pod>
+
+=head2 ResultSource
+
+ResultSource object는 data source를 나타낸다. 테이블 object라고도 불리지만 이는 잘못된 명칭이다.
+
+ResultSource는 직접 생성될 필요가 없다. ResultSource 인스턴스는 L</Schema>의 각 L</Result Class>에 대해 생성된다.(proxied 메소드 - I<table>, I<add_columns>에 의해)
+
+자세한 것은 L<"METHODS" in DBIx::Class::ResultSource|https://metacpan.org/pod/DBIx::Class::ResultSource#METHODS>를 보자.
+
+=head2 ResultSet
+
+ResultSet object는 데이터를 필터링하기 위한 것이다. 테이블 또는 쿼리의 결과가 될 수 있다.
+
+ResultSet은 단지 어떻게 데이터를 fetch할 것인지에 대한 기술이다. 즉, 실제 데이터는 ResultSet에 담기지 않는다.
+
+L<"METHODS" in DBIx::Class::ResultSet|https://metacpan.org/pod/DBIx::Class::ResultSet#METHODS>
+
+=head2 Result
+
+Result object는 실제 데이터를 갖는다. ResultSet object로부터 반환된다. 때때로 row object라고도 불리지만 이는 잘못된 것이다.(DBIC 문서에서의 표현도 마찬가지다.)
+
+L<DBIx::Class::Manual::ResultClass|https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/ResultClass.pod>
+
+=head2 prefetch
+
+result object가 ResultSet으로부터 직접 사용되는 대신 이후의 사용을 위해 fetch, cache된다는 점을 제외하면 조인과 유사하다. 이것은 추가 SELECT 문을 생성하는 걱정 없이 Result내에서 다른 relationship으로 이동 가능하게 해준다.
+
+=cut

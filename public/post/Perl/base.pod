@@ -1,0 +1,44 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+B<I<base>> - 컴파일타임에 base 클래스와의 ISA 관계를 형성
+
+=head1 SYNOPSIS
+
+	package Baz;
+	use base qw(Foo Bar);
+
+=head1 DESCRIPTION
+
+하나 이상의 모듈을 로드하고 동시에 모듈로부터 상속받는다. 
+다음과 비슷한 효과를 얻는다.
+
+	package Baz;
+	BEGIN {
+		require Foo;
+		require Bar;
+		push @ISA, qw(Foo Bar);
+	}
+
+I<base>은 require module을 사용하고 모듈을 찾지 못하더라도 프로그램이 죽지 않는다. (다른 에러가 발생하면 죽는다.)
+모든 작업이 끝나면 base class는 어떠한 symbol없이 비어있게 되고, 결국 사라진다.
+이것은 파일 이름이 base 모듈 이름과 일치하지 않는 상황에서, 같은 파일에 위치한 클래스로부터 상속받기에 유용하다.
+
+	# in Bar.pm
+	package Foo;
+	sub exclaim { "I can have such a thing?!" }
+
+	package Bar;
+	use base "Foo";
+
+B<Foo.pm>이 없지만 B<Foo>는 I<exclaim> symbol을 정의하고 있기 때문에, I<base>는 I<require>가 B<Foo.pm>을 로드하지 못하더라도 죽지 않는다.
+
+I<base>는 base 클래드 중 하나라도 해당 field를 가지고 있다면 field를 초기화 한다.
+여러 field를 상속하는 것은 지원되지 않는다.
+관련 내용은 L<fields|https://metacpan.org/pod/fields>를 확인하자.
+
+base 클래스의 I<import>는 호출되지 않는다.
+
+=cut

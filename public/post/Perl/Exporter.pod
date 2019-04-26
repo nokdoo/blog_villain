@@ -1,0 +1,170 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+Exporter - 모듈의 기본 I<import> 메소드를 구현
+
+=head1 SYNOPSIS
+
+B<YourModule.pm> : 
+
+	package YourModule;
+	require Exporter;
+	our @ISA = qw(Exporter);
+	our @EXPORT_OK = qw(munge frobnicate);  # symbols to export on request
+
+==
+
+	ackage YourModule;
+	use Exporter 'import'; # gives you Exporter's import() method directly
+	our @EXPORT_OK = qw(munge frobnicate);  # symbols to export on request
+
+다른 프로그램에서 B<YourModule>을 사용하기 원한다면 다음과 같이 작성하면 된다.
+
+	use YourModule qw(frobnicate);      # import listed symbols
+	frobnicate ($left, $right)          # calls YourModule::frobnicate
+
+=head1 DESCRIPTION
+
+B<Exporter> 모듈은 사용자의 네임스페이스에 함수와 변수를 export하는 I<import> 메소드를 구현한다.
+Exporter는 일반적인 경우에 최적화된 구현과 유연한 인터페이스를 제공하기 때문에, 많은 모듈들이 I<import>를 직접 구현하기보다는 B<Exporter>를 사용한다.
+
+펄은 B<use module>을 사용하면 자동적으로 I<import>를 실행시킨다. 
+모듈의 개념과 B<use>의 동작을 이해하는 것은 Exporter를 이해하는데 중요하다. 
+모듈과 B<use>는 L<perlfunc|https://metacpan.org/pod/perlfunc>과 L<perlmod|https://metacpan.org/pod/perlmod>에 문서로 작성되어있다.
+
+=head2 How to Export
+
+모듈에 있는 I<@EXPORT>, I<@EXPORT_OK> 배열은 사용자의 네임스페이스로 export될 혹은 사용자가 요청할 symbol의 리스트를 가지고 있다. 
+symbol은 function, scalar, array, hash, typeglob를 나타낸다. 
+symbol은 함수의 앰퍼샌드를 제외하고는 모두 풀네임으로 작성되어야 한다.
+
+	our @EXPORT    = qw(afunc $scalar @array);   # afunc is a function
+	our @EXPORT_OK = qw(&bfunc %hash *typeglob); # explicit prefix on &bfunc
+
+=head2 Selecting What to Export
+
+B<메소드를 export하지 말자>
+
+B<특별한 이유가 없다면 아무것도 export하지 말자>
+
+export하는 것은 사용자의 네임스페이스를 오염시킬 수 있다. 
+꼭 export해야 한다면, I<@EXPORT>보다는 I<@EXPORT_OK>를 사용하고, 충돌을 피하기 위해 짧거나 일반적인 symbol 이름을 사용을 피하자.
+
+일반적으로 export되지 않은 것도 I<YourModule::item_name> 또는 I<<$module->ref->method>처럼 여전히 모듈 밖에서 접근이 가능하다. 
+관습적으로 B<I<_>>를 사용해서 모듈 내부에서만 사용됨을 알린다.
+
+일반적인 규칙으로, 객체지향 모듈을 만들고 싶다면 아무것도 export하지 말자.
+모듈이 함수의 collection이라면, I<@EXPORT>만을 조심스럽게 사용하자.
+
+다른 모듈 설계 가이드라인은 L<perlmod|https://metacpan.org/pod/perlmod>를 보자.
+
+=head2 How to Import
+
+모듈을 로드하고 symbol을 import하여 사용하는 방법에는 세 가지 방법이 있다.
+
+	use YourModule;
+
+: B<use>를 사용한 네임스페이스에 YourModule의 I<@EXPORT> symbol을 모두 import한다.
+
+	use YourModule ();
+
+: 모듈은 로드하지만 아무런 symbol도 import하지 않는다.
+
+	use YourModule qw(...);
+
+: 작성된 symbol만 네임스페이스로 import한다.
+모든 symbol은 I<@EXPORT> 또는 I<@EXPORT_OK>에 추가되어야 하며 그렇지 않으면 에러가 발생한다.
+Exporter의 고급 기능도 이와 같지만 문법적으로 완전히 다르다.
+
+Exporter의 고급 기능을 알고 싶지 않다면 여기까지가 Exporter의 전부다.
+
+=head1 ADVANCED FEATURES
+
+이 내용은 패스한다.
+
+=head1 GOOD PRACTICES
+
+=head2 Declaring I<@EXPORT_OK> and Friends
+
+B<Exporter>를 I<strict>, I<warnings>와 함께 사용하면 패키지 변수 I<@EXPORT_OK>, I<@EXPORT>, I<@ISA> 등에는 I<our>를 붙여줘야 한다.
+
+	our @ISA = qw(Exporter);
+	our @EXPORT_OK = qw(munge frobnicate);
+
+=head2 Playing Safe
+
+I<require Exporter>과 패키지 변수에 할당하는 것과 같은 런타임 명령의 사용에 주의사랑히 있으며, 이것은 미숙한 프로그래머에게는 매우 미묘하다.
+이것은 상호적으로 재귀적인 모듈의 인스턴스에 발생하며, 관련된 construction을 실행하는 시간에 영향을 받는다.
+
+이것에 대해 생각하지 않는 이상적인(지저분하지만) 방법은 I<BEGIN> 블록을 사용하는 것이다.
+
+	package YourModule;
+	require Exporter;
+	our @ISA = qw(Exporter);
+	our @EXPORT_OK = qw(munge frobnicate);  # symbols to export on request
+
+위의 코드는 다음처럼 바뀔 수 있다.
+
+	package YourModule;
+
+	use strict;
+	use warnings;
+
+	our (@ISA, @EXPORT_OK);
+	BEGIN {
+	   require Exporter;
+	   @ISA = qw(Exporter);
+	   @EXPORT_OK = qw(munge frobnicate);  # symbols to export on request
+	}
+
+I<BEGIN>은 B<Exporter.pm> 모듈의 로드와 I<@ISA>, I<@EXPORT_OK>로의 할당이 즉시 일어나게 한다.
+B<Exporter> 로딩과 상속에는 I<base>, I<parent>와 같은 대안책이 존재한다.
+
+	use base qw(Exporter);
+	# or
+	use parent qw(Exporter);
+
+이것은 
+
+	BEGIN { 
+		require Exporter; 
+		@ISA = qw(Exporter); 
+	}
+
+에 대한 좋운 대안책이다.
+차이점은, I<base>는 선언된 I<field>와 상호작용하는 반면 I<parent>는 IS-A 관계를 만들기 위해 과거의 I<base>의 버전을 간소화한 것이다.
+
+자세한 내용은 L<base|https://metacpan.org/pod/base>와 L<parent|https://metacpan.org/pod/parent>를 보자.
+
+런타임이냐 컴파일타임이냐에 대한 해결책은 L<Exporter::Easy|https://metacpan.org/pod/Exporter::Easy>를 사용하는 것이다.
+이는 I<use>의 모든 boilerplate를 해결해준다.
+
+	use Exporter::Easy (
+		OK => [ qw(munge frobnicate) ],
+	);
+	# @ISA setup is automatic
+	# all assignments happen at compile time
+
+=head2 What Not to Export
+
+이미 L</"Selecting What to Export">에서 다음을 export하지 말라고 경고했었다.
+
+=over 4
+
+=item * method name
+
+=item * anything by default
+
+=item * anything you don't need to
+
+=back
+
+여기에 한 가지가 더 추가된다. B<변수를 export하지 말자.>
+
+	@EXPORT_OK = qw($svar @avar %hvar); # DON'T!
+
+set/get을 위해서는 accessor를 제공하는 것이 최선이다.
+
+=cut

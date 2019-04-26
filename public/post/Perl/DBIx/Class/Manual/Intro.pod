@@ -1,0 +1,301 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+L<DBIx::Class::Manual::Intro|https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/Intro.pod>
+
+=head1 DESCRIPTION
+
+지루한 SQL을 사용하는 L<Class::DBI|https://metacpan.org/pod/Class::DBI>를 대체하는 DBIx::Class
+
+=head1 The DBIx::Class WAY
+
+DBIx::Class에 대한 이해를 돕기 위한 내용을 정리한다.
+
+=head2 Tables become Result classes
+
+DBIx::Class는 테이블 구조가 어떻게 생겼는지 알아야 한다. Result Class를 먼저 정의하자. Result Class는 L<DBIx::Class::ResultSource|https://metacpan.org/pod/DBIx::Class::ResultSource>에 proxy된 메소드를 호출하는 것을 통해 정의된다. 각 Result class 는 하나의 테이블을 정의한다.
+
+=head2 It's all about the ResultSet
+
+이미 정의된 ResultSource를 사용해서 sql 쿼리를 perl object로 바꿔보자.
+
+"albumid", "artist", "title" 컬럼을 가진 "album" 테이블에 대한 ResultSource를 정의했다고 생각하자. 이 테이블에 무엇을 하던, ResultSource로부터 L<DBIx::Class::ResultSet|https://metacpan.org/pod/DBIx::Class::ResultSet>을 생성해야 한다.
+
+	SELECT albumid, artist, title FROM album;
+
+위 sql의 결과는 "album" 테이블의 ResultSource로부터 ResultSet object를 생성함으로써 얻어질 수 있다.
+
+DBIx::Class는 단순한 ResultSet 말고도 다음과 같은 sql의 결과도 얻을 수 있다.
+
+	SELECT title FROM album GROUP BY title;
+
+DBI에서 sql을 사용할 때마다 DBIx::Class::ResultSet을 생성한다고 이해하자.
+
+=head2 Search is like "prepare"
+
+DBIx::Class는 데이터베이스로부터 모든 정보를 fetch할 때까지 기다린다. ResultSet object를 반환하더라도 데이터에 접근하는 "next", "first" 메소드를 사용하기 전까지 쿼리는 실행되지 않는다.
+
+ResultSet을 설정하는 것은 쿼리를 실행하는 것이 아니다.
+
+=head2 Search results are returned as Rows
+
+데이터베이스로부터 얻어진 Row는 L<Result|https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/ResultClass.pod> object로 bless된다.
+
+=head1 SETTING UP DBIx::Class
+
+native L<DBIx::Class|https://metacpan.org/pod/DBIx::Class> tree를 설정하고 사용해보자
+
+Class를 직접 설정하는 방법부터 배워보자.
+
+=head2 Setting it up manually
+
+우선 L<DBIx::Class::Schema|https://metacpan.org/pod/DBIx::Class::Schema>를 상속하는 schema 클래스를 만들어야 한다.
+
+	package My::Schema;
+	use base qw/DBIx::Class::Schema/;
+
+schema 클래스에서 result_source("table", "model") 클래스를 로드한다. result_source 클래스는 load_namespaces 메소드로 정의한다.
+
+    # load My::Schema::Result::* and their resultset classes
+	__PACKAGE__->load_namespaces();
+
+기본 설정으로, schema 클래스는 My::Schema::Result::에 있는 모든 Result(Row) 클래스와 My::Schema::ResultSet::에 지정된 resultset 클래스(존재하지 않는다면 DBIx::Class::ResultSet이 지정된다.)를 로드한다. L<"load_namespaces" in DBIx::Class::Schema|https://metacpan.org/pod/DBIx::Class::Schema#load_namespaces> 호출을 통해 다른 위치의 result와 resultset를 지정할 수 있다.
+
+Row 클래스에 I<load_classes>를 호출하는 것과, Row 클래스가 필요로 하는 resultset 클래스를 정의하는 것으로 위 작업을 직접 수행할 수 있다.
+
+다음으로 위에서 로드하기로 했었던 클래스들을 생성해보자.
+
+	package My::Schema::Result::Album;
+	use base qw/DBIx::Class::Core/;
+
+필요한 컴포넌트를 I<load_components()> 메소드를 이용해서 로드하고, 필요하다면 컴포넌트 설정을 제공하자. 예를 들어 행에 순서를 부여하고 싶다면,
+
+	__PACKAGE__->load_components(qw/ Ordered /);
+	__PACKAGE__->position_column('rank');
+
+를 작성하면 된다. Ordered는 별 다른 지시가 없다면 'position' 필드를 참조할 것이다. 위의 경우는 'rank'에 순서를 부여한다.
+
+클래스에 테이블을 지정한다.
+
+	__PACKAGE__->table('album');
+
+클래스에 컬럼을 추가한다.
+
+	__PACKAGE__->add_columns(qw/ albumid artist title rank /);
+
+각 컬럼은 accessor, data_type 등의 정보를 하나의 해시를 통해 설정될 수 있다.
+
+	__PACKAGE__->add_columns(albumid =>
+							  { accessor  => 'album',
+								data_type => 'integer',
+								size      => 16,
+								is_nullable => 0,
+								is_auto_increment => 1,
+							  },
+							artist =>
+							  { data_type => 'integer',
+								size      => 16,
+								is_nullable => 0,
+							  },
+							title  =>
+							  { data_type => 'varchar',
+								size      => 256,
+								is_nullable => 0,
+							  },
+							rank =>
+							  { data_type => 'integer',
+								size      => 16,
+								is_nullable => 0,
+								default_value => 0,
+							  }
+						   );
+
+DBIx::Class는 직접적으로 이 정보를 직접 사용하지는 않지만, L<HTML::FormHandler::Model::DBIC|https://metacpan.org/pod/HTML::FormHandler::Model::DBIC>와 같은 관련된 모듈을 이 정보를 사용한다. 이것은 schema로부터 데이터베이스 테이블을 만들 수 있게 한다. 자세한 내용은 L<"deploy" in DBIx::Class::Schema|https://metacpan.org/pod/DBIx::Class::Schema#deploy>를 보자.
+
+컬럼 속석에 대한 정보는 L<DBIx::Class::ResultSource|https://metacpan.org/pod/DBIx::Class::ResultSource>를 보자.
+
+accessor는 각 컬럼에 자동으로 생성되어 My::Schema::Result::Album은 albumid(), artist(), title()메서드를 가지게 될 것이다.
+
+primary key를 정의해보자.
+
+	__PACKAGE__->set_primary_key('albumid');
+
+여러 컬럼으로 구성된 primary key를 정의하기 위해서는 그 목록만 넘겨주면 된다.
+
+	__PACKAGE__->set_primary_key( qw/ albumid artistid / );
+
+I<belongs_to>와 I<has_many> 등을 이용해서 이 클래스의 relationship을 정의할 수 있다.
+
+	# in My::Schema::Result::Artist
+	__PACKAGE__->has_many('albums', 'My::Schema::Result::Album', 'artist');
+
+relationship에 대한 정보는 L<DBIx::Class::Relationship|https://metacpan.org/pod/DBIx::Class::Relationship>를 보자.
+
+=head2 Using DBIx::Class::Schema::Loader
+
+L<DBIx::Class::Schema::Loader|https://metacpan.org/pod/DBIx::Class::Schema::Loader>는 DBIx::Class의 모듈이 아닌 외부 모듈이다. 데이터베이스를 확인하고 schema에 있는 모든 테이블에 대한 클래스를 자동적으로 생성한다.
+
+가장 간단한 사용법은 DBIx::Class::Schema::Loader로부터 L<dbicdump|https://metacpan.org/pod/dbicdump>를 이용하는 것이다. 
+
+	$ dbicdump -o dump_directory=./lib \
+		-o components='["InflateColumn::DateTime"]' \
+		MyApp::Schema dbi:mysql:mydb user pass
+
+loader 옵션에 대한 정보는 L<DBIx::Class::Schema::Loader|https://metacpan.org/pod/DBIx::Class::Schema::Loader>와 L<DBIx::Class::Schema::Loader::Base|https://metacpan.org/pod/DBIx::Class::Schema::Loader::Base>를 확인하자.
+
+=head2 Connecting
+
+Schema로 연결하기 위해서 connection 또는 database handle을 명시해야 한다.
+
+=head3 Via connection details
+
+방법은 L<"connect" in DBI|https://metacpan.org/pod/DBI#connect>와 같다.
+
+	my $schema = My::Schema->connect('dbi:SQLite:/home/me/myapp/my.db');
+
+여러 개의 schema 인스턴스를 생성할 수 있다. 다음은 새로운 schema를 생성하는 것이다.
+
+	my $other_schema = My::Schema->connect( $dsn, $user, $password, $attrs );
+
+=head3 Via a database handle
+
+다음의 coderef는 하나의 연결된 database handle을 리턴한다.
+
+	my $schema = My::Schema->connect (
+	  sub { Some::DBH::Factory->connect },
+	  \%extra_attrs,
+	);
+
+=head2 Basic usage
+
+직접 또는 DBIx::Class::Schema::Loader로 만들어진 클래스가 정의되면 데이터베이스와 연결할 수 있다.
+
+$schema object를 이용해 데이터베이스에 접근하기 위해, I<resultset> 메소드를 호출하여 각 테이블을 나타내는 L<"ResultSet" in DBIx::Class::Manual::Glossary|https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/Glossary.pod#ResultSet>를 호출할 수 있다.
+
+primary key를 가져오는 가장 간단한 방법은 다음과 같다.
+
+	my $album = $schema->resultset('Album')->find(14);
+
+이것은 한 행을 나타내는 My::Schema::Result::Album을 반환한다. 이 반환된 값을 이용해서 다른 컬럼들에 접근하고 수정할 수 있다.
+
+	$album->title('Physical Graffiti');
+	my $title = $album->title; # $title holds 'Physical Graffiti'
+
+I<set_column>, I<get_column> accessor를 사용할 수도 있다.
+
+	$album->set_column('title', 'Presence');
+	$title = $album->get_column('title');
+
+I<update> 메소드를 통해 변경된 값을 데이터베이스에 적용할 수 있다.
+
+	$album->update;
+
+ResultSet의 값이 변경되었는지 확인도 가능하다.
+
+	if $album->is_changed;
+
+변경된 데이터를 원래대로 되돌릴 수도 있다.
+
+	$album->discard_changes;
+
+=head2 Adding and removing rows
+
+데이터베이스에 record를 생성하기 위해서는 I<create> 메소드를 사용해야 한다. 다음의 코드는 record에 접근하는데 필요한 My::Schema::Result::Album의 인스턴스를 생성한다.
+
+	my $new_album = $schema->resultset('Album')->create({
+	  title  => 'Wish You Were Here',
+	  artist => 'Pink Floyd'
+	});
+
+이제 새로운 record에 데이터를 추가할 수 있다.
+
+	$new_album->label('Capitol');
+	$new_album->year('1975');
+	$new_album->update;
+
+이 record를 삭제할 수도 있다.
+
+	$new_album->delete;
+
+인스턴스를 얻을 필요없이 직접 삭제가 가능하다.
+
+	$schema->resultset('Album')->search({ artist => 'Falco' })->delete;
+
+=head2 Finding your objects
+
+DBIx::Class 는 데이터베이스로부터 데이터를 얻는 여러 방법을 제공한다.
+
+	# Find all of Santana's albums
+	my $rs = $schema->resultset('Album')->search({ artist => 'Santana' });
+
+B<scalar>에 대해서 I<search>는 DBIx::Class::ResultSet object 를 리턴한다. I<first>를 이용하면 결과의 첫 번째 값을 얻을 수 있다.
+
+	my $album = $rs->first;
+	print $album->title;
+
+반복문을 통해 업데이트 할 수 있다.
+
+	while (my $album = $rs->next) {
+	  print $album->artist . ' - ' . $album->title;
+	  $album->year(2001);
+	  $album->update;
+	}
+
+다음 처럼 한번에 업데이트도 가능하다.
+
+	$rs->update({ year => 2001 });
+
+B<list>에 대해서 I<search>는 모든 행을 리턴한다.
+
+	# Fetch immediately all of Carlos Santana's albums
+	my @albums = $schema->resultset('Album')->search(
+	  { artist => 'Carlos Santana' }
+	);
+	foreach my $album (@albums) {
+	  print $album->artist . ' - ' . $album->title;
+	}
+
+I<LIKE>
+
+	# Find albums whose artist starts with 'Jimi'
+	my $rs = $schema->resultset('Album')->search_like({ artist => 'Jimi%' });
+
+I<WHERE>
+
+	# Find Peter Frampton albums from the year 1986
+	my $where = 'artist = ? AND year = ?';
+	my @bind  = ( 'Peter Frampton', 1986 );
+	my $rs    = $schema->resultset('Album')->search_literal( $where, @bind );
+
+I<search>를 위한 복잡한 sql을 생성하는 방법은 L<SQL::Abstract|https://metacpan.org/pod/SQL::Abstract>를 제공하는 것이다.
+
+	my $rs = $schema->resultset('Album')->search({
+	  artist  => { '!=', 'Janis Joplin' },
+	  year    => { '<' => 1980 },
+	  albumid => { '-in' => [ 1, 14, 15, 65, 43 ] }
+	});
+
+위의 코드는 다음의 I<WHERE> 절과 같다.
+
+	WHERE artist != 'Janis Joplin'
+	  AND year < 1980
+	  AND albumid IN (1, 14, 15, 65, 43)
+
+복잡한 sql에 대한 것은 L<DBIx::Class::Manual::Cookbook|https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/Cookbook.pod>을 보자.
+
+I<search>는 넘기는 속성에 따라 변경될 수 있다.
+
+	my @albums = My::Schema->resultset('Album')->search(
+	  { artist => 'Bob Marley' },
+	  { rows => 2, order_by => { -desc => 'year' } }
+	);
+
+I<@albums>는 'Bob Marley'의 가장 최근 album 두 개를 가지게 된다.
+
+ResultSet으로 무엇을 할 수 있는지는 L<"METHODS" in DBIx::Class::ResultSet|https://metacpan.org/pod/DBIx::Class::ResultSet#METHODS>를 보자.
+
+이용 가능한 속성을 보려면 L<"ATTRIBUTES" in DBIx::Class::ResultSet|https://metacpan.org/pod/DBIx::Class::ResultSet#ATTRIBUTES>를 보자.
+
+=cut

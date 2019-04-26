@@ -1,0 +1,37 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+Startup files
+
+=head1 DESCRIPTION
+
+Bash 가 startup files 를 실행하는 방법에 대해 알아보자.
+
+=head2 Interactive login shell
+
+실행 순서
+
+=over 4
+
+=item /etc/profile
+
+=item ~/.bash_profile
+
+=item ~/.bash_login
+
+=item ~/.profile
+
+~/.bash_profile 또는 ~/.bash_login 이 존재한다면 실행되지 않는다.
+
+=back
+
+login shell 이 종료되면 B<~/.bash_logout> 이 실행된다. 
+non-interactive login shell 이 I<exit> 를 실행해도 실행된다.
+
+=head2 Interactive non-login shell
+
+login shell 이 아닌 interactive shell 이 실행될 때, B<~/.bashrc> 가 실행된다.
+
+=cut

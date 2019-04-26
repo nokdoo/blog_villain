@@ -1,0 +1,140 @@
+=encoding utf8
+
+=pod
+
+=head1 NAME
+
+Benchmark - 실행시간 벤치마크
+
+=head2 SYNOPSIS
+
+	use Benchmark qw(:all) ;
+
+	timethis ($count, "code");
+
+	# Use Perl code in strings...
+	timethese($count, {
+		'Name1' => '...code1...',
+		'Name2' => '...code2...',
+	});
+
+	# ... or use subroutine references.
+	timethese($count, {
+		'Name1' => sub { ...code1... },
+		'Name2' => sub { ...code2... },
+	});
+
+	# cmpthese can be used both ways as well
+	cmpthese($count, {
+		'Name1' => '...code1...',
+		'Name2' => '...code2...',
+	});
+
+	cmpthese($count, {
+		'Name1' => sub { ...code1... },
+		'Name2' => sub { ...code2... },
+	});
+
+	# ...or in two stages
+	$results = timethese($count,
+		{
+			'Name1' => sub { ...code1... },
+			'Name2' => sub { ...code2... },
+		},
+		'none'
+	);
+	cmpthese( $results ) ;
+
+	$t = timeit($count, '...other code...')
+	print "$count loops of other code took:",timestr($t),"\n";
+
+	$t = countit($time, '...other code...')
+	$count = $t->iters ;
+	print "$count loops of other code took:",timestr($t),"\n";
+
+	# enable hires wallclock timing if possible
+	use Benchmark ':hireswallclock';
+
+=head1 DESCRIPTION
+
+B<Benchmark> 모듈은 함수들의 실행시간이 얼마나 걸리는지에 대한 루틴들을 캡슐화한다.
+
+=over 4
+
+=item * I<timethis>
+
+한 코드 덩어리를 여러 번 실행.
+
+=item * I<timethese>
+
+여러 코드 덩어리를 여러 번 실행.
+
+=item * I<cmpthese>
+
+I<timethese>의 결과를 비교 차트로 보여줌.
+
+=item * I<timeit>
+
+코드 덩어리를 실행하고 얼마나 오래 걸렸는지를 보여줌.
+
+=item * I<countit>
+
+주어진 시간 동안 코드 덩어리가 몇 번 실행되었는지를 보여줌.
+
+=back
+
+=head2 Methods
+
+=over 4
+
+=item * I<new>
+
+현재 시간을 반환.
+
+	use Benchmark;
+	$t0 = Benchmark->new;
+	# ... your code here ...
+	$t1 = Benchmark->new;
+	$td = timediff($t1, $t0);
+	print "the code took:",timestr($td),"\n";
+
+=item * I<debug>
+
+I<$Benchmark::Debug> flag 설정에 의한 디버깅 활성화 / 비활성화.
+
+	Benchmark->debug(1);
+	$t = timeit(10, ' 5 ** $Global ');
+	Benchmark->debug(0);
+
+I<iters>
+
+iteration 횟수 반환.
+
+=back
+
+=head2 Standard Exports
+
+B<Benchmark> 모듈을 사용한다면 다음의 루틴들이 namespace 에 export 될 것이다.
+
+=over 4
+
+=item * B<Arguments> :
+
+COUNT 는 루프를 실행한 횟수다. CODE 는 실행되는 코드다. CODE 는 code reference 또는 eval string 이 될 수 있다. 어느 쪽이든지 CODE 는 호출한 package 에서 실행될 것이다.
+
+=item * B<Returns> :
+
+CODE 의 iteration Time COUNT. 결과는 TITLE 와 횟수가 STDOUT 에 출력된다. TITLE 는 "timethis COUNT" 가 기본 값이다. STYLE 은 아래의 I<timestr()> 에 설명된 것처럼 출력의 형식을 결정한다.
+
+COUNT 는 0 또는 음수가 될 수 있다. 이것은 실행을 위한 최소한의 CPU 시간을 ( 초 ) 의미한다. 0 은 3초로 설정된다.
+
+UNIX 에서 CPU 초는, user time 과 프로세스 자체가 소요한 system time 으로 나타난다. ( 실제 시간과 자식 프로세스가 소요한 시간이 아니다.) 0.1 보다 짧은 시간은 허용되지 않는다. ( 음수는 실행시간 예외를 발생시킨다. )
+
+CPU 시간은 최소 시간임을 주목하자. CPU 스케줄링과 OS 요소들은 시간이 더 소요되도록 만들 수 있다.
+하지만 benchmark 는 소요시간 보다도 흥미로운 I<code> runs / second 를 알려줄 것이다. 
+
+B<Benchmark> object 를 반환한다.
+
+CODEHASHREF 는 code reference 또는 eval string 을 값으로 갖는 해시 reference 다. 
+
+=cut

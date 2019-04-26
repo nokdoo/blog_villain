@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>perl/base</title>
+<link rel="stylesheet" href="./p2h.css" type="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:nokdoot@nokdoot-desktop.(none)" />
+</head>
+
+<body id="_podtop_">
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a></li>
+</ul>
+
+<a href="#_podtop_"><h1 id="NAME">NAME</h1></a>
+
+<p><b><i>base</i></b> - &#xCEF4;&#xD30C;&#xC77C;&#xD0C0;&#xC784;&#xC5D0; base &#xD074;&#xB798;&#xC2A4;&#xC640;&#xC758; ISA &#xAD00;&#xACC4;&#xB97C; &#xD615;&#xC131;</p>
+
+<a href="#_podtop_"><h1 id="SYNOPSIS">SYNOPSIS</h1></a>
+
+<pre><code>        package Baz;
+        use base qw(Foo Bar);</code></pre>
+
+<a href="#_podtop_"><h1 id="DESCRIPTION">DESCRIPTION</h1></a>
+
+<p>&#xD558;&#xB098; &#xC774;&#xC0C1;&#xC758; &#xBAA8;&#xB4C8;&#xC744; &#xB85C;&#xB4DC;&#xD558;&#xACE0; &#xB3D9;&#xC2DC;&#xC5D0; &#xBAA8;&#xB4C8;&#xB85C;&#xBD80;&#xD130; &#xC0C1;&#xC18D;&#xBC1B;&#xB294;&#xB2E4;. &#xB2E4;&#xC74C;&#xACFC; &#xBE44;&#xC2B7;&#xD55C; &#xD6A8;&#xACFC;&#xB97C; &#xC5BB;&#xB294;&#xB2E4;.</p>
+
+<pre><code>        package Baz;
+        BEGIN {
+                require Foo;
+                require Bar;
+                push @ISA, qw(Foo Bar);
+        }</code></pre>
+
+<p><i>base</i>&#xC740; require module&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xBAA8;&#xB4C8;&#xC744; &#xCC3E;&#xC9C0; &#xBABB;&#xD558;&#xB354;&#xB77C;&#xB3C4; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC774; &#xC8FD;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;. (&#xB2E4;&#xB978; &#xC5D0;&#xB7EC;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xBA74; &#xC8FD;&#xB294;&#xB2E4;.) &#xBAA8;&#xB4E0; &#xC791;&#xC5C5;&#xC774; &#xB05D;&#xB098;&#xBA74; base class&#xB294; &#xC5B4;&#xB5A0;&#xD55C; symbol&#xC5C6;&#xC774; &#xBE44;&#xC5B4;&#xC788;&#xAC8C; &#xB418;&#xACE0;, &#xACB0;&#xAD6D; &#xC0AC;&#xB77C;&#xC9C4;&#xB2E4;. &#xC774;&#xAC83;&#xC740; &#xD30C;&#xC77C; &#xC774;&#xB984;&#xC774; base &#xBAA8;&#xB4C8; &#xC774;&#xB984;&#xACFC; &#xC77C;&#xCE58;&#xD558;&#xC9C0; &#xC54A;&#xB294; &#xC0C1;&#xD669;&#xC5D0;&#xC11C;, &#xAC19;&#xC740; &#xD30C;&#xC77C;&#xC5D0; &#xC704;&#xCE58;&#xD55C; &#xD074;&#xB798;&#xC2A4;&#xB85C;&#xBD80;&#xD130; &#xC0C1;&#xC18D;&#xBC1B;&#xAE30;&#xC5D0; &#xC720;&#xC6A9;&#xD558;&#xB2E4;.</p>
+
+<pre><code>        # in Bar.pm
+        package Foo;
+        sub exclaim { &quot;I can have such a thing?!&quot; }
+
+        package Bar;
+        use base &quot;Foo&quot;;</code></pre>
+
+<p><b>Foo.pm</b>&#xC774; &#xC5C6;&#xC9C0;&#xB9CC; <b>Foo</b>&#xB294; <i>exclaim</i> symbol&#xC744; &#xC815;&#xC758;&#xD558;&#xACE0; &#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC5D0;, <i>base</i>&#xB294; <i>require</i>&#xAC00; <b>Foo.pm</b>&#xC744; &#xB85C;&#xB4DC;&#xD558;&#xC9C0; &#xBABB;&#xD558;&#xB354;&#xB77C;&#xB3C4; &#xC8FD;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</p>
+
+<p><i>base</i>&#xB294; base &#xD074;&#xB798;&#xB4DC; &#xC911; &#xD558;&#xB098;&#xB77C;&#xB3C4; &#xD574;&#xB2F9; field&#xB97C; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB2E4;&#xBA74; field&#xB97C; &#xCD08;&#xAE30;&#xD654; &#xD55C;&#xB2E4;. &#xC5EC;&#xB7EC; field&#xB97C; &#xC0C1;&#xC18D;&#xD558;&#xB294; &#xAC83;&#xC740; &#xC9C0;&#xC6D0;&#xB418;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;. &#xAD00;&#xB828; &#xB0B4;&#xC6A9;&#xC740; <a target=_blank href="https://metacpan.org/pod/fields">fields</a>&#xB97C; &#xD655;&#xC778;&#xD558;&#xC790;.</p>
+
+<p>base &#xD074;&#xB798;&#xC2A4;&#xC758; <i>import</i>&#xB294; &#xD638;&#xCD9C;&#xB418;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</p>
+
+
+</body>
+
+</html>
+
+

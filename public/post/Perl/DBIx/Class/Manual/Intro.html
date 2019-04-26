@@ -1,0 +1,345 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>DBIx/Class/Manual/Intro</title>
+<link rel="stylesheet" href="./p2h.css" type="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:nokdoot@nokdoot-desktop.(none)" />
+</head>
+
+<body id="_podtop_">
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a></li>
+  <li><a href="#The-DBIx::Class-WAY">The DBIx::Class WAY</a>
+    <ul>
+      <li><a href="#Tables-become-Result-classes">Tables become Result classes</a></li>
+      <li><a href="#Its-all-about-the-ResultSet">It&#39;s all about the ResultSet</a></li>
+      <li><a href="#Search-is-like-prepare">Search is like &quot;prepare&quot;</a></li>
+      <li><a href="#Search-results-are-returned-as-Rows">Search results are returned as Rows</a></li>
+    </ul>
+  </li>
+  <li><a href="#SETTING-UP-DBIx::Class">SETTING UP DBIx::Class</a>
+    <ul>
+      <li><a href="#Setting-it-up-manually">Setting it up manually</a></li>
+      <li><a href="#Using-DBIx::Class::Schema::Loader">Using DBIx::Class::Schema::Loader</a></li>
+      <li><a href="#Connecting">Connecting</a>
+        <ul>
+          <li><a href="#Via-connection-details">Via connection details</a></li>
+          <li><a href="#Via-a-database-handle">Via a database handle</a></li>
+        </ul>
+      </li>
+      <li><a href="#Basic-usage">Basic usage</a></li>
+      <li><a href="#Adding-and-removing-rows">Adding and removing rows</a></li>
+      <li><a href="#Finding-your-objects">Finding your objects</a></li>
+    </ul>
+  </li>
+</ul>
+
+<a href="#_podtop_"><h1 id="NAME">NAME</h1></a>
+
+<p><a target=_blank href="https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/Intro.pod">DBIx::Class::Manual::Intro</a></p>
+
+<a href="#_podtop_"><h1 id="DESCRIPTION">DESCRIPTION</h1></a>
+
+<p>&#xC9C0;&#xB8E8;&#xD55C; SQL&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294; <a target=_blank href="https://metacpan.org/pod/Class::DBI">Class::DBI</a>&#xB97C; &#xB300;&#xCCB4;&#xD558;&#xB294; DBIx::Class</p>
+
+<a href="#_podtop_"><h1 id="The-DBIx::Class-WAY">The DBIx::Class WAY</h1></a>
+
+<p>DBIx::Class&#xC5D0; &#xB300;&#xD55C; &#xC774;&#xD574;&#xB97C; &#xB3D5;&#xAE30; &#xC704;&#xD55C; &#xB0B4;&#xC6A9;&#xC744; &#xC815;&#xB9AC;&#xD55C;&#xB2E4;.</p>
+
+<h2 id="Tables-become-Result-classes">Tables become Result classes</h2>
+
+<p>DBIx::Class&#xB294; &#xD14C;&#xC774;&#xBE14; &#xAD6C;&#xC870;&#xAC00; &#xC5B4;&#xB5BB;&#xAC8C; &#xC0DD;&#xACBC;&#xB294;&#xC9C0; &#xC54C;&#xC544;&#xC57C; &#xD55C;&#xB2E4;. Result Class&#xB97C; &#xBA3C;&#xC800; &#xC815;&#xC758;&#xD558;&#xC790;. Result Class&#xB294; <a target=_blank href="https://metacpan.org/pod/DBIx::Class::ResultSource">DBIx::Class::ResultSource</a>&#xC5D0; proxy&#xB41C; &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB294; &#xAC83;&#xC744; &#xD1B5;&#xD574; &#xC815;&#xC758;&#xB41C;&#xB2E4;. &#xAC01; Result class &#xB294; &#xD558;&#xB098;&#xC758; &#xD14C;&#xC774;&#xBE14;&#xC744; &#xC815;&#xC758;&#xD55C;&#xB2E4;.</p>
+
+<h2 id="Its-all-about-the-ResultSet">It&#39;s all about the ResultSet</h2>
+
+<p>&#xC774;&#xBBF8; &#xC815;&#xC758;&#xB41C; ResultSource&#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC11C; sql &#xCFFC;&#xB9AC;&#xB97C; perl object&#xB85C; &#xBC14;&#xAFD4;&#xBCF4;&#xC790;.</p>
+
+<p>&quot;albumid&quot;, &quot;artist&quot;, &quot;title&quot; &#xCEEC;&#xB7FC;&#xC744; &#xAC00;&#xC9C4; &quot;album&quot; &#xD14C;&#xC774;&#xBE14;&#xC5D0; &#xB300;&#xD55C; ResultSource&#xB97C; &#xC815;&#xC758;&#xD588;&#xB2E4;&#xACE0; &#xC0DD;&#xAC01;&#xD558;&#xC790;. &#xC774; &#xD14C;&#xC774;&#xBE14;&#xC5D0; &#xBB34;&#xC5C7;&#xC744; &#xD558;&#xB358;, ResultSource&#xB85C;&#xBD80;&#xD130; <a target=_blank href="https://metacpan.org/pod/DBIx::Class::ResultSet">DBIx::Class::ResultSet</a>&#xC744; &#xC0DD;&#xC131;&#xD574;&#xC57C; &#xD55C;&#xB2E4;.</p>
+
+<pre><code>        SELECT albumid, artist, title FROM album;</code></pre>
+
+<p>&#xC704; sql&#xC758; &#xACB0;&#xACFC;&#xB294; &quot;album&quot; &#xD14C;&#xC774;&#xBE14;&#xC758; ResultSource&#xB85C;&#xBD80;&#xD130; ResultSet object&#xB97C; &#xC0DD;&#xC131;&#xD568;&#xC73C;&#xB85C;&#xC368; &#xC5BB;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<p>DBIx::Class&#xB294; &#xB2E8;&#xC21C;&#xD55C; ResultSet &#xB9D0;&#xACE0;&#xB3C4; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; sql&#xC758; &#xACB0;&#xACFC;&#xB3C4; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        SELECT title FROM album GROUP BY title;</code></pre>
+
+<p>DBI&#xC5D0;&#xC11C; sql&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xB54C;&#xB9C8;&#xB2E4; DBIx::Class::ResultSet&#xC744; &#xC0DD;&#xC131;&#xD55C;&#xB2E4;&#xACE0; &#xC774;&#xD574;&#xD558;&#xC790;.</p>
+
+<h2 id="Search-is-like-prepare">Search is like &quot;prepare&quot;</h2>
+
+<p>DBIx::Class&#xB294; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xB85C;&#xBD80;&#xD130; &#xBAA8;&#xB4E0; &#xC815;&#xBCF4;&#xB97C; fetch&#xD560; &#xB54C;&#xAE4C;&#xC9C0; &#xAE30;&#xB2E4;&#xB9B0;&#xB2E4;. ResultSet object&#xB97C; &#xBC18;&#xD658;&#xD558;&#xB354;&#xB77C;&#xB3C4; &#xB370;&#xC774;&#xD130;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xB294; &quot;next&quot;, &quot;first&quot; &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xAE30; &#xC804;&#xAE4C;&#xC9C0; &#xCFFC;&#xB9AC;&#xB294; &#xC2E4;&#xD589;&#xB418;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</p>
+
+<p>ResultSet&#xC744; &#xC124;&#xC815;&#xD558;&#xB294; &#xAC83;&#xC740; &#xCFFC;&#xB9AC;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xAC83;&#xC774; &#xC544;&#xB2C8;&#xB2E4;.</p>
+
+<h2 id="Search-results-are-returned-as-Rows">Search results are returned as Rows</h2>
+
+<p>&#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xB85C;&#xBD80;&#xD130; &#xC5BB;&#xC5B4;&#xC9C4; Row&#xB294; <a target=_blank href="https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/ResultClass.pod">Result</a> object&#xB85C; bless&#xB41C;&#xB2E4;.</p>
+
+<a href="#_podtop_"><h1 id="SETTING-UP-DBIx::Class">SETTING UP DBIx::Class</h1></a>
+
+<p>native <a target=_blank href="https://metacpan.org/pod/DBIx::Class">DBIx::Class</a> tree&#xB97C; &#xC124;&#xC815;&#xD558;&#xACE0; &#xC0AC;&#xC6A9;&#xD574;&#xBCF4;&#xC790;</p>
+
+<p>Class&#xB97C; &#xC9C1;&#xC811; &#xC124;&#xC815;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xBD80;&#xD130; &#xBC30;&#xC6CC;&#xBCF4;&#xC790;.</p>
+
+<h2 id="Setting-it-up-manually">Setting it up manually</h2>
+
+<p>&#xC6B0;&#xC120; <a target=_blank href="https://metacpan.org/pod/DBIx::Class::Schema">DBIx::Class::Schema</a>&#xB97C; &#xC0C1;&#xC18D;&#xD558;&#xB294; schema &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xB9CC;&#xB4E4;&#xC5B4;&#xC57C; &#xD55C;&#xB2E4;.</p>
+
+<pre><code>        package My::Schema;
+        use base qw/DBIx::Class::Schema/;</code></pre>
+
+<p>schema &#xD074;&#xB798;&#xC2A4;&#xC5D0;&#xC11C; result_source(&quot;table&quot;, &quot;model&quot;) &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xB85C;&#xB4DC;&#xD55C;&#xB2E4;. result_source &#xD074;&#xB798;&#xC2A4;&#xB294; load_namespaces &#xBA54;&#xC18C;&#xB4DC;&#xB85C; &#xC815;&#xC758;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>    # load My::Schema::Result::* and their resultset classes
+        __PACKAGE__-&gt;load_namespaces();</code></pre>
+
+<p>&#xAE30;&#xBCF8; &#xC124;&#xC815;&#xC73C;&#xB85C;, schema &#xD074;&#xB798;&#xC2A4;&#xB294; My::Schema::Result::&#xC5D0; &#xC788;&#xB294; &#xBAA8;&#xB4E0; Result(Row) &#xD074;&#xB798;&#xC2A4;&#xC640; My::Schema::ResultSet::&#xC5D0; &#xC788;&#xB294; &#xC9C0;&#xC815;&#xB41C; resultset &#xD074;&#xB798;&#xC2A4;(&#xC874;&#xC7AC;&#xD558;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;&#xBA74; DBIx::Class::ResultSet&#xC774; &#xC9C0;&#xC815;&#xB41C;&#xB2E4;.)&#xB97C; &#xB85C;&#xB4DC;&#xD55C;&#xB2E4;. <a target=_blank href="https://metacpan.org/pod/DBIx::Class::Schema#load_namespaces">&quot;load_namespaces&quot; in DBIx::Class::Schema</a> &#xD638;&#xCD9C;&#xC744; &#xD1B5;&#xD574; &#xB2E4;&#xB978; &#xC704;&#xCE58;&#xC758; result&#xC640; resultset&#xB97C; &#xC9C0;&#xC815;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<p>Row &#xD074;&#xB798;&#xC2A4;&#xC5D0; <i>load_classes</i>&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB294; &#xAC83;&#xACFC;, Row &#xD074;&#xB798;&#xC2A4;&#xAC00; &#xD544;&#xC694;&#xB85C; &#xD558;&#xB294; resultset &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xC815;&#xC758;&#xD558;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xC704; &#xC791;&#xC5C5;&#xC744; &#xC9C1;&#xC811; &#xC218;&#xD589;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<p>&#xB2E4;&#xC74C;&#xC73C;&#xB85C; &#xC704;&#xC5D0;&#xC11C; &#xB85C;&#xB4DC;&#xD558;&#xAE30;&#xB85C; &#xD588;&#xC5C8;&#xB358; &#xD074;&#xB798;&#xC2A4;&#xB4E4;&#xC744; &#xC0DD;&#xC131;&#xD574;&#xBCF4;&#xC790;.</p>
+
+<pre><code>        package My::Schema::Result::Album;
+        use base qw/DBIx::Class::Core/;</code></pre>
+
+<p>&#xD544;&#xC694;&#xD55C; &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;&#xB97C; <i>load_components()</i> &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xC774;&#xC6A9;&#xD574;&#xC11C; &#xB85C;&#xB4DC;&#xD558;&#xACE0;, &#xD544;&#xC694;&#xD558;&#xB2E4;&#xBA74; &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8; &#xC124;&#xC815;&#xC744; &#xC81C;&#xACF5;&#xD558;&#xC790;. &#xC608;&#xB97C; &#xB4E4;&#xC5B4; &#xD589;&#xC5D0; &#xC21C;&#xC11C;&#xB97C; &#xBD80;&#xC5EC;&#xD558;&#xACE0; &#xC2F6;&#xB2E4;&#xBA74;,</p>
+
+<pre><code>        __PACKAGE__-&gt;load_components(qw/ Ordered /);
+        __PACKAGE__-&gt;position_column(&#39;rank&#39;);</code></pre>
+
+<p>&#xB97C; &#xC791;&#xC131;&#xD558;&#xBA74; &#xB41C;&#xB2E4;. Ordered&#xB294; &#xBCC4; &#xB2E4;&#xB978; &#xC9C0;&#xC2DC;&#xAC00; &#xC5C6;&#xB2E4;&#xBA74; &#39;position&#39; &#xD544;&#xB4DC;&#xB97C; &#xCC38;&#xC870;&#xD560; &#xAC83;&#xC774;&#xB2E4;. &#xC704;&#xC758; &#xACBD;&#xC6B0;&#xB294; &#39;rank&#39;&#xC5D0; &#xC21C;&#xC11C;&#xB97C; &#xBD80;&#xC5EC;&#xD55C;&#xB2E4;.</p>
+
+<p>&#xD074;&#xB798;&#xC2A4;&#xC5D0; &#xD14C;&#xC774;&#xBE14;&#xC744; &#xC9C0;&#xC815;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        __PACKAGE__-&gt;table(&#39;album&#39;);</code></pre>
+
+<p>&#xD074;&#xB798;&#xC2A4;&#xC5D0; &#xCEEC;&#xB7FC;&#xC744; &#xCD94;&#xAC00;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        __PACKAGE__-&gt;add_columns(qw/ albumid artist title rank /);</code></pre>
+
+<p>&#xAC01; &#xCEEC;&#xB7FC;&#xC740; accessor, data_type &#xB4F1;&#xC758; &#xC815;&#xBCF4;&#xB97C; &#xD558;&#xB098;&#xC758; &#xD574;&#xC2DC;&#xB97C; &#xD1B5;&#xD574; &#xC124;&#xC815;&#xB420; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        __PACKAGE__-&gt;add_columns(albumid =&gt;
+                                                          { accessor  =&gt; &#39;album&#39;,
+                                                                data_type =&gt; &#39;integer&#39;,
+                                                                size      =&gt; 16,
+                                                                is_nullable =&gt; 0,
+                                                                is_auto_increment =&gt; 1,
+                                                          },
+                                                        artist =&gt;
+                                                          { data_type =&gt; &#39;integer&#39;,
+                                                                size      =&gt; 16,
+                                                                is_nullable =&gt; 0,
+                                                          },
+                                                        title  =&gt;
+                                                          { data_type =&gt; &#39;varchar&#39;,
+                                                                size      =&gt; 256,
+                                                                is_nullable =&gt; 0,
+                                                          },
+                                                        rank =&gt;
+                                                          { data_type =&gt; &#39;integer&#39;,
+                                                                size      =&gt; 16,
+                                                                is_nullable =&gt; 0,
+                                                                default_value =&gt; 0,
+                                                          }
+                                                   );</code></pre>
+
+<p>DBIx::Class&#xB294; &#xC9C1;&#xC811;&#xC801;&#xC73C;&#xB85C; &#xC774; &#xC815;&#xBCF4;&#xB97C; &#xC9C1;&#xC811; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0;&#xB294; &#xC54A;&#xC9C0;&#xB9CC;, <a target=_blank href="https://metacpan.org/pod/HTML::FormHandler::Model::DBIC">HTML::FormHandler::Model::DBIC</a>&#xC640; &#xAC19;&#xC740; &#xAD00;&#xB828;&#xB41C; &#xBAA8;&#xB4C8;&#xC744; &#xC774; &#xC815;&#xBCF4;&#xB97C; &#xC0AC;&#xC6A9;&#xD55C;&#xB2E4;. &#xC774;&#xAC83;&#xC740; schema&#xB85C;&#xBD80;&#xD130; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4; &#xD14C;&#xC774;&#xBE14;&#xC744; &#xB9CC;&#xB4E4; &#xC218; &#xC788;&#xAC8C; &#xD55C;&#xB2E4;. &#xC790;&#xC138;&#xD55C; &#xB0B4;&#xC6A9;&#xC740; <a target=_blank href="https://metacpan.org/pod/DBIx::Class::Schema#deploy">&quot;deploy&quot; in DBIx::Class::Schema</a>&#xB97C; &#xBCF4;&#xC790;.</p>
+
+<p>&#xCEEC;&#xB7FC; &#xC18D;&#xC11D;&#xC5D0; &#xB300;&#xD55C; &#xC815;&#xBCF4;&#xB294; <a target=_blank href="https://metacpan.org/pod/DBIx::Class::ResultSource">DBIx::Class::ResultSource</a>&#xB97C; &#xBCF4;&#xC790;.</p>
+
+<p>accessor&#xB294; &#xAC01; &#xCEEC;&#xB7FC;&#xC5D0; &#xC790;&#xB3D9;&#xC73C;&#xB85C; &#xC0DD;&#xC131;&#xB418;&#xC5B4; My::Schema::Result::Album&#xC740; albumid(), artist(), title()&#xBA54;&#xC11C;&#xB4DC;&#xB97C; &#xAC00;&#xC9C0;&#xAC8C; &#xB420; &#xAC83;&#xC774;&#xB2E4;.</p>
+
+<p>primary key&#xB97C; &#xC815;&#xC758;&#xD574;&#xBCF4;&#xC790;.</p>
+
+<pre><code>        __PACKAGE__-&gt;set_primary_key(&#39;albumid&#39;);</code></pre>
+
+<p>&#xC5EC;&#xB7EC; &#xCEEC;&#xB7FC;&#xC73C;&#xB85C; &#xAD6C;&#xC131;&#xB41C; primary key&#xB97C; &#xC815;&#xC758;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; &#xADF8; &#xBAA9;&#xB85D;&#xB9CC; &#xB118;&#xACA8;&#xC8FC;&#xBA74; &#xB41C;&#xB2E4;.</p>
+
+<pre><code>        __PACKAGE__-&gt;set_primary_key( qw/ albumid artistid / );</code></pre>
+
+<p><i>belongs_to</i>&#xC640; <i>has_many</i> &#xB4F1;&#xC744; &#xC774;&#xC6A9;&#xD574;&#xC11C; &#xC774; &#xD074;&#xB798;&#xC2A4;&#xC758; relationship&#xC744; &#xC815;&#xC758;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        # in My::Schema::Result::Artist
+        __PACKAGE__-&gt;has_many(&#39;albums&#39;, &#39;My::Schema::Result::Album&#39;, &#39;artist&#39;);</code></pre>
+
+<p>relationship&#xC5D0; &#xB300;&#xD55C; &#xC815;&#xBCF4;&#xB294; <a target=_blank href="https://metacpan.org/pod/DBIx::Class::Relationship">DBIx::Class::Relationship</a>&#xB97C; &#xBCF4;&#xC790;.</p>
+
+<h2 id="Using-DBIx::Class::Schema::Loader">Using DBIx::Class::Schema::Loader</h2>
+
+<p><a target=_blank href="https://metacpan.org/pod/DBIx::Class::Schema::Loader">DBIx::Class::Schema::Loader</a>&#xB294; DBIx::Class&#xC758; &#xBAA8;&#xB4C8;&#xC774; &#xC544;&#xB2CC; &#xC678;&#xBD80; &#xBAA8;&#xB4C8;&#xC774;&#xB2E4;. &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xB97C; &#xD655;&#xC778;&#xD558;&#xACE0; schema&#xC5D0; &#xC788;&#xB294; &#xBAA8;&#xB4E0; &#xD14C;&#xC774;&#xBE14;&#xC5D0; &#xB300;&#xD55C; &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xC790;&#xB3D9;&#xC801;&#xC73C;&#xB85C; &#xC0DD;&#xC131;&#xD55C;&#xB2E4;.</p>
+
+<p>&#xAC00;&#xC7A5; &#xAC04;&#xB2E8;&#xD55C; &#xC0AC;&#xC6A9;&#xBC95;&#xC740; DBIx::Class::Schema::Loader&#xB85C;&#xBD80;&#xD130; <a target=_blank href="https://metacpan.org/pod/dbicdump">dbicdump</a>&#xB97C; &#xC774;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xC774;&#xB2E4;.</p>
+
+<pre><code>        $ dbicdump -o dump_directory=./lib \
+                -o components=&#39;[&quot;InflateColumn::DateTime&quot;]&#39; \
+                MyApp::Schema dbi:mysql:mydb user pass</code></pre>
+
+<p>loader &#xC635;&#xC158;&#xC5D0; &#xB300;&#xD55C; &#xC815;&#xBCF4;&#xB294; <a target=_blank href="https://metacpan.org/pod/DBIx::Class::Schema::Loader">DBIx::Class::Schema::Loader</a>&#xC640; <a target=_blank href="https://metacpan.org/pod/DBIx::Class::Schema::Loader::Base">DBIx::Class::Schema::Loader::Base</a>&#xB97C; &#xD655;&#xC778;&#xD558;&#xC790;.</p>
+
+<h2 id="Connecting">Connecting</h2>
+
+<p>Schema&#xB85C; &#xC5F0;&#xACB0;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; connection &#xB610;&#xB294; database handle&#xC744; &#xBA85;&#xC2DC;&#xD574;&#xC57C; &#xD55C;&#xB2E4;.</p>
+
+<h3 id="Via-connection-details">Via connection details</h3>
+
+<p>&#xBC29;&#xBC95;&#xC740; <a target=_blank href="https://metacpan.org/pod/DBI#connect">&quot;connect&quot; in DBI</a>&#xC640; &#xAC19;&#xB2E4;.</p>
+
+<pre><code>        my $schema = My::Schema-&gt;connect(&#39;dbi:SQLite:/home/me/myapp/my.db&#39;);</code></pre>
+
+<p>&#xC5EC;&#xB7EC; &#xAC1C;&#xC758; schema &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xB2E4;. &#xB2E4;&#xC74C;&#xC740; &#xC0C8;&#xB85C;&#xC6B4; schema&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xB294; &#xAC83;&#xC774;&#xB2E4;.</p>
+
+<pre><code>        my $other_schema = My::Schema-&gt;connect( $dsn, $user, $password, $attrs );</code></pre>
+
+<h3 id="Via-a-database-handle">Via a database handle</h3>
+
+<p>&#xB2E4;&#xC74C;&#xC758; coderef&#xB294; &#xD558;&#xB098;&#xC758; &#xC5F0;&#xACB0;&#xB41C; database handle&#xC744; &#xB9AC;&#xD134;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        my $schema = My::Schema-&gt;connect (
+          sub { Some::DBH::Factory-&gt;connect },
+          \%extra_attrs,
+        );</code></pre>
+
+<h2 id="Basic-usage">Basic usage</h2>
+
+<p>&#xC9C1;&#xC811; &#xB610;&#xB294; DBIx::Class::Schema::Loader&#xB85C; &#xB9CC;&#xB4E4;&#xC5B4;&#xC9C4; &#xD074;&#xB798;&#xC2A4;&#xAC00; &#xC815;&#xC758;&#xB418;&#xBA74; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xC640; &#xC5F0;&#xACB0;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<p>$schema object&#xB97C; &#xC774;&#xC6A9;&#xD574; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xAE30; &#xC704;&#xD574;, <i>resultset</i> &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xAC01; &#xD14C;&#xC774;&#xBE14;&#xC744; &#xB098;&#xD0C0;&#xB0B4;&#xB294; <a target=_blank href="https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/Glossary.pod#ResultSet">&quot;ResultSet&quot; in DBIx::Class::Manual::Glossary</a>&#xB97C; &#xD638;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<p>primary key&#xB97C; &#xAC00;&#xC838;&#xC624;&#xB294; &#xAC00;&#xC7A5; &#xAC04;&#xB2E8;&#xD55C; &#xBC29;&#xBC95;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xB2E4;.</p>
+
+<pre><code>        my $album = $schema-&gt;resultset(&#39;Album&#39;)-&gt;find(14);</code></pre>
+
+<p>&#xC774;&#xAC83;&#xC740; &#xD55C; &#xD589;&#xC744; &#xB098;&#xD0C0;&#xB0B4;&#xB294; My::Schema::Result::Album&#xC744; &#xBC18;&#xD658;&#xD55C;&#xB2E4;. &#xC774; &#xBC18;&#xD658;&#xB41C; &#xAC12;&#xC744; &#xC774;&#xC6A9;&#xD574;&#xC11C; &#xB2E4;&#xB978; &#xCEEC;&#xB7FC;&#xB4E4;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xACE0; &#xC218;&#xC815;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        $album-&gt;title(&#39;Physical Graffiti&#39;);
+        my $title = $album-&gt;title; # $title holds &#39;Physical Graffiti&#39;</code></pre>
+
+<p><i>set_column</i>, <i>get_column</i> accessor&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218;&#xB3C4; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        $album-&gt;set_column(&#39;title&#39;, &#39;Presence&#39;);
+        $title = $album-&gt;get_column(&#39;title&#39;);</code></pre>
+
+<p><i>update</i> &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; &#xBCC0;&#xACBD;&#xB41C; &#xAC12;&#xC744; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xC5D0; &#xC801;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        $album-&gt;update;</code></pre>
+
+<p>ResultSet&#xC758; &#xAC12;&#xC774; &#xBCC0;&#xACBD;&#xB418;&#xC5C8;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xB3C4; &#xAC00;&#xB2A5;&#xD558;&#xB2E4;.</p>
+
+<pre><code>        if $album-&gt;is_changed;</code></pre>
+
+<p>&#xBCC0;&#xACBD;&#xB41C; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC6D0;&#xB798;&#xB300;&#xB85C; &#xB418;&#xB3CC;&#xB9B4; &#xC218;&#xB3C4; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        $album-&gt;discard_changes;</code></pre>
+
+<h2 id="Adding-and-removing-rows">Adding and removing rows</h2>
+
+<p>&#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xC5D0; record&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; <i>create</i> &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC57C; &#xD55C;&#xB2E4;. &#xB2E4;&#xC74C;&#xC758; &#xCF54;&#xB4DC;&#xB294; record&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xB294;&#xB370; &#xD544;&#xC694;&#xD55C; My::Schema::Result::Album&#xC758; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        my $new_album = $schema-&gt;resultset(&#39;Album&#39;)-&gt;create({
+          title  =&gt; &#39;Wish You Were Here&#39;,
+          artist =&gt; &#39;Pink Floyd&#39;
+        });</code></pre>
+
+<p>&#xC774;&#xC81C; &#xC0C8;&#xB85C;&#xC6B4; record&#xC5D0; &#xB370;&#xC774;&#xD130;&#xB97C; &#xCD94;&#xAC00;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        $new_album-&gt;label(&#39;Capitol&#39;);
+        $new_album-&gt;year(&#39;1975&#39;);
+        $new_album-&gt;update;</code></pre>
+
+<p>&#xC774; record&#xB97C; &#xC0AD;&#xC81C;&#xD560; &#xC218;&#xB3C4; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        $new_album-&gt;delete;</code></pre>
+
+<p>&#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xB97C; &#xC5BB;&#xC744; &#xD544;&#xC694;&#xC5C6;&#xC774; &#xC9C1;&#xC811; &#xC0AD;&#xC81C;&#xAC00; &#xAC00;&#xB2A5;&#xD558;&#xB2E4;.</p>
+
+<pre><code>        $schema-&gt;resultset(&#39;Album&#39;)-&gt;search({ artist =&gt; &#39;Falco&#39; })-&gt;delete;</code></pre>
+
+<h2 id="Finding-your-objects">Finding your objects</h2>
+
+<p>DBIx::Class &#xB294; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xB85C;&#xBD80;&#xD130; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC5BB;&#xB294; &#xC5EC;&#xB7EC; &#xBC29;&#xBC95;&#xC744; &#xC81C;&#xACF5;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        # Find all of Santana&#39;s albums
+        my $rs = $schema-&gt;resultset(&#39;Album&#39;)-&gt;search({ artist =&gt; &#39;Santana&#39; });</code></pre>
+
+<p><b>scalar</b>&#xC5D0; &#xB300;&#xD574;&#xC11C; <i>search</i>&#xB294; DBIx::Class::ResultSet object &#xB97C; &#xB9AC;&#xD134;&#xD55C;&#xB2E4;. <i>first</i>&#xB97C; &#xC774;&#xC6A9;&#xD558;&#xBA74; &#xACB0;&#xACFC;&#xC758; &#xCCAB; &#xBC88;&#xC9F8; &#xAC12;&#xC744; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        my $album = $rs-&gt;first;
+        print $album-&gt;title;</code></pre>
+
+<p>&#xBC18;&#xBCF5;&#xBB38;&#xC744; &#xD1B5;&#xD574; &#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        while (my $album = $rs-&gt;next) {
+          print $album-&gt;artist . &#39; - &#39; . $album-&gt;title;
+          $album-&gt;year(2001);
+          $album-&gt;update;
+        }</code></pre>
+
+<p>&#xB2E4;&#xC74C; &#xCC98;&#xB7FC; &#xD55C;&#xBC88;&#xC5D0; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xB3C4; &#xAC00;&#xB2A5;&#xD558;&#xB2E4;.</p>
+
+<pre><code>        $rs-&gt;update({ year =&gt; 2001 });</code></pre>
+
+<p><b>list</b>&#xC5D0; &#xB300;&#xD574;&#xC11C; <i>search</i>&#xB294; &#xBAA8;&#xB4E0; &#xD589;&#xC744; &#xB9AC;&#xD134;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        # Fetch immediately all of Carlos Santana&#39;s albums
+        my @albums = $schema-&gt;resultset(&#39;Album&#39;)-&gt;search(
+          { artist =&gt; &#39;Carlos Santana&#39; }
+        );
+        foreach my $album (@albums) {
+          print $album-&gt;artist . &#39; - &#39; . $album-&gt;title;
+        }</code></pre>
+
+<p><i>LIKE</i></p>
+
+<pre><code>        # Find albums whose artist starts with &#39;Jimi&#39;
+        my $rs = $schema-&gt;resultset(&#39;Album&#39;)-&gt;search_like({ artist =&gt; &#39;Jimi%&#39; });</code></pre>
+
+<p><i>WHERE</i></p>
+
+<pre><code>        # Find Peter Frampton albums from the year 1986
+        my $where = &#39;artist = ? AND year = ?&#39;;
+        my @bind  = ( &#39;Peter Frampton&#39;, 1986 );
+        my $rs    = $schema-&gt;resultset(&#39;Album&#39;)-&gt;search_literal( $where, @bind );</code></pre>
+
+<p><i>search</i>&#xB97C; &#xC704;&#xD55C; &#xBCF5;&#xC7A1;&#xD55C; sql&#xC744; &#xC0DD;&#xC131;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC740; <a target=_blank href="https://metacpan.org/pod/SQL::Abstract">SQL::Abstract</a>&#xB97C; &#xC81C;&#xACF5;&#xD558;&#xB294; &#xAC83;&#xC774;&#xB2E4;.</p>
+
+<pre><code>        my $rs = $schema-&gt;resultset(&#39;Album&#39;)-&gt;search({
+          artist  =&gt; { &#39;!=&#39;, &#39;Janis Joplin&#39; },
+          year    =&gt; { &#39;&lt;&#39; =&gt; 1980 },
+          albumid =&gt; { &#39;-in&#39; =&gt; [ 1, 14, 15, 65, 43 ] }
+        });</code></pre>
+
+<p>&#xC704;&#xC758; &#xCF54;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xC758; <i>WHERE</i> &#xC808;&#xACFC; &#xAC19;&#xB2E4;.</p>
+
+<pre><code>        WHERE artist != &#39;Janis Joplin&#39;
+          AND year &lt; 1980
+          AND albumid IN (1, 14, 15, 65, 43)</code></pre>
+
+<p>&#xBCF5;&#xC7A1;&#xD55C; sql&#xC5D0; &#xB300;&#xD55C; &#xAC83;&#xC740; <a target=_blank href="https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/Cookbook.pod">DBIx::Class::Manual::Cookbook</a>&#xC744; &#xBCF4;&#xC790;.</p>
+
+<p><i>search</i>&#xB294; &#xB118;&#xAE30;&#xB294; &#xC18D;&#xC131;&#xC5D0; &#xB530;&#xB77C; &#xBCC0;&#xACBD;&#xB420; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        my @albums = My::Schema-&gt;resultset(&#39;Album&#39;)-&gt;search(
+          { artist =&gt; &#39;Bob Marley&#39; },
+          { rows =&gt; 2, order_by =&gt; { -desc =&gt; &#39;year&#39; } }
+        );</code></pre>
+
+<p><i>@albums</i>&#xB294; &#39;Bob Marley&#39;&#xC758; &#xAC00;&#xC7A5; &#xCD5C;&#xADFC; album &#xB450; &#xAC1C;&#xB97C; &#xAC00;&#xC9C0;&#xAC8C; &#xB41C;&#xB2E4;.</p>
+
+<p>ResultSet&#xC73C;&#xB85C; &#xBB34;&#xC5C7;&#xC744; &#xD560; &#xC218; &#xC788;&#xB294;&#xC9C0;&#xB294; <a target=_blank href="https://metacpan.org/pod/DBIx::Class::ResultSet#METHODS">&quot;METHODS&quot; in DBIx::Class::ResultSet</a>&#xB97C; &#xBCF4;&#xC790;.</p>
+
+<p>&#xC774;&#xC6A9; &#xAC00;&#xB2A5;&#xD55C; &#xC18D;&#xC131;&#xC744; &#xBCF4;&#xB824;&#xBA74; <a target=_blank href="https://metacpan.org/pod/DBIx::Class::ResultSet#ATTRIBUTES">&quot;ATTRIBUTES&quot; in DBIx::Class::ResultSet</a>&#xB97C; &#xBCF4;&#xC790;.</p>
+
+
+</body>
+
+</html>
+
+

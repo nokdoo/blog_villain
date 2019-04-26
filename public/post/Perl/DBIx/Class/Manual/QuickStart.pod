@@ -1,0 +1,139 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+L<DBIx::Class - QuickStart|https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/QuickStart.pod>
+
+=head1 DESCRIPTION
+
+이 문서는 DBIx::Class를 맛보기 위해 작성되었다. 내용을 이해하기 위해서는 데이터베이스 프로그래밍 지식과 perl의 객체지향 프로그래밍을 알고 있어야 한다. 이미 sql과 DBI에 대해 알고 있다면 도움이 될 것이다.
+
+데이터베이스는 B<sqlite3>을 사용한다.
+
+=head2 Preparation
+
+우선 DBIx::Class 모듈을 설치한다. 그리고 다음의 명령을 실행한다.
+
+ perl -mCPAN -e'CPAN::Shell->look("DBIx::Class")'
+
+정상적으로 실행되었다면 마지막 줄에 I<Working directory is ~/.cpan/build/DBIx-Class-0.082841-0>가 표시되었을 것이다. 여기가 앞으로 이 문서에서 작업할 디렉토리이다. I<~/.cpan/build/DBIx-Class-0.082841-0/examples/Schema>로 이동하고
+
+ sqlite3 db/example.db .dump
+
+를 실행해 데이터베이스 파일을 생성한다.
+
+B<MyApp::Schema> 클래스는 다른 클래스를 로드하고 DBIC를 통해 데이터베이스와 통신한다. B<Result> 클래스는 데이터베이스의 테이블과 일치한다.
+
+=head2 Do to the database
+
+=over
+
+=item * Connecting to the database
+
+ use MyApp::Schema qw();
+ my $schema = MyApp::Schema->connect('dbi:SQLite:db/example.db');
+
+=item * Using the database
+
+거의 모든 동작은 L<resultset|https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/Glossary.pod#ResultSet>을 통해 이루어진다.
+
+=over
+
+=item * Inserting data
+
+중간 object I<result>(B<$artist_ma>, B<$cd_mezz>)를 통한 삽입
+
+ my $artist_ma = $schema->resultset('Artist')->create({
+     name => 'Massive Attack',
+ });
+ my $cd_mezz = $artist_ma->create_related(cds => {
+     title => 'Mezzanine',
+ });
+ for ('Angel', 'Teardrop') {
+     $cd_mezz->create_related(tracks => {
+         title => $_
+     });
+ }
+
+I<relation accessors>(B<cds>, B<tracks>)를 통한 삽입
+
+	$schema->resultset('Artist')->create({
+		name => 'Metallica',
+		cds => [
+			{
+				title => q{Kill 'Em All},
+				tracks => [
+					{ title => 'Jump in the Fire' },
+					{ title => 'Whiplash' },
+				],
+			},
+			{
+				title => 'ReLoad',
+				tracks => [
+					{ title => 'The Memory Remains' },
+					{ title => 'The Unforgiven II' },
+					{ title => 'Fuel' },
+				],
+			},
+		],
+	});
+
+I<undef>는 I<NULL>과 같다.
+
+다음의 schema 클래스 사용을 보면 source name string B<Artist>와 accessor B<cd>, B<tracks>가 무엇인지 알 수 있을 것이다. 
+
+root -> detail
+
+	$schema->sources;                       # returns qw(Cd Track Artist)
+	$schema->source('Cd')->columns;         # returns qw(cdid artist title year)
+	$schema->source('Cd')->relationships;   # returns qw(artist tracks)
+
+detaul -> root
+	
+	$some_result->result_source;            # returns appropriate source
+	$some_resultset->result_source;
+	$some_resultsource->schema;             # returns appropriate schema
+
+=item * Selecting data
+
+조건 설정(where절)과 결과(B<MyApp::Schema::Result::Artist> 클래스의 result object) 반환.
+
+	my $artists_starting_with_m = $schema->resultset('Artist')->search(
+		{
+			name => { like => 'M%' }
+		}
+	);
+
+L<Result|https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/Glossary.pod#Result> object는 하나의 행을 나타내며 각 컬럼에 대한 accessor를 가지고 있다.
+
+=item * Updating data
+
+CD에서 title이 'ReLoad'인 행의 year를 바꿔보자
+
+	$schema->resultset('Cd')->search(
+		{
+			title => 'ReLoad',
+		}
+	)->update_all(
+		{
+			year => 1997,
+		}
+	);
+
+=item * deleting data
+
+Track에서 title이 'Fuel'인 행을 모두 지우자
+
+	$schema->resultset('Track')->search(
+		{
+			title => 'Fuel',
+		}
+	)->delete_all;
+
+=back
+
+=back
+
+=cut
+

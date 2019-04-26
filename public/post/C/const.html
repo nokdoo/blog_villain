@@ -1,0 +1,90 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>c/const</title>
+<link rel="stylesheet" href="./p2h.css" type="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:nokdoot@nokdoot-desktop.(none)" />
+</head>
+
+<body id="_podtop_">
+
+
+
+<ul id="index">
+  <li><a href="#const-type-qualifier">const type qualifier</a></li>
+</ul>
+
+<a href="#_podtop_"><h1 id="const-type-qualifier">const type qualifier</h1></a>
+
+<p><a target=_blank href="https://en.cppreference.com/w/c/language/type">c type system</a>&#xC758; &#xAC01; &#xD0C0;&#xC785;&#xC740; &#xC5EC;&#xB7EC; <i>qualified</i> version&#xB97C; &#xAC00;&#xC9C8; &#xC218; &#xC788;&#xB2E4;. qualified version&#xC740; <b>const</b>, <a target=_blank href="https://en.cppreference.com/w/c/language/volatile">volatile</a>, &#xADF8;&#xB9AC;&#xACE0; object &#xD0C0;&#xC785;&#xC758; &#xD3EC;&#xC778;&#xD130;&#xC5D0; &#xB300;&#xD55C; <a target=_blank href="https://en.cppreference.com/w/c/language/restrict">restrict</a>&#xB97C; &#xB9D0;&#xD55C;&#xB2E4;. &#xC774; &#xAE00;&#xC5D0;&#xC11C;&#xB294; <b>const</b>&#xC758; &#xAE30;&#xB2A5;&#xC5D0; &#xB300;&#xD574; &#xC124;&#xBA85;&#xD55C;&#xB2E4;.</p>
+
+<p><b>const-qualified</b> &#xD0C0;&#xC785;&#xC73C;&#xB85C; <a target=_blank href="https://en.cppreference.com/w/c/language/const">&#xC120;&#xC5B8;&#xB41C;</a> object&#xB294; &#xCEF4;&#xD30C;&#xC77C;&#xB7EC;&#xC5D0; &#xC758;&#xD574; read-only &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xC704;&#xCE58;&#xD558;&#xAC8C; &#xB41C;&#xB2E4;. &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC774; const object&#xC758; &#xC8FC;&#xC18C;&#xB97C; &#xAC00;&#xC838;&#xC62C; &#xC218; &#xC5C6;&#xB2E4;&#xBA74; &#xADF8; &#xC8FC;&#xC18C;&#xC5D0;&#xB294; &#xC800;&#xC7A5;&#xD560; &#xBC29;&#xBC95;&#xC774; &#xC5C6;&#xB2E4;.</p>
+
+<p>const&#xB294; <a target=_blank href="https://en.cppreference.com/w/c/language/value_category">lvalue</a> expression&#xC5D0;&#xB9CC; &#xC801;&#xC6A9;&#xB41C;&#xB2E4;. lvalue&#xB97C; &#xD544;&#xC694;&#xB85C; &#xD558;&#xC9C0; &#xC54A;&#xB294; &#xC704;&#xCE58;&#xC5D0;&#xC11C; &#xC774;&#xB97C; &#xC0AC;&#xC6A9;&#xD55C;&#xB2E4;&#xBA74;, const qualifier&#xB294; &#xC0AC;&#xB77C;&#xC9C4;&#xB2E4;. (volatile&#xC740; &#xC0AC;&#xB77C;&#xC9C0;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.)</p>
+
+<p>const-qualified &#xD0C0;&#xC785;&#xC758; object&#xB97C; &#xD45C;&#xC2DC;&#xD558;&#xB294; lvalue expression&#xACFC;, const-qualified &#xD0C0;&#xC785;&#xC758; &#xBA64;&#xBC84;&#xB97C; &#xAC00;&#xC9C4; struct &#xB610;&#xB294; union &#xD0C0;&#xC785;&#xC758; object&#xB97C; &#xD45C;&#xC2DC;&#xD558;&#xB294; lvalue expression&#xC740; <i>modifiable lvalue</i>&#xAC00; &#xC544;&#xB2C8;&#xB2E4;. &#xD2B9;&#xD788; &#xC774;&#xB4E4;&#xC740; &#xD560;&#xB2F9;&#xB420; &#xC218; &#xC5C6;&#xB2E4; :</p>
+
+<pre><code>        const int n = 1; // object of const type
+        n = 2; // error: the type of n is const-qualified
+
+        int x = 2; // object of unqualified type
+        const int* p = &amp;x;
+        *p = 3; // error: the type of the lvalue *p is const-qualified
+
+        struct {int a; const int b; } s1 = {.b=1}, s2 = {.b=2};
+        s1 = s2; // error: the type of s1 is unqualified, but it has a const member</code></pre>
+
+<p>const-qualified structure &#xB610;&#xB294; union &#xD0C0;&#xC785;&#xC758; &#xBA64;&#xBC84;&#xB294; &#xC790;&#xC2E0;&#xC774; &#xC18D;&#xD55C; &#xD0C0;&#xC785;&#xC758; qualification(&#xC5EC;&#xAE30;&#xC5D0;&#xC11C;&#xB294; const)&#xC744; &#xC5BB;&#xB294;&#xB2E4;.</p>
+
+<pre><code>        struct s { int i; const int ci; } s;
+        // the type of s.i is int, the type of s.ci is const int
+        const struct s cs;
+        // the types of cs.i and cs.ci are both const int
+        </code></pre>
+
+<p>&#xBC30;&#xC5F4;&#xC774; const type qualifier&#xC640; &#xD568;&#xAED8; &#xC120;&#xC5B8;&#xB41C;&#xB2E4;&#xBA74;, &#xBC30;&#xC5F4;&#xC758; &#xD0C0;&#xC785;&#xC740; const&#xAC00; &#xC544;&#xB2C8;&#xC9C0;&#xB9CC; &#xC694;&#xC18C;&#xB4E4;&#xC758; &#xD0C0;&#xC785;&#xC740; const&#xB2E4;. &#xD568;&#xC218;&#xAC00; const type qualifier&#xC640; &#xD568;&#xAF10; &#xC120;&#xC5B8;&#xB41C;&#xB2E4;&#xBA74;, &#xADF8; &#xD568;&#xC218;&#xB294; undefined behavior&#xB97C; &#xAC16;&#xB294;&#xB2E4;.</p>
+
+<pre><code>        typedef int A[2][3];
+        const A a = {{4, 5, 6}, {7, 8, 9}}; // array of array of const int
+        int* pi = a[0]; // Error: a[0] has type const int*</code></pre>
+
+<p>const-qualified <a target=_blank href="https://en.cppreference.com/w/c/language/compound_literal">compound literal</a>&#xC740; &#xD2B9;&#xC815; object&#xB97C; &#xC9C0;&#xC2DC;&#xD560; &#xD544;&#xC694;&#xAC00; &#xC5C6;&#xB2E4;. &#xC774;&#xAC83;&#xC740; &#xC11C;&#xB85C; &#xB2E4;&#xB978; compound literal&#xACFC; &#xC800;&#xC7A5;&#xC18C;&#xB97C; &#xACF5;&#xC720;&#xD558;&#xAC70;&#xB098;, &#xAC19;&#xAC70;&#xB098; overlapping representation&#xC744; &#xAC16;&#xB294; string literal&#xACFC; &#xC800;&#xC7A5;&#xC18C;&#xB97C; &#xACF5;&#xC720;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        const int* p1 = (const int[]){1, 2, 3};
+        const int* p2 = (const int[]){2, 3, 4}; // the value of p2 may equal p1+1
+        _Bool b = &quot;foobar&quot; + 3 == (const char[]){&quot;bar&quot;}; // the value of b may be 1</code></pre>
+
+<p>non-const &#xD0C0;&#xC785; &#xD3EC;&#xC778;&#xD130;&#xB294; &#xBB35;&#xC2DC;&#xC801;&#xC73C;&#xB85C;, &#xAC19;&#xC740; const-qualified version &#xD3EC;&#xC778;&#xD130;&#xB098; <a target=_blank href="https://en.cppreference.com/w/c/language/type#Compatible_types">compatible type</a> &#xD3EC;&#xC778;&#xD130;&#xB85C; &#xBCC0;&#xD658;&#xB420; &#xC218; &#xC788;&#xB2E4;. &#xCE90;&#xC2A4;&#xD305;&#xC744; &#xC774;&#xC6A9;&#xD558;&#xBA74; &#xC5ED;&#xC73C;&#xB85C;&#xB3C4; &#xBCC0;&#xD658;&#xC774; &#xAC00;&#xB2A5;&#xD558;&#xB2E4;.</p>
+
+<pre><code>        int* p = 0;
+        const int* cp = p; // OK: adds qualifiers (int to const int)
+        p = cp; // Error: discards qualifiers (const int to int)
+        p = (int*)cp; // OK: cast</code></pre>
+
+<p>T &#xD3EC;&#xC778;&#xD130;&#xC758; &#xD3EC;&#xC778;&#xD130;&#xB294; const T &#xD3EC;&#xC778;&#xD130;&#xC758; &#xD3EC;&#xC778;&#xD130;&#xB85C; &#xBCC0;&#xD658;&#xB420; &#xC218; &#xC5C6;&#xB2E4;. &#xB450; &#xD0C0;&#xC785;&#xC774; &#xD638;&#xD658;&#xB418;&#xB824;&#xBA74; qualification&#xC774; &#xC77C;&#xCE58;&#xD574;&#xC57C; &#xD55C;&#xB2E4;.</p>
+
+<pre><code>        char *p = 0;
+        const char **cpp = &amp;p; // Error: char* and const char* are not compatible types
+        char * const *pcp = &amp;p; // OK, adds qualifiers (char* to char*const)</code></pre>
+
+<p>&#xD0C0;&#xC785;&#xC774; const-qualified&#xC778; object&#xB97C; &#xC218;&#xC815;&#xD558;&#xB824;&#xB294; &#xAC83;&#xC740; undefined behavior&#xB97C; &#xC720;&#xBC1C;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        const int n = 1; // object of const-qualified type
+        int* p = (int*)&amp;n;
+        *p = 2; // undefined behavior</code></pre>
+
+<p>&#xD568;&#xC218; &#xC120;&#xC5B8;&#xC5D0;&#xC11C;, &#xBC30;&#xC5F4; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C; &#xC120;&#xC5B8;&#xD558;&#xB294;&#xB370; &#xC0AC;&#xC6A9;&#xB418;&#xB294; [] &#xB0B4;&#xBD80;&#xC5D0; const&#xAC00; &#xB4E4;&#xC5B4;&#xAC08; &#xC218; &#xC788;&#xB2E4;. &#xC774;&#xAC83;&#xC740; &#xBC30;&#xC5F4;&#xC758; &#xD3EC;&#xC778;&#xD130;&#xC784;&#xC744; &#xB098;&#xD0C0;&#xB0B8;&#xB2E4;.</p>
+
+<p>&#xB2E4;&#xC74C; &#xB450; &#xD568;&#xC218;&#xB294; &#xAC19;&#xB2E4;.</p>
+
+<pre><code>        void f(double x[const], const double y[const]);
+        void f(double * const x, const double * const y);</code></pre>
+
+
+</body>
+
+</html>
+
+

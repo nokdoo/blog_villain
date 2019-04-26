@@ -1,0 +1,170 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>DBIx/Class/Manual/QuickStart</title>
+<link rel="stylesheet" href="./p2h.css" type="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:nokdoot@nokdoot-desktop.(none)" />
+</head>
+
+<body id="_podtop_">
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#Preparation">Preparation</a></li>
+      <li><a href="#Do-to-the-database">Do to the database</a></li>
+    </ul>
+  </li>
+</ul>
+
+<a href="#_podtop_"><h1 id="NAME">NAME</h1></a>
+
+<p><a target=_blank href="https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/QuickStart.pod">DBIx::Class - QuickStart</a></p>
+
+<a href="#_podtop_"><h1 id="DESCRIPTION">DESCRIPTION</h1></a>
+
+<p>&#xC774; &#xBB38;&#xC11C;&#xB294; DBIx::Class&#xB97C; &#xB9DB;&#xBCF4;&#xAE30; &#xC704;&#xD574; &#xC791;&#xC131;&#xB418;&#xC5C8;&#xB2E4;. &#xB0B4;&#xC6A9;&#xC744; &#xC774;&#xD574;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4; &#xD504;&#xB85C;&#xADF8;&#xB798;&#xBC0D; &#xC9C0;&#xC2DD;&#xACFC; perl&#xC758; &#xAC1D;&#xCCB4;&#xC9C0;&#xD5A5; &#xD504;&#xB85C;&#xADF8;&#xB798;&#xBC0D;&#xC744; &#xC54C;&#xACE0; &#xC788;&#xC5B4;&#xC57C; &#xD55C;&#xB2E4;. &#xC774;&#xBBF8; sql&#xACFC; DBI&#xC5D0; &#xB300;&#xD574; &#xC54C;&#xACE0; &#xC788;&#xB2E4;&#xBA74; &#xB3C4;&#xC6C0;&#xC774; &#xB420; &#xAC83;&#xC774;&#xB2E4;.</p>
+
+<p>&#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xB294; <b>sqlite3</b>&#xC744; &#xC0AC;&#xC6A9;&#xD55C;&#xB2E4;.</p>
+
+<h2 id="Preparation">Preparation</h2>
+
+<p>&#xC6B0;&#xC120; DBIx::Class &#xBAA8;&#xB4C8;&#xC744; &#xC124;&#xCE58;&#xD55C;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; &#xB2E4;&#xC74C;&#xC758; &#xBA85;&#xB839;&#xC744; &#xC2E4;&#xD589;&#xD55C;&#xB2E4;.</p>
+
+<pre><code> perl -mCPAN -e&#39;CPAN::Shell-&gt;look(&quot;DBIx::Class&quot;)&#39;</code></pre>
+
+<p>&#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xB418;&#xC5C8;&#xB2E4;&#xBA74; &#xB9C8;&#xC9C0;&#xB9C9; &#xC904;&#xC5D0; <i>Working directory is ~/.cpan/build/DBIx-Class-0.082841-0</i>&#xAC00; &#xD45C;&#xC2DC;&#xB418;&#xC5C8;&#xC744; &#xAC83;&#xC774;&#xB2E4;. &#xC5EC;&#xAE30;&#xAC00; &#xC55E;&#xC73C;&#xB85C; &#xC774; &#xBB38;&#xC11C;&#xC5D0;&#xC11C; &#xC791;&#xC5C5;&#xD560; &#xB514;&#xB809;&#xD1A0;&#xB9AC;&#xC774;&#xB2E4;. <i>~/.cpan/build/DBIx-Class-0.082841-0/examples/Schema</i>&#xB85C; &#xC774;&#xB3D9;&#xD558;&#xACE0;</p>
+
+<pre><code> sqlite3 db/example.db .dump</code></pre>
+
+<p>&#xB97C; &#xC2E4;&#xD589;&#xD574; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4; &#xD30C;&#xC77C;&#xC744; &#xC0DD;&#xC131;&#xD55C;&#xB2E4;.</p>
+
+<p><b>MyApp::Schema</b> &#xD074;&#xB798;&#xC2A4;&#xB294; &#xB2E4;&#xB978; &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xB85C;&#xB4DC;&#xD558;&#xACE0; DBIC&#xB97C; &#xD1B5;&#xD574; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xC640; &#xD1B5;&#xC2E0;&#xD55C;&#xB2E4;. <b>Result</b> &#xD074;&#xB798;&#xC2A4;&#xB294; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xC758; &#xD14C;&#xC774;&#xBE14;&#xACFC; &#xC77C;&#xCE58;&#xD55C;&#xB2E4;.</p>
+
+<h2 id="Do-to-the-database">Do to the database</h2>
+
+<ul>
+
+<li><p>Connecting to the database</p>
+
+<pre><code> use MyApp::Schema qw();
+ my $schema = MyApp::Schema-&gt;connect(&#39;dbi:SQLite:db/example.db&#39;);</code></pre>
+
+</li>
+<li><p>Using the database</p>
+
+<p>&#xAC70;&#xC758; &#xBAA8;&#xB4E0; &#xB3D9;&#xC791;&#xC740; <a target=_blank href="https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/Glossary.pod#ResultSet">resultset</a>&#xC744; &#xD1B5;&#xD574; &#xC774;&#xB8E8;&#xC5B4;&#xC9C4;&#xB2E4;.</p>
+
+<ul>
+
+<li><p>Inserting data</p>
+
+<p>&#xC911;&#xAC04; object <i>result</i>(<b>$artist_ma</b>, <b>$cd_mezz</b>)&#xB97C; &#xD1B5;&#xD55C; &#xC0BD;&#xC785;</p>
+
+<pre><code> my $artist_ma = $schema-&gt;resultset(&#39;Artist&#39;)-&gt;create({
+     name =&gt; &#39;Massive Attack&#39;,
+ });
+ my $cd_mezz = $artist_ma-&gt;create_related(cds =&gt; {
+     title =&gt; &#39;Mezzanine&#39;,
+ });
+ for (&#39;Angel&#39;, &#39;Teardrop&#39;) {
+     $cd_mezz-&gt;create_related(tracks =&gt; {
+         title =&gt; $_
+     });
+ }</code></pre>
+
+<p><i>relation accessors</i>(<b>cds</b>, <b>tracks</b>)&#xB97C; &#xD1B5;&#xD55C; &#xC0BD;&#xC785;</p>
+
+<pre><code>        $schema-&gt;resultset(&#39;Artist&#39;)-&gt;create({
+                name =&gt; &#39;Metallica&#39;,
+                cds =&gt; [
+                        {
+                                title =&gt; q{Kill &#39;Em All},
+                                tracks =&gt; [
+                                        { title =&gt; &#39;Jump in the Fire&#39; },
+                                        { title =&gt; &#39;Whiplash&#39; },
+                                ],
+                        },
+                        {
+                                title =&gt; &#39;ReLoad&#39;,
+                                tracks =&gt; [
+                                        { title =&gt; &#39;The Memory Remains&#39; },
+                                        { title =&gt; &#39;The Unforgiven II&#39; },
+                                        { title =&gt; &#39;Fuel&#39; },
+                                ],
+                        },
+                ],
+        });</code></pre>
+
+<p><i>undef</i>&#xB294; <i>NULL</i>&#xACFC; &#xAC19;&#xB2E4;.</p>
+
+<p>&#xB2E4;&#xC74C;&#xC758; schema &#xD074;&#xB798;&#xC2A4; &#xC0AC;&#xC6A9;&#xC744; &#xBCF4;&#xBA74; source name string <b>Artist</b>&#xC640; accessor <b>cd</b>, <b>tracks</b>&#xAC00; &#xBB34;&#xC5C7;&#xC778;&#xC9C0; &#xC54C; &#xC218; &#xC788;&#xC744; &#xAC83;&#xC774;&#xB2E4;.</p>
+
+<p>root -&gt; detail</p>
+
+<pre><code>        $schema-&gt;sources;                       # returns qw(Cd Track Artist)
+        $schema-&gt;source(&#39;Cd&#39;)-&gt;columns;         # returns qw(cdid artist title year)
+        $schema-&gt;source(&#39;Cd&#39;)-&gt;relationships;   # returns qw(artist tracks)</code></pre>
+
+<p>detaul -&gt; root</p>
+
+<pre><code>        $some_result-&gt;result_source;            # returns appropriate source
+        $some_resultset-&gt;result_source;
+        $some_resultsource-&gt;schema;             # returns appropriate schema</code></pre>
+
+</li>
+<li><p>Selecting data</p>
+
+<p>&#xC870;&#xAC74; &#xC124;&#xC815;(where&#xC808;)&#xACFC; &#xACB0;&#xACFC;(<b>MyApp::Schema::Result::Artist</b> &#xD074;&#xB798;&#xC2A4;&#xC758; result object) &#xBC18;&#xD658;.</p>
+
+<pre><code>        my $artists_starting_with_m = $schema-&gt;resultset(&#39;Artist&#39;)-&gt;search(
+                {
+                        name =&gt; { like =&gt; &#39;M%&#39; }
+                }
+        );</code></pre>
+
+<p><a target=_blank href="https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/Glossary.pod#Result">Result</a> object&#xB294; &#xD558;&#xB098;&#xC758; &#xD589;&#xC744; &#xB098;&#xD0C0;&#xB0B4;&#xBA70; &#xAC01; &#xCEEC;&#xB7FC;&#xC5D0; &#xB300;&#xD55C; accessor&#xB97C; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB2E4;.</p>
+
+</li>
+<li><p>Updating data</p>
+
+<p>CD&#xC5D0;&#xC11C; title&#xC774; &#39;ReLoad&#39;&#xC778; &#xD589;&#xC758; year&#xB97C; &#xBC14;&#xAFD4;&#xBCF4;&#xC790;</p>
+
+<pre><code>        $schema-&gt;resultset(&#39;Cd&#39;)-&gt;search(
+                {
+                        title =&gt; &#39;ReLoad&#39;,
+                }
+        )-&gt;update_all(
+                {
+                        year =&gt; 1997,
+                }
+        );</code></pre>
+
+</li>
+<li><p>deleting data</p>
+
+<p>Track&#xC5D0;&#xC11C; title&#xC774; &#39;Fuel&#39;&#xC778; &#xD589;&#xC744; &#xBAA8;&#xB450; &#xC9C0;&#xC6B0;&#xC790;</p>
+
+<pre><code>        $schema-&gt;resultset(&#39;Track&#39;)-&gt;search(
+                {
+                        title =&gt; &#39;Fuel&#39;,
+                }
+        )-&gt;delete_all;</code></pre>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</body>
+
+</html>
+
+

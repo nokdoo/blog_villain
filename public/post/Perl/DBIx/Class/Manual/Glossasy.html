@@ -1,0 +1,130 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>DBIx/Class/Manual/Glossasy</title>
+<link rel="stylesheet" href="./p2h.css" type="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:nokdoot@nokdoot-desktop.(none)" />
+</head>
+
+<body id="_podtop_">
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#DB-Schema">DB Schema</a></li>
+      <li><a href="#Inflation">Inflation</a></li>
+      <li><a href="#Deflation">Deflation</a></li>
+      <li><a href="#ORM">ORM</a></li>
+      <li><a href="#Relationship">Relationship</a></li>
+      <li><a href="#Relationship-bridge">Relationship bridge</a></li>
+      <li><a href="#Accessor">Accessor</a></li>
+      <li><a href="#Schema">Schema</a></li>
+      <li><a href="#Result-Class">Result Class</a></li>
+      <li><a href="#ResultSource">ResultSource</a></li>
+      <li><a href="#ResultSet">ResultSet</a></li>
+      <li><a href="#Result">Result</a></li>
+      <li><a href="#prefetch">prefetch</a></li>
+    </ul>
+  </li>
+</ul>
+
+<a href="#_podtop_"><h1 id="NAME">NAME</h1></a>
+
+<p><a target=_blank href="https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/Glossary.pod">DBIx::Class::Manual::Glossary</a> - &#xC6A9;&#xC5B4;&#xC0AC;&#xC804;</p>
+
+<a href="#_podtop_"><h1 id="DESCRIPTION">DESCRIPTION</h1></a>
+
+<p>DBIx::Class&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xC6A9;&#xC5B4;&#xB4E4;&#xC744; &#xC815;&#xB9AC;&#xD55C;&#xB2E4;.</p>
+
+<h2 id="DB-Schema">DB Schema</h2>
+
+<p>RDBMS&#xC758; &#xBB3C;&#xB9AC;&#xC801; schema&#xB97C; &#xCC38;&#xC870;&#xD55C;&#xB2E4;</p>
+
+<p>&#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xB294; MySQL&#xACFC;, schema&#xB294; RDBMS&#xC640; &#xB3D9;&#xC758;&#xC5B4;&#xB2E4;</p>
+
+<p>&#xB2E4;&#xC74C; DSN&#xC5D0;&#xC11C; xyz&#xAC00; schema&#xB2E4;.</p>
+
+<pre><code>        dbi:DriverName:xyz@hostname:port
+        dbi:DriverName:database=xyz;host=hostname;port=port</code></pre>
+
+<h2 id="Inflation">Inflation</h2>
+
+<p>&#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xC758; &#xAC01; &#xD589;&#xC744; &#xC5B8;&#xC5B4;&#xC758; object&#xB85C; &#xBC14;&#xAFB8;&#xB204;&#xB290; &#xD589;&#xC704;. <b>DBIx::Class</b> &#xD074;&#xB798;&#xC2A4;&#xB294; &#xB370;&#xC774;&#xD130;&#xB97C; perl object&#xB85C; inflate&#xD558;&#xB3C4;&#xB85D; &#xC81C;&#xACF5;&#xB420; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<h2 id="Deflation">Deflation</h2>
+
+<p><a href="#Inflation">&quot;Inflation&quot;</a>&#xACFC; &#xBC18;&#xB300;&#xB418;&#xB294; &#xAC1C;&#xB150;. &#xCEEC;&#xB7FC; &#xAC12;&#xC744; &#xB098;&#xD0C0;&#xB0B4;&#xB294; perl object&#xB97C; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xB85C; &#xC800;&#xC7A5;&#xD558;&#xAE30; &#xC704;&#xD574; <b>DBIx::Class</b>&#xC758; method&#xB85C; &#xC804;&#xB2EC;&#xD558;&#xB294; &#xAC83;.</p>
+
+<h2 id="ORM">ORM</h2>
+
+<p>Object-relational mapping &#xB610;&#xB294; Object-relationship modeling. &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xC758; &#xD589; &#xB0B4;&#xC6A9;&#xC744; &#xC5B8;&#xC5B4;&#xC758; object&#xC5D0; &#xB9E4;&#xD551;&#xD558;&#xB294; &#xBC29;&#xBC95;.</p>
+
+<p><b>DBIx::Class</b>&#xB294; ORM&#xC774;&#xB2E4;.</p>
+
+<h2 id="Relationship">Relationship</h2>
+
+<p><b>DBIx::Class</b>&#xC5D0;&#xC11C; relationship&#xC740; &#xB450; &#xD14C;&#xC774;&#xBE14;&#xC758; &#xC5F0;&#xACB0;&#xC744; &#xC815;&#xC758;&#xD55C;&#xB2E4;. relationship &#xC870;&#xAC74;&#xC740; &#xAC01; &#xD14C;&#xC774;&#xBE14;&#xC5D0; &#xAC19;&#xC740; &#xAC12;&#xC744; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB294; &#xCEEC;&#xB7FC;&#xBAA9;&#xB85D;&#xC744; &#xB098;&#xD0C0;&#xB0B8;&#xB2E4;. relationship &#xC870;&#xAC74;&#xC740; &#xD14C;&#xC774;&#xBE14; &#xAC04; <b>SQL JOIN</b> &#xC870;&#xAC74;&#xC744; &#xCD9C;&#xB825;&#xD558;&#xB294;&#xB370; &#xC0AC;&#xC6A9;&#xB41C;&#xB2E4;.</p>
+
+<h2 id="Relationship-bridge">Relationship bridge</h2>
+
+<p><i>many_to_many</i>&#xC774; relationship bridge&#xC758; &#xC608;&#xB2E4;. &#xC5EC;&#xB7EC; relationship&#xC758; &#xD589;&#xC744; &#xAC80;&#xC0C9;&#xD558;&#xAE30; &#xC704;&#xD574; <a href="#Accessor">&quot;Accessor&quot;</a>&#xB97C; &#xC815;&#xC758;&#xD55C;&#xB2E4;.</p>
+
+<p>&#xAC80;&#xC0C9;&#xC744; &#xC704;&#xD55C; &#xD14C;&#xC774;&#xBE14; <b>join</b>&#xC5D0; bridge&#xAC00; &#xC544;&#xB2CC;, &#xC774;&#xB97C; &#xAD6C;&#xC131;&#xD558;&#xB294; relationship&#xC774; &#xC0AC;&#xC6A9;&#xB418;&#xC5B4;&#xC57C; &#xD55C;&#xB2E4;.</p>
+
+<h2 id="Accessor">Accessor</h2>
+
+<p>perl object&#xC758; &#xBA64;&#xBC84;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xB294; &#xBA54;&#xC11C;&#xB4DC;</p>
+
+<h2 id="Schema">Schema</h2>
+
+<p>Schema object&#xB294; &#xC804;&#xCCB4; &#xD14C;&#xC774;&#xBE14;, &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4; &#xC5F0;&#xACB0;&#xC744; &#xB098;&#xD0C0;&#xB0B8;&#xB2E4;.</p>
+
+<p>&#xD558;&#xB098; &#xC774;&#xC0C1;&#xC758; schema object&#xAC00; &#xC0DD;&#xC131;&#xB420; &#xC218; &#xC788;&#xC73C;&#xBA70;, &#xC774;&#xB4E4;&#xC740; &#xC5EC;&#xB7EC; &#xC0AC;&#xC6A9;&#xC790;&#xC640; &#xD568;&#xAED8; &#xC5EC;&#xB7EC; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xC5D0; &#xC5F0;&#xACB0;&#xB418;&#xACE0; <a href="#Result-Class">&quot;Result Class&quot;</a>&#xC774; &#xC815;&#xC758;&#xD558;&#xB294; &#xD14C;&#xC774;&#xBE14;&#xC744; &#xACF5;&#xC720;&#xD55C;&#xB2E4;.</p>
+
+<p>&#xCD5C;&#xC18C; &#xD558;&#xB098;&#xC758; <b>DBIx::Class::Schema</b> &#xD074;&#xB798;&#xC2A4;&#xAC00; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xB9C8;&#xB2E4; &#xD544;&#xC694;&#xD558;&#xB2E4;.</p>
+
+<h2 id="Result-Class">Result Class</h2>
+
+<p><b>Result Class</b>&#xB294; data source(table, view, query)&#xC640; datasource&#xC5D0;&#xC11C; &#xC0DD;&#xC131;&#xB41C; <a href="#Result">&quot;Result&quot;</a> object&#xC5D0;&#xC11C; &#xC774;&#xC6A9;&#xB418;&#xB294; &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xC815;&#xC758;&#xD55C;&#xB2E4;.</p>
+
+<p>&#xD558;&#xB098;&#xC758; Result Class&#xB294; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC01; data source&#xB9C8;&#xB2E4; &#xC694;&#xAD6C;&#xB41C;&#xB2E4;. &#xC774;&#xB4E4;&#xC740; <b>DBIx::Class::Core</b>&#xB85C;&#xBD80;&#xD130; &#xC0C1;&#xC18D;&#xBC1B;&#xC544;&#xC57C; &#xD55C;&#xB2E4;.</p>
+
+<p><a target=_blank href="https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/ResultClass.pod">DBIx::Class::Manual::ResultClass</a></p>
+
+<h2 id="ResultSource">ResultSource</h2>
+
+<p>ResultSource object&#xB294; data source&#xB97C; &#xB098;&#xD0C0;&#xB0B8;&#xB2E4;. &#xD14C;&#xC774;&#xBE14; object&#xB77C;&#xACE0;&#xB3C4; &#xBD88;&#xB9AC;&#xC9C0;&#xB9CC; &#xC774;&#xB294; &#xC798;&#xBABB;&#xB41C; &#xBA85;&#xCE6D;&#xC774;&#xB2E4;.</p>
+
+<p>ResultSource&#xB294; &#xC9C1;&#xC811; &#xC0DD;&#xC131;&#xB420; &#xD544;&#xC694;&#xAC00; &#xC5C6;&#xB2E4;. ResultSource &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xB294; <a href="#Schema">&quot;Schema&quot;</a>&#xC758; &#xAC01; <a href="#Result-Class">&quot;Result Class&quot;</a>&#xC5D0; &#xB300;&#xD574; &#xC0DD;&#xC131;&#xB41C;&#xB2E4;.(proxied &#xBA54;&#xC18C;&#xB4DC; - <i>table</i>, <i>add_columns</i>&#xC5D0; &#xC758;&#xD574;)</p>
+
+<p>&#xC790;&#xC138;&#xD55C; &#xAC83;&#xC740; <a target=_blank href="https://metacpan.org/pod/DBIx::Class::ResultSource#METHODS">&quot;METHODS&quot; in DBIx::Class::ResultSource</a>&#xB97C; &#xBCF4;&#xC790;.</p>
+
+<h2 id="ResultSet">ResultSet</h2>
+
+<p>ResultSet object&#xB294; &#xB370;&#xC774;&#xD130;&#xB97C; &#xD544;&#xD130;&#xB9C1;&#xD558;&#xAE30; &#xC704;&#xD55C; &#xAC83;&#xC774;&#xB2E4;. &#xD14C;&#xC774;&#xBE14; &#xB610;&#xB294; &#xCFFC;&#xB9AC;&#xC758; &#xACB0;&#xACFC;&#xAC00; &#xB420; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<p>ResultSet&#xC740; &#xB2E8;&#xC9C0; &#xC5B4;&#xB5BB;&#xAC8C; &#xB370;&#xC774;&#xD130;&#xB97C; fetch&#xD560; &#xAC83;&#xC778;&#xC9C0;&#xC5D0; &#xB300;&#xD55C; &#xAE30;&#xC220;&#xC774;&#xB2E4;. &#xC989;, &#xC2E4;&#xC81C; &#xB370;&#xC774;&#xD130;&#xB294; ResultSet&#xC5D0; &#xB2F4;&#xAE30;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</p>
+
+<p><a target=_blank href="https://metacpan.org/pod/DBIx::Class::ResultSet#METHODS">&quot;METHODS&quot; in DBIx::Class::ResultSet</a></p>
+
+<h2 id="Result">Result</h2>
+
+<p>Result object&#xB294; &#xC2E4;&#xC81C; &#xB370;&#xC774;&#xD130;&#xB97C; &#xAC16;&#xB294;&#xB2E4;. ResultSet object&#xB85C;&#xBD80;&#xD130; &#xBC18;&#xD658;&#xB41C;&#xB2E4;. &#xB54C;&#xB54C;&#xB85C; row object&#xB77C;&#xACE0;&#xB3C4; &#xBD88;&#xB9AC;&#xC9C0;&#xB9CC; &#xC774;&#xB294; &#xC798;&#xBABB;&#xB41C; &#xAC83;&#xC774;&#xB2E4;.(DBIC &#xBB38;&#xC11C;&#xC5D0;&#xC11C;&#xC758; &#xD45C;&#xD604;&#xB3C4; &#xB9C8;&#xCC2C;&#xAC00;&#xC9C0;&#xB2E4;.)</p>
+
+<p><a target=_blank href="https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/ResultClass.pod">DBIx::Class::Manual::ResultClass</a></p>
+
+<h2 id="prefetch">prefetch</h2>
+
+<p>result object&#xAC00; ResultSet&#xC73C;&#xB85C;&#xBD80;&#xD130; &#xC9C1;&#xC811; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xB300;&#xC2E0; &#xC774;&#xD6C4;&#xC758; &#xC0AC;&#xC6A9;&#xC744; &#xC704;&#xD574; fetch, cache&#xB41C;&#xB2E4;&#xB294; &#xC810;&#xC744; &#xC81C;&#xC678;&#xD558;&#xBA74; &#xC870;&#xC778;&#xACFC; &#xC720;&#xC0AC;&#xD558;&#xB2E4;. &#xC774;&#xAC83;&#xC740; &#xCD94;&#xAC00; SELECT &#xBB38;&#xC744; &#xC0DD;&#xC131;&#xD558;&#xB294; &#xAC71;&#xC815; &#xC5C6;&#xC774; Result&#xB0B4;&#xC5D0;&#xC11C; &#xB2E4;&#xB978; relationship&#xC73C;&#xB85C; &#xC774;&#xB3D9; &#xAC00;&#xB2A5;&#xD558;&#xAC8C; &#xD574;&#xC900;&#xB2E4;.</p>
+
+
+</body>
+
+</html>
+
+

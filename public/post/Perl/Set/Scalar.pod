@@ -1,0 +1,245 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+Set::Scalar - 기초 Set 연산자
+
+=head1 SYNOPSIS
+
+	use Set::Scalar;
+	$s = Set::Scalar->new;
+	$s->insert('a', 'b');
+	$s->delete('b');
+	$t = Set::Scalar->new('x', 'y', $z);
+
+=head1 DESCRIPTION
+
+=head2 Creating
+
+	$s = Set::Scalar->new;
+	$s = Set::Scalar->new(@members);
+
+	$t = $s->clone;
+	$t = $s->copy;         # Clone of clone.
+	$t = $s->empty_clone;  # Like clone() but with no members.
+
+=head2 Modifying
+
+	$s->insert(@members);
+	$s->delete(@members);
+	$s->invert(@members);  # Insert if hasn't, delete if has.
+
+	$s->clear;  # Removes all the elements.
+
+I<clear()>는 set이 사용하는 모든 메모리를 반환하는 것이 아니고, 요소들이 사용하고 있는 메모리만 반환한다.
+
+=head2 Displaying
+
+set의 출력은 괄호 안에 빈 공간으로 구분된 형식을 갖는다.
+
+	my $s = Set::Scalar->new();
+	$s->insert("a".."e");
+	print $s, "\n";
+
+	#(a b c d e)
+
+=head2 Querying
+
+	@members  = $s->members;
+	@elements = $s->elements;  # Alias for members.
+
+	@$s  # Overloaded alias for members.
+
+	$size = $s->size;  # The number of members.
+
+	$s->has($m)        # Return true if has that member.
+	$s->contains($m)   # Alias for has().
+
+	if ($s->has($member)) { ... }
+
+	$s->member($m)     # Returns the member if has that member.
+	$s->element($m)    # Alias for member.
+
+	$s->is_null        # Returns true if the set is empty.
+	$s->is_empty       # Alias for is_null.
+
+	$s->is_universal   # Returns true if the set is universal.
+
+	$s->null           # The null set.
+	$s->empty          # Alias for null.
+	$s->universe       # The universe of the set.
+
+=head2 Deriving
+
+I<$s>와 I<$t>는 모두 set이다.
+
+	$u = $s->union($t);
+	$i = $s->intersection($t);
+	$d = $s->difference($t);
+	$e = $s->symmetric_difference($t);
+	$v = $s->unique($t);
+	$c = $s->complement;
+
+위의 메소드들은 연산자 오버로드를 갖는다.
+
+	$u = $s + $t;  # union
+	$i = $s * $t;  # intersection
+	$d = $s - $t;  # difference
+	$e = $s % $t;  # symmetric_difference
+	$v = $s / $t;  # unique
+	$c = -$s;      # complement
+
+I<symmetric_difference>는 요소의 개수가 홀수일 때 I<true>를 반환한다.
+
+=head2 Comparing
+
+	$eq = $s->is_equal($t);
+	$dj = $s->is_disjoint($t);
+	$pi = $s->is_properly_intersecting($t);
+	$ps = $s->is_proper_subset($t);
+	$pS = $s->is_proper_superset($t);
+	$is = $s->is_subset($t);
+	$iS = $s->is_superset($t);
+	$cmp = $s->compare($t);
+
+이 메소드들은 연산자 오버로드를 갖는다.
+
+	$eq = $s == $t;  # is_equal
+	$dj = $s != $t;  # is_disjoint
+	# No operator overload for is_properly_intersecting.
+	$ps = $s < $t;   # is_proper_subset
+	$pS = $s > $t;   # is_proper_superset
+	$is = $s <= $t;  # is_subset
+	$iS = $s >= $t;  # is_superset
+	$cmp = $s <=> $t;
+
+=head2 Boolean contexts
+
+I<$set>의 크기를 확인하고, 비어있다면 I<false>, 비어있지 않다면 I<true>를 반환한다.
+
+	if ($set) { ... }
+	while ($set1 && $set2) { ... }
+
+=head2 Iterating
+
+	while (defined(my $e = $s->each)) { ... }
+
+	for my $e ($s->elements) { ... }
+
+첫 번째 줄이 메모리 측면에서 더 효율적이다. 두 번째 줄은 요소의 리스트를 생성하고 이를 차례로 확인한다.
+
+스칼라 문맥에서 I<each(%hash)>를 사용하는 것과 유사하게, I<<$s->each>>도 비슷한 위험을 갖는다.
+
+=over 4
+
+=item 각 요소들은 일정한 순서로 반환되지 않는다.
+
+=item 반환할 요소가 더이상 없다면 I<undef>를 반환한다.
+
+다음의 코드는 사용되어서는 안된다.
+
+	while (my $e = $s->each) { ... }           # WRONG!
+
+위의 코드는
+
+	while (defined(my $e = $s->each)) { ... }  # Right.
+
+로 변경되어야 한다.
+
+=item 하나의 set마다 요소에 접근하는 인터페이스에 공유되는 iterator가 있다.
+
+다음의 메소드들은 iterator를 리셋시킨다. I<elements()>, I<insert()>, I<members()>, I<size()>, I<unique()>. 특히 I<unique()>는 메소드에 참여한 set들을 모두 리셋시킨다.
+
+I<delete()>의 경우는 무작위 순서로 요소를 제거하면 iterator에 영향을 미치니 조심하자.
+
+iteration 중에 set을 수정하는 것은 오류를 발생시키니 하지 말자.
+
+=back
+
+=head2 Cartesian Product and Power Set
+
+=over 4
+
+=item Cartesian product는 두 개 이상 set의 product다.
+
+두 set에 대한 결과는 각 set의 멤버의 순서쌍을 구성한다.
+
+	(a b)
+	(c d e)
+
+---
+
+	([a, c] [a, d] [a, e] [b, c] [b, d] [b, e])
+
+B<I<,>>는 set이 아닌 순서쌍에 대한 기호다. I<[e, b]>는 Cartesian product가 아니다.
+
+---
+
+	my $a = Set::Scalar->new(1..2);
+	my $b = Set::Scalar->new(3..5);
+	my $c = $a->cartesian_product($b);  # As an object method.
+	my $d = Set::Scalar->cartesian_product($a, $b);  # As a class method.
+
+I<$c>와 I<$d>의 멤버는 set이 아닌 anonymous array가 된다. 이는 set은 순서를 나타낼 수 없고, 한 array에 동일한 값이 여러번 나타날 수 있기 때문이다. ex) I<[b, b]>. 또한, set에는 순서가 없기 때문에 순서쌍들의 순서는 항상 같지 않다.
+
+Cartesian product set을 구성하지 않고 각각의 순서쌍 요소를 얻기 위해서는 다음의 iterator를 이용할 수 있다.
+
+	my $iter = Set::Scalar->cartesian_product_iterator($a, $b, $c);
+	while (my @m = $iter->()) {
+		print(@m);
+	}
+
+=item Power set은 set의 모든 부분집합이다.
+
+set의 요소가 N개 라면 power set은 2^N개의 요소를 갖는다.
+
+	(a b c)
+
+는 다음의 power set을 갖는다.
+
+	(() (a) (b) (c) (a b) (a c) (b c) (a b c))
+
+각 요소는 순서가 없으며, 요소의 개수가 8개인 이유는 I<(b c)>와 I<(c b)>가 서로 같기 때문이다.
+
+비어있는 set이라도 크기 1인 power set을 가지고 있다.
+
+power set을 구성하지 않고 각각의 요소를 얻기 위해서는 다음의 iterator를 사용할 수 있다.
+
+	my $iter = Set::Scalar->power_set_iterator($a);
+	my @m;
+	do {
+		@m = $iter->();
+		process(@m);
+	} while (@m);
+
+=back
+
+=head2 Customising Display
+
+출력 방식을 바꾸고 싶다면 I<as_string> 콜백을 수정해야 한다. 다음의 코드는 B<Set::Scalar>에 대한 콜백을 변경한다.
+
+	my $class_callback = sub { ... };
+
+	Set::Scalar->as_string_callback($class_callback);
+
+set object에 대해 콜백을 변경할 수 있다.
+
+	my $callback = sub  { ... };
+
+	$s1->as_string_callback($callback);
+	$s2->as_string_callback($callback);
+
+anonymous subroutine은 set을 인자로 받는다. 다음은 I<(a b c d e)> 대신에 I<a-b-c-d-e>로 출력하는 예제다.
+
+	$s->as_string_callback(sub{join("-",sort $_[0]->elements)});
+
+오브젝트의 I<as_string_callback()>에 콜백이 넘어가지 않으면 기존 콜백이 적용된다.
+
+클래스 I<as_string_callback()>에 I<undef>가 넘어가면 처음 콜백이 적용된다. 오브젝트 I<as_string_callback()>에 I<undef>가 넘어가면 클래스 I<as_string>의 콜백을 따른다.
+
+=head1 CAVEATS
+
+Set::Scalar가 중요하게 생각하는 것은 set에 대한 편리한 인터페이스가 되는 것이다. 느리거나 크게 설계되지는 않았지만 빠르거나 작게 설계되지도 않았다.
+
+=cut

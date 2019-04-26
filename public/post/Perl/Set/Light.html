@@ -1,0 +1,139 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>perl/Set/Light</title>
+<link rel="stylesheet" href="./p2h.css" type="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:nokdoot@nokdoot-desktop.(none)" />
+</head>
+
+<body id="_podtop_">
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#Why-not-use-a-hash">Why not use a hash?</a></li>
+      <li><a href="#Why-not-use-Set::Object-or-Set::Scalar">Why not use Set::Object or Set::Scalar?</a></li>
+    </ul>
+  </li>
+  <li><a href="#METHODS">METHODS</a>
+    <ul>
+      <li><a href="#new">new()</a></li>
+      <li><a href="#size">size()</a></li>
+      <li><a href="#is_empty">is_empty()</a></li>
+      <li><a href="#is_null">is_null()</a></li>
+      <li><a href="#has-contains-exists">has()/contains()/exists()</a></li>
+      <li><a href="#insert">insert()</a></li>
+      <li><a href="#delete-remove">delete()/remove()</a></li>
+    </ul>
+  </li>
+</ul>
+
+<a href="#_podtop_"><h1 id="NAME">NAME</h1></a>
+
+<p>Set::Light - &#xBA54;&#xBAA8;&#xB9AC; &#xD6A8;&#xC728;&#xC801;&#xC778; &#xBB38;&#xC790;&#xC5F4;&#xC758; &#xC21C;&#xC11C;&#xC5C6;&#xB294; set</p>
+
+<pre><code>        use Set::Light;
+
+        my $set = Set::Light-&gt;new( qw/foo bar baz/ );
+
+        if (!$set-&gt;is_empty())
+        {
+                print &quot;Set has &quot;, $set-&gt;size(), &quot; elements.\n&quot;;
+                for (qw/umpf foo bar baz bam/)
+                {
+                        print &quot;Set does &quot;;
+                        print &quot; not &quot; unless $set-&gt;has($_);
+                        print &quot;contain &#39;$_&#39;.\n&quot;;
+                }
+        }</code></pre>
+
+<a href="#_podtop_"><h1 id="DESCRIPTION">DESCRIPTION</h1></a>
+
+<p>Set::Light&#xB294; &#xBB38;&#xC790;&#xC5F4;&#xC758; &#xC21C;&#xC11C;&#xC5C6;&#xB294; set&#xC744; &#xAD6C;&#xD604;&#xD55C;&#xB2E4;. &#xD574;&#xC2DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xACE0;, &#xD574;&#xC2DC;&#xC758; &#xAC01; &#xD0A4;&#xB294; &#xAC19;&#xC740; &#xC2A4;&#xCE7C;&#xB77C;&#xB97C; &#xAC00;&#xB9AC;&#xD0B4;&#xC73C;&#xB85C;&#xC368; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xC544;&#xB080;&#xB2E4;.</p>
+
+<h2 id="Why-not-use-a-hash">Why not use a hash?</h2>
+
+<p>&#xC77C;&#xBC18;&#xC801;&#xC73C;&#xB85C; &#xD56D;&#xBAA9;&#xC758; &#xBAA9;&#xB85D;&#xC744; &#xCD94;&#xC801;&#xD558;&#xAE30; &#xC704;&#xD574; &#xD574;&#xC2DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        my %SEEN;
+        ...
+        if (!$SEEN-&gt;{$item}++)
+        {
+                # haven&#39;t seen item before
+        }</code></pre>
+
+<p>&#xC774;&#xAC83;&#xC740; &#xB9E4;&#xC6B0; &#xBE60;&#xB974;&#xC9C0;&#xB9CC;, <i>%SEEN</i>&#xC758; &#xAC01; &#xD0A4;&#xAC00; &#xD558;&#xB098;&#xC758; &#xC2A4;&#xCE7C;&#xB77C;&#xB97C; &#xC694;&#xAD6C;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xBA54;&#xBAA8;&#xB9AC; &#xB0AD;&#xBE44;&#xAC00; &#xC2EC;&#xD558;&#xB2E4;.</p>
+
+<h2 id="Why-not-use-Set::Object-or-Set::Scalar">Why not use Set::Object or Set::Scalar?</h2>
+
+<p>&#xC774;&#xAC83;&#xB4E4;&#xC740; &#xD574;&#xC2DC;&#xBCF4;&#xB2E4;&#xB3C4; &#xB290;&#xB9AC;&#xACE0; &#xBA54;&#xBAA8;&#xB9AC; &#xB0AD;&#xBE44;&#xAC00; &#xC2EC;&#xD558;&#xB2E4;.</p>
+
+<a href="#_podtop_"><h1 id="METHODS">METHODS</h1></a>
+
+<h2 id="new">new()</h2>
+
+<p>&#xB2E4;&#xC74C;&#xC740; Set::Light object&#xB97C; &#xC0DD;&#xC131;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        my $set = Set::Light-&gt;new();</code></pre>
+
+<p>&#xD574;&#xC2DC; &#xB808;&#xD37C;&#xB7F0;&#xC2A4;&#xAC00; &#xC635;&#xC158;&#xC744; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xC744; &#xC218; &#xC788;&#xB2E4;. &#xB2E4;&#xC74C;&#xC758; &#xC635;&#xC158;&#xB4E4;&#xC740; &#xC9C0;&#xC6D0;&#xB418;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</p>
+
+<pre><code>        my $set = Set::Light-&gt;new( { myoption =&gt; 1, foobar =&gt; 2 });</code></pre>
+
+<p>&#xB2E4;&#xC74C;&#xC740; set&#xC774; &#xBA64;&#xBC84;&#xB97C; &#xD3EC;&#xD568;&#xD558;&#xAC8C; &#xB41C;&#xB2E4;.</p>
+
+<pre><code>        my $set = Set::Light-&gt;new( qw/for bar baz/);</code></pre>
+
+<h2 id="size">size()</h2>
+
+<p>&#xB2E4;&#xC74C;&#xC740; set&#xC758; &#xC694;&#xC18C; &#xAC1C;&#xC218;&#xB97C; &#xBC18;&#xD658;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        my $elems = $set-&gt;size();</code></pre>
+
+<h2 id="is_empty">is_empty()</h2>
+
+<p>set&#xC774; &#xBE44;&#xC5B4;&#xC788;&#xB2E4;&#xBA74; &#xCC38;&#xC744; &#xBC18;&#xD658;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        $set-&gt;is_empty()</code></pre>
+
+<h2 id="is_null">is_null()</h2>
+
+<p><i>is_empty</i>&#xC640; &#xAC19;&#xB2E4;.</p>
+
+<h2 id="has-contains-exists">has()/contains()/exists()</h2>
+
+<p>&#xBB38;&#xC790;&#xC5F4; <i>$member</i>&#xB97C; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB2E4;&#xBA74; &#xCC38;&#xC744; &#xBC18;&#xD658;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        $set-&gt;has($member)</code></pre>
+
+<p>&#xC138; &#xBA54;&#xC18C;&#xB4DC;&#xB294; &#xAC19;&#xB2E4;.</p>
+
+<h2 id="insert">insert()</h2>
+
+<p>&#xB2E4;&#xC74C;&#xC740; &#xBB38;&#xC790;&#xC5F4;&#xC744; set&#xC5D0; &#xC0BD;&#xC785;&#xD558;&#xB294; &#xAC83;&#xC744; &#xB098;&#xD0C0;&#xB0B8;&#xB2E4;. &#xC2E4;&#xC81C;&#xB85C; &#xC0BD;&#xC785;&#xB41C; &#xAC1C;&#xC218;&#xB97C; &#xBC18;&#xD658;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        $set-&gt;insert( $string );
+        $set-&gt;insert( @strings );</code></pre>
+
+<p>&#xC774;&#xBBF8; &#xC0BD;&#xC785;&#xB41C; &#xAC12;&#xC740; &#xBB34;&#xC2DC;&#xB41C;&#xB2E4;.</p>
+
+<h2 id="delete-remove">delete()/remove()</h2>
+
+<p>&#xD55C; &#xAC1C; &#xC774;&#xC0C1;&#xC758; &#xC694;&#xC18C;&#xB97C; &#xC81C;&#xAC70;&#xD55C;&#xB2E4;. &#xC2E4;&#xC81C;&#xB85C; &#xC81C;&#xAC70;&#xB41C; &#xAC1C;&#xC218;&#xB97C; &#xBC18;&#xD658;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        $set-&gt;delete( $string );
+        $set-&gt;delete( @strings );</code></pre>
+
+<p>&#xB450; &#xBA54;&#xC18C;&#xB4DC;&#xB294; &#xAC19;&#xB2E4;.</p>
+
+
+</body>
+
+</html>
+
+

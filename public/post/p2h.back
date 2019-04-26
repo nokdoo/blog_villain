@@ -1,0 +1,30 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+my @options = qw[
+	--nobacklink 
+	--css=./p2h.css 
+	--backlink
+	];
+my $diff = `git diff --name-status master`;
+print $diff."\n\n\n";
+my @pods;
+foreach my $line (split /[\r\n]+/, $diff)
+{
+	writehtml($1) if($line =~ m/^[MA]\s(.*\.pod)/);	
+}
+
+sub writehtml
+{
+	my $pod_file = shift;
+	$pod_file =~ qr/(.*)\.pod/;
+	my $file = $1;
+
+}
+
+#open (my $html_file, '>', "$file.html") or die "Could not open file: $file.html";
+#print "pod2html @options --title=$file $pod_file\n";
+#print $html_file `pod2html @options --title=$file $pod_file`;
+#close $html_file;

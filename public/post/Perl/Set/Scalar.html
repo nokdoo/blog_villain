@@ -1,0 +1,306 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>perl/Set/Scalar</title>
+<link rel="stylesheet" href="./p2h.css" type="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:nokdoot@nokdoot-desktop.(none)" />
+</head>
+
+<body id="_podtop_">
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#Creating">Creating</a></li>
+      <li><a href="#Modifying">Modifying</a></li>
+      <li><a href="#Displaying">Displaying</a></li>
+      <li><a href="#Querying">Querying</a></li>
+      <li><a href="#Deriving">Deriving</a></li>
+      <li><a href="#Comparing">Comparing</a></li>
+      <li><a href="#Boolean-contexts">Boolean contexts</a></li>
+      <li><a href="#Iterating">Iterating</a></li>
+      <li><a href="#Cartesian-Product-and-Power-Set">Cartesian Product and Power Set</a></li>
+      <li><a href="#Customising-Display">Customising Display</a></li>
+    </ul>
+  </li>
+  <li><a href="#CAVEATS">CAVEATS</a></li>
+  <li><a href="#POD-ERRORS">POD ERRORS</a></li>
+</ul>
+
+<a href="#_podtop_"><h1 id="NAME">NAME</h1></a>
+
+<p>Set::Scalar - &#xAE30;&#xCD08; Set &#xC5F0;&#xC0B0;&#xC790;</p>
+
+<a href="#_podtop_"><h1 id="SYNOPSIS">SYNOPSIS</h1></a>
+
+<pre><code>        use Set::Scalar;
+        $s = Set::Scalar-&gt;new;
+        $s-&gt;insert(&#39;a&#39;, &#39;b&#39;);
+        $s-&gt;delete(&#39;b&#39;);
+        $t = Set::Scalar-&gt;new(&#39;x&#39;, &#39;y&#39;, $z);</code></pre>
+
+<a href="#_podtop_"><h1 id="DESCRIPTION">DESCRIPTION</h1></a>
+
+<h2 id="Creating">Creating</h2>
+
+<pre><code>        $s = Set::Scalar-&gt;new;
+        $s = Set::Scalar-&gt;new(@members);
+
+        $t = $s-&gt;clone;
+        $t = $s-&gt;copy;         # Clone of clone.
+        $t = $s-&gt;empty_clone;  # Like clone() but with no members.</code></pre>
+
+<h2 id="Modifying">Modifying</h2>
+
+<pre><code>        $s-&gt;insert(@members);
+        $s-&gt;delete(@members);
+        $s-&gt;invert(@members);  # Insert if hasn&#39;t, delete if has.
+
+        $s-&gt;clear;  # Removes all the elements.</code></pre>
+
+<p><i>clear()</i>&#xB294; set&#xC774; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xBAA8;&#xB4E0; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xBC18;&#xD658;&#xD558;&#xB294; &#xAC83;&#xC774; &#xC544;&#xB2C8;&#xACE0;, &#xC694;&#xC18C;&#xB4E4;&#xC774; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xC788;&#xB294; &#xBA54;&#xBAA8;&#xB9AC;&#xB9CC; &#xBC18;&#xD658;&#xD55C;&#xB2E4;.</p>
+
+<h2 id="Displaying">Displaying</h2>
+
+<p>set&#xC758; &#xCD9C;&#xB825;&#xC740; &#xAD04;&#xD638; &#xC548;&#xC5D0; &#xBE48; &#xACF5;&#xAC04;&#xC73C;&#xB85C; &#xAD6C;&#xBD84;&#xB41C; &#xD615;&#xC2DD;&#xC744; &#xAC16;&#xB294;&#xB2E4;.</p>
+
+<pre><code>        my $s = Set::Scalar-&gt;new();
+        $s-&gt;insert(&quot;a&quot;..&quot;e&quot;);
+        print $s, &quot;\n&quot;;
+
+        #(a b c d e)</code></pre>
+
+<h2 id="Querying">Querying</h2>
+
+<pre><code>        @members  = $s-&gt;members;
+        @elements = $s-&gt;elements;  # Alias for members.
+
+        @$s  # Overloaded alias for members.
+
+        $size = $s-&gt;size;  # The number of members.
+
+        $s-&gt;has($m)        # Return true if has that member.
+        $s-&gt;contains($m)   # Alias for has().
+
+        if ($s-&gt;has($member)) { ... }
+
+        $s-&gt;member($m)     # Returns the member if has that member.
+        $s-&gt;element($m)    # Alias for member.
+
+        $s-&gt;is_null        # Returns true if the set is empty.
+        $s-&gt;is_empty       # Alias for is_null.
+
+        $s-&gt;is_universal   # Returns true if the set is universal.
+
+        $s-&gt;null           # The null set.
+        $s-&gt;empty          # Alias for null.
+        $s-&gt;universe       # The universe of the set.</code></pre>
+
+<h2 id="Deriving">Deriving</h2>
+
+<p><i>$s</i>&#xC640; <i>$t</i>&#xB294; &#xBAA8;&#xB450; set&#xC774;&#xB2E4;.</p>
+
+<pre><code>        $u = $s-&gt;union($t);
+        $i = $s-&gt;intersection($t);
+        $d = $s-&gt;difference($t);
+        $e = $s-&gt;symmetric_difference($t);
+        $v = $s-&gt;unique($t);
+        $c = $s-&gt;complement;</code></pre>
+
+<p>&#xC704;&#xC758; &#xBA54;&#xC18C;&#xB4DC;&#xB4E4;&#xC740; &#xC5F0;&#xC0B0;&#xC790; &#xC624;&#xBC84;&#xB85C;&#xB4DC;&#xB97C; &#xAC16;&#xB294;&#xB2E4;.</p>
+
+<pre><code>        $u = $s + $t;  # union
+        $i = $s * $t;  # intersection
+        $d = $s - $t;  # difference
+        $e = $s % $t;  # symmetric_difference
+        $v = $s / $t;  # unique
+        $c = -$s;      # complement</code></pre>
+
+<p><i>symmetric_difference</i>&#xB294; &#xC694;&#xC18C;&#xC758; &#xAC1C;&#xC218;&#xAC00; &#xD640;&#xC218;&#xC77C; &#xB54C; <i>true</i>&#xB97C; &#xBC18;&#xD658;&#xD55C;&#xB2E4;.</p>
+
+<h2 id="Comparing">Comparing</h2>
+
+<pre><code>        $eq = $s-&gt;is_equal($t);
+        $dj = $s-&gt;is_disjoint($t);
+        $pi = $s-&gt;is_properly_intersecting($t);
+        $ps = $s-&gt;is_proper_subset($t);
+        $pS = $s-&gt;is_proper_superset($t);
+        $is = $s-&gt;is_subset($t);
+        $iS = $s-&gt;is_superset($t);
+        $cmp = $s-&gt;compare($t);</code></pre>
+
+<p>&#xC774; &#xBA54;&#xC18C;&#xB4DC;&#xB4E4;&#xC740; &#xC5F0;&#xC0B0;&#xC790; &#xC624;&#xBC84;&#xB85C;&#xB4DC;&#xB97C; &#xAC16;&#xB294;&#xB2E4;.</p>
+
+<pre><code>        $eq = $s == $t;  # is_equal
+        $dj = $s != $t;  # is_disjoint
+        # No operator overload for is_properly_intersecting.
+        $ps = $s &lt; $t;   # is_proper_subset
+        $pS = $s &gt; $t;   # is_proper_superset
+        $is = $s &lt;= $t;  # is_subset
+        $iS = $s &gt;= $t;  # is_superset
+        $cmp = $s &lt;=&gt; $t;</code></pre>
+
+<h2 id="Boolean-contexts">Boolean contexts</h2>
+
+<p><i>$set</i>&#xC758; &#xD06C;&#xAE30;&#xB97C; &#xD655;&#xC778;&#xD558;&#xACE0;, &#xBE44;&#xC5B4;&#xC788;&#xB2E4;&#xBA74; <i>false</i>, &#xBE44;&#xC5B4;&#xC788;&#xC9C0; &#xC54A;&#xB2E4;&#xBA74; <i>true</i>&#xB97C; &#xBC18;&#xD658;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        if ($set) { ... }
+        while ($set1 &amp;&amp; $set2) { ... }</code></pre>
+
+<h2 id="Iterating">Iterating</h2>
+
+<pre><code>        while (defined(my $e = $s-&gt;each)) { ... }
+
+        for my $e ($s-&gt;elements) { ... }</code></pre>
+
+<p>&#xCCAB; &#xBC88;&#xC9F8; &#xC904;&#xC774; &#xBA54;&#xBAA8;&#xB9AC; &#xCE21;&#xBA74;&#xC5D0;&#xC11C; &#xB354; &#xD6A8;&#xC728;&#xC801;&#xC774;&#xB2E4;. &#xB450; &#xBC88;&#xC9F8; &#xC904;&#xC740; &#xC694;&#xC18C;&#xC758; &#xB9AC;&#xC2A4;&#xD2B8;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xACE0; &#xC774;&#xB97C; &#xCC28;&#xB840;&#xB85C; &#xD655;&#xC778;&#xD55C;&#xB2E4;.</p>
+
+<p>&#xC2A4;&#xCE7C;&#xB77C; &#xBB38;&#xB9E5;&#xC5D0;&#xC11C; <i>each(%hash)</i>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xACFC; &#xC720;&#xC0AC;&#xD558;&#xAC8C;, <i>&lt;$s-</i>each&gt;&gt;&#xB3C4; &#xBE44;&#xC2B7;&#xD55C; &#xC704;&#xD5D8;&#xC744; &#xAC16;&#xB294;&#xB2E4;.</p>
+
+<dl>
+
+<dt id="pod">&#xAC01; &#xC694;&#xC18C;&#xB4E4;&#xC740; &#xC77C;&#xC815;&#xD55C; &#xC21C;&#xC11C;&#xB85C; &#xBC18;&#xD658;&#xB418;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</dt>
+<dd>
+
+</dd>
+<dt id="undef">&#xBC18;&#xD658;&#xD560; &#xC694;&#xC18C;&#xAC00; &#xB354;&#xC774;&#xC0C1; &#xC5C6;&#xB2E4;&#xBA74; <i>undef</i>&#xB97C; &#xBC18;&#xD658;&#xD55C;&#xB2E4;.</dt>
+<dd>
+
+<p>&#xB2E4;&#xC74C;&#xC758; &#xCF54;&#xB4DC;&#xB294; &#xC0AC;&#xC6A9;&#xB418;&#xC5B4;&#xC11C;&#xB294; &#xC548;&#xB41C;&#xB2E4;.</p>
+
+<pre><code>        while (my $e = $s-&gt;each) { ... }           # WRONG!</code></pre>
+
+<p>&#xC704;&#xC758; &#xCF54;&#xB4DC;&#xB294;</p>
+
+<pre><code>        while (defined(my $e = $s-&gt;each)) { ... }  # Right.</code></pre>
+
+<p>&#xB85C; &#xBCC0;&#xACBD;&#xB418;&#xC5B4;&#xC57C; &#xD55C;&#xB2E4;.</p>
+
+</dd>
+<dt id="set-iterator">&#xD558;&#xB098;&#xC758; set&#xB9C8;&#xB2E4; &#xC694;&#xC18C;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xB294; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xC5D0; &#xACF5;&#xC720;&#xB418;&#xB294; iterator&#xAC00; &#xC788;&#xB2E4;.</dt>
+<dd>
+
+<p>&#xB2E4;&#xC74C;&#xC758; &#xBA54;&#xC18C;&#xB4DC;&#xB4E4;&#xC740; iterator&#xB97C; &#xB9AC;&#xC14B;&#xC2DC;&#xD0A8;&#xB2E4;. <i>elements()</i>, <i>insert()</i>, <i>members()</i>, <i>size()</i>, <i>unique()</i>. &#xD2B9;&#xD788; <i>unique()</i>&#xB294; &#xBA54;&#xC18C;&#xB4DC;&#xC5D0; &#xCC38;&#xC5EC;&#xD55C; set&#xB4E4;&#xC744; &#xBAA8;&#xB450; &#xB9AC;&#xC14B;&#xC2DC;&#xD0A8;&#xB2E4;.</p>
+
+<p><i>delete()</i>&#xC758; &#xACBD;&#xC6B0;&#xB294; &#xBB34;&#xC791;&#xC704; &#xC21C;&#xC11C;&#xB85C; &#xC694;&#xC18C;&#xB97C; &#xC81C;&#xAC70;&#xD558;&#xBA74; iterator&#xC5D0; &#xC601;&#xD5A5;&#xC744; &#xBBF8;&#xCE58;&#xB2C8; &#xC870;&#xC2EC;&#xD558;&#xC790;.</p>
+
+<p>iteration &#xC911;&#xC5D0; set&#xC744; &#xC218;&#xC815;&#xD558;&#xB294; &#xAC83;&#xC740; &#xC624;&#xB958;&#xB97C; &#xBC1C;&#xC0DD;&#xC2DC;&#xD0A4;&#xB2C8; &#xD558;&#xC9C0; &#xB9D0;&#xC790;.</p>
+
+</dd>
+</dl>
+
+<h2 id="Cartesian-Product-and-Power-Set">Cartesian Product and Power Set</h2>
+
+<dl>
+
+<dt id="Cartesian-product-set-product">Cartesian product&#xB294; &#xB450; &#xAC1C; &#xC774;&#xC0C1; set&#xC758; product&#xB2E4;.</dt>
+<dd>
+
+<p>&#xB450; set&#xC5D0; &#xB300;&#xD55C; &#xACB0;&#xACFC;&#xB294; &#xAC01; set&#xC758; &#xBA64;&#xBC84;&#xC758; &#xC21C;&#xC11C;&#xC30D;&#xC744; &#xAD6C;&#xC131;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        (a b)
+        (c d e)</code></pre>
+
+<p>---</p>
+
+<pre><code>        ([a, c] [a, d] [a, e] [b, c] [b, d] [b, e])</code></pre>
+
+<p><b><i>,</i></b>&#xB294; set&#xC774; &#xC544;&#xB2CC; &#xC21C;&#xC11C;&#xC30D;&#xC5D0; &#xB300;&#xD55C; &#xAE30;&#xD638;&#xB2E4;. <i>[e, b]</i>&#xB294; Cartesian product&#xAC00; &#xC544;&#xB2C8;&#xB2E4;.</p>
+
+<p>---</p>
+
+<pre><code>        my $a = Set::Scalar-&gt;new(1..2);
+        my $b = Set::Scalar-&gt;new(3..5);
+        my $c = $a-&gt;cartesian_product($b);  # As an object method.
+        my $d = Set::Scalar-&gt;cartesian_product($a, $b);  # As a class method.</code></pre>
+
+<p><i>$c</i>&#xC640; <i>$d</i>&#xC758; &#xBA64;&#xBC84;&#xB294; set&#xC774; &#xC544;&#xB2CC; anonymous array&#xAC00; &#xB41C;&#xB2E4;. &#xC774;&#xB294; set&#xC740; &#xC21C;&#xC11C;&#xB97C; &#xB098;&#xD0C0;&#xB0BC; &#xC218; &#xC5C6;&#xACE0;, &#xD55C; array&#xC5D0; &#xB3D9;&#xC77C;&#xD55C; &#xAC12;&#xC774; &#xC5EC;&#xB7EC;&#xBC88; &#xB098;&#xD0C0;&#xB0A0; &#xC218; &#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC774;&#xB2E4;. ex) <i>[b, b]</i>. &#xB610;&#xD55C;, set&#xC5D0;&#xB294; &#xC21C;&#xC11C;&#xAC00; &#xC5C6;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC21C;&#xC11C;&#xC30D;&#xB4E4;&#xC758; &#xC21C;&#xC11C;&#xB294; &#xD56D;&#xC0C1; &#xAC19;&#xC9C0; &#xC54A;&#xB2E4;.</p>
+
+<p>Cartesian product set&#xC744; &#xAD6C;&#xC131;&#xD558;&#xC9C0; &#xC54A;&#xACE0; &#xAC01;&#xAC01;&#xC758; &#xC21C;&#xC11C;&#xC30D; &#xC694;&#xC18C;&#xB97C; &#xC5BB;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; &#xB2E4;&#xC74C;&#xC758; iterator&#xB97C; &#xC774;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        my $iter = Set::Scalar-&gt;cartesian_product_iterator($a, $b, $c);
+        while (my @m = $iter-&gt;()) {
+                print(@m);
+        }</code></pre>
+
+</dd>
+<dt id="Power-set-set">Power set&#xC740; set&#xC758; &#xBAA8;&#xB4E0; &#xBD80;&#xBD84;&#xC9D1;&#xD569;&#xC774;&#xB2E4;.</dt>
+<dd>
+
+<p>set&#xC758; &#xC694;&#xC18C;&#xAC00; N&#xAC1C; &#xB77C;&#xBA74; power set&#xC740; 2^N&#xAC1C;&#xC758; &#xC694;&#xC18C;&#xB97C; &#xAC16;&#xB294;&#xB2E4;.</p>
+
+<pre><code>        (a b c)</code></pre>
+
+<p>&#xB294; &#xB2E4;&#xC74C;&#xC758; power set&#xC744; &#xAC16;&#xB294;&#xB2E4;.</p>
+
+<pre><code>        (() (a) (b) (c) (a b) (a c) (b c) (a b c))</code></pre>
+
+<p>&#xAC01; &#xC694;&#xC18C;&#xB294; &#xC21C;&#xC11C;&#xAC00; &#xC5C6;&#xC73C;&#xBA70;, &#xC694;&#xC18C;&#xC758; &#xAC1C;&#xC218;&#xAC00; 8&#xAC1C;&#xC778; &#xC774;&#xC720;&#xB294; <i>(b c)</i>&#xC640; <i>(c b)</i>&#xAC00; &#xC11C;&#xB85C; &#xAC19;&#xAE30; &#xB54C;&#xBB38;&#xC774;&#xB2E4;.</p>
+
+<p>&#xBE44;&#xC5B4;&#xC788;&#xB294; set&#xC774;&#xB77C;&#xB3C4; &#xD06C;&#xAE30; 1&#xC778; power set&#xC744; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB2E4;.</p>
+
+<p>power set&#xC744; &#xAD6C;&#xC131;&#xD558;&#xC9C0; &#xC54A;&#xACE0; &#xAC01;&#xAC01;&#xC758; &#xC694;&#xC18C;&#xB97C; &#xC5BB;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; &#xB2E4;&#xC74C;&#xC758; iterator&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        my $iter = Set::Scalar-&gt;power_set_iterator($a);
+        my @m;
+        do {
+                @m = $iter-&gt;();
+                process(@m);
+        } while (@m);</code></pre>
+
+</dd>
+</dl>
+
+<h2 id="Customising-Display">Customising Display</h2>
+
+<p>&#xCD9C;&#xB825; &#xBC29;&#xC2DD;&#xC744; &#xBC14;&#xAFB8;&#xACE0; &#xC2F6;&#xB2E4;&#xBA74; <i>as_string</i> &#xCF5C;&#xBC31;&#xC744; &#xC218;&#xC815;&#xD574;&#xC57C; &#xD55C;&#xB2E4;. &#xB2E4;&#xC74C;&#xC758; &#xCF54;&#xB4DC;&#xB294; <b>Set::Scalar</b>&#xC5D0; &#xB300;&#xD55C; &#xCF5C;&#xBC31;&#xC744; &#xBCC0;&#xACBD;&#xD55C;&#xB2E4;.</p>
+
+<pre><code>        my $class_callback = sub { ... };
+
+        Set::Scalar-&gt;as_string_callback($class_callback);</code></pre>
+
+<p>set object&#xC5D0; &#xB300;&#xD574; &#xCF5C;&#xBC31;&#xC744; &#xBCC0;&#xACBD;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+
+<pre><code>        my $callback = sub  { ... };
+
+        $s1-&gt;as_string_callback($callback);
+        $s2-&gt;as_string_callback($callback);</code></pre>
+
+<p>anonymous subroutine&#xC740; set&#xC744; &#xC778;&#xC790;&#xB85C; &#xBC1B;&#xB294;&#xB2E4;. &#xB2E4;&#xC74C;&#xC740; <i>(a b c d e)</i> &#xB300;&#xC2E0;&#xC5D0; <i>a-b-c-d-e</i>&#xB85C; &#xCD9C;&#xB825;&#xD558;&#xB294; &#xC608;&#xC81C;&#xB2E4;.</p>
+
+<pre><code>        $s-&gt;as_string_callback(sub{join(&quot;-&quot;,sort $_[0]-&gt;elements)});</code></pre>
+
+<p>&#xC624;&#xBE0C;&#xC81D;&#xD2B8;&#xC758; <i>as_string_callback()</i>&#xC5D0; &#xCF5C;&#xBC31;&#xC774; &#xB118;&#xC5B4;&#xAC00;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; &#xAE30;&#xC874; &#xCF5C;&#xBC31;&#xC774; &#xC801;&#xC6A9;&#xB41C;&#xB2E4;.</p>
+
+<p>&#xD074;&#xB798;&#xC2A4; <i>as_string_callback()</i>&#xC5D0; <i>undef</i>&#xAC00; &#xB118;&#xC5B4;&#xAC00;&#xBA74; &#xCC98;&#xC74C; &#xCF5C;&#xBC31;&#xC774; &#xC801;&#xC6A9;&#xB41C;&#xB2E4;. &#xC624;&#xBE0C;&#xC81D;&#xD2B8; <i>as_string_callback()</i>&#xC5D0; <i>undef</i>&#xAC00; &#xB118;&#xC5B4;&#xAC00;&#xBA74; &#xD074;&#xB798;&#xC2A4; <i>as_string</i>&#xC758; &#xCF5C;&#xBC31;&#xC744; &#xB530;&#xB978;&#xB2E4;.</p>
+
+<a href="#_podtop_"><h1 id="CAVEATS">CAVEATS</h1></a>
+
+<p>Set::Scalar&#xAC00; &#xC911;&#xC694;&#xD558;&#xAC8C; &#xC0DD;&#xAC01;&#xD558;&#xB294; &#xAC83;&#xC740; set&#xC5D0; &#xB300;&#xD55C; &#xD3B8;&#xB9AC;&#xD55C; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xAC00; &#xB418;&#xB294; &#xAC83;&#xC774;&#xB2E4;. &#xB290;&#xB9AC;&#xAC70;&#xB098; &#xD06C;&#xAC8C; &#xC124;&#xACC4;&#xB418;&#xC9C0;&#xB294; &#xC54A;&#xC558;&#xC9C0;&#xB9CC; &#xBE60;&#xB974;&#xAC70;&#xB098; &#xC791;&#xAC8C; &#xC124;&#xACC4;&#xB418;&#xC9C0;&#xB3C4; &#xC54A;&#xC558;&#xB2E4;.</p>
+
+<a href="#_podtop_"><h1 id="POD-ERRORS">POD ERRORS</h1></a>
+
+<p>Hey! <b>The above document had some coding errors, which are explained below:</b></p>
+
+<dl>
+
+<dt id="Around-line-216">Around line 216:</dt>
+<dd>
+
+<p>You forgot a &#39;=back&#39; before &#39;=head2&#39;</p>
+
+</dd>
+</dl>
+
+
+</body>
+
+</html>
+
+

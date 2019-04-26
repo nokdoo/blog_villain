@@ -1,0 +1,29 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+my @input = @ARGV;
+die "Number of arguments ".scalar(@input) if scalar(@input) != 1;
+
+my @options = qw[
+	--nobacklink 
+	--css=./p2h.css 
+	--backlink
+	];
+
+my $pod_file = $ARGV[0];
+$pod_file =~ qr/(.*)\.pod/;
+
+pod2html ($pod_file);
+
+sub pod2html
+{
+	my $pod_file = shift;
+	my $file = $1;
+	open (my $html_file, '>', "$file.html") or die "Could not open file: $file.html";
+	print "pod2html @options --title=$file $pod_file\n";
+	print $html_file `pod2html @options --title=$file $pod_file`;
+	close $html_file;
+}
+

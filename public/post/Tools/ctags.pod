@@ -1,0 +1,49 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+ctags - tag index 파일 생성
+
+=head1 SYNOPSIS
+
+ctags [option] [file(s)]
+etags [option] [file(s)]
+
+=head1 DESCRIPTION
+
+ctags, etags 는 tag index 파일을 생성한다.
+tag index 파일은 에디터가 개체의 위치를 쉽고 빠르게 찾을 수 있게 한다.
+하나의 개체를 B<tag> 라고 한다.
+
+ctags 는 다양한 개체의 정보를 나타내는 파일을 생성할 수 있다.
+
+tag index 파일은 많은 에디터로부터 지원된다. 
+이것은 사용자가 해당 개체의 파일, 라인 번호로 이동할 수 있게 한다.
+
+ctags 는 다른 언어에 대해 다른 tag 를 생성할 수 있다. 
+tag 의 종류와 이름이 각각 생성된다. 
+L</--list-languages>, L</--list-kinds> 옵션을 보자.
+
+=head1 SOURCE FILES
+
+L</--language-force> 옵션이 지정되지 않았다면, 파일명을 따라 언어를 자동적으로 선택한다.
+L</--list-maps> 옵션을 통해 매핑되는 언어를 표시할 수 있으며, L</--langmap> 옵션을 통해 변경 가능하다.
+파일명으로 언어를 파악할 수 없다면 파일 명의 첫 번째 줄을 읽어 파악하기도 한다.
+
+.h 는 기본적으로 C 보다는 C++ 에 매핑된다.
+
+=head1 OPTIONS
+
+=over 4
+
+=item -L
+
+-L I<file>
+
+생성되어야 하는 tag 를 가진 파일들을 파일 목록 가진 I<file> 을 읽는다.
+
+
+=back
+
+=cut

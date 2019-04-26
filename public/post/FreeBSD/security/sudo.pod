@@ -1,0 +1,70 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+sudo
+
+=head1 DESCRIPTION
+
+사용자가 시스템 자원을 필요로 할 때 사용.
+
+=head1 SYNOPSIS
+
+	# pkg install sudo
+
+=head1 Edit sudoers with visudo
+
+사용자를 관리하기 위해서는 B</usr/local/etc/sudoers> 파일을 수정해야 한다. 
+I<visudo> 를 실행하면 이 파일이 열리는데, 저장 전 문법 체크를 수행하기 때문에 I<visudo> 사용을 권장한다.
+파일은 사용자의 기본 에디터를 통해 열린다. (B<echo $EDITOR> 를 확인하자.)
+
+파일이 열리면 다음의 한 줄을 찾을 수 있을 것이다.
+
+	# user	hosts=(users:groups)	commands
+	root	ALL=(ALL:ALL)	ALL
+
+이것은 B<root> 사용자에게 superuser 권한의 모든 것을 부여하는 것을 의미한다. 
+또한 사용자가 모든 host 에서 user 로서, group 으로서 명령어를 실행할 수 있음을 나타낸다.
+
+사용자 뿐만 아니라 그룹에도 이와 같은 권한을 줄 수 있다.
+
+	%group 	ALL=(ALL)	ALL
+
+B<group> 에 속한 사용자는 B<root> 처럼 모든 명령어를 실행할 수 있다.
+
+
+=head1 Single user
+
+웹 어플리케이션 관리자 B<user1> 이 B<webservice> 이름을 가진 웹 어플리케이션을 시작, 중지, 재시작 해야 한다고 가정하자.
+
+B<user1> 에게 앞의 작업들을 수행하기 위한 권한을 주기 위해서 이 사용자를 B</usr/local/etc/sudoers> 의 마지막 줄에 다음과 같이 추가한다.
+
+	user1	ALL=(ALL)	/user/sbin/service webservice *
+
+사용자는 이제 다음의 명령어로 B<webservice> 를 시작할 수 있다.
+
+	% sudo /usr/sbin/service webservice start
+
+=head1 Users of group
+
+위의 방법으로는 한 명의 사용자만 웹 어플리케이션을 관리할 수 있었다.
+이번에는 특정 그룹에 속한 사용자들이 웹 어플리케이션을 관리할 수 있게 만들어보자.
+
+그룹 B<webteam> 생성 
+
+	# -g gid -n name
+	pw groupadd -n webteam
+
+사용자 B<user1> 을 그룹 B<webteam> 에 추가
+
+	# -M members -m newmembers -n name
+	pw groupmod -m user1 -n webteam
+
+I<visudo> 를 통해 B</usr/local/etc/sudoers> 에 다음을 추가
+
+	%webteam	ALL=(ALL)	/usr/sbin/service webservice *
+
+I<su> 와는 다르게 I<sudo> 는 현재 사용자의 패스워드를 요구한다.
+
+=cut

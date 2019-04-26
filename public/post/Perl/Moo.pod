@@ -1,0 +1,94 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+Moo - Moose와 호환되는 Minimalist Object Orientation
+
+=head1 SYNOPSIS
+
+	package Cat::Food;
+	 
+	use Moo;
+	use strictures 2;
+	use namespace::clean;
+	 
+	sub feed_lion {
+	  my $self = shift;
+	  my $amount = shift || 1;
+	 
+	  $self->pounds( $self->pounds - $amount );
+	}
+	 
+	has taste => (
+	  is => 'ro',
+	);
+	 
+	has brand => (
+	  is  => 'ro',
+	  isa => sub {
+		die "Only SWEET-TREATZ supported!" unless $_[0] eq 'SWEET-TREATZ'
+	  },
+	);
+	 
+	has pounds => (
+	  is  => 'rw',
+	  isa => sub { die "$_[0] is too much cat food!" unless $_[0] < 15 },
+	);
+	 
+	1;
+
+---
+
+	my $full = Cat::Food->new(
+		taste  => 'DELICIOUS.',
+		brand  => 'SWEET-TREATZ',
+		pounds => 10,
+	);
+
+	$full->feed_lion;
+
+	say $full->pounds;
+
+=head1 DESCRIPTION
+
+B<Moo>는 매우 가벼운 객체지향 시스템이다. 이것은 펄의 object system을 피하는 간편한 문법으로 object와 role을 정의할 수 있게 한다. B<Moo>는 L<Moose|https://metacpan.org/pod/Moose>의 서브셋을 포함하며 빠르게 시작하기 좋다.
+
+B<Moo>는 간단한 배포를 위해 XS module에 대한 의존을 회피한다.
+
+B<Moo>는 B<Moose>와 문법적으로 완벽히 호환되는 것에 집중하기 보다는, L</"MOO AND MOOSE">에 설명된 metaclass의 확장을 통해 완전한 상호 운용을 제공하는 것을 선호한다. 
+
+B<Moo>와 B<Moose>의 문법적 타이에 대해서는 L</"INCOMPATIBILITIES WITH MOOSE">를 보자.
+
+=head1 WHY MOO EXISTS
+
+풍부한 Metaprotocol을 가진 완전한 object system을 원한다면 B<Moose>는 이미 훌륭하다.
+
+B<Moose>를 원하지 않는다는 것은 "metaprotocol"을 원하지 않는다는 것이다. "no metaprotocol"는 B<Moo>가 제공한다. 
+
+B<Moo>는 배포와 실행 시 B<Moose>와 B<Mouse>를 사용하지 못하는 상황에 알맞다.
+
+=over 2
+
+=item 빠른 실행이 필수적인 커맨드 라인 또는 CGI 스크립트
+
+=item L<App::FatPacker|https://metacpan.org/pod/App::FatPacker>를 통해 단일 파일로 배포되도록 설계된 코드
+
+=item 위의 상황에서 다른 사용자로부터 사용되는 CPAN 모듈
+
+=back
+
+B<Moo>는 B<Moose>와의 투명한 호환성을 관리한다. B<Moose>를 설치하고 로드한다면 B<Moose> 코드에 있는 B<Moo> 클래스와 role을 수정없이 사용할 수 있다.
+
+B<Moo>는 사용자가 더 많은 기능을 필요로 할 때 B<Moose>로의 자연스러운 업그레이드를 만드는 것에 집중한다.
+
+=head1 MOO AND MOOSE
+
+Moo는 Moose가 로드되는 것을 발견하면, Moo와 L<Moo::Role|https://metacpan.org/pod/Moo::Role> pacakge에 대한 metaclass들을 자동적으로 등록할 것이다. 이것은 수정없이 Moose의 기능들을 사용할 수 있게 한다.
+
+Moo는 Moo class와 role에 대한 L<Moose type constraints|https://metacpan.org/pod/Moose::Manual::Types>를 생성할 것이다. 이것은 Moose class의 I<<isa => 'MyMooClass'>> 와 I<<ise => 'MyMooRole'>>이 Moose class와 role과 동일한 동작을 하도록 한다.
+
+Moose class를 확장하거나 L<Moose::Role|https://metacpan.org/pod/Moose::Role>을 소모하는 것 또한 동작한다.
+
+
+=cut

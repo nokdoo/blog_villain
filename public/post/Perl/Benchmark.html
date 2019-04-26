@@ -1,0 +1,111 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>perl/Benchmark</title>
+<link rel="stylesheet" href="./p2h.css" type="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:nokdoot@nokdoot-desktop.(none)" />
+</head>
+
+<body id="_podtop_">
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a>
+    <ul>
+      <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+    </ul>
+  </li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a></li>
+  <li><a href="#POD-ERRORS">POD ERRORS</a></li>
+</ul>
+
+<a href="#_podtop_"><h1 id="NAME">NAME</h1></a>
+
+<p>Benchmark - &#xC2E4;&#xD589;&#xC2DC;&#xAC04; &#xBCA4;&#xCE58;&#xB9C8;&#xD06C;</p>
+
+<h2 id="SYNOPSIS">SYNOPSIS</h2>
+
+<pre><code>        use Benchmark qw(:all) ;
+
+        timethis ($count, &quot;code&quot;);
+
+        # Use Perl code in strings...
+        timethese($count, {
+                &#39;Name1&#39; =&gt; &#39;...code1...&#39;,
+                &#39;Name2&#39; =&gt; &#39;...code2...&#39;,
+        });
+
+        # ... or use subroutine references.
+        timethese($count, {
+                &#39;Name1&#39; =&gt; sub { ...code1... },
+                &#39;Name2&#39; =&gt; sub { ...code2... },
+        });
+
+        # cmpthese can be used both ways as well
+        cmpthese($count, {
+                &#39;Name1&#39; =&gt; &#39;...code1...&#39;,
+                &#39;Name2&#39; =&gt; &#39;...code2...&#39;,
+        });
+
+        cmpthese($count, {
+                &#39;Name1&#39; =&gt; sub { ...code1... },
+                &#39;Name2&#39; =&gt; sub { ...code2... },
+        });
+
+        # ...or in two stages
+        $results = timethese($count,
+                {
+                        &#39;Name1&#39; =&gt; sub { ...code1... },
+                        &#39;Name2&#39; =&gt; sub { ...code2... },
+                },
+                &#39;none&#39;
+        );
+        cmpthese( $results ) ;
+
+        $t = timeit($count, &#39;...other code...&#39;)
+        print &quot;$count loops of other code took:&quot;,timestr($t),&quot;\n&quot;;
+
+        $t = countit($time, &#39;...other code...&#39;)
+        $count = $t-&gt;iters ;
+        print &quot;$count loops of other code took:&quot;,timestr($t),&quot;\n&quot;;
+
+        # enable hires wallclock timing if possible
+        use Benchmark &#39;:hireswallclock&#39;;</code></pre>
+
+<a href="#_podtop_"><h1 id="DESCRIPTION">DESCRIPTION</h1></a>
+
+<p><b>Benchmark</b> &#xBAA8;&#xB4C8;&#xC740; &#xD568;&#xC218;&#xB4E4;&#xC758; &#xC2E4;&#xD589;&#xC2DC;&#xAC04;&#xC774; &#xC5BC;&#xB9C8;&#xB098; &#xAC78;&#xB9AC;&#xB294;&#xC9C0;&#xC5D0; &#xB300;&#xD55C; &#xB8E8;&#xD2F4;&#xB4E4;&#xC744; &#xCEA1;&#xC290;&#xD654;&#xD55C;&#xB2E4;.</p>
+
+<dl>
+
+<dt id="timethis"><i>timethis</i></dt>
+<dd>
+
+<p>&#xCF54;&#xB4DC;&#xB97C; &#xC5EC;&#xB7EC; &#xBC88; &#xC2E4;&#xD589;.</p>
+
+</dd>
+</dl>
+
+<a href="#_podtop_"><h1 id="POD-ERRORS">POD ERRORS</h1></a>
+
+<p>Hey! <b>The above document had some coding errors, which are explained below:</b></p>
+
+<dl>
+
+<dt id="Around-line-62">Around line 62:</dt>
+<dd>
+
+<p>=over without closing =back</p>
+
+</dd>
+</dl>
+
+
+</body>
+
+</html>
+
+
