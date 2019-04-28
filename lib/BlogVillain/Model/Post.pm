@@ -2,7 +2,7 @@ package BlogVillain::Model::Post;
 
 use strict;
 use warnings;
-#use Pod::Simple::HTML;
+use Pod::Simple::HTML;
 use BlogVillain::Schema;
 use BlogVillain::Post;
 use Data::Dumper;

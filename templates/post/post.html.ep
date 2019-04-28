@@ -1,5 +1,4 @@
 % layout 'default';
-% title $title;
 %= stylesheet '/highlight/styles/obsidian.css'
 %= javascript '/highlight/highlight.pack.js', style=>'Obsidian'
 %= javascript begin 

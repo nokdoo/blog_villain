@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Set BLOGVILLAIN_HOME
 PROFILE="$HOME/.profile";
@@ -11,6 +11,16 @@ if [ -z "$BLOGVILLAIN_HOME" ]; then
 	echo "" >> $PROFILE
 	echo "# set ENV for BlogVillain" >> $PROFILE
 	echo "export BLOGVILLAIN_HOME=$HOME/blog_villain" >> $PROFILE
-	echo "export PATH=\$BLOGVILLAIN_HOME/bin:\$PATH" >> $PROFILE
-	source "$PROFILE";
 fi
+
+source "$PROFILE";
+
+if [ -z "$PERL5LIB" ]; then
+	echo "export PERL5LIB=\$BLOGVILLAIN_HOME/local/lib/perl5:\$PERL5LIB" >> $PROFILE
+fi
+
+echo ""
+echo ""
+echo "======== type 'source $PROFILE'!!!!! ========"
+echo ""
+echo ""

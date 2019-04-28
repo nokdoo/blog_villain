@@ -1,36 +1,31 @@
 =encoding utf8
 =pod
 
-post 작성날짜 추가
+ # post 출력 
+ sqlite -> pod -> html
 
-post write 기능 추가
 
- c, perl, java 등 주제 리스트 출력
- Post 테이블이 참조하는 Category 테이블 생성, fk 등록
- Post 테이블의 category 컬럼의 변경 때마다 Category 테이블도 같이 수정해주는 trigger 추가
- pod -> database 스크립트 수정
+ # html 저장
+ html -> pod -> sqlite
 
-post pod validation 기능
 
-글 작성 페이지 모양 정리
+ # Pod::Simple::HTML 코드 변경
+ <pre> </pre>
+ <a>
 
-글 작성 페이지 fulltitle 처리
+ ->
 
-글 작성 페이지를 통한 수정 기능 -> 글 리스트를 먼저 출력시키자.
+ <pre> <code class='lang'> ... </code> </pre>
+ <a target='_blank'>
 
-$controller->stash 의 예약어들이 각가 어떤 역할을 하는지 정리하기.
 
- postgres -> sqlite
+ # pod validation
+ /post/write
 
-배포스크립트 작성
 
- bash를 통해 프로젝트 위치를 환경변수에 등록
-    #환경변수 등록하는 bash 작성.
-	bash 를 실행하는 perl 스크립트.
- YAML 파일에 환경변수가 들어가야 함. YAML 모듈을 이용해서 perl 스크립트 내의 변수 사용.
- 	DB 종류별로 yaml 을 만들드록 하자. 
-	#일단 SQLite 용 yaml 출력하는 스크립트 완성
- use lib 의 위치를 환경변수/lib 으로 변경
+ # 배포스크립트 작성
+ set_env -> source -> cpanfile -> deploy.pl
 
+작성날짜
 
 =cut

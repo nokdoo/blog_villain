@@ -1,0 +1,109 @@
+=encoding utf8
+=pod
+
+=head1 NAME Localization
+
+Localization - FreeBSD 의 언어 설정.
+
+=head1 SYNOPSIS
+
+ ex) ko_KR.UTF-8
+ ex) en_US.ISO8859-1
+
+=head1 LOCALIZATION
+
+B<locale name> 은 세 부분으로 구성된다.
+
+ # 언어코드_나라코드.인코딩
+ ex) ko_KR.UTF-8
+ ex) en_US.ISO8859-1
+
+다음 명령어로 사용 가능한 언어를 확인할 수 있다.
+
+ % locale -a
+
+다음 명령어로 현재 locale 설정을 확인할 수 있다.
+
+ % locale
+
+=head2 Setting locale
+
+locale 설정은 다음 두 변수를 지정해야만 한다.
+
+=over 4
+
+=item * Lang
+
+=item * MM_CHARSET - MIME character
+
+=back
+
+locale 을 설정하기 위한 방법으로, B<Login Class> 를 이용하는 방법과 
+B<Shell Startup File> 을 이용하는 방법이 있지만, 
+후자는 권장되지 않으므로 B<Login Class> 를 이용 하는 방법만 다룬다.
+
+=head3 login class
+
+login class 는 모든 사용자가 가지고 있는 값으로, 
+사용자 생성시 따로 지정해주지 않았다면 기본값은 B<default> 다.
+
+I<vipw> 를 이용해서 사용자가 어떤 login class 를 지정받았는지 확인할 수 있으며
+변경도 가능하다.
+
+ user:password:1111:11:Login Class:0:0:User Name:/home/user:/bin/sh
+
+B<default> 라면 B<Login Class> 값이 비어있다.
+
+ user:password:1111:11::0:0:User Name:/home/user:/bin/sh
+
+=head3 login configuration
+
+이제 login class 를 이용해서 사용자의 locale 을 변경해보자.
+여기에서도 두 가지 방법으로 나뉜다.
+
+=over 4
+
+=item * ~/.login_conf
+
+I<~/.login_conf> 파일에 다음을 작성한다.
+
+ me:\
+    :charset=UTF-8:\
+    :lang=ko_KR.UTF-8:
+
+이 방법으로 사용자가 로그인 할 때 locale 을 지정해 줄 수 있다.
+
+=item * /etc/login.conf
+
+I</etc/login.conf> 에 다음을 작성한다.
+
+ # Login_Class|Account Type Description:\
+ #  :charset=MM_CHARSET:\
+ #  :lang=LANG:\
+ #  :tc=default:
+
+ # locale 이외의 정보가 login class 'default' 를 가리키도록 설정되어 있다.
+ korean|Korean Users Accounts:\
+    :charset=UTF-8:\
+    :lang=ko_KR.UTF-8:\
+    :tc=default:
+
+수정이 끝난 후 데이터베이스를 업데이트 하기 위해 다음의 명령어를 입력한다.
+
+ # cap_mkdb /etc/login.conf
+
+이 방법으로 시스템 관리자가 특정 login class 를 가진 사용자의 locale 을 지정할 수 있다.
+
+자세한 정보는 L<login.conf(5)|https://www.freebsd.org/cgi/man.cgi?query=login.conf&sektion=5&manpath=freebsd-release-ports> 를 확인하자.
+
+=back
+
+B<me>, B<korean>, B<default> 는 login class 를 나타낸다.
+
+B<tc> 는 다음과 같다.
+
+ # entry 는 login class 를 의미한다.
+ tc= in capability databases is an "include" directive - it means that the specified entry is treated as if it were included at that point
+
+=cut
+

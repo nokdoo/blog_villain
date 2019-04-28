@@ -24,9 +24,9 @@ sub startup {
   
   $r->post('post/checksyntax')->to('post#check_syntax');
 
+  $r->get('post/write')->to(template=>'post/write');
   $r->get('post/categories')->to('post#get_categories');
   $r->get('post/:category')->to('post#get_fulltitles');
-  $r->get('post/write')->to(template=>'post/write');
   $r->get('post/:category/*fulltitle')->to('post#get');
 
 }

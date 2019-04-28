@@ -29,10 +29,12 @@ sub get {
     $post->make_idx_and_content;
     
     my @content   = join q{}, map { $_->as_HTML } @{ $post->{content} };
+    my $index     = $post->{index}->as_HTML if $post->{index};
+    my $title     = $post->{title};
     $self->stash(
         content => @content,
-        index   => $post->{index}->as_HTML,
-        title   => $post->{title}
+        index   => $index,
+        title   => $title,
     );
     
     $self->render( template => 'post/post' );
@@ -44,12 +46,12 @@ sub check_syntax {
     my $post = BlogVillain::Post->new($pod);
     $post->make_idx_and_content();
 
-    my @content = join q{}, map { $_->as_HTML } @{ $post->{content} }; 
     if ( $post->validate() ) {
-        $self->render('text' => @content );
+        my @content = join q{}, map { $_->as_HTML } @{ $post->{content} }; 
+        $self->render(text => @content);
     }
     else {
-        $self->render( json => $post->{all_errata} );
+        $self->render(json => $post->{all_errata});
     }
 }
 

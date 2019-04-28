@@ -1,6 +1,18 @@
 =encoding utf8
 =pod
 
+=head1 NAME const
+
+const - ???
+
+=head1 SYNOPSIS
+
+sy
+
+=head1 DESCRIPTION
+
+desc
+
 =head1 const type qualifier
 
 L<c type system|https://en.cppreference.com/w/c/language/type>의 각 타입은 여러 I<qualified> version를 가질 수 있다. qualified version은 B<const>, L<volatile|https://en.cppreference.com/w/c/language/volatile>, 그리고 object 타입의 포인터에 대한 L<restrict|https://en.cppreference.com/w/c/language/restrict>를 말한다. 이 글에서는 B<const>의 기능에 대해 설명한다.

@@ -6,3 +6,6 @@ requires 'YAML::Tiny';
 requires 'Log::Log4perl';
 requires 'YAML';
 requires 'Pod::Simple::HTML';
+requires 'List::Util';
+requires 'SQL::Translator';
+requires 'Sub::Override';
