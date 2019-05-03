@@ -29,8 +29,8 @@ sub makehtml {
     # $Pod::Simple::HTML::Computerese =  ' class="some_class_name';
     # 설정은 잘못된 것.
     # 모듈이 로드되면서 Tagmap의 값이 설정되어버림.
-    $Pod::Simple::HTML::Tagmap{VerbatimFormatted} = qq{\n<pre><code class="perl">};
-    $Pod::Simple::HTML::Tagmap{'/VerbatimFormatted'} = qq{</code></pre>};
+    local $Pod::Simple::HTML::Tagmap{VerbatimFormatted} = qq{\n<pre><code class="perl">};
+    local $Pod::Simple::HTML::Tagmap{'/VerbatimFormatted'} = qq{</code></pre>};
 	my $p = Pod::Simple::HTML->new;
 	$p->index(1);
 	$p->output_string(\my $html);

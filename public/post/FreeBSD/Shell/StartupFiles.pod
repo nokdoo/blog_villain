@@ -1,0 +1,63 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+StartupFiles - shell 이 실행될 때 읽히는 파일들
+
+=head1 SYNOPSIS
+
+=head1 DESCRIPTION
+
+shell 은 다음 두 가지 속성을 갖는다.
+
+=over 4
+
+=item * login shell
+
+사용자가 로그인 할 때 실행되는 shell
+
+=item * interactive shell
+
+사용자가 입력과 출력을 주고 받을 수 있는 shell
+
+=back
+
+이로부터 shell 은 다음 네 가지의 종류로 나뉘고, 
+shell 에 의해 지정된 startup file 들이 읽힌다.
+
+=over 4
+
+=item * interactive login shell - B</etc/profile>, B<~/.profile>, ...
+
+ex) Change to other user
+
+=item * interactive non-login shell - B<.bashrc>, ...
+
+ex) Open terminal
+
+=item * interactive login shell - B</etc/profile>, B<~/.profile>, ...
+
+ex) Default Login on boot
+
+ # If you are using xdm, 
+ # default login is replaced by non-interactive non-login shell.
+ # So, /etc/profile and ~/.profile will not be read.
+ # Because it is non-interactive non-login shell ( reading ~/.xession ),
+ # you must specify ~/.profile on ~/.xsession like
+ 
+ #!/bin/sh
+ . $HOME/.profile
+ . $HOME/.xinitrc
+
+ # 참고... .xinitrc 는 startx 에 의해 실행되고, 
+ # .xsession 은 dm 에 의해 실행된다.
+
+=item * non-interactive non-login shell - nothing
+
+ex) Run shell program
+
+=back
+
+
+=cut

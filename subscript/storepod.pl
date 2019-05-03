@@ -30,7 +30,6 @@ sub printfile
 		$fulltitle =~ $category_regex;
 		$fulltitle =~ s/$category_regex//;
 		my $category = $1;
-		say $category;
 		
 		my $mtime = ((stat($_))[9]);
 		my $time = strftime("%Y-%m-%dT%H:%M:%S", localtime($mtime));
