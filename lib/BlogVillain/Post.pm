@@ -8,6 +8,13 @@ use HTML::TreeBuilder;
 use Mojo::DOM::HTML;
 use Sub::Override;
 
+my %langs = (
+    C => 'c',
+    Java => 'java',
+    Perl => 'perl',
+    Bash => 'bash',
+);
+
 sub new {
 	my ($class, $self) = @_;
 	bless $self, $class;
@@ -25,11 +32,14 @@ sub validate {
 
 sub makehtml {
 	my $self = shift;
+    my $lang = ''.$langs{$self->{category}};
+    # my $lang = 'language-'.$langs{$self->{category}};
     # 문서에 나오는 
     # $Pod::Simple::HTML::Computerese =  ' class="some_class_name';
     # 설정은 잘못된 것.
     # 모듈이 로드되면서 Tagmap의 값이 설정되어버림.
-    local $Pod::Simple::HTML::Tagmap{VerbatimFormatted} = qq{\n<pre><code class="perl">};
+    local $Pod::Simple::HTML::Tagmap{VerbatimFormatted} = qq{\n<pre><code class="$lang">};
+    print $langs{$self->{category}}."\n";
     local $Pod::Simple::HTML::Tagmap{'/VerbatimFormatted'} = qq{</code></pre>};
 	my $p = Pod::Simple::HTML->new;
 	$p->index(1);

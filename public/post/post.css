@@ -13,6 +13,10 @@ p {
 	word-break: keep-all;
 }
 
+i {
+    color: #007a00;
+}
+
 /* Header/logo Title */
 .header {
   padding: 60px;

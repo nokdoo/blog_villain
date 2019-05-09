@@ -1,0 +1,64 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+Iterator - perl 의 iterator 구현 예제
+
+=head1 SYNOPSIS
+
+ #!/usr/bin/env perl
+ 
+ use strict;
+ use warnings;
+ use feature qw / say /;
+ 
+ sub NEXTVAL { $_[0]->() }
+ sub Iterator (&) { return $_[0] };
+ 
+ sub upto {
+     my ($m, $n) = @_;
+     return Iterator {
+         return $m <= $n ? $m++ : undef;
+    };
+  }
+ 
+ my $it = upto(3, 6);
+ say NEXTVAL($it);
+ say NEXTVAL($it);
+ say NEXTVAL($it);
+ say NEXTVAL($it);
+ say NEXTVAL($it); # undef
+ 
+=head1 DESCRIPTION
+
+ my $it = upto(3, 6);
+ NEXTVAL($it);
+
+I<$it> 는 CODE ( I<Iterator { ... }> ) 를 받는다. ( Iterator CODE 는 upto 를 호출할 때마다 새롭게 생성된다. )
+
+I<NEXTVAL($it)> 은 다음과 같다.
+
+ NEXTVAL( Iterator { ... } )
+
+I<Iterator> 함수는 프로토타입에 명시된 것처럼( B<(&)> )
+인자를 함수로 받고 ( B<{ ... }> ), 
+함수의 정의를 따라 그것을 즉시 반환시켜준다.
+
+I<Iterator { ... }> 는 다음과 같다.
+
+ sub { ... }
+
+
+따라서 I<NEXTVAL( Iterator { ... } )> 는 다음과 같다.
+
+ NEXTVAL( sub { ... } )
+
+I<NEXTVAL> 은 함수의 정의를 따라 I<sub { ... }> 를 실행시킨다.
+
+=head1 SEE ALSO
+
+prototype
+closure
+
+=cut

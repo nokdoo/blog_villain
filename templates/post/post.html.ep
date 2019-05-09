@@ -1,9 +1,11 @@
 % layout 'default';
-%= stylesheet '/highlight/styles/obsidian.css'
-%= javascript '/highlight/highlight.pack.js', style=>'Obsidian'
-%= javascript begin 
-	hljs.initHighlightingOnLoad(); 
-% end
+ %= stylesheet '/highlight/styles/obsidian.css'
+ %= javascript '/highlight/highlight.pack.js', style=>'Obsidian'
+ %= javascript begin 
+ 	hljs.initHighlightingOnLoad(); 
+ % end
+%# %= stylesheet '/highlight/prism.css'
+%# %= javascript '/highlight/prism.js'
 <div class="index_of_post">
 	<div class="box_of_index">
 		<%== $index %>
