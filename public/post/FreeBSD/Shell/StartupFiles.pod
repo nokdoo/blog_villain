@@ -57,6 +57,12 @@ ex) Default Login on boot
 
 ex) Run shell program
 
+You can specify any configuration file for environment variables,
+but this program does not apply aliases into system.
+The reason is shell is run as a program.
+If you change an alias, it interfere other programs
+Think about lexical variable.
+
 =back
 
 
