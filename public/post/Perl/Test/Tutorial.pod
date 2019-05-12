@@ -15,37 +15,37 @@ Test::Tutorial
 
 매우 간단한 테스트의 예를 보자.
 
-	#!/usr/bin/perl -w
-	print "1..1\n";
-	print 1 + 1 == 2 ? "ok 1\n" : "not ok 1\n";
+ #!/usr/bin/perl -w
+ print "1..1\n";
+ print 1 + 1 == 2 ? "ok 1\n" : "not ok 1\n";
 
 결과는 다음과 같다.
 
-	1..1
-	ok 1
+ 1..1
+ ok 1
 
 이는 테스트 하나와(B<"1..1">) 테스트의 결과(B<"ok">)를 나타낸다. L<Test::Harness|https://metacpan.org/pod/Test::Harness>는 위의 테스트 통과 여부를 나타냈던 "ok"의 결과를 대신 알려준다.
 
 I<print>를 통해 결과를 나타내는 것은 매우 지겨운 일이다. L<Test::Simple|https://metacpan.org/pod/Test::Simple>이 I<ok()> 함수를 제공해줘서 이런 수고를 덜 수 있다.
 
-	#!/usr/bin/perl -w
-	use Test::Simple tests => 1;
-	ok( 1 + 1 == 2 );
+ #!/usr/bin/perl -w
+ use Test::Simple tests => 1;
+ ok( 1 + 1 == 2 );
 
 위의 코드는 이전의 코드와 같다. I<ok()>는 펄 테스팅의 핵심이다. I<ok()>의 값에 따라서 테스트의 통과와 실패가 결정된다.
 
-	#!/usr/bin/perl -w
-	use Test::Simple tests => 2;
-	ok( 1 + 1 == 2 );
-	ok( 2 + 2 == 5 );
+ #!/usr/bin/perl -w
+ use Test::Simple tests => 2;
+ ok( 1 + 1 == 2 );
+ ok( 2 + 2 == 5 );
 
 위의 코드는 다음의 결과를 만든다.
 
-	1..2
-	ok 1
-	not ok 2
-	#     Failed test (test.pl at line 5)
-	# Looks like you failed 1 tests of 2.
+ 1..2
+ ok 1
+ not ok 2
+ #     Failed test (test.pl at line 5)
+ # Looks like you failed 1 tests of 2.
 
 B<1..2>는 두 개의 테스트를 의미한다. B<ok 1>과 B<not ok 2>는 각 테스트의 결과를 나타낸다. B<Test::Simeple>은 테스트에 대한 추가적인 정보를 출력한다.
 
@@ -55,25 +55,25 @@ B<1..2>는 두 개의 테스트를 의미한다. B<ok 1>과 B<not ok 2>는 각 �
 
 언제 테스트를 시작할지는 테스팅의 가장 어려운 부분이다. 사람들은 종종 전체 모듈을 테스트하는 작업의 심각성을 보고 위축된다. 가장 좋은 시기는 모듈을 작성할 때부터다. B<Date::ICal>은 객체지향 모듈이기 때문에 먼저 object를 생성하고 시작한다.
 
-	#!/usr/bin/perl -w
-	 
-	# assume these two lines are in all subsequent examples
-	use strict;
-	use warnings;
-	 
-	use Test::Simple tests => 2;
-	 
-	use Date::ICal;
-	 
-	my $ical = Date::ICal->new;         # create an object
-	ok( defined $ical );                # check that we got something
-	ok( $ical->isa('Date::ICal') );     # and it's the right class
+ #!/usr/bin/perl -w
+  
+ # assume these two lines are in all subsequent examples
+ use strict;
+ use warnings;
+  
+ use Test::Simple tests => 2;
+  
+ use Date::ICal;
+  
+ my $ical = Date::ICal->new;         # create an object
+ ok( defined $ical );                # check that we got something
+ ok( $ical->isa('Date::ICal') );     # and it's the right class
 
 위의 코드를 실행하면 다음의 결과를 얻는다.
 
-	1..2
-	ok 1
-	ok 2
+ 1..2
+ ok 1
+ ok 2
 
 =head2 Names
 
@@ -81,56 +81,56 @@ B<1..2>는 두 개의 테스트를 의미한다. B<ok 1>과 B<not ok 2>는 각 �
 
 각 테스트에 설명을 넣기 위해서는 I<ok()>의 두 번째 인자에 그 내용을 작성해주면 된다.
 
-	use Test::Simple tests => 2;
+ use Test::Simple tests => 2;
 
-	ok( defined $ical,              'new() returned something' );
-	ok( $ical->isa('Date::ICal'),   "  and it's the right class" );
+ ok( defined $ical,              'new() returned something' );
+ ok( $ical->isa('Date::ICal'),   "  and it's the right class" );
 
 위 코드의 결과값은 다음과 같다
 
-	1..2
-	ok 1 - new() returned something
-	ok 2 -   and it's the right class
+ 1..2
+ ok 1 - new() returned something
+ ok 2 -   and it's the right class
 
 =head2 Test the manual
 
 적절한 테스트 범위를 결정하는 가장 간단한 방법은 메뉴얼이 말하는 것들을 테스트해보는 것이다. 다음은 L<Date::ICal|https://metacpan.org/pod/Date::ICal#SYNOPSIS>의 메뉴얼을 참고하여 만든 테스트다.
 
-	#!/usr/bin/perl -w
+ #!/usr/bin/perl -w
 
-	use Test::Simple tests => 8;
+ use Test::Simple tests => 8;
 
-	use Date::ICal;
+ use Date::ICal;
 
-	$ical = Date::ICal->new( year => 1964, month => 10, day => 16,
-							 hour => 16,   min   => 12, sec => 47,
-							 tz   => '0530' );
+ $ical = Date::ICal->new( year => 1964, month => 10, day => 16,
+ 						 hour => 16,   min   => 12, sec => 47,
+ 						 tz   => '0530' );
 
-	ok( defined $ical,            'new() returned something' );
-	ok( $ical->isa('Date::ICal'), "  and it's the right class" );
-	ok( $ical->sec   == 47,       '  sec()'   );
-	ok( $ical->min   == 12,       '  min()'   );
-	ok( $ical->hour  == 16,       '  hour()'  );
-	ok( $ical->day   == 17,       '  day()'   );
-	ok( $ical->month == 10,       '  month()' );
-	ok( $ical->year  == 1964,     '  year()'  );
+ ok( defined $ical,            'new() returned something' );
+ ok( $ical->isa('Date::ICal'), "  and it's the right class" );
+ ok( $ical->sec   == 47,       '  sec()'   );
+ ok( $ical->min   == 12,       '  min()'   );
+ ok( $ical->hour  == 16,       '  hour()'  );
+ ok( $ical->day   == 17,       '  day()'   );
+ ok( $ical->month == 10,       '  month()' );
+ ok( $ical->year  == 1964,     '  year()'  );
 
 결과는 다음과 같다
 
-	1..8
-	ok 1 - new() returned something
-	ok 2 -   and it's the right class
-	ok 3 -   sec()
-	ok 4 -   min()
-	not ok 5 -   hour()
-	#   Failed test '  hour()'
-	#   at test.pl line 20.
-	not ok 6 -   day()
-	#   Failed test '  day()'
-	#   at test.pl line 21.
-	ok 7 -   month()
-	ok 8 -   year()
-	# Looks like you failed 2 tests of 8.
+ 1..8
+ ok 1 - new() returned something
+ ok 2 -   and it's the right class
+ ok 3 -   sec()
+ ok 4 -   min()
+ not ok 5 -   hour()
+ #   Failed test '  hour()'
+ #   at test.pl line 20.
+ not ok 6 -   day()
+ #   Failed test '  day()'
+ #   at test.pl line 21.
+ ok 7 -   month()
+ ok 8 -   year()
+ # Looks like you failed 2 tests of 8.
 
 L<Test::Simple|https://metacpan.org/pod/Test::Simple>은 어느 라인에서 실패를 했는지 알려주지만, 많은 정보를 주지는 않는다. 우리는 이를 확인하기 위해서 디버깅을 해야만 한다.
 
@@ -138,47 +138,47 @@ L<Test::Simple|https://metacpan.org/pod/Test::Simple>은 어느 라인에서 실
 
 B<Test::More>는 보다 많은 기능을 가지고 있다. I<ok()> 함수는 테스트 실패 시 그에 대한 정보를 제공하지 않았지만, B<Test::More>의 I<is()>를 사용하면 상세정보를 얻을 수 있다.
 
-	use Test::More tests => 8;
+ use Test::More tests => 8;
 
-	use Date::ICal;
+ use Date::ICal;
 
-	my $ical = Date::ICal->new( year => 1964, month => 10, day => 16,
-							 hour => 16,   min   => 12, sec => 47,
-							 tz   => '0530' );
+ my $ical = Date::ICal->new( year => 1964, month => 10, day => 16,
+ 						 hour => 16,   min   => 12, sec => 47,
+ 						 tz   => '0530' );
 
-	ok( defined $ical,            'new() returned something' );
-	ok( $ical->isa('Date::ICal'), "  and it's the right class" );
-	is( $ical->sec   ,47,       '  sec()'   );
-	is( $ical->min   , 12,       '  min()'   );
-	is( $ical->hour  , 16,       '  hour()'  );
-	is( $ical->day   , 17,       '  day()'   );
-	is( $ical->month , 10,       '  month()' );
-	is( $ical->year  , 1964,     '  year()'  );
+ ok( defined $ical,            'new() returned something' );
+ ok( $ical->isa('Date::ICal'), "  and it's the right class" );
+ is( $ical->sec   ,47,       '  sec()'   );
+ is( $ical->min   , 12,       '  min()'   );
+ is( $ical->hour  , 16,       '  hour()'  );
+ is( $ical->day   , 17,       '  day()'   );
+ is( $ical->month , 10,       '  month()' );
+ is( $ical->year  , 1964,     '  year()'  );
 
 결과:
 
-	1..8
-	ok 1 - new() returned something
-	ok 2 -   and it's the right class
-	ok 3 -   sec()
-	ok 4 -   min()
-	not ok 5 -   hour()
-	#   Failed test '  hour()'
-	#   at test.pl line 20.
-	#          got: '7'
-	#     expected: '16'
-	not ok 6 -   day()
-	#   Failed test '  day()'
-	#   at test.pl line 21.
-	#          got: '16'
-	#     expected: '17'
-	ok 7 -   month()
-	ok 8 -   year()
-	# Looks like you failed 2 tests of 8.
+ 1..8
+ ok 1 - new() returned something
+ ok 2 -   and it's the right class
+ ok 3 -   sec()
+ ok 4 -   min()
+ not ok 5 -   hour()
+ #   Failed test '  hour()'
+ #   at test.pl line 20.
+ #          got: '7'
+ #     expected: '16'
+ not ok 6 -   day()
+ #   Failed test '  day()'
+ #   at test.pl line 21.
+ #          got: '16'
+ #     expected: '17'
+ ok 7 -   month()
+ ok 8 -   year()
+ # Looks like you failed 2 tests of 8.
 
 테스트는 항상 scalar context로 이루어진다. 따라서, 배열에 얼마나 많은 요소들이 있는지 다음과 같이 테스트할 수 있다.
 
-	is( @foo, 5, 'foo has 5 elements' );
+ is( @foo, 5, 'foo has 5 elements' );
 
 =head2 Sometimes the tests are wrong
 
@@ -188,60 +188,60 @@ B<Test::More>는 보다 많은 기능을 가지고 있다. I<ok()> 함수는 테
 
 동일한 작업을 반복문을 통해 테스트하는 것도 가능하다. 테스트 횟수는 예상되는 전체 테스트 횟수를 입력하면 된다.
 
-	use Test::More tests => 32;
-	use Date::ICal;
+ use Test::More tests => 32;
+ use Date::ICal;
 
-	my %ICal_Dates = (
-			# An ICal string     And the year, month, day
-			#                    hour, minute and second we expect.
-			'19971024T120000' =>    # from the docs.
-								[ 1997, 10, 24, 12,  0,  0 ],
-			'20390123T232832' =>    # after the Unix epoch
-								[ 2039,  1, 23, 23, 28, 32 ],
-			'19671225T000000' =>    # before the Unix epoch
-								[ 1967, 12, 25,  0,  0,  0 ],
-			'18990505T232323' =>    # before the MacOS epoch
-								[ 1899,  5,  5, 23, 23, 23 ],
-	);
+ my %ICal_Dates = (
+ 		# An ICal string     And the year, month, day
+ 		#                    hour, minute and second we expect.
+ 		'19971024T120000' =>    # from the docs.
+ 							[ 1997, 10, 24, 12,  0,  0 ],
+ 		'20390123T232832' =>    # after the Unix epoch
+ 							[ 2039,  1, 23, 23, 28, 32 ],
+ 		'19671225T000000' =>    # before the Unix epoch
+ 							[ 1967, 12, 25,  0,  0,  0 ],
+ 		'18990505T232323' =>    # before the MacOS epoch
+ 							[ 1899,  5,  5, 23, 23, 23 ],
+ );
 
 
-	while( my($ical_str, $expect) = each %ICal_Dates ) {
-		my $ical = Date::ICal->new( ical => $ical_str );
+ while( my($ical_str, $expect) = each %ICal_Dates ) {
+ 	my $ical = Date::ICal->new( ical => $ical_str );
 
-		ok( defined $ical,            "new(ical => '$ical_str')" );
-		ok( $ical->isa('Date::ICal'), "  and it's the right class" );
+ 	ok( defined $ical,            "new(ical => '$ical_str')" );
+ 	ok( $ical->isa('Date::ICal'), "  and it's the right class" );
 
-		is( $ical->year,    $expect->[0],     '  year()'  );
-		is( $ical->month,   $expect->[1],     '  month()' );
-		is( $ical->day,     $expect->[2],     '  day()'   );
-		is( $ical->hour,    $expect->[3],     '  hour()'  );
-		is( $ical->min,     $expect->[4],     '  min()'   );
-		is( $ical->sec,     $expect->[5],     '  sec()'   );
-	}
+ 	is( $ical->year,    $expect->[0],     '  year()'  );
+ 	is( $ical->month,   $expect->[1],     '  month()' );
+ 	is( $ical->day,     $expect->[2],     '  day()'   );
+ 	is( $ical->hour,    $expect->[3],     '  hour()'  );
+ 	is( $ical->min,     $expect->[4],     '  min()'   );
+ 	is( $ical->sec,     $expect->[5],     '  sec()'   );
+ }
 
 이 방법은 좋아보이면서도 항상 I<<Test::More tests => ## >>을 고쳐해야 하는 단점을 가지고 있다. 더 좋은 문제를 생각해보자.
 
 I<plan()> 함수를 통해 테스트 계획을 동적으로 계산할 수 있다.
 
-	use Test::More;
-	use Date::ICal;
-	 
-	my %ICal_Dates = (
-		...same as before...
-	);
-	 
-	# For each key in the hash we're running 8 tests.
-	plan tests => keys(%ICal_Dates) * 8;
-	 
-	...and then your tests...
+ use Test::More;
+ use Date::ICal;
+  
+ my %ICal_Dates = (
+ 	...same as before...
+ );
+  
+ # For each key in the hash we're running 8 tests.
+ plan tests => keys(%ICal_Dates) * 8;
+  
+ ...and then your tests...
 
 보다 유연해지기 위해서 I<done_testing()>을 사용해보자. 이것은 테스트 횟수가 얼마나 되는지 모르는 상태로 테스트를 실행한다.
 
-	use Test::More;   # instead of tests => 32
+ use Test::More;   # instead of tests => 32
 
-	... # tests here
+ ... # tests here
 
-	done_testing();   # reached the end safely
+ done_testing();   # reached the end safely
 
 I<plan>을 정의하지 않으면 B<Test::More>는 프로그램이 종료되기 전에 I<done_testing()>가 존재하는지 찾을 것이다. I<done_testing()>은 경고를 출력할 것이다.
 
@@ -254,44 +254,44 @@ I<plan>을 정의하지 않으면 B<Test::More>는 프로그램이 종료되기 
 =head2 Skipping tests
 
 I<epoch>는 non-Unix 시스템에서 다르게 동작한다. 이런 경우 테스트는 항상 유효한 테스트가 아니다.
-	
+ 
 다음의 코드로 특정 테스트를 건너뛰는 방법을 소개한다.
 
-	use Test::More tests => 7;
-	use Date::ICal;
+ use Test::More tests => 7;
+ use Date::ICal;
 
-	# Make sure epoch time is being handled sanely.
-	my $t1 = Date::ICal->new( epoch => 0 );
-	is( $t1->epoch, 0,          "Epoch time of 0" );
+ # Make sure epoch time is being handled sanely.
+ my $t1 = Date::ICal->new( epoch => 0 );
+ is( $t1->epoch, 0,          "Epoch time of 0" );
 
-	SKIP: {
-		skip('epoch to ICal not working on Mac OS', 6)
-			if $^O eq 'MacOS';
+ SKIP: {
+ 	skip('epoch to ICal not working on Mac OS', 6)
+ 		if $^O eq 'MacOS';
 
-		is( $t1->ical, '19700101Z', "  epoch to ical" );
+ 	is( $t1->ical, '19700101Z', "  epoch to ical" );
 
-		is( $t1->year,  1970,       "  year()"  );
-		is( $t1->month, 1,          "  month()" );
-		is( $t1->day,   1,          "  day()"   );
+ 	is( $t1->year,  1970,       "  year()"  );
+ 	is( $t1->month, 1,          "  month()" );
+ 	is( $t1->day,   1,          "  day()"   );
 
-		# like the tests above, but starting with ical instead of epoch
-		my $t2 = Date::ICal->new( ical => '19700101Z' );
-		is( $t2->ical, '19700101Z', "Start of epoch in ICal notation" );
+ 	# like the tests above, but starting with ical instead of epoch
+ 	my $t2 = Date::ICal->new( ical => '19700101Z' );
+ 	is( $t2->ical, '19700101Z', "Start of epoch in ICal notation" );
 
-		is( $t2->epoch, 0,          "  and back to ICal" );
-	}
+ 	is( $t2->epoch, 0,          "  and back to ICal" );
+ }
 
 MacOS에서 위의 코드는 동작하지 않는다, I<skip()>은 모든 I<SKIP> 블록을 건너뛰어 실행되지 않게 만든다. 그리고 I<skip()>은 테스트를 건너뛰었음을 나타내는 L<Test::Harness|https://metacpan.org/pod/Test::Harness>를 출력한다.
 
-	1..7
-	ok 1 - Epoch time of 0
-	ok 2 # skip epoch to ICal not working on MacOS
-	ok 3 # skip epoch to ICal not working on MacOS
-	ok 4 # skip epoch to ICal not working on MacOS
-	ok 5 # skip epoch to ICal not working on MacOS
-	ok 6 # skip epoch to ICal not working on MacOS
-	ok 7 # skip epoch to ICal not working on MacOS
-	
+ 1..7
+ ok 1 - Epoch time of 0
+ ok 2 # skip epoch to ICal not working on MacOS
+ ok 3 # skip epoch to ICal not working on MacOS
+ ok 4 # skip epoch to ICal not working on MacOS
+ ok 5 # skip epoch to ICal not working on MacOS
+ ok 6 # skip epoch to ICal not working on MacOS
+ ok 7 # skip epoch to ICal not working on MacOS
+ 
 I<skip()>은 단순히 코드를 실행하지 않는 것이기 때문에 버그를 잡는 것과는 다르다.
 
 =cut

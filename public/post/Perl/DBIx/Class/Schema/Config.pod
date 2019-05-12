@@ -15,29 +15,29 @@ B<DBIx::Class::Schema::Config>는 B<DBIx::Class::Schema>의 하위 클래스로�
 
 /etc/dbic.yaml
 
-	MY_DATABASE:
-		dsn: "dbi:Pg:host=localhost;database=blog"
-		user: "TheDoctor"
-		password: "dnoPydoleM"
-		TraceLevel: 1
+ MY_DATABASE:
+ 	dsn: "dbi:Pg:host=localhost;database=blog"
+ 	user: "TheDoctor"
+ 	password: "dnoPydoleM"
+ 	TraceLevel: 1
 
 My/Schema
 
-	package My::Schema
-	use warnings;
-	use strict;
-	 
-	use base 'DBIx::Class::Schema::Config';
-	__PACKAGE__->load_namespaces;
+ package My::Schema
+ use warnings;
+ use strict;
+  
+ use base 'DBIx::Class::Schema::Config';
+ __PACKAGE__->load_namespaces;
 
 My/Code
 
-	package My::Code;
-	use warnings;
-	use strict;
-	use My::Schema;
-	 
-	my ---$schema = My::Schema->connect('MY_DATABASE');
+ package My::Code;
+ use warnings;
+ use strict;
+ use My::Schema;
+  
+ my ---$schema = My::Schema->connect('MY_DATABASE');
 
 =head1 CONFIG FILES
 
@@ -63,12 +63,12 @@ My/Code
 
 I<<__PACKAGE__->config_paths>>를 사용하면 탐색될 경로를 바꿀 수 있다.
 
-	package My::Schema
-	use warnings;
-	use strict;
-	 
-	use base 'DBIx::Class::Schema::Config';
-	__PACKAGE__->config_paths([( '/var/www/secret/dbic', '/opt/database' )]);
+ package My::Schema
+ use warnings;
+ use strict;
+  
+ use base 'DBIx::Class::Schema::Config';
+ __PACKAGE__->config_paths([( '/var/www/secret/dbic', '/opt/database' )]);
 
 위의 코드는 I</var/www/secret/dbic.*>, I</opt/database.*> 순서로 탐색되게 만든다. 위의 경로는 기존의 경로에 추가되는 것이 아니고 새롭게 만들어지는 것이다.
 
@@ -76,12 +76,12 @@ I<<__PACKAGE__->config_paths>>를 사용하면 탐색될 경로를 바꿀 수 �
 
 로드될 설정 파일을 지정하고 싶다면 I<config_files>를 사용하면 된다.
 
-	package My::Schema
-	use warnings;
-	use strict;
+ package My::Schema
+ use warnings;
+ use strict;
 
-	use base 'DBIx::Class::Schema::Config';
-	__PACKAGE__->config_files([( '/var/www/secret/dbic.yaml', '/opt/database.yaml' )]);
+ use base 'DBIx::Class::Schema::Config';
+ __PACKAGE__->config_files([( '/var/www/secret/dbic.yaml', '/opt/database.yaml' )]);
 
 I<config_paths>와 같은 방식으로 동작하지만, 이것은 지정된 파일만을 확인할 뿐 확장자를 확인하지 않는다. L<Config::Any|https://metacpan.org/pod/Config::Any>가 지원하는 확장자를 사용하도록 하자.
 

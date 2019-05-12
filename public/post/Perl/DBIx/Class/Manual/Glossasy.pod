@@ -11,15 +11,15 @@ L<DBIx::Class::Manual::Glossary|https://metacpan.org/pod/distribution/DBIx-Class
 DBIx::Class에서 사용되는 용어들을 정리한다.
 
 =head2 DB Schema
-	
+ 
 RDBMS의 물리적 schema를 참조한다
 
 데이터베이스는 MySQL과, schema는 RDBMS와 동의어다
 
 다음 DSN에서 xyz가 schema다.
 
-	dbi:DriverName:xyz@hostname:port
-	dbi:DriverName:database=xyz;host=hostname;port=port
+ dbi:DriverName:xyz@hostname:port
+ dbi:DriverName:database=xyz;host=hostname;port=port
 
 =head2 Inflation
 

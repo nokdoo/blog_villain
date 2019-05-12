@@ -12,9 +12,7 @@
  # Pod::Simple::HTML 코드 변경
  <pre> </pre>
  <a>
-
  ->
-
  <pre> <code class='lang'> ... </code> </pre>
  <a target='_blank'>
 

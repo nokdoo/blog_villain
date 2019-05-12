@@ -46,7 +46,7 @@
 			<button onclick="checkSyntax()">Check syntax</button>
 		</div> 
 		<div style="display: inline-block;">
-			<textarea id="input" class="lined" cols="100" rows="43">=encoding utf8&#13;&#10;=pod&#13;&#10;&#13;&#10;&#13;&#10;=cut</textarea>
+			<textarea id="input" class="lined" cols="100" rows="43">=encoding utf8&#13;&#10;=pod&#13;&#10;&#13;&#10;=head1 NAME&#13;&#10;&#13;&#10; NAME - ....&#13;&#10;&#13;&#10;=head1 SYNOPSIS&#13;&#10;&#13;&#10; code part&#13;&#10;&#13;&#10;&#13;&#10; code part&#13;&#10;&#13;&#10;=head1 DESCRIPTION&#13;&#10;&#13;&#10; text part&#13;&#10;&#13;&#10; text part&#13;&#10;&#13;&#10;=cut</textarea>
 		</div>
 		<div id="output" width="708" max-width="708" height="749" style="border: 1px solid black; display: inline-block;">d</div>
 	</div>
