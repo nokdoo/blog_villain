@@ -20,7 +20,7 @@ find(\&printfile, $dir);
 
 sub printfile
 {
-	if( -f $_ && $_ =~ /.*\.pod$/)
+	if( -f $_ && $_ =~ /.*\.pod$/ && $_ ne 'format.pod')
 	{
 		my $file = $File::Find::name;
 		my $path_regex = qr |.*/post/(.*).pod|;
