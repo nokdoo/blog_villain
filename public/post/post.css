@@ -8,6 +8,10 @@ body {
   margin: 0;
 }
 
+pre {
+    white-space: pre-wrap; word-wrap:break-word;
+}
+
 /* 단어가 끊기지 않는 줄바꿈 */
 p {
 	word-break: keep-all;

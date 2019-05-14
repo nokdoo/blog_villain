@@ -40,4 +40,8 @@ sub find {
 	return BlogVillain::Post->new( { $post->get_columns } );
 }
 
+sub set_class_for_highlight {
+
+}
+
 1;

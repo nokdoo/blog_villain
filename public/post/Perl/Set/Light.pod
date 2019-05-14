@@ -5,6 +5,9 @@
 
 Set::Light - 문자열의 메모리 효율적인 set
 
+=begin html
+
+<pre><code class="perl">
  use Set::Light;
 
  my $set = Set::Light->new( qw/foo bar baz/ );
@@ -19,6 +22,9 @@ Set::Light - 문자열의 메모리 효율적인 set
  		print "contain '$_'.\n";
  	}
  }
+</code></pre>
+
+=end html
 
 =head1 DESCRIPTION
 
@@ -28,12 +34,18 @@ Set::Light는 문자열의 순서없는 set을 구현한다. 해시를 사용하
 
 일반적으로 항목의 목록을 추적하기 위해 해시를 사용한다.
 
+=begin html
+
+<pre><code class="perl">
  my %SEEN;
  ...
  if (!$SEEN->{$item}++)
  {
  	# haven't seen item before
  }
+</code></pre>
+
+=end html
 
 이것은 매우 빠르지만, I<%SEEN>의 각 키가 하나의 스칼라를 요구하기 때문에 메모리 낭비가 심하다.
 
@@ -47,27 +59,57 @@ Set::Light는 문자열의 순서없는 set을 구현한다. 해시를 사용하
 
 다음은 Set::Light object를 생성한다.
 
+=begin html
+
+<pre><code class="perl">
  my $set = Set::Light->new();
+</code></pre>
+
+=end html
 
 해시 레퍼런스가 옵션을 가지고 있을 수 있다. 다음의 옵션들은 지원되지 않는다.
 
+=begin html
+
+<pre><code class="perl">
  my $set = Set::Light->new( { myoption => 1, foobar => 2 });
+</code></pre>
+
+=end html
 
 다음은 set이 멤버를 포함하게 된다.
 
+=begin html
+
+<pre><code class="perl">
  my $set = Set::Light->new( qw/for bar baz/);
+</code></pre>
+
+=end html
 
 =head2 size()
 
 다음은 set의 요소 개수를 반환한다.
 
+=begin html
+
+<pre><code class="perl">
  my $elems = $set->size();
+</code></pre>
+
+=end html
 
 =head2 is_empty()
 
 set이 비어있다면 참을 반환한다.
 
+=begin html
+
+<pre><code class="perl">
  $set->is_empty()
+</code></pre>
+
+=end html
 
 =head2 is_null()
 
@@ -77,7 +119,13 @@ I<is_empty>와 같다.
 
 문자열 I<$member>를 가지고 있다면 참을 반환한다. 
 
+=begin html
+
+<pre><code class="perl">
  $set->has($member)
+</code></pre>
+
+=end html
 
 세 메소드는 같다.
 
@@ -85,8 +133,14 @@ I<is_empty>와 같다.
 
 다음은 문자열을 set에 삽입하는 것을 나타낸다. 실제로 삽입된 개수를 반환한다.
 
+=begin html
+
+<pre><code class="perl">
  $set->insert( $string );
  $set->insert( @strings );
+</code></pre>
+
+=end html
 
 이미 삽입된 값은 무시된다.
 
@@ -94,11 +148,15 @@ I<is_empty>와 같다.
 
 한 개 이상의 요소를 제거한다. 실제로 제거된 개수를 반환한다.
 
+=begin html
+
+<pre><code class="perl">
  $set->delete( $string );
  $set->delete( @strings );
+</code></pre>
+
+=end html
 
 두 메소드는 같다.
-
-
 
 =cut

@@ -30,7 +30,7 @@ perl진영의 문서파일 L<pod|https://perldoc.perl.org/perlpod.html>에 대�
 
 C<=over>와 C<=back>은 리스트의 시작과 끝을 알린다.
 
-C<=item text> B<text>를 이름으로 하는 요소를 생성한다. 첫 번째 요소의 B<text>자리가 B<* >로 시작하면 순서가 없는 리스트를 구성하게 된다.
+C<=item text> B<text>를 이름으로 하는 요소를 생성한다. 첫 번째 요소의 B<text>자리가 B<* >로 시작하면 번호 없는 리스트를 구성하게 된다.
 
 
 =begin html

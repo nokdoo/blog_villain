@@ -11,7 +11,13 @@ sudo
 
 =head1 SYNOPSIS
 
+=begin html
+
+<pre><code class="shell">
  # pkg install sudo
+</code></pre>
+
+=end html
 
 =head1 Edit sudoers with visudo
 
@@ -21,18 +27,29 @@ I<visudo> 를 실행하면 이 파일이 열리는데, 저장 전 문법 체크�
 
 파일이 열리면 다음의 한 줄을 찾을 수 있을 것이다.
 
+=begin html
+
+<pre><code class="plaintext">
  # user	hosts=(users:groups)	commands
  root	ALL=(ALL:ALL)	ALL
+</code></pre>
+
+=end html
 
 이것은 B<root> 사용자에게 superuser 권한의 모든 것을 부여하는 것을 의미한다. 
 또한 사용자가 모든 host 에서 user 로서, group 으로서 명령어를 실행할 수 있음을 나타낸다.
 
 사용자 뿐만 아니라 그룹에도 이와 같은 권한을 줄 수 있다.
 
+=begin html
+
+<pre><code class="plaintext">
  %group 	ALL=(ALL)	ALL
+</code></pre>
+
+=end html
 
 B<group> 에 속한 사용자는 B<root> 처럼 모든 명령어를 실행할 수 있다.
-
 
 =head1 Single user
 
@@ -40,11 +57,23 @@ B<group> 에 속한 사용자는 B<root> 처럼 모든 명령어를 실행할 �
 
 B<user1> 에게 앞의 작업들을 수행하기 위한 권한을 주기 위해서 이 사용자를 B</usr/local/etc/sudoers> 의 마지막 줄에 다음과 같이 추가한다.
 
+=begin html
+
+<pre><code class="plaintext">
  user1	ALL=(ALL)	/user/sbin/service webservice *
+</code></pre>
+
+=end html
 
 사용자는 이제 다음의 명령어로 B<webservice> 를 시작할 수 있다.
 
+=begin html
+
+<pre><code class="shell">
  % sudo /usr/sbin/service webservice start
+</code></pre>
+
+=end html
 
 =head1 Users of group
 
@@ -53,17 +82,35 @@ B<user1> 에게 앞의 작업들을 수행하기 위한 권한을 주기 위해�
 
 그룹 B<webteam> 생성 
 
+=begin html
+
+<pre><code class="shell">
  # -g gid -n name
  pw groupadd -n webteam
+</code></pre>
+
+=end html
 
 사용자 B<user1> 을 그룹 B<webteam> 에 추가
 
+=begin html
+
+<pre><code class="shell">
  # -M members -m newmembers -n name
  pw groupmod -m user1 -n webteam
+</code></pre>
+
+=end html
 
 I<visudo> 를 통해 B</usr/local/etc/sudoers> 에 다음을 추가
 
+=begin html
+
+<pre><code class="plaintext">
  %webteam	ALL=(ALL)	/usr/sbin/service webservice *
+</code></pre>
+
+=end html
 
 I<su> 와는 다르게 I<sudo> 는 현재 사용자의 패스워드를 요구한다.
 

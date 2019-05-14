@@ -18,8 +18,14 @@ RDBMS의 물리적 schema를 참조한다
 
 다음 DSN에서 xyz가 schema다.
 
+=begin html
+
+<pre><code class="plaintext">
  dbi:DriverName:xyz@hostname:port
  dbi:DriverName:database=xyz;host=hostname;port=port
+</code></pre>
+
+=end html
 
 =head2 Inflation
 

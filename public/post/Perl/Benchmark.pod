@@ -8,6 +8,9 @@ Benchmark - 실행시간 벤치마크
 
 =head2 SYNOPSIS
 
+=begin html
+
+<pre><code class="perl">
  use Benchmark qw(:all) ;
 
  timethis ($count, "code");
@@ -54,6 +57,9 @@ Benchmark - 실행시간 벤치마크
 
  # enable hires wallclock timing if possible
  use Benchmark ':hireswallclock';
+</code></pre>
+
+=end html
 
 =head1 DESCRIPTION
 
@@ -91,20 +97,32 @@ I<timethese>의 결과를 비교 차트로 보여줌.
 
 현재 시간을 반환.
 
+=begin html
+
+<pre><code class="perl">
  use Benchmark;
  $t0 = Benchmark->new;
  # ... your code here ...
  $t1 = Benchmark->new;
  $td = timediff($t1, $t0);
  print "the code took:",timestr($td),"\n";
+</code></pre>
+
+=end html
 
 =item * I<debug>
 
 I<$Benchmark::Debug> flag 설정에 의한 디버깅 활성화 / 비활성화.
 
+=begin html
+
+<pre><code class="perl">
  Benchmark->debug(1);
  $t = timeit(10, ' 5 ** $Global ');
  Benchmark->debug(0);
+</code></pre>
+
+=end html
 
 I<iters>
 
@@ -125,6 +143,8 @@ COUNT 는 루프를 실행한 횟수다. CODE 는 실행되는 코드다. CODE �
 =item * B<Returns> :
 
 CODE 의 iteration Time COUNT. 결과는 TITLE 와 횟수가 STDOUT 에 출력된다. TITLE 는 "timethis COUNT" 가 기본 값이다. STYLE 은 아래의 I<timestr()> 에 설명된 것처럼 출력의 형식을 결정한다.
+
+=back
 
 COUNT 는 0 또는 음수가 될 수 있다. 이것은 실행을 위한 최소한의 CPU 시간을 ( 초 ) 의미한다. 0 은 3초로 설정된다.
 

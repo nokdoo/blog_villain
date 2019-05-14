@@ -7,12 +7,13 @@ use Pod::Simple::HTML;
 use HTML::TreeBuilder;
 use Mojo::DOM::HTML;
 use Sub::Override;
+use IO::String;
 
 my %langs = (
-    C => 'c',
-    Java => 'java',
-    Perl => 'perl',
-    Bash => 'bash',
+    c    => 1,
+    java => 1,
+    perl => 1,
+    bash => 1,
 );
 
 sub new {
@@ -33,18 +34,19 @@ sub validate {
 sub makehtml {
 	my $self = shift;
 
-    my $category = $self->{category};
-    my $lang = 'none';
-    $lang = $langs{$category} if defined $langs{$category};
-    my $class_attr = 'language-'.$lang;
+    # my $category = $self->{category};
+    # my $lang = 'none';
+    # $lang = $langs{$category} if defined $langs{$category};
+    # my $class_attr = 'language-'.$lang;
 
     # my $lang = 'language-'.$langs{$self->{category}};
     # 문서에 나오는 
     # $Pod::Simple::HTML::Computerese =  ' class="some_class_name';
     # 설정은 잘못된 것.
     # 모듈이 로드되면서 Tagmap의 값이 설정되어버림.
-    local $Pod::Simple::HTML::Tagmap{VerbatimFormatted} = qq{\n<pre><code class="$lang">};
-    #local $Pod::Simple::HTML::Tagmap{VerbatimFormatted} = qq{\n<pre><code class="$class_attr">};
+    # local $Pod::Simple::HTML::Tagmap{VerbatimFormatted} = qq{\n<pre><code class="$lang">};
+    # local $Pod::Simple::HTML::Tagmap{VerbatimFormatted} = qq{\n<pre><code class="$class_attr">};
+    local $Pod::Simple::HTML::Tagmap{VerbatimFormatted} = qq{\n<pre><code class="">};
     local $Pod::Simple::HTML::Tagmap{'/VerbatimFormatted'} = qq{</code></pre>};
 	my $p = Pod::Simple::HTML->new;
 	$p->index(1);
@@ -60,8 +62,55 @@ sub make_idx_and_content {
 	$self->makehtml() unless defined $self->{html};
 	$self->{index} = $self->{html}->look_down(_tag=>'div', class=>'indexgroup');
 	$self->{index}->detach if defined $self->{index};
+
+    # deprecated
+	# my @pre_tags = $self->{html}->look_down(_tag=>'pre');
+    # _set_class_for_highlight(\@pre_tags);
 	$self->{content} = $self->{html}->look_down(_tag=>'body')->content;
 }
+
+# deprecated
+#sub _set_class_for_highlight {
+#    my $pre_tags = shift;
+#    for my $pre_tag ( @$pre_tags ) {
+#        my $code_tag = $pre_tag->content()->[0];
+#        my $code_content = \$code_tag->content()->[0];
+#
+#        open (my $code_handler, "<", $code_content);
+#        my $line = <$code_handler>;
+#        $line =~ s/^\s+//;
+#        $line =~ s/\s+$//;
+#        if ( defined $langs{$line} ) {
+#            $code_tag->attr('class', $code_tag->attr('class').$line);
+#
+#            my $code_string;
+#            {
+#                local $/;
+#                $code_string = <$code_handler>;
+#            }
+#            $$code_content = $code_string;
+#        }
+#        close $code_handler;
+#    }
+#}
+
+#sub _set_class_for_highlight {
+#    my $self = shift;
+#    my $content = $self->{content};
+#    for my $i ( 0..$#$content ) {
+#        if ( $$content[$i]->tag() eq 'pre' ) {
+#            my $code = $$content[$i]->content()->[0];
+#            my $code_content = $code->content()->[0];
+#            open (my $code_handler, "<", \$code_content);
+#            my $line = <$code_handler>;
+#            $line =~ s/^\s+//;
+#            $line =~ s/\s+$//;
+#            if ( defined $langs{$line} ) {
+#                $code->class($line);
+#            }
+#        }
+#    }
+#}
 
 1;
 

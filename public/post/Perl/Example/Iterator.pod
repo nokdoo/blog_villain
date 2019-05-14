@@ -7,6 +7,9 @@ Iterator - perl 의 iterator 구현 예제
 
 =head1 SYNOPSIS
 
+=begin html
+
+<pre><code class="perl">
  #!/usr/bin/env perl
  
  use strict;
@@ -29,17 +32,32 @@ Iterator - perl 의 iterator 구현 예제
  say NEXTVAL($it);
  say NEXTVAL($it);
  say NEXTVAL($it); # undef
+</code></pre>
+
+=end html
  
 =head1 DESCRIPTION
 
+=begin html
+
+<pre><code class="perl">
  my $it = upto(3, 6);
  NEXTVAL($it);
+</code></pre>
+
+=end html
 
 I<$it> 는 CODE ( I<Iterator { ... }> ) 를 받는다. ( Iterator CODE 는 upto 를 호출할 때마다 새롭게 생성된다. )
 
 I<NEXTVAL($it)> 은 다음과 같다.
 
+=begin html
+
+<pre><code class="perl">
  NEXTVAL( Iterator { ... } )
+</code></pre>
+
+=end html
 
 I<Iterator> 함수는 프로토타입에 명시된 것처럼( B<(&)> )
 인자를 함수로 받고 ( B<{ ... }> ), 
@@ -47,12 +65,24 @@ I<Iterator> 함수는 프로토타입에 명시된 것처럼( B<(&)> )
 
 I<Iterator { ... }> 는 다음과 같다.
 
+=begin html
+
+<pre><code class="perl">
  sub { ... }
+</code></pre>
+
+=end html
 
 
 따라서 I<NEXTVAL( Iterator { ... } )> 는 다음과 같다.
 
+=begin html
+
+<pre><code class="perl">
  NEXTVAL( sub { ... } )
+</code></pre>
+
+=end html
 
 I<NEXTVAL> 은 함수의 정의를 따라 I<sub { ... }> 를 실행시킨다.
 

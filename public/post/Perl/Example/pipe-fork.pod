@@ -7,6 +7,9 @@ pipe And fork
 
 =head1 SYNOPSIS
 
+=begin html
+
+<pre><code class="perl">
  #!/usr/bin/env perl
  
  use strict;
@@ -33,10 +36,19 @@ pipe And fork
      close $reader;
      exit;
  }
+</code></pre>
+
+=end html
 
 =head1 DESCRIPTION
 
+=begin html
+
+<pre><code class="perl">
  pipe ( $reader, $writer );
+</code></pre>
+
+=end html
 
 open READHANDLE and WRITEHANDLE.
 

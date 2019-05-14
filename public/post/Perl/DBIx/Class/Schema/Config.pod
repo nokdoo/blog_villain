@@ -15,29 +15,47 @@ B<DBIx::Class::Schema::Config>는 B<DBIx::Class::Schema>의 하위 클래스로�
 
 /etc/dbic.yaml
 
+=begin html
+
+<pre><code class="yaml">
  MY_DATABASE:
  	dsn: "dbi:Pg:host=localhost;database=blog"
  	user: "TheDoctor"
  	password: "dnoPydoleM"
  	TraceLevel: 1
+</code></pre>
+
+=end html
 
 My/Schema
 
+=begin html
+
+<pre><code class="perl">
  package My::Schema
  use warnings;
  use strict;
   
  use base 'DBIx::Class::Schema::Config';
  __PACKAGE__->load_namespaces;
+</code></pre>
+
+=end html
 
 My/Code
 
+=begin html
+
+<pre><code class="perl">
  package My::Code;
  use warnings;
  use strict;
  use My::Schema;
   
- my ---$schema = My::Schema->connect('MY_DATABASE');
+ my $schema = My::Schema->connect('MY_DATABASE');
+</code></pre>
+
+=end html
 
 =head1 CONFIG FILES
 
@@ -63,27 +81,38 @@ My/Code
 
 I<<__PACKAGE__->config_paths>>를 사용하면 탐색될 경로를 바꿀 수 있다.
 
- package My::Schema
- use warnings;
- use strict;
-  
- use base 'DBIx::Class::Schema::Config';
- __PACKAGE__->config_paths([( '/var/www/secret/dbic', '/opt/database' )]);
+=begin html
 
-위의 코드는 I</var/www/secret/dbic.*>, I</opt/database.*> 순서로 탐색되게 만든다. 위의 경로는 기존의 경로에 추가되는 것이 아니고 새롭게 만들어지는 것이다.
+<pre><code class="perl">
+ PACKAGE MY::SCHEMA
+ USE WARNINGS;
+ USE STRICT;
+  
+ USE BASE 'DBIX::CLASS::SCHEMA::CONFIG';
+ __PACKAGE__->CONFIG_PATHS([( '/VAR/WWW/SECRET/DBIC', '/OPT/DATABASE' )]);
+</code></pre>
+
+=end html
+
+위의 코드는 I</VAR/WWW/SECRET/DBIC.*>, I</OPT/DATABASE.*> 순서로 탐색되게 만든다. 위의 경로는 기존의 경로에 추가되는 것이 아니고 새롭게 만들어지는 것이다.
 
 =head1 USE SPECIFIC CONFIG FILES
 
-로드될 설정 파일을 지정하고 싶다면 I<config_files>를 사용하면 된다.
+로드될 설정 파일을 지정하고 싶다면 I<CONFIG_FILES>를 사용하면 된다.
 
- package My::Schema
- use warnings;
- use strict;
+=begin html
 
- use base 'DBIx::Class::Schema::Config';
- __PACKAGE__->config_files([( '/var/www/secret/dbic.yaml', '/opt/database.yaml' )]);
+<pre><code class="perl">
+ PACKAGE MY::SCHEMA
+ USE WARNINGS;
+ USE STRICT;
 
-I<config_paths>와 같은 방식으로 동작하지만, 이것은 지정된 파일만을 확인할 뿐 확장자를 확인하지 않는다. L<Config::Any|https://metacpan.org/pod/Config::Any>가 지원하는 확장자를 사용하도록 하자.
+ USE BASE 'DBIX::CLASS::SCHEMA::CONFIG';
+ __PACKAGE__->CONFIG_FILES([( '/VAR/WWW/SECRET/DBIC.YAML', '/OPT/DATABASE.YAML' )]);
+</code></pre>
 
+=end html
+
+I<CONFIG_PATHS>와 같은 방식으로 동작하지만, 이것은 지정된 파일만을 확인할 뿐 확장자를 확인하지 않는다. L<CONFIG::ANY|HTTPS://METACPAN.ORG/POD/CONFIG::ANY>가 지원하는 확장자를 사용하도록 하자.
 
 =cut

@@ -27,7 +27,7 @@ sub get {
     my $fulltitle = $self->stash('fulltitle');
     my $post      = BlogVillain::Model::Post->find( $category, $fulltitle );
     $post->make_idx_and_content;
-    
+
     my @content   = join q{}, map { $_->as_HTML } @{ $post->{content} };
     my $index     = $post->{index}->as_HTML if $post->{index};
     my $title     = $post->{title};

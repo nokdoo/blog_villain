@@ -9,3 +9,4 @@ requires 'Pod::Simple::HTML';
 requires 'List::Util';
 requires 'SQL::Translator';
 requires 'Sub::Override';
+requires 'IO::String';

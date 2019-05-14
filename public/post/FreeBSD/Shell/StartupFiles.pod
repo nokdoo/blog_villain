@@ -40,6 +40,9 @@ ex) Open terminal
 
 ex) Default Login on boot
 
+=begin html
+
+<pre><code class="bash">
  # If you are using xdm, 
  # default login is replaced by non-interactive non-login shell.
  # So, /etc/profile and ~/.profile will not be read.
@@ -52,6 +55,9 @@ ex) Default Login on boot
 
  # 참고... .xinitrc 는 startx 에 의해 실행되고, 
  # .xsession 은 dm 에 의해 실행된다.
+</code></pre>
+
+=end html
 
 =item * non-interactive non-login shell - nothing
 

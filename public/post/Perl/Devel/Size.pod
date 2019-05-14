@@ -9,6 +9,9 @@ Devel::Size - 변수가 사용하는 메모리의 크기를 확인한다.
 
 =head1 SYNOPSIS
 
+=begin html
+
+<pre><code class="perl">
  use Devel::Size qw(size total_size);
 
  my $size = size("A string");
@@ -23,6 +26,9 @@ Devel::Size - 변수가 사용하는 메모리의 크기를 확인한다.
         };
  my $total_size = total_size($foo);
  print $total_size."\n";
+</code></pre>
+
+=end html
 
 =head1 DESCRIPTION
 

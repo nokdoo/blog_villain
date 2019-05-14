@@ -7,6 +7,9 @@ Moo - Moose와 호환되는 Minimalist Object Orientation
 
 =head1 SYNOPSIS
 
+=begin html
+
+<pre><code class="perl">
  package Cat::Food;
   
  use Moo;
@@ -37,9 +40,15 @@ Moo - Moose와 호환되는 Minimalist Object Orientation
  );
   
  1;
+</code></pre>
+
+=end html
 
 ---
 
+=begin html
+
+<pre><code class="perl">
  my $full = Cat::Food->new(
  	taste  => 'DELICIOUS.',
  	brand  => 'SWEET-TREATZ',
@@ -49,6 +58,9 @@ Moo - Moose와 호환되는 Minimalist Object Orientation
  $full->feed_lion;
 
  say $full->pounds;
+</code></pre>
+
+=end html
 
 =head1 DESCRIPTION
 

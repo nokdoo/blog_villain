@@ -15,11 +15,23 @@ L<DBIx::Class - QuickStart|https://metacpan.org/pod/distribution/DBIx-Class/lib/
 
 우선 DBIx::Class 모듈을 설치한다. 그리고 다음의 명령을 실행한다.
 
+=begin html
+
+<pre><code class="shell">
  perl -mCPAN -e'CPAN::Shell->look("DBIx::Class")'
+</code></pre>
+
+=end html
 
 정상적으로 실행되었다면 마지막 줄에 I<Working directory is ~/.cpan/build/DBIx-Class-0.082841-0>가 표시되었을 것이다. 여기가 앞으로 이 문서에서 작업할 디렉토리이다. I<~/.cpan/build/DBIx-Class-0.082841-0/examples/Schema>로 이동하고
 
+=begin html
+
+<pre><code class="shell">
  sqlite3 db/example.db .dump
+</code></pre>
+
+=end html
 
 를 실행해 데이터베이스 파일을 생성한다.
 
@@ -31,8 +43,14 @@ B<MyApp::Schema> 클래스는 다른 클래스를 로드하고 DBIC를 통해 �
 
 =item * Connecting to the database
 
+=begin html
+
+<pre><code class="perl">
  use MyApp::Schema qw();
  my $schema = MyApp::Schema->connect('dbi:SQLite:db/example.db');
+</code></pre>
+
+=end html
 
 =item * Using the database
 
@@ -44,6 +62,9 @@ B<MyApp::Schema> 클래스는 다른 클래스를 로드하고 DBIC를 통해 �
 
 중간 object I<result>(B<$artist_ma>, B<$cd_mezz>)를 통한 삽입
 
+=begin html
+
+<pre><code class="perl">
  my $artist_ma = $schema->resultset('Artist')->create({
      name => 'Massive Attack',
  });
@@ -55,9 +76,15 @@ B<MyApp::Schema> 클래스는 다른 클래스를 로드하고 DBIC를 통해 �
          title => $_
      });
  }
+</code></pre>
+
+=end html
 
 I<relation accessors>(B<cds>, B<tracks>)를 통한 삽입
 
+=begin html
+
+<pre><code class="perl">
  $schema->resultset('Artist')->create({
  	name => 'Metallica',
  	cds => [
@@ -78,6 +105,9 @@ I<relation accessors>(B<cds>, B<tracks>)를 통한 삽입
  		},
  	],
  });
+</code></pre>
+
+=end html
 
 I<undef>는 I<NULL>과 같다.
 
@@ -85,25 +115,43 @@ I<undef>는 I<NULL>과 같다.
 
 root -> detail
 
+=begin html
+
+<pre><code class="perl">
  $schema->sources;                       # returns qw(Cd Track Artist)
  $schema->source('Cd')->columns;         # returns qw(cdid artist title year)
  $schema->source('Cd')->relationships;   # returns qw(artist tracks)
+</code></pre>
+
+=end html
 
 detaul -> root
  
+=begin html
+
+<pre><code class="perl">
  $some_result->result_source;            # returns appropriate source
  $some_resultset->result_source;
  $some_resultsource->schema;             # returns appropriate schema
+</code></pre>
+
+=end html
 
 =item * Selecting data
 
 조건 설정(where절)과 결과(B<MyApp::Schema::Result::Artist> 클래스의 result object) 반환.
 
+=begin html
+
+<pre><code class="perl">
  my $artists_starting_with_m = $schema->resultset('Artist')->search(
  	{
  		name => { like => 'M%' }
  	}
  );
+</code></pre>
+
+=end html
 
 L<Result|https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/Glossary.pod#Result> object는 하나의 행을 나타내며 각 컬럼에 대한 accessor를 가지고 있다.
 
@@ -111,6 +159,9 @@ L<Result|https://metacpan.org/pod/distribution/DBIx-Class/lib/DBIx/Class/Manual/
 
 CD에서 title이 'ReLoad'인 행의 year를 바꿔보자
 
+=begin html
+
+<pre><code class="perl">
  $schema->resultset('Cd')->search(
  	{
  		title => 'ReLoad',
@@ -120,16 +171,25 @@ CD에서 title이 'ReLoad'인 행의 year를 바꿔보자
  		year => 1997,
  	}
  );
+</code></pre>
+
+=end html
 
 =item * deleting data
 
 Track에서 title이 'Fuel'인 행을 모두 지우자
 
+=begin html
+
+<pre><code class="perl">
  $schema->resultset('Track')->search(
  	{
  		title => 'Fuel',
  	}
  )->delete_all;
+</code></pre>
+
+=end html
 
 =back
 
