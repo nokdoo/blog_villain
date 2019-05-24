@@ -11,6 +11,7 @@ use List::Util 'first';
 my $dbic_file = "$ENV{HOME}/.dbic.yaml";
 INFO "========        Start setting $dbic_file";
 my $yaml_string = `perl ./printdbic.pl`;
+print $yaml_string;
 
 if ( -e $dbic_file ) {
 	INFO "$dbic_file does exist";
