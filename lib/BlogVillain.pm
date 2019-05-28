@@ -20,6 +20,8 @@ sub startup {
 
   $r->get('about')->to(template => 'about');
 
+  $r->get('auth/login')->to('authorization#login');
+
   
   
   $r->post('post/checksyntax')->to('post#check_syntax');

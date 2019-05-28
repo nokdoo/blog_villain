@@ -1,0 +1,110 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+PSGI::FAQ
+
+=head1 QUESTIONS
+
+=head2 General
+
+=head3 How do you pronounce PSGI?
+
+P-S-G-I
+
+=head3 So what is this?
+
+PSGI 는 CGI 가 웹 서버와 CGI 스크립트에 대해 동작하는 것과 유사한,
+웹 서버 - 웹 어플리케이션 간의 인터페이스다.
+
+=head3 Why do we need this?
+
+펄은 이미 CGI, mod_perl, FastCGI 간의 차이를 추상화하는 모듈로서 
+CGI L<CGI|https://metacpan.org/pod/CGI> 를 가지고 있지만,
+웹 프레임워크 개발자들은 성능을 위해서 이들의 사용을 피하고 low-level APIs 를 사용한다.
+결국 그들은 결국 서로 다른 환경에 대한 adapter 를 작성하게 되는데,
+이들 중 일부는 테스트가 잘 수행되지 않았다.
+
+PSGI 는 웹 어플리케이션 프레임워크 개발자가 PSGI 에 대한 adapter 를 작성할 수 있게 한다.
+사용자는 PSGI 인터페이스를 지원하는 백엔드 기술을 선택할 수 있다.
+
+=head3 You said PSGI is similar to CGI. How is the PSGI interface different from CGI?
+
+PSGI 인터페이스는 내부적으로 CGI 와 매우 유사하게 설계되었기 때문에
+CGI 처럼 PSGI 를 제공하는 것은 매우 쉽다.
+다음은 CGI 와 PSGI 의 핵심 차이점이다.
+
+=over 4
+
+=item * CGI 에서 서버란 대부분이 C 로 작성된 웹 서버다. 
+스크립트는 다른 언어로 작성될 수 있다.
+
+PSGI 에서도 서버란 웹 서버를 말한다. 
+하지만 이들은 웹 서버(mod_perl, FastCGI)에 내장된 펄 프로세스다. 
+PSGI 어플리케이션은 펄 CODE reference 다.
+
+=item * CGI 에서는 HTTP request body 를 읽기 위해, error를 전송하기 위해 
+STDIN, STDERR, 환경변수를 사용한다.
+
+PSGI 에서는 I<$env> HASH reference 를 사용하고, 웹 서버와 어플리케이션에 
+데이터를 보내기 위해서 B<psgi.input>, B<psgi.errors> 스트림을 사용한다.
+
+=item * CGI 에서 어플리케이션은 HTTP header 와 body 를 웹 서버로 돌려주기 위해 
+STDOUT 에 출력하도록 되어 있다.
+
+PSGI 에서는 ARRAY reference 를 통해 HTTP status code, header, body 를 반환한다.
+
+=back
+
+=head3 My framework already does CGI, FCGI and mod_perl. Why do I want to support PSGI?
+
+PSGI 를 지원하는 웹 어플리케이션 프레임워크에는 많은 이점들이 있다.
+
+=over 4
+
+=item * 다양한 웹 서버 환경을 지원하는 코드를 작성하지 않아도 된다.
+
+L<Starman|https://metacpan.org/pod/Starman>, 
+L<Starlet|https://metacpan.org/pod/Starlet>, 
+L<Twiggy|https://metacpan.org/pod/Twiggy> 와 같은 
+PSGI 표준 인터페이스를 지원하는 웹 서버들이 많다. 
+프레임워크가 PSGI 를 지원한다면, 웹 서버에서 어플리케이션을 별로도 실행할 필요가 없다.
+
+프레임워크가 이미 서버 환경을 지원하고 있다면 PSGI 만을 지원하는 것을 통해
+해당 코드를 제거할 수 있다. L<Jifty|https://metacpan.org/pod/Jifty>,
+L<Catalyst|https://metacpan.org/pod/Catalyst> 는 이미 이것을 수행했다.
+
+=item * 당신의 프레임워크는 이제 모든 Plack middleware component 를 사용할 수 있다.
+
+B<Plack::Middleware> 를 검색하는 것만으로도 수백 가지의 PSGI compatible middleware component 를 찾을 수 있다. 
+
+PSGI 인터페이스를 지원하는것으로, 당신의 프레임워크는 유용한 middleware 의 기능을 사용할 수 있다.
+
+=back
+
+=head3 I'm writing a web application. What's the benefit of PSGI for me?
+
+사용 중인 프레임워크가 PSGI 를 지원한다면, 당신의 어플리케이션은 존재하는 또는 앞으로 만들어질 PSGI 구현을 실행할 수 있다. 당신은 PSGI 어플리케이션을 반환하는 B<.psgi> 파일을 제공할 수 있고, 사용자는 다양한 방법으로 어플리케이션을 설정하고 실행할 수 있어야 한다.
+
+=head3 But I'm writing a web application in CGI and it works well. 
+Should I switch to PSGI?
+
+당신이 CGI 를 통해서 웹 어플리케이션을 작성하고 있고, 
+웹 프레임워크를 사용하고 있지 않다면,
+당신은 어플리케이션을 CGI 환경에 제한하고 있는 것이다.
+
+어느 날 당신이 이 어플리케이션을 호스트 환경에 배포하고 싶다거나,
+standalone 모드로 실행하고 싶다거나,
+오픈소스 소프트웨어로 공개하고 싶을 것이다. 이런 제한은 이 바람을 차단한다.
+
+이미 CGI 를 사용하고 있더라도, L<CGI::PSGI|https://metacpan.org/pod/CGI::PSGI> 를 이용해서 PSGI 로 전환할 수 있다.
+
+=head3 What should I do to support PSGI?
+
+당신이 웹 서버 개발자라면, PSGI 어플리케이션을 호출하는 PSGI 구현을 작성하자.
+Plack, PSGI 툴킷과 유틸리티 개발에 참여해서 웹 서버에 server adapter 를 추가하자.
+
+당신이 웹 어플리케이션 개발자라면 PSGI 를 치줜하는 프레임워크를 선택하자.
+
+=cut

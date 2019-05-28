@@ -1,0 +1,171 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+Moose - Perl5 의 오브젝트 시스템
+
+=head1 SYNOPSIS
+
+=begin html
+
+<pre><code class="perl">
+ package Point;
+ use Moose; # automatically turns on strict and warnings
+
+ has 'x' => (is => 'rw', isa => 'Int');
+ has 'y' => (is => 'rw', isa => 'Int');
+ 
+ sub clear {
+     my $self = shift;
+     $self->x(0);
+     $self->y(0);
+ }
+ 
+ package Point3D;
+ use Moose;
+ 
+ extends 'Point';
+ 
+ has 'z' => (is => 'rw', isa => 'Int');
+ 
+ after 'clear' => sub {
+     my $self = shift;
+     $self->z(0);
+ };
+</code></pre>
+
+=end html
+
+=head1 DESCRIPTION
+
+Moose 는 펄의 오브젝트 시스템의 확장판이다.
+
+Moose 의 목적은 펄의 OOP 를 더욱 쉽고 일관성있게 만드는 것이다.
+
+Moose 는 펄의 metaclass 시스템인 
+L<Class::MOP|https://metacpan.org/pod/Class::MOP> 위에서 만들어졌기 때문에
+metaclass 프로그래밍도 제공한다.
+
+=head2 New to Moose?
+
+Moose 를 처음 접한다면 
+L<Moose::Cookbook|https://metacpan.org/pod/distribution/Moose/lib/Moose/Cookbook.pod>
+의 L<Moose::Manual|https://metacpan.org/pod/distribution/Moose/lib/Moose/Manual.pod> 를
+먼저 읽어보자.
+
+메뉴얼을 먼저 읽고나면 Moose 로 무엇을 할 수 있는지 알 수 있으며
+API 문서의 사용을 더 깊게 알 수 있게 된다.
+
+=head1 BUILDING CLASSES WITH MOOSE
+
+해당 클래스가 부모클래스를 가지고 있지 않다면, 
+B<use Moose;> 는 현재 클래스의 부모 클래스를
+L<Moose::Object|https://metacpan.org/pod/Moose::Object> 로 설정하게 된다.
+
+I<extends> 로 부모 클래스를 명시함으로써 이를 변경할 수 있다.
+
+Moose 는 I<has> 로 정의된 모든 attribute 를 관리한다. 
+And (assuming you call new, which is inherited from Moose::Object) this includes properly initializing all instance slots, setting defaults where appropriate, and performing any type constraint checking or coercion.
+
+=head1 PROVIDED METHODS
+
+대부분의 경우, Moose 는 B<Moose::Object> 의 상속을 통해 메소드를 제공한다. 
+한 가지 예외가 있다면, I<meta> 라는 이름을 가진 메소드가 B<Moose> 를 사용하는
+모든 클래스에 추가된다는 것이다. 이 메소드는 현재 클래스의 metaclass 를 반환한다.
+
+이 메소드의 이름을 변경하기 위해서는 다음의 코드를 작성하면 된다.
+
+=begin html
+
+<pre><code class="perl">
+ use Moose -meta_name => 'my_meta';
+</code></pre>
+
+=end html
+
+하지만 B<Moose::Object> 또는 부모 클래스가 I<meta> 메소드를 가지고 있다면, 
+이를 상속 받기 때문에 두 개의 다른 이름을 가진 I<meta> 메소드를 가지게 된다.
+
+현재 클래스의 I<meta> 메소드를 없애고 싶다면 다음의 코드를 작성하면 된다.
+
+=begin html
+
+<pre><code class="perl">
+ use Moose -meta_name => undef;
+</code></pre>
+
+=end html
+
+=head1 EXPORTED FUNCTIONS
+
+Moose 는 클래스를 구성하는데 사용되는 네임스페이스로 함수들을 export 한다.
+이 함수들은 현재 클래스에서 직접 사용될 수 있다.
+
+=head2 extends (@superclasses)
+
+이 함수는 현재 클래스의 수퍼 클래스를 설정한다.
+부모 클래스가 아직 로드되지 않았다면, 이 함수는 부모 클래스를 로드하려 시도할 것이다.
+
+B<use base;> | B<use parent;> 를 사용하는 것보다 I<extends> 를 사용하는 것이 권장된다.
+B<use base;> 는 클래스의 B<@ISA> 에 push 하고, 
+I<extends> 는 B<@ISA> 를 교체하는 것이기 때문이다.
+B<Moose::Object> 를 상속하기 전에 수퍼 클래스를 가지지 않는 것이 중요하다.
+
+각 수퍼 클래스는 option 과 함께 ( 여기에서는 B<-version> ) 
+HASH reference 로 명시될 수 있다.
+
+=begin html
+
+<pre><code class="perl">
+ # 버전이 맞지 않으면 예외 발생.
+ extends 'My::Parent'      => { -version => 0.01 },
+         'My::OtherParent' => { -version => 0.03 };
+</code></pre>
+
+=end html
+
+=head2 with (@roles)
+
+로컬 클래스에 B<@roles> 를 적용한다.
+
+I<extends> 처럼 각 role 은 HASH reference 로 명시될 수 있다.
+
+여러 개의 role 을 사용하더라도 I<with> 는 반드시 하나만 사용해야 한다.
+
+=head2 has $name|@$names => %options
+
+This will install an attribute of a given $name into the current class. If the first parameter is an array reference, it will create an attribute for every $name in the list.
+B<%options> 는 생성자로 전달된다.
+
+다음 목록은 주로 사용되는 option 들이다.
+
+=head3 is => 'rw'|'ro'
+
+B<rw> 또는 B<ro> 를 받아 read/write accessor 또는 read-only accessor 를 갖는다.
+각 accessor 는 attribute 이름과 같은 I<$name> 으로 사용된다.
+
+accessor 의 이름을 바꾸고 싶다면 
+L<Class::MOP::Attribute|https://metacpan.org/pod/Class::MOP::Attribute> 로부터 상속받은 
+B<reader>, B<writer>, B<accessor> option 을 사용하면 된다. 
+이들을 사용하면 I<is> option 을 사용할 필요가 없다.
+
+=head3 isa => $type_name
+
+attribute 에 대한 실행시간 타입 체크를 설정하기 위해 Moose 의 타입 제약을 사용한다.
+Moose 는 클래스 생성할 때와 accessor 내부에서 타입 테크를 수행한다.
+B<$type_name> 은 반드시 문자열이어야 한다. 
+이 문자열은 클래스 이름 또는 Moose 의 타입 정의 특성
+( L<Moose::Util::TypeConstraints|https://metacpan.org/pod/Moose::Util::TypeConstraints> )
+을 사용하는 타입이다.
+
+=head3 coerce => (1|0)
+
+This will attempt to use coercion with the supplied type constraint to change the value passed into any accessors or constructors. You must supply a type constraint, and that type constraint must define a coercion. See Moose::Cookbook::Basics::HTTP_SubtypesAndCoercion for an example.
+
+=head3 does => $role_name
+
+
+
+
+=cut
