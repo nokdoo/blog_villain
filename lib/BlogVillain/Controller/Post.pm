@@ -8,13 +8,13 @@ use Data::Dumper;
 use feature qw/ say /;
 
 # This action will render a template
-sub get_categories {
+sub categories {
     my $self = shift;
     $self->stash(categories => BlogVillain::Model::Post->search_categories());
-    $self->render(template => 'post/categories');
+    $self->render();
 }
 
-sub get_fulltitles {
+sub fulltitles {
     my $self = shift;
     my $category = $self->stash('category');
     $self->stash(fulltitles => BlogVillain::Model::Post->search_fulltitles_of($category));

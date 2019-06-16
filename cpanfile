@@ -10,3 +10,7 @@ requires 'List::Util';
 requires 'SQL::Translator';
 requires 'Sub::Override';
 requires 'IO::String';
+requires 'Session::Token';
+requires 'URL::Encode';
+requires 'HTTP::Tiny';
+requires 'JSON';

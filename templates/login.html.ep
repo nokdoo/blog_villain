@@ -1,0 +1,29 @@
+% layout 'default';
+% title 'Welcome';
+
+%= javascript begin
+
+    function openLogin(service_provider){
+        var xhr = new XMLHttpRequest();
+        var params = "service_provider="+service_provider;
+        xhr.responseType = 'text';
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var url = this.responseText;
+                var newwindow = window.open(url, 'naverLogin');
+            } else {
+                console.log("Error");
+            }
+        };
+        xhr.open("get", '/auth/auth_req_url?'+params, true);
+        xhr.send();
+    }
+
+% end
+
+<%= image  
+        '/images/naver_login_images/naver_perfect_green.PNG', 
+        width => "200",
+        style => "cursor:pointer",
+        onclick => "openLogin('naver')", 
+%> 

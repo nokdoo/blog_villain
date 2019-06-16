@@ -31,12 +31,33 @@ Iterator - perl 의 iterator 구현 예제
  say NEXTVAL($it);
  say NEXTVAL($it);
  say NEXTVAL($it);
- say NEXTVAL($it); # undef
+ # say NEXTVAL($it); # return undef
+
+ say "===========";
+
+ sub imap (&$) {
+    my ($transform, $it) = @_;
+    return Iterator {
+        my $next = NEXTVAL($it);
+        return unless defined $next;
+        return $transform->($next);
+    }
+ }
+
+ my $it_imap = imap { $_[0] * 2 } upto(1,5);
+ say NEXTVAL($it_imap);
+ say NEXTVAL($it_imap);
+ say NEXTVAL($it_imap);
+ say NEXTVAL($it_imap);
+ say NEXTVAL($it_imap);
 </code></pre>
+
 
 =end html
  
 =head1 DESCRIPTION
+
+=head2 it
 
 =begin html
 
@@ -85,6 +106,59 @@ I<Iterator { ... }> 는 다음과 같다.
 =end html
 
 I<NEXTVAL> 은 함수의 정의를 따라 I<sub { ... }> 를 실행시킨다.
+
+=head2 imap
+
+iterator 의 값들이 특정 함수를 거쳐서 반환되도록 한다.
+
+=head3 $_ vs $_[0]
+
+I<map> 은 일반적으로 다음의 코드처럼 
+인자를 $_ 로 받아서 사용한다.
+
+ my @new_arr = map { $_ * 10 } @arr;
+
+L</SYNOPSIS> 의 I<imap> 에서 사용되된 함수는 B<$_[0]> 로 
+인자를 받고 있다.
+
+어떤 점이 다를까?
+
+=over 4
+
+=item * I<map> 으로 넘겨지는 함수는, 전역변수 B<$_> 를 사용한다.
+전역적으로 이미 존재하고 있는 변수를 사용하겠다는 의미다.
+
+=item * I<imap> 으로 넘겨지는 함수는, 함수의 정의 안에서 
+사용되는 예약어 B<$_[0]> 를 사용한다.
+
+=back
+
+일관성을 위해, I<imap> 으로 넘겨지는 함수에도 B<$_> 를 사용해보자.
+
+ sub imap (&$) {
+    my ($transform, $it) = @_;
+    return Iterator {
+        local $_ = NEXTVAL($it);
+        return unless defined $_;
+        return $transform->();
+    }
+ }
+
+ $it = upto(1, 5); # new iterator
+ my $it_imap = imap { $_ * 2 } $it ;
+ say NEXTVAL($it_imap2);
+ say NEXTVAL($it_imap2);
+ say NEXTVAL($it_imap2);
+ say NEXTVAL($it_imap2);
+
+이 코드를 사용하면 B<$_> 를 사용할 수 있다.
+
+이 전역변수는 I<Iterator> 안에서 새롭게 값이 
+할당되며 ( B<local $_> ) 곧이어 함수 B<$transform> 에 
+의해 사용된다.
+
+블록안에서만 영역이 한정되어 있던 B<$next> 변수와는 다르게
+B<$_> 는 어디에서나 사용될 수 있기 때문이다.
 
 =head1 SEE ALSO
 
