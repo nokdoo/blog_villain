@@ -1,0 +1,165 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+Basic Functional Programming - 함수형 프로그래밍의 기초
+
+=head1 SYNOPSIS
+
+=begin html
+
+<pre><code class="java">
+
+</code></pre>
+
+=end html
+
+=head1 DESCRIPTION
+
+
+=head2 Frequent Usage
+
+함수형 프로그래밍은 다음과 같은 정렬에서 자주 볼 수 있다.
+
+=begin html
+
+<pre><code class="java">
+ import java.util.Arrays;
+ import java.util.Comparator;
+ 
+ /**
+  *
+  * @author nokdoot
+  */
+ public class Basic {
+ 
+     public static void main(String[] args) {
+ 
+         Integer[] arr = { 3, 2, 4, 9, 0, 8, 7, 1, 5, 6 };
+ 
+         Arrays.sort(arr, new Comparator<Integer>(){
+             @Override
+             public int compare(Integer i1, Integer i2) {
+                 return i1.compareTo(i2);
+             }
+         });  
+
+         Print(arr); // 0 1 2 3 4 5 6 7 8 9
+     }
+ 
+     private static void Print(Integer[] arr) {
+         for ( int i : arr ) {
+             System.out.print(i+" ");
+         }
+         System.out.println("");
+     }
+ }
+</code></pre>
+
+=end html
+
+Arrays 의 sort 함수는 정렬에 사용될 비교연산을 위해 함수를 요구한다.
+자바에서는 이 함수를 인터페이스에서 선언해야 하기 때문에
+함수를 직접 넘겨주는 것이 아닌 사용될 함수를 가진
+인터페이스 객체를 넘겨줘야 한다.
+
+위 코드에서는 I<compare> 함수를 넘겨주기 위해 
+B<Comparator> 인터페이스를 생성 후 인자로 넘겨줬다.
+
+=over 4 
+
+=item * Q. 함수의 정의만 넘겨주면 편한 것을 왜 굳이 인터페이스까지
+사용해야 하는 걸까?
+
+=item * A. 자바에서 함수(메소드)는 B<First Class> 가 아니다. 
+B<First Class> 란 간단히 말해 함수의 인자 또는 반환값이 
+될 수 있는 대상을 말한다.
+함수가 인자로 넘겨질 수 없기 때문에 함수를 포함한 객체를 생성하고 
+그 안에 들어있는 함수를 사용해야만 한다.
+
+=back
+
+=head2 Making Function as First Class
+
+시험으로 수학, 영어, 역사 과목을 치른 학생들이 있다. 
+학생들이 시험을 통과하는지 확인하기 위한 프로그램을 
+함수형 프로그래밍으로 작성해보자. 
+시험 통과 기준은 함수의 정의에 작성한다.
+
+프로그램의 결과로 시험에 통과한 학생의 번호를 출력한다.
+
+=begin html
+
+<pre><code class="java">
+ /**
+  *
+  * @author nokdoot
+  */
+ public class Basic {
+
+     public static void main(String[] args) {
+         Student[] students = new Student[10];
+         students[0] = new Student(30, 60, 90, 0);
+         students[1] = new Student(15, 30, 10, 1);
+         students[2] = new Student(45, 20, 20, 2);
+         students[3] = new Student(60, 10, 50, 3);
+         students[4] = new Student(75, 80, 90, 4);
+         students[5] = new Student(90, 70, 90, 5);
+         students[6] = new Student(40, 50, 60, 6);
+         students[7] = new Student(80, 40, 40, 7);
+         students[8] = new Student(95, 30, 30, 8);
+         students[9] = new Student(10, 20, 20, 9);
+
+         Checker checker = new Checker() {
+             @Override
+             public boolean check(Student s) {
+                 if ( s.math + s.english > 100 ) return true;
+                 return false;
+             }
+         };
+
+         PrintPassedStudent(students, checker);
+
+     }
+
+     private static void PrintPassedStudent(Student[] students, Checker checker) {
+         for ( Student s : students ) {
+             if ( checker.check(s) ) {
+                 System.out.println(s.number);
+             };
+         }
+     }
+ }
+
+ class Student {
+     int math;
+     int english;
+     int history;
+     int number;
+
+     public Student(int math, int english, int history, int number) {
+         this.math = math;
+         this.english = english;
+         this.history = history;
+         this.number = number;
+     }
+ }
+
+ @FunctionalInterface
+ interface Checker{
+     public boolean check(Student s);
+ }
+</code></pre>
+
+=end html
+
+이 코드에서의 시험 통과 기준은 수학 점수와 영어 점수의 합이
+100점을 넘는 것이다. 이것을 확인하는 함수는 B<Checker> 
+인터페이스 안에 선언되어 있고, 
+B<Checker> 인터페이스를 생성함과 동시에 정의된다.
+
+이것을 I<PrintPassedStudent> 함수에 전달하게 되고 
+I<PrintPassedStudent> 함수 안에서 I<Checker.check()> 가 실행된다.
+
+=cut
