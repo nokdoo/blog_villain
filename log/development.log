@@ -23890,3 +23890,136 @@ Compilation failed in require at (eval 99) line 1.
 [2019-06-25 22:30:12.29366] [2293] [debug] Rendering cached template "post/post.html.ep"
 [2019-06-25 22:30:12.29412] [2293] [debug] Rendering cached template "layouts/default.html.ep"
 [2019-06-25 22:30:12.29437] [2293] [debug] 200 OK (0.009614s, 104.015/s)
+[2019-06-25 22:32:05.42338] [2293] [debug] GET "/post/Java/FunctionalProgramming/Basic" (8218c0db)
+[2019-06-25 22:32:05.42365] [2293] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-06-25 22:32:05.43195] [2293] [debug] Rendering cached template "post/post.html.ep"
+[2019-06-25 22:32:05.43235] [2293] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-06-25 22:32:05.43261] [2293] [debug] 200 OK (0.009206s, 108.625/s)
+[2019-06-26 21:57:56.17132] [9269] [debug] GET "/" (d61e2640)
+[2019-06-26 21:57:56.17247] [9269] [debug] Rendering template "home.html.ep"
+[2019-06-26 21:57:56.17314] [9269] [debug] Rendering template "layouts/default.html.ep"
+[2019-06-26 21:57:56.17469] [9269] [debug] 200 OK (0.003357s, 297.885/s)
+[2019-06-26 21:57:56.17598] [9269] [debug] GET "/robots.txt" (30696890)
+[2019-06-26 21:57:56.17679] [9269] [debug] Template "not_found.development.html.ep" not found
+[2019-06-26 21:57:56.17695] [9269] [debug] Template "not_found.html.ep" not found
+[2019-06-26 21:57:56.17710] [9269] [debug] Rendering template "mojo/debug.html.ep"
+[2019-06-26 21:57:56.19373] [9269] [debug] 404 Not Found (0.017722s, 56.427/s)
+[2019-06-26 21:57:58.41828] [9269] [debug] GET "/post/categories" (548c8473)
+[2019-06-26 21:57:58.55709] [9269] [debug] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-06-26 21:57:58.58496] [9269] [debug] Rendering template "post/categories.html.ep"
+[2019-06-26 21:57:58.58642] [9269] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-06-26 21:57:58.58670] [9269] [debug] 200 OK (0.168414s, 5.938/s)
+[2019-06-26 21:57:58.68832] [9269] [debug] GET "/post/categories.css" (9dac5166)
+[2019-06-26 21:57:58.68900] [9269] [debug] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-06-26 21:57:58.69165] [9269] [debug] Template "post/categories.css.ep" not found
+[2019-06-26 21:57:58.69216] [9269] [debug] Template "not_found.development.css.ep" not found
+[2019-06-26 21:57:58.69228] [9269] [debug] Template "not_found.css.ep" not found
+[2019-06-26 21:57:58.69240] [9269] [debug] Template "not_found.development.html.ep" not found
+[2019-06-26 21:57:58.69250] [9269] [debug] Template "not_found.html.ep" not found
+[2019-06-26 21:57:58.69261] [9269] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-06-26 21:57:58.69769] [9269] [debug] 404 Not Found (0.009273s, 107.840/s)
+[2019-06-26 21:58:00.39755] [9269] [debug] GET "/post/Perl" (0e056278)
+[2019-06-26 21:58:00.39785] [9269] [debug] Routing to controller "BlogVillain::Controller::Post" and action "fulltitles"
+[2019-06-26 21:58:00.40109] [9269] [debug] Rendering template "post/category.html.ep"
+[2019-06-26 21:58:00.40346] [9269] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-06-26 21:58:00.40391] [9269] [debug] 200 OK (0.006327s, 158.053/s)
+[2019-06-26 21:58:00.49678] [9269] [debug] GET "/post/categories.css" (530e23d7)
+[2019-06-26 21:58:00.49715] [9269] [debug] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-06-26 21:58:00.49874] [9269] [debug] Template "post/categories.css.ep" not found
+[2019-06-26 21:58:00.49904] [9269] [debug] Template "not_found.development.css.ep" not found
+[2019-06-26 21:58:00.49925] [9269] [debug] Template "not_found.css.ep" not found
+[2019-06-26 21:58:00.49938] [9269] [debug] Template "not_found.development.html.ep" not found
+[2019-06-26 21:58:00.49947] [9269] [debug] Template "not_found.html.ep" not found
+[2019-06-26 21:58:00.49954] [9269] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-06-26 21:58:00.50242] [9269] [debug] 404 Not Found (0.005633s, 177.525/s)
+[2019-06-26 21:58:04.07763] [9269] [debug] GET "/post/Java" (d7f76916)
+[2019-06-26 21:58:04.07798] [9269] [debug] Routing to controller "BlogVillain::Controller::Post" and action "fulltitles"
+[2019-06-26 21:58:04.07972] [9269] [debug] Rendering cached template "post/category.html.ep"
+[2019-06-26 21:58:04.08024] [9269] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-06-26 21:58:04.08046] [9269] [debug] 200 OK (0.002824s, 354.108/s)
+[2019-06-26 21:58:04.13075] [9269] [debug] GET "/post/categories.css" (85e5ab4d)
+[2019-06-26 21:58:04.13102] [9269] [debug] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-06-26 21:58:04.13236] [9269] [debug] Template "post/categories.css.ep" not found
+[2019-06-26 21:58:04.13256] [9269] [debug] Template "not_found.development.css.ep" not found
+[2019-06-26 21:58:04.13270] [9269] [debug] Template "not_found.css.ep" not found
+[2019-06-26 21:58:04.13282] [9269] [debug] Template "not_found.development.html.ep" not found
+[2019-06-26 21:58:04.13292] [9269] [debug] Template "not_found.html.ep" not found
+[2019-06-26 21:58:04.13301] [9269] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-06-26 21:58:04.13667] [9269] [debug] 404 Not Found (0.005907s, 169.291/s)
+[2019-06-26 21:58:05.66326] [9269] [debug] GET "/post/Java/FunctionalProgramming/Basic" (00453b47)
+[2019-06-26 21:58:05.66372] [9269] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-06-26 21:58:05.67480] [9269] [debug] Rendering template "post/post.html.ep"
+[2019-06-26 21:58:05.67633] [9269] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-06-26 21:58:05.67669] [9269] [debug] 200 OK (0.013415s, 74.543/s)
+[2019-06-26 21:58:26.43249] [9269] [debug] GET "/post/categories" (121e32bd)
+[2019-06-26 21:58:26.43274] [9269] [debug] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-06-26 21:58:26.43375] [9269] [debug] Rendering cached template "post/categories.html.ep"
+[2019-06-26 21:58:26.43449] [9269] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-06-26 21:58:26.43475] [9269] [debug] 200 OK (0.002259s, 442.674/s)
+[2019-06-26 21:58:26.51157] [9269] [debug] GET "/post/categories.css" (829b89ce)
+[2019-06-26 21:58:26.51187] [9269] [debug] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-06-26 21:58:26.51318] [9269] [debug] Template "post/categories.css.ep" not found
+[2019-06-26 21:58:26.51335] [9269] [debug] Template "not_found.development.css.ep" not found
+[2019-06-26 21:58:26.51347] [9269] [debug] Template "not_found.css.ep" not found
+[2019-06-26 21:58:26.51358] [9269] [debug] Template "not_found.development.html.ep" not found
+[2019-06-26 21:58:26.51370] [9269] [debug] Template "not_found.html.ep" not found
+[2019-06-26 21:58:26.51379] [9269] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-06-26 21:58:26.51760] [9269] [debug] 404 Not Found (0.006016s, 166.223/s)
+[2019-06-26 21:58:28.68252] [9269] [debug] GET "/about" (df8d0105)
+[2019-06-26 21:58:28.68298] [9269] [debug] Rendering template "about.html.ep"
+[2019-06-26 21:58:28.68394] [9269] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-06-26 21:58:28.68443] [9269] [debug] 200 OK (0.001897s, 527.148/s)
+[2019-06-26 21:58:31.07360] [9269] [debug] GET "/login.html" (480bf9ea)
+[2019-06-26 21:58:31.07397] [9269] [debug] Rendering template "login.html.ep"
+[2019-06-26 21:58:31.07527] [9269] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-06-26 21:58:31.07560] [9269] [debug] 200 OK (0.001992s, 502.008/s)
+[2019-06-26 22:04:40.72966] [9269] [debug] GET "/auth/auth_req_url" (660a1cdc)
+[2019-06-26 22:04:40.80129] [9269] [debug] Routing to controller "BlogVillain::Controller::Authorization" and action "auth_req_url"
+[2019-06-26 22:04:40.80291] [9269] [debug] 200 OK (0.073202s, 13.661/s)
+[2019-06-26 22:04:42.50630] [9269] [debug] GET "/auth/login" (010fb6af)
+[2019-06-26 22:04:42.50680] [9269] [debug] Routing to controller "BlogVillain::Controller::Authorization" and action "login"
+[2019-06-26 22:04:42.76365] [9269] [debug] 302 Found (0.25734s, 3.886/s)
+[2019-06-26 22:04:42.79229] [9269] [debug] GET "/" (f1090287)
+[2019-06-26 22:04:42.79293] [9269] [debug] Rendering cached template "home.html.ep"
+[2019-06-26 22:04:42.79335] [9269] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-06-26 22:04:42.79447] [9269] [debug] 200 OK (0.002154s, 464.253/s)
+[2019-06-26 22:07:31.06617] [9269] [debug] GET "/login.html" (d7096360)
+[2019-06-26 22:07:31.06646] [9269] [debug] Rendering cached template "login.html.ep"
+[2019-06-26 22:07:31.06681] [9269] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-06-26 22:07:31.06711] [9269] [debug] 200 OK (0.000927s, 1078.749/s)
+[2019-06-26 22:08:30.00921] [9269] [debug] GET "/Login.htm" (18ca83c6)
+[2019-06-26 22:08:30.00970] [9269] [debug] Template "not_found.development.html.ep" not found
+[2019-06-26 22:08:30.00984] [9269] [debug] Template "not_found.html.ep" not found
+[2019-06-26 22:08:30.00992] [9269] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-06-26 22:08:30.01252] [9269] [debug] 404 Not Found (0.003304s, 302.663/s)
+[2019-06-26 22:08:57.11200] [9269] [debug] GET "/login.html" (761f2896)
+[2019-06-26 22:08:57.11237] [9269] [debug] Rendering cached template "login.html.ep"
+[2019-06-26 22:08:57.11285] [9269] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-06-26 22:08:57.11327] [9269] [debug] 200 OK (0.00126s, 793.651/s)
+[2019-06-26 22:09:00.97983] [9269] [debug] GET "/auth/auth_req_url" (bfa78f7d)
+[2019-06-26 22:09:00.98010] [9269] [debug] Routing to controller "BlogVillain::Controller::Authorization" and action "auth_req_url"
+[2019-06-26 22:09:00.98045] [9269] [debug] 200 OK (0.000614s, 1628.664/s)
+[2019-06-26 22:09:01.78859] [9269] [debug] GET "/auth/login" (1eef0633)
+[2019-06-26 22:09:01.78893] [9269] [debug] Routing to controller "BlogVillain::Controller::Authorization" and action "login"
+[2019-06-26 22:09:01.99051] [9269] [debug] 302 Found (0.201749s, 4.957/s)
+[2019-06-26 22:09:02.02756] [9269] [debug] GET "/" (fc240fce)
+[2019-06-26 22:09:02.02787] [9269] [debug] Rendering cached template "home.html.ep"
+[2019-06-26 22:09:02.02800] [9269] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-06-26 22:09:02.02846] [9269] [debug] 200 OK (0.000887s, 1127.396/s)
+[2019-06-26 22:31:00.53566] [3128] [debug] GET "/login.html" (d61e2640)
+[2019-06-26 22:31:00.53672] [3128] [debug] Rendering template "login.html.ep"
+[2019-06-26 22:31:00.53829] [3128] [debug] Rendering template "layouts/default.html.ep"
+[2019-06-26 22:31:00.53930] [3128] [debug] 200 OK (0.003663s, 273.000/s)
+[2019-06-26 22:41:48.17902] [14541] [debug] GET "/wp4/wp-login.php" (d61e2640)
+[2019-06-26 22:41:48.18125] [14541] [debug] Template "not_found.development.html.ep" not found
+[2019-06-26 22:41:48.18144] [14541] [debug] Template "not_found.html.ep" not found
+[2019-06-26 22:41:48.18159] [14541] [debug] Rendering template "mojo/debug.html.ep"
+[2019-06-26 22:41:48.19385] [14541] [debug] 404 Not Found (0.014874s, 67.231/s)
+[2019-06-26 22:46:34.30993] [14541] [debug] GET "/" (30696890)
+[2019-06-26 22:46:34.31043] [14541] [debug] Rendering template "home.html.ep"
+[2019-06-26 22:46:34.31107] [14541] [debug] Rendering template "layouts/default.html.ep"
+[2019-06-26 22:46:34.31213] [14541] [debug] 200 OK (0.002194s, 455.789/s)
+[2019-06-26 23:16:36.12340] [14541] [debug] GET "/" (548c8473)
+[2019-06-26 23:16:36.12525] [14541] [debug] Rendering cached template "home.html.ep"
+[2019-06-26 23:16:36.12602] [14541] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-06-26 23:16:36.12840] [14541] [debug] 200 OK (0.004977s, 200.924/s)

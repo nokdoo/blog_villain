@@ -27,3 +27,5 @@
         style => "cursor:pointer",
         onclick => "openLogin('naver')", 
 %> 
+<br>
+Haha Attacker!! We don't have any information of users<br>

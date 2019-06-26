@@ -32,7 +32,9 @@ sub _state_token {
 
 sub auth_req_url {
     my ($c, $service_provider) = @_;
-    my $redirect_uri = url_encode_utf8('http://www.blogvillain.com:3000/auth/login');
+    my $redirect_uri = url_encode_utf8(
+        'http://www.blogvillain.com:3000/auth/login'
+    );
     my $state_token = _state_token($service_provider);
     my $auth_req_url = 
         $auth_url{$service_provider}
