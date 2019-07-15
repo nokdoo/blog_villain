@@ -1,0 +1,89 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+Graph
+
+=head1 Terminology
+
+=over 4
+
+=item * vertex - 정점
+
+=item * edge - 간선
+
+=item * skipped edge - DFS 도중 이미 한번 지나쳤던 정점으로 
+향하는 간선
+
+=item * followed edge - DFS 의 자취가 되는 간선
+
+=item * {v,w} - 정점 v 에서 정점 w 로 향하는 간선
+
+=back
+
+=head2 Biconnectivity
+
+=over 4 
+
+=item * 연결 그래프
+
+이 그래프가 연결되어 있는지는 DFS 또는 BFS 로 쉽게 판별할 수 있다.
+
+=item * vertex-disjoint
+
+정점 B<u> 에서 정점 B<v> 로 이동하는 경로 B<p1>, B<p2> 가 있다.
+
+경로 B<p1> 과 B<p2> 가 B<u>, B<v> 를 제외한 어떤 정점을
+공유하지 않는다면 이 경로들을 B<vertex-disjoint> 라고 한다.
+
+=item * biconnected
+
+=over 4
+
+=item * 두 정점을 지나는 경로에 두 개의 B<vertex-disjoint> 경로가 
+존재한다면 이 무방향 그래프는 B<biconnected> 그래프다.
+
+=item * 그래프 G 에서 정점 v 와 그 인접 간선들을 제거한 것을 
+G-v 라 하자. G-v 가 연결되어 있지 않다면 v 는 G 의 B<cutvertex> 다. 
+B<cutvertex> 가 존재하지 않는 그래프는 B<biconnected> 그래프다.
+
+=back
+
+위의 방법을 사용하면 O(n^2) 의 시간이 소요된다.
+
+다른 방법으로 접근해보자.
+
+서브그래프 B<T> 를 그래프 G 에서 skipped edge 가 제거된 
+그래프라 하자. 즉 서브그래프 B<T> 는 followed edge 로만 연결된다. 
+이제 B<T> 는 n 개의 정점과 n-1 개의 간선을 가지게 되고 
+이는 트리로 간주될 수 있다. 그리고 {v,w} 의 정점 v 는 정점 w 의 
+부모가 된다.
+
+서브 그래프 B<T> 의 root 에 대한 케이스를 구분해보자.
+
+=over 4
+
+=item * B<T> 의 root 정점이 두 개 이상의 자식을 갖는 경우 이 
+root 는 B<cutvertex> 다.
+
+=item * root 가 아닌 정점 v 가 하나의 자식 정점 w 를 가지고 있고, 
+w 의 자손에서 v 의 조상으로 향하는 간선이 있다면
+정점 v 는 B<cutvertex> 다.
+
+=item * root 가 아닌 정점 v 와 그 자식 중 하나인 w 가 있다.
+w 의 자손 중에 w 의 조상으로 향하는 skipped edge 를 가진 
+정점이 존재하지 않는다면 v 는 B<cutvertex> 다.
+
+
+
+=back
+
+
+{v,w} 가 skipped edge 라면 두 정점은 서로
+조상 관계가 된다.
+
+
+=back
+
+=cut

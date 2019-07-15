@@ -30,7 +30,6 @@ sub login {
                 $state_token, $code
             );
     my $auth_tokens = decode_json($auth_tokens_str);
-    say Dumper $auth_tokens;
     if ( defined $auth_tokens->{error} ) {
         $self->redirect_to(
             '/error', 
