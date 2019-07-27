@@ -67,21 +67,11 @@ B<cutvertex> 가 존재하지 않는 그래프는 B<biconnected> 그래프다.
 =item * B<T> 의 root 정점이 두 개 이상의 자식을 갖는 경우 이 
 root 는 B<cutvertex> 다.
 
-=item * root 가 아닌 정점 v 가 하나의 자식 정점 w 를 가지고 있고, 
-w 의 자손에서 v 의 조상으로 향하는 간선이 있다면
-정점 v 는 B<cutvertex> 다.
-
 =item * root 가 아닌 정점 v 와 그 자식 중 하나인 w 가 있다.
 w 의 자손 중에 w 의 조상으로 향하는 skipped edge 를 가진 
 정점이 존재하지 않는다면 v 는 B<cutvertex> 다.
 
-
-
 =back
-
-
-{v,w} 가 skipped edge 라면 두 정점은 서로
-조상 관계가 된다.
 
 
 =back
