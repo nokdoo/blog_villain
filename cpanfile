@@ -14,3 +14,4 @@ requires 'Session::Token';
 requires 'URL::Encode';
 requires 'HTTP::Tiny';
 requires 'JSON';
+requires 'Readonly';

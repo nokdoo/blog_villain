@@ -44,8 +44,6 @@ sub printfile
 			pod => $pod,
 			time => $time,
 		}) or die ;
-
-
 	}
 }
 
