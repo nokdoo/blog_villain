@@ -1,29 +1,36 @@
 =encoding utf8
 =pod
 
- # post 출력 
+=head1 Deploy
+
+ $ ./set_env
+
+ $ source /path/.profile
+
+ $ carton install cp
+
+ $ perl deploy.pl
+
+=head1 Tasks
+
+ # pod2html
  sqlite -> pod -> html
 
-
- # html 저장
+ # html2pod
  html -> pod -> sqlite
 
+ # validating pod
 
- # Pod::Simple::HTML 코드 변경
- <pre> </pre>
- <a>
- ->
- <pre> <code class='lang'> ... </code> </pre>
- <a target='_blank'>
+ # watching pod files
+ programs/watch-pod
 
+ # OAuth
 
- # pod validation
- /post/write
-
-
- # 배포스크립트 작성
+ # scripts for deploy
  set_env -> source -> cpanfile -> deploy.pl
 
-작성날짜
+=head1 TODO
+
+ react
 
 =cut
