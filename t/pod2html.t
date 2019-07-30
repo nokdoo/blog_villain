@@ -1,3 +1,26 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use Data::Dumper;
+use feature qw/ say /;
+
+use Pod::Simple::HTML;
+use HTML::TreeBuilder;
+
+my $pod;
+
+{
+    local $/;
+    $pod = <DATA>;
+}
+
+my $p = Pod::Simple::HTML->new;
+$p->output_string(\my $html);
+$p->parse_string_document($pod);
+say Dumper (HTML::TreeBuilder->new_from_content($html));
+
+__DATA__
 =encoding utf8
 =pod
 
@@ -25,9 +48,9 @@ Easy To Miss - 놓치기 쉬운 Generic 개념들
 동일한 run-time 클래스를 갖는다.
 
 제네릭 클래스란 허용된 모든 타입에 대해서 같은 동작을
-수행하는 것을 말한다. 
+수행하는 것을 말한다.
 
-따라서 모든 static 변수와 static 메소드도 마찬가지로 모든 
+따라서 모든 static 변수와 static 메소드도 마찬가지로 모든
 인스턴스에 공유된다. 이것이 static 메소드와 static initializer 내에서, 또는 static 변수의 선언과 초기화 시에 type parameter 가 참조
 될 수 없는 이유다.
 
@@ -36,24 +59,24 @@ Easy To Miss - 놓치기 쉬운 Generic 개념들
 <pre><code class="java">
  class Gen<T> {
      T t1;
-     
+
      // Error :
-     // non-static type variable T cannot be referenced 
+     // non-static type variable T cannot be referenced
      // from a static context
      static T t2;
-     
+
      public void methodA(T t) {
          t.toString();
      }
-     
+
      public static void MethodB() {
          // Illegal
          T t;
      }
-     
+
      // Illegal
      public static void SomeStaticMethod(T in) {}
-     
+
  }
 </code></pre>
 
@@ -94,3 +117,4 @@ runtime system 의 확인이 없을 것이기 때문에 unchecked warning
 
 
 =cut
+

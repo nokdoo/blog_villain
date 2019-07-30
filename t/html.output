@@ -1,0 +1,277 @@
+$VAR1 = bless( {
+                 '_warn' => 0,
+                 '_no_expand_entities' => 0,
+                 '_store_comments' => 0,
+                 '_done' => 1,
+                 '_body' => bless( {
+                                     '_content' => [
+                                                     bless( {
+                                                              'name' => '___top',
+                                                              '_parent' => $VAR1->{'_body'},
+                                                              '_tag' => 'a',
+                                                              'class' => 'dummyTopAnchor'
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_content' => [
+                                                                              bless( {
+                                                                                       'name' => 'NAME',
+                                                                                       '_content' => [
+                                                                                                       'NAME'
+                                                                                                     ],
+                                                                                       '_tag' => 'a',
+                                                                                       'class' => 'u',
+                                                                                       '_parent' => $VAR1->{'_body'}{'_content'}[1]
+                                                                                     }, 'HTML::Element' )
+                                                                            ],
+                                                              '_tag' => 'h1',
+                                                              '_parent' => $VAR1->{'_body'}
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_content' => [
+                                                                              "Easy To Miss - \x{b193}\x{ce58}\x{ae30} \x{c26c}\x{c6b4} Generic \x{ac1c}\x{b150}\x{b4e4}"
+                                                                            ],
+                                                              '_parent' => $VAR1->{'_body'},
+                                                              '_tag' => 'p'
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_content' => [
+                                                                              bless( {
+                                                                                       '_tag' => 'a',
+                                                                                       'class' => 'u',
+                                                                                       '_parent' => $VAR1->{'_body'}{'_content'}[3],
+                                                                                       'name' => 'A_Generic_Class_is_Shared_by_All_Its_Invocations',
+                                                                                       '_content' => [
+                                                                                                       'A Generic Class is Shared by All Its Invocations'
+                                                                                                     ]
+                                                                                     }, 'HTML::Element' )
+                                                                            ],
+                                                              '_tag' => 'h1',
+                                                              '_parent' => $VAR1->{'_body'}
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_content' => [
+                                                                              bless( {
+                                                                                       '_content' => [
+                                                                                                       '
+ List l1 = new ArrayList();
+ List l2 = new ArrayList();
+ System.out.println(l1.getClass() == l2.getClass());
+'
+                                                                                                     ],
+                                                                                       '_parent' => $VAR1->{'_body'}{'_content'}[4],
+                                                                                       'class' => 'java',
+                                                                                       '_tag' => 'code'
+                                                                                     }, 'HTML::Element' )
+                                                                            ],
+                                                              '_tag' => 'pre',
+                                                              '_parent' => $VAR1->{'_body'}
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_tag' => 'p',
+                                                              '_parent' => $VAR1->{'_body'},
+                                                              '_content' => [
+                                                                              "\x{c704}\x{c758} \x{cf54}\x{b4dc}\x{b294} \x{c5b4}\x{b5a4} \x{ac12}\x{c744} \x{cd9c}\x{b825}\x{d560}\x{ae4c}?"
+                                                                            ]
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_tag' => 'p',
+                                                              '_parent' => $VAR1->{'_body'},
+                                                              '_content' => [
+                                                                              "\x{b2f5}\x{c740} ",
+                                                                              bless( {
+                                                                                       '_content' => [
+                                                                                                       'YES'
+                                                                                                     ],
+                                                                                       '_parent' => $VAR1->{'_body'}{'_content'}[6],
+                                                                                       '_tag' => 'b'
+                                                                                     }, 'HTML::Element' ),
+                                                                              '.'
+                                                                            ]
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_content' => [
+                                                                              "\x{c81c}\x{b124}\x{b9ad} \x{d074}\x{b798}\x{c2a4}\x{c758} \x{baa8}\x{b4e0} \x{c778}\x{c2a4}\x{d134}\x{c2a4}\x{b294} type parameter \x{c640} \x{ad00}\x{acc4}\x{c5c6}\x{c774} \x{b3d9}\x{c77c}\x{d55c} run-time \x{d074}\x{b798}\x{c2a4}\x{b97c} \x{ac16}\x{b294}\x{b2e4}."
+                                                                            ],
+                                                              '_parent' => $VAR1->{'_body'},
+                                                              '_tag' => 'p'
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_tag' => 'p',
+                                                              '_parent' => $VAR1->{'_body'},
+                                                              '_content' => [
+                                                                              "\x{c81c}\x{b124}\x{b9ad} \x{d074}\x{b798}\x{c2a4}\x{b780} \x{d5c8}\x{c6a9}\x{b41c} \x{baa8}\x{b4e0} \x{d0c0}\x{c785}\x{c5d0} \x{b300}\x{d574}\x{c11c} \x{ac19}\x{c740} \x{b3d9}\x{c791}\x{c744} \x{c218}\x{d589}\x{d558}\x{b294} \x{ac83}\x{c744} \x{b9d0}\x{d55c}\x{b2e4}."
+                                                                            ]
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_tag' => 'p',
+                                                              '_parent' => $VAR1->{'_body'},
+                                                              '_content' => [
+                                                                              "\x{b530}\x{b77c}\x{c11c} \x{baa8}\x{b4e0} static \x{bcc0}\x{c218}\x{c640} static \x{ba54}\x{c18c}\x{b4dc}\x{b3c4} \x{b9c8}\x{cc2c}\x{ac00}\x{c9c0}\x{b85c} \x{baa8}\x{b4e0} \x{c778}\x{c2a4}\x{d134}\x{c2a4}\x{c5d0} \x{acf5}\x{c720}\x{b41c}\x{b2e4}. \x{c774}\x{ac83}\x{c774} static \x{ba54}\x{c18c}\x{b4dc}\x{c640} static initializer \x{b0b4}\x{c5d0}\x{c11c}, \x{b610}\x{b294} static \x{bcc0}\x{c218}\x{c758} \x{c120}\x{c5b8}\x{acfc} \x{cd08}\x{ae30}\x{d654} \x{c2dc}\x{c5d0} type parameter \x{ac00} \x{cc38}\x{c870} \x{b420} \x{c218} \x{c5c6}\x{b294} \x{c774}\x{c720}\x{b2e4}."
+                                                                            ]
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_content' => [
+                                                                              bless( {
+                                                                                       'class' => 'java',
+                                                                                       '_tag' => 'code',
+                                                                                       '_parent' => $VAR1->{'_body'}{'_content'}[10],
+                                                                                       '_content' => [
+                                                                                                       '
+ class Gen {
+     T t1;
+
+     // Error :
+     // non-static type variable T cannot be referenced
+     // from a static context
+     static T t2;
+
+     public void methodA(T t) {
+         t.toString();
+     }
+
+     public static void MethodB() {
+         // Illegal
+         T t;
+     }
+
+     // Illegal
+     public static void SomeStaticMethod(T in) {}
+
+ }
+'
+                                                                                                     ]
+                                                                                     }, 'HTML::Element' )
+                                                                            ],
+                                                              '_tag' => 'pre',
+                                                              '_parent' => $VAR1->{'_body'}
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_content' => [
+                                                                              bless( {
+                                                                                       '_parent' => $VAR1->{'_body'}{'_content'}[11],
+                                                                                       '_tag' => 'a',
+                                                                                       'class' => 'u',
+                                                                                       'name' => 'Casts_and_InstanceOf',
+                                                                                       '_content' => [
+                                                                                                       'Casts and InstanceOf'
+                                                                                                     ]
+                                                                                     }, 'HTML::Element' )
+                                                                            ],
+                                                              '_tag' => 'h1',
+                                                              '_parent' => $VAR1->{'_body'}
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_parent' => $VAR1->{'_body'},
+                                                              '_tag' => 'p',
+                                                              '_content' => [
+                                                                              "\x{c81c}\x{b124}\x{b9ad} \x{d074}\x{b798}\x{c2a4}\x{b294} \x{baa8}\x{b4e0} \x{c778}\x{c2a4}\x{d134}\x{c2a4}\x{c5d0} \x{c758}\x{d574} \x{acf5}\x{c720}\x{b418}\x{ae30} \x{b54c}\x{bb38}\x{c5d0} \x{d2b9}\x{c815} \x{d0c0}\x{c785}\x{c5d0} \x{b300}\x{d574} ",
+                                                                              bless( {
+                                                                                       '_tag' => 'b',
+                                                                                       '_parent' => $VAR1->{'_body'}{'_content'}[12],
+                                                                                       '_content' => [
+                                                                                                       'instanceof'
+                                                                                                     ]
+                                                                                     }, 'HTML::Element' ),
+                                                                              " \x{b97c} \x{c0ac}\x{c6a9}\x{d558}\x{b294} \x{ac83}\x{c740} \x{c758}\x{bbf8}\x{ac00} \x{c5c6}\x{b2e4}."
+                                                                            ]
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_content' => [
+                                                                              bless( {
+                                                                                       '_content' => [
+                                                                                                       '
+ Collection cs = new ArrayList();
+
+ // Illegal.
+ if (cs instanceof Collection) { ... }
+'
+                                                                                                     ],
+                                                                                       '_parent' => $VAR1->{'_body'}{'_content'}[13],
+                                                                                       '_tag' => 'code',
+                                                                                       'class' => 'java'
+                                                                                     }, 'HTML::Element' )
+                                                                            ],
+                                                              '_tag' => 'pre',
+                                                              '_parent' => $VAR1->{'_body'}
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_content' => [
+                                                                              "cast \x{b3c4} \x{b9c8}\x{cc2c}\x{ac00}\x{c9c0}\x{b2e4}."
+                                                                            ],
+                                                              '_parent' => $VAR1->{'_body'},
+                                                              '_tag' => 'p'
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_parent' => $VAR1->{'_body'},
+                                                              '_tag' => 'pre',
+                                                              '_content' => [
+                                                                              bless( {
+                                                                                       '_parent' => $VAR1->{'_body'}{'_content'}[15],
+                                                                                       '_tag' => 'code',
+                                                                                       'class' => 'java',
+                                                                                       '_content' => [
+                                                                                                       '
+ // Unchecked warning,
+ Collection cstr = (Collection) cs;
+'
+                                                                                                     ]
+                                                                                     }, 'HTML::Element' )
+                                                                            ]
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_tag' => 'p',
+                                                              '_parent' => $VAR1->{'_body'},
+                                                              '_content' => [
+                                                                              "runtime system \x{c758} \x{d655}\x{c778}\x{c774} \x{c5c6}\x{c744} \x{ac83}\x{c774}\x{ae30} \x{b54c}\x{bb38}\x{c5d0} unchecked warning \x{c774} \x{bc1c}\x{c0dd}\x{d55c}\x{b2e4}."
+                                                                            ]
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              '_parent' => $VAR1->{'_body'},
+                                                              '_tag' => 'p',
+                                                              '_content' => [
+                                                                              "\x{bcc0}\x{c218}\x{c5d0} \x{b300}\x{d574}\x{c11c}\x{b3c4} \x{b9c8}\x{cc2c}\x{ac00}\x{c9c0}\x{b2e4}."
+                                                                            ]
+                                                            }, 'HTML::Element' )
+                                                   ],
+                                     '_parent' => $VAR1,
+                                     '_tag' => 'body',
+                                     'class' => 'pod'
+                                   }, 'HTML::Element' ),
+                 '_implicit_tags' => 1,
+                 '_head' => bless( {
+                                     '_tag' => 'head',
+                                     '_parent' => $VAR1,
+                                     '_content' => [
+                                                     bless( {
+                                                              '_parent' => $VAR1->{'_head'},
+                                                              '_tag' => 'title',
+                                                              '_content' => [
+                                                                              "Easy To Miss - \x{b193}\x{ce58}\x{ae30} \x{c26c}\x{c6b4} Generic \x{ac1c}\x{b150}\x{b4e4}"
+                                                                            ]
+                                                            }, 'HTML::Element' ),
+                                                     bless( {
+                                                              'content' => 'text/html; charset=ISO-8859-1',
+                                                              '_tag' => 'meta',
+                                                              'http-equiv' => 'Content-Type',
+                                                              '_parent' => $VAR1->{'_head'}
+                                                            }, 'HTML::Element' )
+                                                   ]
+                                   }, 'HTML::Element' ),
+                 '_p_strict' => 0,
+                 '_tag' => 'html',
+                 '_no_space_compacting' => 0,
+                 '_store_pis' => 0,
+                 '_hparser_xs_state' => \'94246316178976',
+                 '_store_declarations' => 1,
+                 '_ignore_unknown' => 1,
+                 '_tighten' => 1,
+                 '_element_count' => 3,
+                 '_implicit_body_p_tag' => 0,
+                 '_content' => [
+                                 $VAR1->{'_head'},
+                                 $VAR1->{'_body'}
+                               ],
+                 '_pos' => undef,
+                 '_ignore_text' => 0
+               }, 'HTML::TreeBuilder' );
+

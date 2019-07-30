@@ -12,20 +12,21 @@ sub new {
 	my ($class, $title) = @_;
 	my $self;
 	my $post_row = $schema->resultset('Post')->find({
-		title => $title,
+                    title => $title,
 	});
 	bless $self, $class;
 }
 
 sub htmlbody {
 	my $self = shift;
-	# croak "not object of BlogVillain::POD" unless ref($self) eq 'BlogVillain::POD';
+	# croak "not object of BlogVillain::POD" 
+    #  unless ref($self) eq 'BlogVillain::POD';
 
 	pod2html($self->{content});
-	my $html = HTML::TreeBuilder->new_from_content($self->{content});
+	my $html = HTML::TreeBuilder->new_from_content(
+                $self->{content});
 
 	return $html;
-
 }
 
 sub pod2html {
