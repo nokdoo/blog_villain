@@ -1,6 +1,6 @@
 *.bak
 *.swp
-/local
+local/
 cpanfile.snapshot
-/log
-/private
+log/
+private/

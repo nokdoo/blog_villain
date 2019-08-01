@@ -10,7 +10,7 @@ Easy To Miss - 놓치기 쉬운 Generic 개념들
 =begin html
 
 <pre><code class="java">
- List<String> l1 = new ArrayList<String>();
+ List&lt;String&gt; l1 = new ArrayList<String>();
  List<Integer> l2 = new ArrayList<Integer>();
  System.out.println(l1.getClass() == l2.getClass());
 </code></pre>
