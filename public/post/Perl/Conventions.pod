@@ -1,0 +1,567 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+Conventions - code style
+
+=head2 Best Practices
+
+=over 4
+
+=item * Robustness
+
+=item * Efficiency
+
+=item * Maintainability
+
+=back
+
+=head2 Code Layout
+
+=head3 Bracketing *
+
+K&R 스타일의 코드를 사용하자.
+
+=begin html
+
+<pre><code class="perl">
+my @names = (
+    'Damian',
+    'Matthew',
+    'Conway',
+);
+
+# not
+
+my @names = 
+(
+    'Damian',
+    'Matthew',
+    'Conway',
+);
+</code></pre>
+
+=end html
+
+=head3 Keywords *
+
+keyword 다음에 따라오는 괄호를 띄운다.
+
+=begin html
+
+<pre><code class="perl">
+for my $result (@results) {
+    print_sep();
+    print $result;
+}
+
+while ($min < $max) {
+    my $try = ($max - $min) / 2;
+    if ($value[$try] < $target) {
+        $max = $try;
+    }
+    else {
+        $min = $try;
+    }
+}
+
+# not
+
+for my $result(@results) {
+    print_sep();
+    print $result;
+}
+
+while($min < $max) {
+    my $try = ($max - $min) / 2;
+    if($value[$try] < $target) {
+        $max = try;
+    }
+    else {
+        $min = try;
+    }
+}
+</code></pre>
+
+=end html
+
+=head3 Subroutines and Variables *
+
+함수나 변수 다음에 따라오는 괄호는 띄우지 않는다.
+
+=begin html
+
+<pre><code class="perl">
+my @candidates = get_candidates($marker);
+my $candidates[$i] = $incumbent{ $candidates[$i]{region} };
+
+# not
+
+my @candidates = get_candidates ($marker);
+my $candidates [$i] = $incumbent{ $candidates [$i] {region} };
+</code></pre>
+
+=end html
+
+=head3 Builtins
+
+내장된 함수의 호출 시 괄호를 사용하지 않아도 된다.
+
+=begin html
+
+<pre><code class="perl">
+chomp $record;
+my ($name, $votes) = split "\t", $record;
+print 'Votes for ',
+      substr($name, 0, 10),
+      ": $votes (verified)\n";
+
+# not
+
+chomp ($record);
+my ($name, $votes) = split ("\t", $record);
+print (
+    'Votes for ',
+    substr($name, 0, 10),
+    ": $votes (verified)\n"
+);
+</code></pre>
+
+=end html
+
+=head3 Keys and Indices
+
+hash 의 키나 array 의 인덱스가 복잡하게 표현되면
+이들을 감싸고 있는 괄호를 띄운다.
+
+=begin html
+
+<pre><code class="perl">
+$candidates[$i] = $incumbent{ $candidates[$i]{ get_region() } };
+print $incumbent{ $largest_gerrymandered_constituency };
+
+# not
+
+$candidates[$i] = $incumbent{$candidates[$i]{get_region()}};
+print $incumbent{$largest_gerrymandered_constituency};
+</code></pre>
+
+=end html
+
+=head3 Operators *
+
+=over 4
+
+=item * Unary Operator
+
+operator 를 이해하기 쉽도록 operand 를 붙인다.
+
+=begin html
+
+<pre><code class="perl">
+my $spring_force = !$hyperextended 
+                   ? -$spring_constant * $extension : 0;
+
+# not
+
+my $spring_force = ! $hyperextended 
+                   ? - $spring_constant * $extension : 0;
+</code></pre>
+
+=end html
+
+=item * Binary Operator
+
+operator 를 읽기 쉽도록 operand 를 띄운다.
+
+=begin html
+
+<pre><code class="perl">
+my $displacement 
+    = $initial_velocity * $time + 0.5 * $acceleration * $time**2;
+my $price 
+    = $coupon_paid * $exp_rate + ($face_val + $coupon_paid)
+      * $exp_rate**2;
+
+# not
+
+my $displacement 
+    = $initial_velocity*$time+0.5*$acceleration*$time**2;
+my $price 
+    = $coupon_paid*$exp_rate+($face_val+$coupon_paid)
+      *$exp_rate**2;
+
+</code></pre>
+
+=end html
+
+=back
+
+=head3 Commas
+
+리스트 확장을 보다 쉽게하기 위해 comma 를 마지막에 추가하자.
+
+=begin html
+
+<pre><code class="perl">
+my @dwarves = (
+    'Happy',
+    'Sleep',
+    'Doc',
+);
+
+# not 
+
+my @dwarves = (
+    'Happy',
+    'Sleep'     # <------ error
+    'Doc',
+);
+</code></pre>
+
+=end html
+
+=head3 Line Lengths *
+
+한 줄에 작성되는 코드는 78 칸을 넘지 않는다.
+
+=head3 Indentation and Tabs *
+
+들여쓰기는 4 칸의 빈 공백을 사용한다.
+
+탭은 4 칸의 빈 공백으로 대체한다.
+
+=head3 Blocks *
+
+블록 내 한 라인에 두 개의 statment 를 넣지 않는다.
+
+=begin html
+
+<pre><code class="perl">
+my @clean_words
+    = map {
+        my @word = $_;
+        $word =~ s/$EXPLETIVE/[DELETED]/gxms;
+        $word;
+      } @ raw_words;
+
+# not 
+
+my @clean_words
+    = map { my @word = $_; $word =~ s/$EXPLETIVE/[DELETED]/gxms;
+        $word;
+      } @ raw_words;
+</code></pre>
+
+=end html
+
+=head3 Chunking *
+
+하나의 task 를 구성하는 statement 들을 하나로 묶는다.
+
+=begin html
+
+<pre><code class="perl">
+# Process an array that has been recognized....
+sub addarray_internal {
+    my ($var_name, $needs_quotemeta) = @_;
+    
+    # Cache the original...
+    $raw .= $var_name;
+    
+    # Build meta-quoting code, if requested...
+    my $quotemeta 
+        = $needs_quotemeta ? q{map {quotemeta $_} } : $EMPTY_STR;
+    
+    # Expand elements of variable, conjoin with ORs...
+    my $perl5pat = qq{(??{join q{|}, $quotemeta \@{$var_name}})};
+    
+    # Insert debugging code if requested...
+    my $type = $quotemeta ? 'literal' : 'pattern';
+    debug_now("Adding $var_name (as $type)");
+    add_debug_mesg("Trying $var_name (as $type)");
+    return $perl5pat;
+}
+
+# not
+
+sub addarray_internal {
+    my ($var_name, $needs_quotemeta) = @_;
+    # Cache the original...
+    $raw .= $var_name;
+    # Build meta-quoting code, if requested...
+    my $quotemeta 
+        = $needs_quotemeta ? q{map {quotemeta $_} } : $EMPTY_STR;
+    # Expand elements of variable, conjoin with ORs...
+    my $perl5pat = qq{(??{join q{|}, $quotemeta \@{$var_name}})};
+    # Insert debugging code if requested...
+    my $type = $quotemeta ? 'literal' : 'pattern';
+    debug_now("Adding $var_name (as $type)");
+    add_debug_mesg("Trying $var_name (as $type)");
+    return $perl5pat;
+}
+</code></pre>
+
+=end html
+
+=head3 Elses *
+
+elsif 와 else 를 새로운 줄에서 시작한다.
+
+=begin html
+
+<pre><code class="perl">
+if ($sigil eq '$') {
+    if ($subsigil eq '?') {
+        # statement; 
+    }
+    else {
+        # statement;
+    }
+}
+elsif ($sigil eq '@' ) {
+    # statement;
+}
+else {
+    # statement;
+}
+
+# not
+
+if ($sigil eq '$') {
+    if ($subsigil eq '?') {
+        # statement; 
+    } else {
+        # statement;
+    }
+} elsif ($sigil eq '@' ) {
+    # statement;
+} else {
+    # statement;
+}
+</code></pre>
+
+=end html
+
+=head3 Vertical Alignment *
+
+같은 의미를 가지고 있는 토큰들을 일관성있게 수직으로 정렬한다.
+
+=begin html
+
+<pre><code class="perl">
+my @months = qw(
+    January February March
+    April   May      June
+    July    August   September
+    October November December
+);
+
+my %expansion_of = (
+    q{it's}     => q{it is},
+    q{we're}    => q{we are},
+    q{didn't}   => q{did not},
+    q{must've}  => q{must have},
+    q{I'll}     => q{I will},
+);
+
+my $name   = standardize_name($name);
+my $age    = time - $birth_date;
+my $status = 'active';
+
+my $indent{ name   } = standardize_name($name);
+my $indent{ age    } = time - $birth_date;
+my $indent{ status } = 'active';
+
+# not
+
+my @months = qw(
+    January February March April May June July August September
+    October November December
+);
+
+my %expansion_of = (
+    q{it's} => q{it is},
+    q{we're} => q{we are},
+    q{didn't} => q{did not},
+    q{must've} => q{must have},
+    q{I'll} => q{I will},
+);
+
+my $name = standardize_name($name);
+my $age = time - $birth_date;
+my $status = 'active';
+
+my $indent{name} = standardize_name($name);
+my $indent{age} = time - $birth_date;
+my $indent{status} = 'active';
+</code></pre>
+
+=end html
+
+=head3 Breaking Long Lines having many operators *
+
+여러 operator 의 사용으로 줄이 길어진다면, 
+operator 로 시작하도록 줄바꿈 한다.
+
+=begin html
+
+<pre><code class="perl">
+push @steps, $steps[-1]
+             + $radial_velocity * $elapsed_time
+             + $orbital_velocity * ($phase + $phase_shift)
+             - $drag_coeff * $altitude
+             ;
+
+# not 
+
+push @steps, $steps[-1] + 
+    $radial_velocity * $elapsed_time +
+    $orbital_velocity * ($phase + $phase_shift) -
+    $drag_coeff * $altitude;
+
+push @steps, $steps[-1]
+    + $radial_velocity * $elapsed_time
+    + $orbital_velocity * ($phase + $phase_shift)
+    - $drag_coeff * $altitude
+    ;
+</code></pre>
+
+=end html
+
+줄바꿈을 하게 되면 우선순위가 낮은 operator 로 시작하도록
+줄바꿈 한다.
+
+=begin html
+
+<pre><code class="perl">
+push @steps, $steps[-1]
+             + $radial_velocity * $elapsed_time
+             + $orbital_velocity * ($phase + $phase_shift)
+             - $drag_coeff * $altitude
+             ;
+
+# not
+
+push @steps, $steps[-1] + $radial_velocity 
+             * $elapsed_time + $orbital_velocity 
+             * ($phase + $phase_shift) - $drag_coeff 
+             * $altitude
+             ;
+</code></pre>
+
+=end html
+
+=head3 Non-Terminal Expressions *
+
+L</Breaking Long Lines having many operators *> 는 long expression 이
+statement 의 마지막에 올 때 적용가능하다.
+
+long expression 이 statment 중앙에 올 때는 새로운 변수를 만들어
+사용한다.
+
+=begin html
+
+<pre><code class="perl">
+my $next_step = $steps[-1]
+                + $radial_velocity * $elapsed_time
+                + $orbital_velocity * ($phase + $phase_shift)
+                - $drag_coeff * $altitude
+                ;
+add_step( \@steps, $next_step, $elapsed_time );
+
+# not
+
+add_step( \@steps, $steps[-1]
+                   + $radial_velocity * $elapsed_time
+                   + $orbital_velocity * ($phase + $phase_shift)
+                   - $drag_coeff * $altitude
+                   , $elapsed_time ); 
+</code></pre>
+
+=end html
+
+=head3 Assignments *
+
+assignment 가 길어질 경우 assignment operator 로 시작하도록
+줄바꿈 한다.
+
+=begin html
+
+<pre><code class="perl">
+my $predicted_val 
+    = ($minimum + $maximum) / 2
+      + $predicted_change 
+      * max($fudge_factor, $local_epsilon);
+
+# not
+
+my $predicted_val = ($minimum + $maximum) / 2
+                    + $predicted_change 
+                    * max($fudge_factor, $local_epsilon);
+</code></pre>
+
+=end html
+
+=head3 Ternaries *
+
+삼항 연산자가 길어질 경우 2 개의 컬럼을 가진 형태로 만든다.
+
+=begin html
+
+<pre><code class="perl">
+my $salute = $name eq $EMPTY_STR    ? 'Customer'
+           : $name =~ m/regex/      ? $1
+           : $name =~ m/regex/      ? "Dr $1"
+           :                          $name
+           ;
+
+# not
+
+my $salute = $name eq $EMPTY_STR ? 'Customer'
+           : $name =~ m/regex_abcd/ ? $1
+           : $name =~ m/regex/ ? "Dr $1" : $name;
+</code></pre>
+
+=end html
+
+=head3 Lists
+
+긴 리스트를 표현할 경우 괄호로 감싸서 리스트임을 표현해주자.
+
+=begin html
+
+<pre><code class="perl">
+push @items, (
+    "A brand new $item",
+    "A fully refurbished $item",
+    "A ratty old $item",
+);
+
+print (
+    'Processing ',
+    scalar(@items),
+    ' items at ',
+    time,
+    "\n",
+);
+
+# not
+
+push @items, "A brand new $item",
+             "A fully refurbished $item",
+             "A ratty old $item",
+
+print 'Processing '
+      , scalar(@items)
+      , ' items at '
+      , time
+      , "\n"
+      ;
+</code></pre>
+
+=end html
+
+
+=cut

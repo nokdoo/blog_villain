@@ -41558,3 +41558,310 @@ Compilation failed in require at (eval 99) line 1.
 [2019-07-30 23:41:40.16065] [25078] [debug] Rendering cached template "home.html.ep"
 [2019-07-30 23:41:40.16080] [25078] [debug] Rendering cached template "layouts/default.html.ep"
 [2019-07-30 23:41:40.16123] [25078] [debug] 200 OK (0.001635s, 611.621/s)
+[2019-08-02 14:16:37.99825] [28390] [debug] GET "/" (a2c445a7)
+[2019-08-02 14:16:37.99924] [28390] [debug] Rendering template "home.html.ep"
+[2019-08-02 14:16:38.00004] [28390] [debug] Rendering template "layouts/default.html.ep"
+[2019-08-02 14:16:38.00143] [28390] [debug] 200 OK (0.00316899999999998s, 315.557/s)
+[2019-08-02 14:16:39.06833] [28390] [debug] GET "/post/categories" (c8cb3432)
+[2019-08-02 14:16:39.17478] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-08-02 14:16:39.19251] [28390] [debug] Rendering template "post/categories.html.ep"
+[2019-08-02 14:16:39.19419] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 14:16:39.19451] [28390] [debug] 200 OK (0.126172s, 7.926/s)
+[2019-08-02 14:16:39.30472] [28390] [debug] GET "/post/categories.css" (7cacb250)
+[2019-08-02 14:16:39.30518] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-08-02 14:16:39.30644] [28390] [debug] Template "post/categories.css.ep" not found
+[2019-08-02 14:16:39.30670] [28390] [debug] Template "not_found.development.css.ep" not found
+[2019-08-02 14:16:39.30693] [28390] [debug] Template "not_found.css.ep" not found
+[2019-08-02 14:16:39.30720] [28390] [debug] Template "not_found.development.html.ep" not found
+[2019-08-02 14:16:39.30740] [28390] [debug] Template "not_found.html.ep" not found
+[2019-08-02 14:16:39.30753] [28390] [debug] Rendering template "mojo/debug.html.ep"
+[2019-08-02 14:16:39.32479] [28390] [debug] 404 Not Found (0.020051s, 49.873/s)
+[2019-08-02 14:16:40.57484] [28390] [debug] GET "/post/Java" (a9dc7091)
+[2019-08-02 14:16:40.57523] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "fulltitles"
+[2019-08-02 14:16:40.57810] [28390] [debug] Rendering template "post/category.html.ep"
+[2019-08-02 14:16:40.57941] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 14:16:40.57966] [28390] [debug] 200 OK (0.004824s, 207.297/s)
+[2019-08-02 14:16:40.63948] [28390] [debug] GET "/post/categories.css" (8c1c3117)
+[2019-08-02 14:16:40.63983] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-08-02 14:16:40.64133] [28390] [debug] Template "post/categories.css.ep" not found
+[2019-08-02 14:16:40.64154] [28390] [debug] Template "not_found.development.css.ep" not found
+[2019-08-02 14:16:40.64166] [28390] [debug] Template "not_found.css.ep" not found
+[2019-08-02 14:16:40.64178] [28390] [debug] Template "not_found.development.html.ep" not found
+[2019-08-02 14:16:40.64189] [28390] [debug] Template "not_found.html.ep" not found
+[2019-08-02 14:16:40.64199] [28390] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-08-02 14:16:40.64609] [28390] [debug] 404 Not Found (0.006594s, 151.653/s)
+[2019-08-02 14:16:42.55830] [28390] [debug] GET "/post/Perl" (50dc2a5c)
+[2019-08-02 14:16:42.55865] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "fulltitles"
+[2019-08-02 14:16:42.56075] [28390] [debug] Rendering cached template "post/category.html.ep"
+[2019-08-02 14:16:42.56251] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 14:16:42.56274] [28390] [debug] 200 OK (0.004432s, 225.632/s)
+[2019-08-02 14:16:42.64706] [28390] [debug] GET "/post/categories.css" (0ce5e59b)
+[2019-08-02 14:16:42.64730] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-08-02 14:16:42.64854] [28390] [debug] Template "post/categories.css.ep" not found
+[2019-08-02 14:16:42.64869] [28390] [debug] Template "not_found.development.css.ep" not found
+[2019-08-02 14:16:42.64877] [28390] [debug] Template "not_found.css.ep" not found
+[2019-08-02 14:16:42.64886] [28390] [debug] Template "not_found.development.html.ep" not found
+[2019-08-02 14:16:42.64892] [28390] [debug] Template "not_found.html.ep" not found
+[2019-08-02 14:16:42.64897] [28390] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-08-02 14:16:42.65425] [28390] [debug] 404 Not Found (0.007111s, 140.627/s)
+[2019-08-02 14:16:44.89217] [28390] [debug] GET "/post/Perl/Conventions" (8c4f19cd)
+[2019-08-02 14:16:44.89255] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 14:16:44.90068] [28390] [debug] Rendering template "post/post.html.ep"
+[2019-08-02 14:16:44.90189] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 14:16:44.90215] [28390] [debug] 200 OK (0.009965s, 100.351/s)
+[2019-08-02 14:17:05.93540] [28390] [debug] GET "/post/Perl/Conventions" (2dea3b3f)
+[2019-08-02 14:17:05.93560] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 14:17:05.94295] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 14:17:05.94340] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 14:17:05.94367] [28390] [debug] 200 OK (0.008261s, 121.051/s)
+[2019-08-02 14:17:36.29184] [28390] [debug] GET "/post/Perl/Conventions" (1a2da10b)
+[2019-08-02 14:17:36.29211] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 14:17:36.29857] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 14:17:36.29902] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 14:17:36.29931] [28390] [debug] 200 OK (0.00746s, 134.048/s)
+[2019-08-02 14:17:55.44336] [28390] [debug] GET "/post/Perl/Conventions" (c4f4f493)
+[2019-08-02 14:17:55.44355] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 14:17:55.45160] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 14:17:55.45204] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 14:17:55.45230] [28390] [debug] 200 OK (0.00894s, 111.857/s)
+[2019-08-02 14:23:46.38676] [28390] [debug] GET "/post/Perl/Conventions" (70da4074)
+[2019-08-02 14:23:46.38719] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 14:23:46.40279] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 14:23:46.40519] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 14:23:46.40666] [28390] [debug] 200 OK (0.019835s, 50.416/s)
+[2019-08-02 14:27:35.74950] [28390] [debug] GET "/post/Perl/Conventions" (163e29f7)
+[2019-08-02 14:27:35.74970] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 14:27:35.75615] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 14:27:35.75649] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 14:27:35.75672] [28390] [debug] 200 OK (0.007211s, 138.677/s)
+[2019-08-02 14:29:14.04057] [28390] [debug] GET "/post/Perl/Conventions" (4902a34e)
+[2019-08-02 14:29:14.04082] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 14:29:14.04816] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 14:29:14.04858] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 14:29:14.04884] [28390] [debug] 200 OK (0.008267s, 120.963/s)
+[2019-08-02 14:29:23.17620] [28390] [debug] GET "/post/Perl/Conventions" (4daeb89f)
+[2019-08-02 14:29:23.17640] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 14:29:23.18315] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 14:29:23.18352] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 14:29:23.18379] [28390] [debug] 200 OK (0.007577s, 131.978/s)
+[2019-08-02 14:30:29.64989] [28390] [debug] GET "/post/Perl/Conventions" (6e281f5a)
+[2019-08-02 14:30:29.65021] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 14:30:29.66641] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 14:30:29.66710] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 14:30:29.66753] [28390] [debug] 200 OK (0.017631s, 56.718/s)
+[2019-08-02 14:30:49.23913] [28390] [debug] GET "/post/Perl/Conventions" (04e9fd59)
+[2019-08-02 14:30:49.23935] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 14:30:49.24726] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 14:30:49.24768] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 14:30:49.24798] [28390] [debug] 200 OK (0.008848s, 113.020/s)
+[2019-08-02 16:18:51.20434] [28390] [debug] GET "/post/Perl/Conventions" (a3ec6722)
+[2019-08-02 16:18:51.20462] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 16:18:51.21621] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 16:18:51.21704] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 16:18:51.21753] [28390] [debug] 200 OK (0.013173s, 75.913/s)
+[2019-08-02 16:19:11.71273] [28390] [debug] GET "/post/Perl/Conventions" (b20f55a5)
+[2019-08-02 16:19:11.71305] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 16:19:11.73425] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 16:19:11.73517] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 16:19:11.73572] [28390] [debug] 200 OK (0.022957s, 43.560/s)
+[2019-08-02 16:20:31.74536] [28390] [debug] GET "/post/Perl/Conventions" (e9742b3b)
+[2019-08-02 16:20:31.74559] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 16:20:31.75483] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 16:20:31.75525] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 16:20:31.75552] [28390] [debug] 200 OK (0.010155s, 98.474/s)
+[2019-08-02 16:20:44.25510] [28390] [debug] GET "/post/Perl/Conventions" (f91ab6d1)
+[2019-08-02 16:20:44.25535] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 16:20:44.26571] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 16:20:44.26623] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 16:20:44.26654] [28390] [debug] 200 OK (0.011425s, 87.527/s)
+[2019-08-02 16:20:55.66062] [28390] [debug] GET "/post/Perl/Conventions" (045064b6)
+[2019-08-02 16:20:55.66086] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 16:20:55.67045] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 16:20:55.67097] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 16:20:55.67128] [28390] [debug] 200 OK (0.010651s, 93.888/s)
+[2019-08-02 20:41:58.60065] [28390] [debug] GET "/post/Perl/Conventions" (45f77bd0)
+[2019-08-02 20:41:58.60101] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 20:41:58.61578] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 20:41:58.61622] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 20:41:58.61649] [28390] [debug] 200 OK (0.015836s, 63.147/s)
+[2019-08-02 20:42:13.22306] [28390] [debug] GET "/post/Perl/Conventions" (7130930c)
+[2019-08-02 20:42:13.22326] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 20:42:13.23858] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 20:42:13.23916] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 20:42:13.23952] [28390] [debug] 200 OK (0.01645s, 60.790/s)
+[2019-08-02 20:50:15.10071] [28390] [debug] GET "/post/Perl/Conventions" (742d0aa8)
+[2019-08-02 20:50:15.10101] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 20:50:15.12109] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 20:50:15.12153] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 20:50:15.12179] [28390] [debug] 200 OK (0.021071s, 47.459/s)
+[2019-08-02 21:11:26.05592] [28390] [debug] GET "/post/Perl/Conventions" (1b1ea70d)
+[2019-08-02 21:11:26.05622] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 21:11:26.08695] [28390] [error] Can't locate object method "as_HTML" via package " =end html 줄바꿈을 하게 되면 우선순위가 낮은 operator 로 시작하도록 줄바꿈 한다. " (perhaps you forgot to load " =end html 줄바꿈을 하게 되면 우선순위가 낮은 operator 로 시작하도록 줄바꿈 한다. "?) at /home/nokdoot/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 31.
+
+[2019-08-02 21:11:26.08731] [28390] [debug] Template "exception.development.html.ep" not found
+[2019-08-02 21:11:26.08740] [28390] [debug] Template "exception.html.ep" not found
+[2019-08-02 21:11:26.08746] [28390] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-08-02 21:11:26.08993] [28390] [debug] 500 Internal Server Error (0.034003s, 29.409/s)
+[2019-08-02 21:11:37.28818] [28390] [debug] GET "/post/Perl/Conventions" (b25f3bc7)
+[2019-08-02 21:11:37.28844] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 21:11:37.31518] [28390] [error] Can't locate object method "as_HTML" via package " =end html 줄바꿈을 하게 되면 우선순위가 낮은 operator 로 시작하도록 줄바꿈 한다. " (perhaps you forgot to load " =end html 줄바꿈을 하게 되면 우선순위가 낮은 operator 로 시작하도록 줄바꿈 한다. "?) at /home/nokdoot/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 31.
+
+[2019-08-02 21:11:37.31565] [28390] [debug] Template "exception.development.html.ep" not found
+[2019-08-02 21:11:37.31576] [28390] [debug] Template "exception.html.ep" not found
+[2019-08-02 21:11:37.31582] [28390] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-08-02 21:11:37.32177] [28390] [debug] 500 Internal Server Error (0.033523s, 29.830/s)
+[2019-08-02 21:11:40.75425] [28390] [debug] GET "/post/Perl/" (1e194ec5)
+[2019-08-02 21:11:40.75479] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "fulltitles"
+[2019-08-02 21:11:40.75807] [28390] [debug] Rendering cached template "post/category.html.ep"
+[2019-08-02 21:11:40.76366] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 21:11:40.76458] [28390] [debug] 200 OK (0.010236s, 97.694/s)
+[2019-08-02 21:11:40.97543] [28390] [debug] GET "/post/categories.css" (7496c8a3)
+[2019-08-02 21:11:40.97596] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-08-02 21:11:40.97748] [28390] [debug] Template "post/categories.css.ep" not found
+[2019-08-02 21:11:40.97784] [28390] [debug] Template "not_found.development.css.ep" not found
+[2019-08-02 21:11:40.97827] [28390] [debug] Template "not_found.css.ep" not found
+[2019-08-02 21:11:40.97871] [28390] [debug] Template "not_found.development.html.ep" not found
+[2019-08-02 21:11:40.97898] [28390] [debug] Template "not_found.html.ep" not found
+[2019-08-02 21:11:40.97921] [28390] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-08-02 21:11:40.98366] [28390] [debug] 404 Not Found (0.008211s, 121.788/s)
+[2019-08-02 21:11:42.76338] [28390] [debug] GET "/post/Perl/Conventions" (7fd6b584)
+[2019-08-02 21:11:42.76368] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 21:11:42.79243] [28390] [error] Can't locate object method "as_HTML" via package " =end html 줄바꿈을 하게 되면 우선순위가 낮은 operator 로 시작하도록 줄바꿈 한다. " (perhaps you forgot to load " =end html 줄바꿈을 하게 되면 우선순위가 낮은 operator 로 시작하도록 줄바꿈 한다. "?) at /home/nokdoot/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 31.
+
+[2019-08-02 21:11:42.79271] [28390] [debug] Template "exception.development.html.ep" not found
+[2019-08-02 21:11:42.79286] [28390] [debug] Template "exception.html.ep" not found
+[2019-08-02 21:11:42.79296] [28390] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-08-02 21:11:42.79659] [28390] [debug] 500 Internal Server Error (0.033202s, 30.119/s)
+[2019-08-02 21:11:59.29261] [28390] [debug] GET "/post/Perl/Conventions" (a0d1d344)
+[2019-08-02 21:11:59.29282] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 21:11:59.30955] [28390] [error] Can't locate object method "as_HTML" via package " =end html 줄바꿈을 하게 되면 우선순위가 낮은 operator 로 시작하도록 줄바꿈 한다. " (perhaps you forgot to load " =end html 줄바꿈을 하게 되면 우선순위가 낮은 operator 로 시작하도록 줄바꿈 한다. "?) at /home/nokdoot/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 31.
+
+[2019-08-02 21:11:59.30985] [28390] [debug] Template "exception.development.html.ep" not found
+[2019-08-02 21:11:59.30993] [28390] [debug] Template "exception.html.ep" not found
+[2019-08-02 21:11:59.31000] [28390] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-08-02 21:11:59.31266] [28390] [debug] 500 Internal Server Error (0.020031s, 49.923/s)
+[2019-08-02 21:12:21.34003] [28390] [debug] GET "/post/Perl/Conventions" (d165a0bc)
+[2019-08-02 21:12:21.34027] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 21:12:21.34210] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 21:12:21.34249] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 21:12:21.34273] [28390] [debug] 200 OK (0.002688s, 372.024/s)
+[2019-08-02 21:12:23.82646] [28390] [debug] GET "/post/Perl/Conventions" (072db997)
+[2019-08-02 21:12:23.82673] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 21:12:23.82840] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 21:12:23.82879] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 21:12:23.82921] [28390] [debug] 200 OK (0.002722s, 367.377/s)
+[2019-08-02 21:12:24.45013] [28390] [debug] GET "/post/Perl/Conventions" (1aa4ccb0)
+[2019-08-02 21:12:24.45042] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 21:12:24.45278] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 21:12:24.45333] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 21:12:24.45372] [28390] [debug] 200 OK (0.003574s, 279.799/s)
+[2019-08-02 21:12:38.64905] [28390] [debug] GET "/post/Perl/Conventions" (1b95413c)
+[2019-08-02 21:12:38.64935] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 21:12:38.67847] [28390] [error] Can't locate object method "as_HTML" via package " =end html 줄바꿈을 하게 되면 우선순위가 낮은 operator 로 시작하도록 줄바꿈 한다. " (perhaps you forgot to load " =end html 줄바꿈을 하게 되면 우선순위가 낮은 operator 로 시작하도록 줄바꿈 한다. "?) at /home/nokdoot/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 31.
+
+[2019-08-02 21:12:38.67942] [28390] [debug] Template "exception.development.html.ep" not found
+[2019-08-02 21:12:38.67959] [28390] [debug] Template "exception.html.ep" not found
+[2019-08-02 21:12:38.67974] [28390] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-08-02 21:12:38.68666] [28390] [debug] 500 Internal Server Error (0.037516s, 26.655/s)
+[2019-08-02 21:13:41.14810] [28390] [debug] GET "/post/Perl/Conventions" (3324235e)
+[2019-08-02 21:13:41.14831] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 21:13:41.16562] [28390] [error] Can't locate object method "as_HTML" via package " =end html " (perhaps you forgot to load " =end html "?) at /home/nokdoot/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 31.
+
+[2019-08-02 21:13:41.16585] [28390] [debug] Template "exception.development.html.ep" not found
+[2019-08-02 21:13:41.16592] [28390] [debug] Template "exception.html.ep" not found
+[2019-08-02 21:13:41.16598] [28390] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-08-02 21:13:41.16877] [28390] [debug] 500 Internal Server Error (0.020665s, 48.391/s)
+[2019-08-02 21:14:05.81849] [28390] [debug] GET "/post/Perl/Conventions" (c544b28a)
+[2019-08-02 21:14:05.81875] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 21:14:05.83800] [28390] [error] Can't locate object method "as_HTML" via package " =end html " (perhaps you forgot to load " =end html "?) at /home/nokdoot/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 31.
+
+[2019-08-02 21:14:05.83825] [28390] [debug] Template "exception.development.html.ep" not found
+[2019-08-02 21:14:05.83837] [28390] [debug] Template "exception.html.ep" not found
+[2019-08-02 21:14:05.83844] [28390] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-08-02 21:14:05.84113] [28390] [debug] 500 Internal Server Error (0.02263s, 44.189/s)
+[2019-08-02 21:18:34.03597] [28390] [debug] GET "/post/Perl/Conventions" (901496bc)
+[2019-08-02 21:18:34.03646] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 21:18:34.06283] [28390] [error] Can't locate object method "as_HTML" via package " =end html 줄바꿈을 하게 되면 우선순위가 낮은 operator 로 시작하도록 줄바꿈 한다. " (perhaps you forgot to load " =end html 줄바꿈을 하게 되면 우선순위가 낮은 operator 로 시작하도록 줄바꿈 한다. "?) at /home/nokdoot/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 31.
+
+[2019-08-02 21:18:34.06352] [28390] [debug] Template "exception.development.html.ep" not found
+[2019-08-02 21:18:34.06399] [28390] [debug] Template "exception.html.ep" not found
+[2019-08-02 21:18:34.06430] [28390] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-08-02 21:18:34.06986] [28390] [debug] 500 Internal Server Error (0.033876s, 29.519/s)
+[2019-08-02 21:20:01.61982] [28390] [debug] GET "/post/Perl/Conventions" (ecb3b56d)
+[2019-08-02 21:20:01.62020] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 21:20:01.63681] [28390] [error] Can't locate object method "as_HTML" via package " =end html " (perhaps you forgot to load " =end html "?) at /home/nokdoot/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 31.
+
+[2019-08-02 21:20:01.63703] [28390] [debug] Template "exception.development.html.ep" not found
+[2019-08-02 21:20:01.63710] [28390] [debug] Template "exception.html.ep" not found
+[2019-08-02 21:20:01.63715] [28390] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-08-02 21:20:01.63952] [28390] [debug] 500 Internal Server Error (0.019703s, 50.754/s)
+[2019-08-02 21:20:11.09593] [28390] [debug] GET "/post/Perl/Conventions" (71fb3cf6)
+[2019-08-02 21:20:11.09614] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 21:20:11.11358] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 21:20:11.11401] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 21:20:11.11425] [28390] [debug] 200 OK (0.018323s, 54.576/s)
+[2019-08-02 21:20:47.33264] [28390] [debug] GET "/post/Perl/Conventions" (d91d66a9)
+[2019-08-02 21:20:47.33307] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 21:20:47.35535] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 21:20:47.35581] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 21:20:47.35609] [28390] [debug] 200 OK (0.023443s, 42.657/s)
+[2019-08-02 21:50:15.37034] [28390] [debug] GET "/post/Perl/Conventions" (9318da8d)
+[2019-08-02 21:50:15.37069] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 21:50:15.38997] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 21:50:15.39052] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 21:50:15.39081] [28390] [debug] 200 OK (0.020481s, 48.826/s)
+[2019-08-02 21:59:21.00967] [28390] [debug] GET "/post/Perl/Conventions" (769b1750)
+[2019-08-02 21:59:21.00996] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 21:59:21.04350] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 21:59:21.04416] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 21:59:21.04461] [28390] [debug] 200 OK (0.034927s, 28.631/s)
+[2019-08-02 22:07:28.92036] [28390] [debug] GET "/post/Perl/Conventions" (4588d9af)
+[2019-08-02 22:07:28.92067] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 22:07:28.94169] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 22:07:28.94239] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 22:07:28.94269] [28390] [debug] 200 OK (0.022321s, 44.801/s)
+[2019-08-02 22:08:46.72354] [28390] [debug] GET "/post/Perl/Conventions" (3ee74a22)
+[2019-08-02 22:08:46.72382] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 22:08:46.74791] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 22:08:46.74835] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 22:08:46.74860] [28390] [debug] 200 OK (0.025055s, 39.912/s)
+[2019-08-02 22:09:34.75345] [28390] [debug] GET "/post/Perl/Conventions" (6bebb822)
+[2019-08-02 22:09:34.75368] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 22:09:34.78122] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 22:09:34.78166] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 22:09:34.78192] [28390] [debug] 200 OK (0.028468s, 35.127/s)
+[2019-08-02 22:20:47.57806] [28390] [debug] GET "/post/Perl/Conventions" (000fd862)
+[2019-08-02 22:20:47.57829] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 22:20:47.59810] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 22:20:47.59851] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 22:20:47.59878] [28390] [debug] 200 OK (0.020713s, 48.279/s)
+[2019-08-02 22:20:50.37416] [28390] [debug] GET "/post/Perl/Conventions" (0dc5cdf8)
+[2019-08-02 22:20:50.37440] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 22:20:50.39671] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 22:20:50.39714] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 22:20:50.39740] [28390] [debug] 200 OK (0.023234s, 43.040/s)
+[2019-08-02 22:20:52.24804] [28390] [debug] GET "/post/Perl/Conventions" (a93b5723)
+[2019-08-02 22:20:52.24874] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 22:20:52.27026] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 22:20:52.27083] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 22:20:52.27110] [28390] [debug] 200 OK (0.023085s, 43.318/s)
+[2019-08-02 22:24:57.08768] [28390] [debug] GET "/post/Perl/Conventions" (5b82d9f1)
+[2019-08-02 22:24:57.08791] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 22:24:57.10774] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 22:24:57.10819] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 22:24:57.10849] [28390] [debug] 200 OK (0.020803s, 48.070/s)
+[2019-08-02 22:25:17.90111] [28390] [debug] GET "/post/Perl/Conventions" (393fa143)
+[2019-08-02 22:25:17.90142] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 22:25:17.93931] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 22:25:17.94019] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 22:25:17.94062] [28390] [debug] 200 OK (0.039489s, 25.324/s)
+[2019-08-02 22:25:20.05138] [28390] [debug] GET "/post/Perl/Conventions" (b523f2e1)
+[2019-08-02 22:25:20.05159] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 22:25:20.07224] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 22:25:20.07274] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 22:25:20.07300] [28390] [debug] 200 OK (0.021607s, 46.281/s)
+[2019-08-02 22:25:23.90889] [28390] [debug] GET "/post/Perl/Conventions" (04a7c38d)
+[2019-08-02 22:25:23.90911] [28390] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-02 22:25:23.92804] [28390] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-02 22:25:23.92848] [28390] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-02 22:25:23.92874] [28390] [debug] 200 OK (0.019847s, 50.385/s)
