@@ -41865,3 +41865,99 @@ Compilation failed in require at (eval 99) line 1.
 [2019-08-02 22:25:23.92804] [28390] [debug] Rendering cached template "post/post.html.ep"
 [2019-08-02 22:25:23.92848] [28390] [debug] Rendering cached template "layouts/default.html.ep"
 [2019-08-02 22:25:23.92874] [28390] [debug] 200 OK (0.019847s, 50.385/s)
+[2019-08-03 17:46:30.54752] [23115] [debug] GET "/" (7d424536)
+[2019-08-03 17:46:30.54840] [23115] [debug] Rendering template "home.html.ep"
+[2019-08-03 17:46:30.54945] [23115] [debug] Rendering template "layouts/default.html.ep"
+[2019-08-03 17:46:30.55164] [23115] [debug] 200 OK (0.004091s, 244.439/s)
+[2019-08-03 17:46:30.76623] [23115] [debug] GET "/" (63827dfc)
+[2019-08-03 17:46:30.76660] [23115] [debug] Rendering cached template "home.html.ep"
+[2019-08-03 17:46:30.76699] [23115] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-03 17:46:30.76875] [23115] [debug] 200 OK (0.00249s, 401.606/s)
+[2019-08-03 17:46:31.87400] [23115] [debug] GET "/post/categories" (84242d15)
+[2019-08-03 17:46:32.01626] [23115] [debug] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-08-03 17:46:32.05129] [23115] [debug] Rendering template "post/categories.html.ep"
+[2019-08-03 17:46:32.05427] [23115] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-03 17:46:32.05469] [23115] [debug] 200 OK (0.180671s, 5.535/s)
+[2019-08-03 17:46:32.21315] [23115] [debug] GET "/post/categories.css" (0745c613)
+[2019-08-03 17:46:32.21436] [23115] [debug] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-08-03 17:46:32.21847] [23115] [debug] Template "post/categories.css.ep" not found
+[2019-08-03 17:46:32.21916] [23115] [debug] Template "not_found.development.css.ep" not found
+[2019-08-03 17:46:32.21933] [23115] [debug] Template "not_found.css.ep" not found
+[2019-08-03 17:46:32.21946] [23115] [debug] Template "not_found.development.html.ep" not found
+[2019-08-03 17:46:32.21957] [23115] [debug] Template "not_found.html.ep" not found
+[2019-08-03 17:46:32.21968] [23115] [debug] Rendering template "mojo/debug.html.ep"
+[2019-08-03 17:46:32.23992] [23115] [debug] 404 Not Found (0.026786s, 37.333/s)
+[2019-08-03 17:46:32.93281] [23115] [debug] GET "/post/Perl" (5ba2c9de)
+[2019-08-03 17:46:32.93325] [23115] [debug] Routing to controller "BlogVillain::Controller::Post" and action "fulltitles"
+[2019-08-03 17:46:32.93589] [23115] [debug] Rendering template "post/category.html.ep"
+[2019-08-03 17:46:32.93841] [23115] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-03 17:46:32.93867] [23115] [debug] 200 OK (0.00585s, 170.940/s)
+[2019-08-03 17:46:33.14388] [23115] [debug] GET "/post/categories.css" (6d5b6ddb)
+[2019-08-03 17:46:33.14436] [23115] [debug] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-08-03 17:46:33.14665] [23115] [debug] Template "post/categories.css.ep" not found
+[2019-08-03 17:46:33.14710] [23115] [debug] Template "not_found.development.css.ep" not found
+[2019-08-03 17:46:33.14724] [23115] [debug] Template "not_found.css.ep" not found
+[2019-08-03 17:46:33.14737] [23115] [debug] Template "not_found.development.html.ep" not found
+[2019-08-03 17:46:33.14748] [23115] [debug] Template "not_found.html.ep" not found
+[2019-08-03 17:46:33.14758] [23115] [debug] Rendering cached template "mojo/debug.html.ep"
+[2019-08-03 17:46:33.15240] [23115] [debug] 404 Not Found (0.008483s, 117.883/s)
+[2019-08-03 17:46:35.24162] [23115] [debug] GET "/post/Perl/Conventions" (7674b224)
+[2019-08-03 17:46:35.24209] [23115] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-03 17:46:35.26810] [23115] [debug] Rendering template "post/post.html.ep"
+[2019-08-03 17:46:35.27254] [23115] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-03 17:46:35.27342] [23115] [debug] 200 OK (0.031772s, 31.474/s)
+[2019-08-03 17:47:22.55956] [23115] [debug] GET "/post/Perl/Conventions" (bb5d70a6)
+[2019-08-03 17:47:22.55984] [23115] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-03 17:47:22.58097] [23115] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-03 17:47:22.58163] [23115] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-03 17:47:22.58195] [23115] [debug] 200 OK (0.022377s, 44.689/s)
+[2019-08-03 17:47:35.31987] [23115] [debug] GET "/post/Perl/Conventions" (06d6e5ea)
+[2019-08-03 17:47:35.32013] [23115] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-03 17:47:35.34391] [23115] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-03 17:47:35.34447] [23115] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-03 17:47:35.34485] [23115] [debug] 200 OK (0.024962s, 40.061/s)
+[2019-08-03 17:47:37.21699] [23115] [debug] GET "/post/Perl/Conventions" (e5c87642)
+[2019-08-03 17:47:37.21724] [23115] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-03 17:47:37.24333] [23115] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-03 17:47:37.24619] [23115] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-03 17:47:37.24726] [23115] [debug] 200 OK (0.03026s, 33.047/s)
+[2019-08-03 17:47:38.01466] [23115] [debug] GET "/post/Perl/Conventions" (4bf6fd93)
+[2019-08-03 17:47:38.01490] [23115] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-03 17:47:38.03847] [23115] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-03 17:47:38.03911] [23115] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-03 17:47:38.03949] [23115] [debug] 200 OK (0.02481s, 40.306/s)
+[2019-08-03 17:48:46.47165] [23115] [debug] GET "/post/Perl/Conventions" (d9c4b13b)
+[2019-08-03 17:48:46.47191] [23115] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-03 17:48:46.49198] [23115] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-03 17:48:46.49262] [23115] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-03 17:48:46.49306] [23115] [debug] 200 OK (0.021412s, 46.703/s)
+[2019-08-03 17:48:58.11714] [23115] [debug] GET "/post/Perl/Conventions" (4273bc6e)
+[2019-08-03 17:48:58.11743] [23115] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-03 17:48:58.15852] [23115] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-03 17:48:58.15913] [23115] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-03 17:48:58.15950] [23115] [debug] 200 OK (0.042348s, 23.614/s)
+[2019-08-03 17:49:17.10952] [23115] [debug] GET "/post/Perl/Conventions" (a354c303)
+[2019-08-03 17:49:17.10976] [23115] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-03 17:49:17.12966] [23115] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-03 17:49:17.13019] [23115] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-03 17:49:17.13051] [23115] [debug] 200 OK (0.02098s, 47.664/s)
+[2019-08-03 17:49:52.72733] [23115] [debug] GET "/post/Perl/Conventions" (23f127e6)
+[2019-08-03 17:49:52.72761] [23115] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-03 17:49:52.72964] [23115] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-03 17:49:52.73013] [23115] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-03 17:49:52.73044] [23115] [debug] 200 OK (0.003092s, 323.415/s)
+[2019-08-03 17:50:07.14949] [23115] [debug] GET "/post/Perl/Conventions" (b7f3b383)
+[2019-08-03 17:50:07.14986] [23115] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-03 17:50:07.15266] [23115] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-03 17:50:07.15340] [23115] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-03 17:50:07.15390] [23115] [debug] 200 OK (0.004329s, 231.000/s)
+[2019-08-03 17:50:18.03894] [23115] [debug] GET "/post/Perl/Conventions" (8daa7d55)
+[2019-08-03 17:50:18.03926] [23115] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-03 17:50:18.06573] [23115] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-03 17:50:18.06629] [23115] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-03 17:50:18.06663] [23115] [debug] 200 OK (0.027682s, 36.125/s)
+[2019-08-03 17:50:27.78458] [23115] [debug] GET "/post/Perl/Conventions" (2228d0f5)
+[2019-08-03 17:50:27.78494] [23115] [debug] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-08-03 17:50:27.81694] [23115] [debug] Rendering cached template "post/post.html.ep"
+[2019-08-03 17:50:27.81752] [23115] [debug] Rendering cached template "layouts/default.html.ep"
+[2019-08-03 17:50:27.81792] [23115] [debug] 200 OK (0.033338s, 29.996/s)

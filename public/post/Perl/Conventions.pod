@@ -528,7 +528,7 @@ my $salute = $name eq $EMPTY_STR ? 'Customer'
 
 =head3 Lists
 
-긴 리스트를 표현할 경우 괄호로 감싸서 리스트임을 표현해주자.
+긴 리스트를 표현할 경우 괄호로 감싸서 리스트임을 명시해주자.
 
 =begin html
 
