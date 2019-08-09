@@ -37,8 +37,6 @@ my $notifier = AnyEvent::Filesys::Notify->new(
             _update($post) if $event->is_modified;
             _delete($post) if $event->is_deleted;
         }
-
-
     },
     parse_events => 0,  # Improves efficiency on certain platforms
 );

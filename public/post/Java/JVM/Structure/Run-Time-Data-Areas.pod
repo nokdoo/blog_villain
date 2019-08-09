@@ -1,0 +1,170 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+Run-Time Data Areas
+
+=head1 DESCRIPTION
+
+JVM 은 프로그램이 실행되는 동안 사용되는 여러 B<run-time data area>
+를 정의한다. 이 data area 의 일부는 JVM 이 실행될 때 생성되고, 
+종료될 때 같이 사라진다. 나머지는 B<per-thread data area> 로, 
+스레드와 함께 생성되고 사라진다.
+
+=head2 PC Register
+
+JVM 은 한 번에 많은 스레드를 공급할 수 있다.
+
+JVM 스레드는 각각이 B<pc register> 를 갖는다. 이 시점에서
+JVM 스레드는 스레드에 대한 I<current method> 를 실행 중이다.
+현재 스레드에 의해서 실행되고 있는 method 의 종류에 의해 
+B<pc register> 가 결정된다.
+
+=over 4
+
+=item * I<non-native> method 면, B<pc register> 는 현재 실행되는 
+JVM instruction 의 주소를 가지고 있다. 
+
+=item * I<native> method 면, JVM 의 B<pc register> 는 정의되지 않는다.
+
+=back
+
+JVM 의 B<pc register> 는 I<returnAddress> 또는 특정 플랫폼에 대한
+native pointer 를 수용할 정도로 충분히 크다.
+
+=head2 JVM Stacks
+
+JVM 스레드는 생성과 동시에 private B<JVM stack> 을 갖는다. 
+B<JVM stack> 은 frame 을 저장한다. frame 은 힙에 할당된다.
+
+B<JVM stack> 은 다른 언어에서 볼 수 있는 stack 과 유사하다.
+지역 변수를 가지고 있고, 함수 실행과 반환의 일부를 담당한다.
+
+B<JVM stack> 은 push, pop 하는 것 외의 방법으로 변경될 수 없다.
+B<JVM stack> 메모리는 연속적일 필요가 없다.
+
+B<JVM stack> 은 필요에 따라 정적 크기를 가질 수 있고,
+동적으로 변할 수도 있다. 정적 크기를 갖는다면 그 크기는 
+stack 이 생성될 때 개별적으로 결정된다.
+
+다음의 예외 조건들은 B<JVM stack> 과 관련있다.
+
+=over 4
+
+=item * 스레드에서의 연산이 허용치보다 큰 B<JVM stack> 을 요구할 때.
+(I<StackOverflowError>)
+
+=item * B<JVM stack> 이 동적으로 확장될 때 메모리가 충분하지 않거나, 
+새로운 스레드를 위한 JVM stack 을 할당할 메모리가 충분하지 않을 때.
+(I<OutOfMemoryError>)
+
+=back
+
+=head2 Heap
+
+JVM 은 모든 JVM 스레드가 공유하는 B<heap> 을 가지고 있다. 
+B<heap> 은 모든 클래스 인스턴스와 배열이 할당되는
+run-time data area 다.
+
+B<heap> 은 VM 이 실행될 때 생성된다. 오브젝트에 대한 
+B<heap> 저장소는 자동 저장소 관리 시스템(GC)에 의해
+다시 조정될 수 있다; 오브젝트는 명시적으로 반환되지 않는다.
+
+JVM 은 저장소 관리의 특정 유형을 추정하지 않는다. B<heap> 의 크기는
+필요에 의해 정적이거나 동적일 수 있다. B<heap> 메모리는 연속적일
+필요가 없다.
+
+다음 예외 조건은 B<heap> 과 관련있다.
+
+=over 4
+
+=item * 연산이 자동 저장소 관리 시스템에서 사용할 수 있는 것보다 큰
+메모리를 요구할 때. (I<OutOfMemoryError>)
+
+=back
+
+=head2 Method Area
+
+JVM 은 모든 JVM 스레드가 공유하는 B<method area> 를 가지고 있다.
+
+B<method area> 는 다른 언어의 컴파일된 코드의 저장 공간과
+유사하거나, OS 프로세스의 'text' 세그먼트와 유사하다. 
+
+B<method area> 는 run-time constant pool, field, method data, 
+method 나 생성자의 코드와 같은 per-class structure 를 저장한다.
+
+B<method area> 는 VM 이 실행될 때 생성된다. B<method area> 는
+힙의 논리적 부분이지만, 간단히 구현된 B<method area> 는 
+garbage collect 또는 압축을 생략할 수 있다. 이것은 
+B<method area> 의 위치나 컴파일 된 코드를 관리하기 위해 
+사용되는 정책을 강요하지 않는다.
+
+B<method area> 의 크기는 필요에 따라 정적이거나 동적이다.
+
+다음 예외 조건은 B<method area> 와 관련있다.
+
+=over 4
+
+=item * B<method area> 의 메모리가 할당 요청을 수용할 수 없을 때.
+(I<OutOfMemoryError>)
+
+=back
+
+=head2 Run-Time Constant Pool
+
+모든 클래스 파일은 B<constant pool> 테이블을 가지고 있다.
+JVM 에 의해 로드된 클래스 또는 인터페이스는
+B<run-time constant pool> 을 갖는다.
+
+B<run-time constant pool> 은 여러 종류의 상수를 갖게 되는데,
+이는 범위는 컴파일 시간에 발견된 리터럴 숫자부터
+런타임 시간에 결정되는 메소드 또는 필드 레퍼런스까지 다양하다.
+
+B<run-time constant pool> 은 다른 프로그래밍 언어의 symbol table
+보다 다양한 데이터를 가지고 있지만, 이와 유사한 기능을 제공한다.
+
+B<run-time constant pool> 은 JVM 의 method area 로부터 할당 받는다.
+
+B<run-time constant pool> 은 JVM 에 의해 클래스 또는 인터페이스가
+생성될 때 생성된다.
+
+다음의 예외 조건은 B<run-time constant pool> 생성과 관련이 있다.
+
+=over 4
+
+=item * 하나의 클래스 또는 인터페이스가 생성될 때
+B<run-time constant pool> 생성이 JVM 의 method area 에서 사용될
+수 있는 것보다 많은 메모리를 요구할 때. (I<OutOfMemoryError>)
+
+=back
+
+=head2 Native Method Stacks
+
+Java 가 아닌 다른 언어로 작성된 B<native method> 를 지원하기 위해
+JVM 은 스택을 사용한다. B<native method stack> 은 C 와 같은 언어로
+작성된 JVM instruction set 인터프리터에 의해 사용될 수 있다.
+
+B<native method> 를 로드할 수 없고 일반적인 스택에 의존하지 않는
+JVM 은 B<native method stack> 을 공급하지 않아도 된다.
+B<native method stack> 이 공급된다면, B<native method stack> 은
+각 스레드가 생성될 때 각 스레드로 할당된다.
+
+B<native method stack> 의 크기는 필요에 의해 정적이거나 동적일 수
+있다. 정적 크기를 갖는다면 각각의 크기는 스택이 생성될 때 개별적으로
+결정된다.
+
+다음의 예외는 B<native method stack> 과 관련있다.
+
+=over 4
+
+=item * 스레드의 연산이 허용된 것보다 큰 B<native method stack> 
+를 요구할 때. (I<StackOverflowError>)
+
+=item * 동적인 B<native method stack> 이 확장하기에 메로리가
+충분하지 않거나 새로운 스레드에 대한 B<native method stack> 을
+생성하기에 메모리가 충분하지 않을 때.(I<OutOfMemoryError>)
+
+=back
+
+=cut

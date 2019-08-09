@@ -25,7 +25,8 @@ sub search_fulltitles_of {
 		{ 'category.category' => $category },
 		{ join => 'category' }
 	);
-    my @fulltitles = map { $_->get_column('fulltitle') } @posts;
+    my @fulltitles = sort { $a cmp $b } 
+                     map { $_->get_column('fulltitle') } @posts;
 	return \@fulltitles;
 }
 
