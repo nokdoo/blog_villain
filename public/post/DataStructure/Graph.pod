@@ -9,20 +9,36 @@ Graph
 
 =over 4
 
-=item * vertex - 정점
+=item * B<vertex> - 정점
 
-=item * edge - 간선
+=item * B<edge> - 간선
 
-=item * skipped edge - DFS 도중 이미 한번 지나쳤던 정점으로 
+=item * B<V> - 정점의 집합
+
+=item * B<E> - 간선의 집합
+
+=item * B<G = {V, E}> or B<{G}> - V 와 E 로 이루어진 그래프 ( 무방향 )
+
+=item * B<< G = <V, E> >> or B<< <G> >> - V 와 E 로 이루어진 그래프 ( 방향 )
+
+=item * B<{v,w}> - 정점 v 와 정점 w 사이의 간선 ( 무방향 )
+
+=item * B<< <v,w> >> - 정점 v 에서 정점 w 로 향하는 간선 ( 방향 )
+
+=item * B<skipped edge> - DFS 도중 이미 한번 지나쳤던 정점으로 
 향하는 간선
 
-=item * followed edge - DFS 의 자취가 되는 간선
+=item * B<followed edge> - DFS 의 자취가 되는 간선
 
-=item * {v,w} - 정점 v 에서 정점 w 로 향하는 간선
+=item * B<source vertex> - 시작 정점
 
 =back
 
-=head2 Biconnectivity
+=head2 Graph Searching
+
+=head3 Biconnectivity 다시 쓰자
+
+임의의 정점을 삭제해도 그래프가 끊기지 않는 성질.
 
 =over 4 
 
@@ -54,13 +70,11 @@ B<cutvertex> 가 존재하지 않는 그래프는 B<biconnected> 그래프다.
 
 다른 방법으로 접근해보자.
 
-서브그래프 B<T> 를 그래프 G 에서 skipped edge 가 제거된 
-그래프라 하자. 즉 서브그래프 B<T> 는 followed edge 로만 연결된다. 
-이제 B<T> 는 n 개의 정점과 n-1 개의 간선을 가지게 되고 
-이는 트리로 간주될 수 있다. 그리고 {v,w} 의 정점 v 는 정점 w 의 
-부모가 된다.
+서브그래프 B<T> 를 그래프 G 에서 B<skipped edge> 가 제거된 그래프라 하자. 즉 서브그래프 B<T> 는 B<followed edge> 로만 연결된다. 
+이제 B<T> 는 n 개의 정점과 n-1 개의 간선을 가지게 되고 이는 트리로 간주될 수 있다. 
+그리고 {v,w} 의 정점 v 는 정점 w 의 부모가 된다.
 
-서브 그래프 B<T> 의 root 에 대한 케이스를 구분해보자.
+서브그래프 B<T> 의 root 에 대한 케이스를 구분해보자.
 
 =over 4
 
@@ -68,12 +82,128 @@ B<cutvertex> 가 존재하지 않는 그래프는 B<biconnected> 그래프다.
 root 는 B<cutvertex> 다.
 
 =item * root 가 아닌 정점 v 와 그 자식 중 하나인 w 가 있다.
-w 의 자손 중에 w 의 조상으로 향하는 skipped edge 를 가진 
-정점이 존재하지 않는다면 v 는 B<cutvertex> 다.
+w 의 자손 중에 w 의 조상으로 향하는 B<skipped edge> 를 가진 정점이 존재하지 않는다면 v 는 B<cutvertex> 다.
 
 =back
 
+=back
+
+=head2 Greedy Algorithms On Graphs
+
+=head3 Minimum Spanning Trees
+
+통신 네트워크는 넓은 간격으로 설치된 여러 스위치로 구성되어있다. 
+이 스위치들은 통신 선로를 통해서 서로 통신하는데, n 개의 스위치가 있다면 n(n-1)/2 개의 통신 선로를 설치할 수 있을 것이다.
+하지만 스위치 간 최소 하나의 통신 선로만 설치하면 되기 때문에, 모두 설치하지 않아도 되며 이 설치 비용을 최소로 하려고 한다.
+
+그래프 G = {V, E} 가 있고, E' 를 우리가 찾으려는 간선의 집합이라고 하자. 그리고 함수 c(E') 는 통신 선로들의 최소 설치 비용이라고 하자.
+또, E' 를 이용해 다시 그려지는 그래프를 G' = {V, E'} 라 하자.
+
+정점들의 간선이 하나씩 존재하기 때문에 G' 은 트리가 됨을 알 수 있고, |E'| = |V| - 1 이 될 것이다. 이때 생성된 트리를 B<minimum spanning tree> 라 한다.
+이 minimum spanning tree 는 최소 하나 이상 존재할 수 있다.
+
+이 트리를 구하는 알고리즘은 두 가지 방법이 있다.
+
+=over 4
+
+=item * Prim's Algorithm
+
+두 개의 집합을 이용한다. 
+
+하나는 간선의 집합 E' 이고 하나는 정점의 집합 N 이다. E' 는 초기에 비어있는 상태며, N 은 V 의 아무 정점 하나를 포함한 상태로 시작한다.
+그리고 |V| - 1 만큼 다음을 반복한다. 
+
+N 에 포함된 정점과 포함되지 않은 정점 사이의 비용이 최소인 간선 e 를 찾는다. 그리고 e 를 E' 에, v 를 N 에 포함시킨다.
+
+=item * Kruskal's Algorithm
+
+초기에 비어있는 간선 집합 E' 를 이용한다.
+
+|V| - 1 만큼 다음을 반복한다.
+
+E' 에 포함되지 않은 최소 비용의 간선 e 를 E' 에 포함시킨다. 이 때 생성되는 그래프 G = {V, E'} 는 사이클이 형성되면 안된다.
 
 =back
+
+이 두 알고리즘은 greedy algorithm 이다. 이 알고리즘은 각 단계에서 최선의 방법을 찾지만 전체 결과가 최선임을 보장해주지 못한다.
+
+위 문제에 대해서는 두 알고리즘 모두 최선의 결과를 반환한다.
+
+Kruskal 알고리즘을 살펴보자.
+
+=begin html
+
+<pre><code class="plaintext">
+# G 의 minimum spanning tree 의 간선 집합을 반환한다.
+function KruskalMST({G}): set
+
+    # 반환할 트리를 초기화.
+    E' <- MakeEmptySet()
+
+    # G' = {G, E'} 의 components 숫자
+    components <- |G|
+
+    # G 의 간선들의 우선순위 큐
+    edges <- make a priority queue containing the edges of G
+
+    foreach vertex u of G do MakeSet(u)
+
+    while components > 1 do
+        {u,w} <- DeleteMin(edges)
+        U <- Find(u)
+        W <- Find(w)
+        if U != W then
+            Union(U, W)
+            Insert({u,w}, E')
+            components <- components - 1
+    return E'
+</code></pre>
+
+=end html
+
+=head3 Single-Source Least-Cost Paths
+
+
+=head2 All Pairs Least-Cost Paths
+
+모든 정점 간 최소 비용 구하기.
+
+n 개의 정점을 B<source vertext> 로 놓고 탐색하면 원하는 정보를 얻을 수 있고, 이는 O(n^3) 의 시간이 걸린다.
+
+같은 시간이 걸리지만 이를 쉽게 구현하는 Floyd-Warshall 알고리즘을 살펴보자.
+
+=begin html
+
+<pre><code class="plaintext">
+# {u, v} 의 비용을 리턴.
+# {u, v} 가 존재하지 않는다면 infinity number 를 리턴.
+# {u, u} 의 비용은 0
+c(u, v)
+
+# V : 그래프 G 의 모든 정점의 집합.
+# U : 정점의 집합. 초기값은 비어있다.
+
+# 그래프 G 의 정점 간 최소 비용을 찾음
+procedure FloydWarshallAllLeastCostPaths(<G>) :
+    
+    # Cost_U[u, v] 는, U 의 한 정점을 중간 지점으로 삼아 정점 u 부터 정점 v 까지 이동하는 최소 비용을 나타낸다.
+    # U 값은 현재 비어 있는 상태. 따라서 중간 지점으므로 Cost_U[u, v] 는 c(u, v) 와 같다.
+    # 초기 U 에 대한 Cost_U 를 설정.
+    foreach vertex u in G do
+        foreach vertex v in G do
+            Cost[u, v] <- c(u, v)
+
+    # V 의 각 정점들을 중간 지점(w)으로 사용.
+    # 모든 정점을 사용하면 U = V 상태와 같다고 본다.
+    foreach vertex w in G do
+        foreach vertex u in G do
+            foreach vertex u in G do
+                Cost[u, v] <- min( Cost[u, v], Cost[u, w] + Cost[w, v] )
+</code></pre>
+
+=end html
+
+이 알고리즘은 dynamic programming 이다.
+
 
 =cut

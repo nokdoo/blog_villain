@@ -1,0 +1,63 @@
+=encoding utf8
+
+=pod
+
+=head1 NAME
+
+Terminology of Rust
+
+=head2 Entry point
+
+프로그램의 시작점. 일반적으로 main 함수.
+
+=begin html
+
+<pre><code class="rust">
+fn main() {}
+</code></pre>
+
+=end html
+
+=head2 Attribute
+
+
+=begin html
+
+<pre><code class="perl">
+//ex)
+#![no_std]
+#![no_main]
+#[panic_handler]
+#[no_mangle]
+</code></pre>
+
+=end html
+
+=head3 no_std
+
+Rust standard library 를 사용하지 않음.
+
+=head3 no_main
+
+main entry point 를 사용하지 않음.
+
+=head3 panic_handler
+
+//
+
+=head3 no_mangle
+
+=begin html
+
+<pre><code class="perl">
+#[no_mangle]
+pub extern "C" fn _start() -> {
+    loop{}
+}
+</code></pre>
+
+=end html
+
+함수 이름이 암호화되어 사용되지 않도록 설정한다.
+
+=cut

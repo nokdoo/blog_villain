@@ -1,0 +1,72 @@
+=encoding utf8
+
+=pod
+
+=head1 NAME
+
+A Minimal Rust Kernel
+
+=head2 The Boot Process
+
+컴퓨터를 켜면 마더보드 ROM 에 저장된 펌웨어 코드가 실행된다. 
+이 코드는 자가 테스트를 수행하고, RAM 을 감지하고, CPU 와 하드웨어를 초기화 시킨다. 
+그 후에 부팅 가능한 디스크를 찾고 os 커널 을 부팅한다.
+
+펌웨어 코드에는 두 가지가 있다.
+
+=over 
+
+=item * BIOS - Basic Input/Output System ( 이 프로젝트에서 사용될 펌웨어 코드 )
+
+=item * UEFI - Unified Extensible Firmware Interface
+
+=back
+
+BIOS 는 오래되었지만 x86 기기을 잘 지원한다. 반대로, UEFI 는 모던하고 많은 특성을 가지고 있지만 설치하기에 복잡하다.
+
+=head2 BIOS Boot
+
+대부분의 x86 시스템은 BIOS 부팅을 지원한다. UEFI 기반의 기기도 에뮬레이트 된 BIOS 를 지원한다. 
+이는 모든 기기에서 같은 부트 논리를 사용하는 장점을 갖는다. 그러나 이런 호환성은 CPU 가 16-bit 호환 모드(real mode)로 진입하게 만드는 매우 큰 단점을 갖는다.
+
+컴퓨터를 켜면 BIOS 부팅은 마더보드에 위치한 플래시 메모리로부터 BIOS 를 로드한다. BIOS 는 자가 테스트와 하드웨어 초기화를 수행한 후 부팅 가능한 디스크를 찾는다. 
+디스크를 찾으면 제어권이 해당 디스크의 부트로더로 넘어간다. 부트로더란 디스크의 시작점에 저장된 512 바이트 크기의 실행코드를 말한다. 
+일반적으로 부트로더는 512 바이트보다 크고 이는 두 영역으로 나뉘어진다.
+
+부트로더는 디스크에 위치한 커널 이미지의 외치를 확인하고 이를 메모리로 로드해야 한다. 
+이때 cpu 는 16-bit 호환 모드에서 32-bit protected mode 로 전환되고, 다시 64-bit long mode 로 전환되어야 한다. 
+64-bit 레지스터와 메인 메모리를 사용해야 하니까. 그리고 다음 작업으로, BIOS 에서 특정 정보들을 찾아 os 커널에 전달한다.
+
+부트로더를 작성하는 것은 어셈블리어를 사용해야하고 예측하기 어려운 많은 과정이 있기 때문에 다루지 않는다.
+
+=head2 The Multiboot Standard
+
+하나의 os 에만 호환되는 부트로더 구현을 피하기 위해서 Free Software Foundation 은 Multiboot 라는 이름의 부트로더 표준을 만들었다. 
+이 표준은 Multiboot 부트로더가 Multiboot os 를 로드할 수 있도록 부트로더와 os 사이의 인터페이스를 정의한다.
+GNU GRUB 은 리눅스 시스템에서 가장 널리 쓰이는 Multiboot 구현체이다.
+
+Multiboot 커널을 만들기 위해서는 커널 파일의 시작점에 Multiboot 헤더를 삽입이 필요하다. 이는 os 의 GRUB 부팅을 쉽게 만든다. 
+
+하지만 GRUB 과 Multiboot standard 에는 몇 가지 문제가 있다.
+
+=over
+
+=item * 이들은 32-bit protected mode 만을 지원한다. 이후에 CPU 를 64-bit long mode 로 바꿔줘야 한다.
+
+=item * 이들은 커널 대신 부트로더를 간단하게 만들었다.
+
+예를 들면, 커널은 기본 페이지 크기에 연결되어야 한다. 그렇지 않으면 GRUB 은 Multiboot 헤더를 찾지 못한다. 또,
+커널에 전달되는 부트 정보들이 추상화를 전달하는 대신에 많은 아키텍처 종속 구조를 가지고 있다.
+
+=item * GRUB 과 Multiboot standard 은 문서화가 제대로 이루어지지 않았다.
+
+=item * 커털 파일로부터 부팅 가능한 이미지를 만들기 위해서 GRUB 이 호스트 시스템에 설치되어야 한다. 윈도우와 맥에서 이것을 개발하는 것은 더 어렵다.
+
+=back
+
+이런 단점들 때문에 GRUB 과 Multiboot standard 을 사용하지 않을 것이다.
+
+
+
+
+=cut

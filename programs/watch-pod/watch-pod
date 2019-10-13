@@ -82,18 +82,21 @@ sub _create {
 
 sub _delete {
     my $post = shift;
-    $schema->resultset('Post')->search({
-        fulltitle => $post->{fulltitle},
-    })->delete_all;
+    $schema->resultset('Post')
+        ->search({ fulltitle => $post->{fulltitle} })
+        ->delete_all
+        or croak "Error of deleting";
 }
 
 sub _update {
     my $post = shift;
-    $schema->resultset('Post')->search({
- 		fulltitle => $post->{fulltitle},
- 	})->update_all({
- 		pod => $post->{pod},
- 	});
+    my $rs = $schema->resultset('Post')
+        ->search({ fulltitle => $post->{fulltitle} });
+
+    _create($post) if $rs->count eq 0;
+
+    $rs->update_all({ pod => $post->{pod} })
+        or croak "Error of _updating";
 }
 
 sub readpod {
