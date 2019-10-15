@@ -43768,3 +43768,112 @@ Compilation failed in require at (eval 114) line 1.
 [2019-10-13 18:52:40.58608] [1305] [debug] [ee8f31f9] Rendering cached template "post/post.html.ep"
 [2019-10-13 18:52:40.58651] [1305] [debug] [ee8f31f9] Rendering cached template "layouts/default.html.ep"
 [2019-10-13 18:52:40.58680] [1305] [debug] [ee8f31f9] 200 OK (0.020198s, 49.510/s)
+[2019-10-13 19:30:32.42185] [1873] [debug] [362cdf8d] GET "/"
+[2019-10-13 19:30:32.42420] [1873] [debug] [362cdf8d] Rendering template "home.html.ep"
+[2019-10-13 19:30:32.42595] [1873] [debug] [362cdf8d] Rendering template "layouts/default.html.ep"
+[2019-10-13 19:30:32.42933] [1873] [debug] [362cdf8d] 200 OK (0.007429s, 134.608/s)
+[2019-10-13 19:30:55.82357] [1873] [debug] [a5d27ba0] GET "/post/categories"
+[2019-10-13 19:30:55.98484] [1873] [debug] [a5d27ba0] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-10-13 19:30:56.01884] [1873] [debug] [a5d27ba0] Rendering template "post/categories.html.ep"
+[2019-10-13 19:30:56.02119] [1873] [debug] [a5d27ba0] Rendering cached template "layouts/default.html.ep"
+[2019-10-13 19:30:56.02148] [1873] [debug] [a5d27ba0] 200 OK (0.197898s, 5.053/s)
+[2019-10-13 19:30:56.12676] [1873] [debug] [aa20156b] GET "/post/categories.css"
+[2019-10-13 19:30:56.12848] [1873] [debug] [aa20156b] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-10-13 19:30:56.13256] [1873] [debug] [aa20156b] Template "post/categories.css.ep" not found
+[2019-10-13 19:30:56.13317] [1873] [debug] [aa20156b] Template "not_found.development.css.ep" not found
+[2019-10-13 19:30:56.13336] [1873] [debug] [aa20156b] Template "not_found.css.ep" not found
+[2019-10-13 19:30:56.13354] [1873] [debug] [aa20156b] Template "not_found.development.html.ep" not found
+[2019-10-13 19:30:56.13368] [1873] [debug] [aa20156b] Template "not_found.html.ep" not found
+[2019-10-13 19:30:56.13383] [1873] [debug] [aa20156b] Rendering template "mojo/debug.html.ep"
+[2019-10-13 19:30:56.15651] [1873] [debug] [aa20156b] 404 Not Found (0.029771s, 33.590/s)
+[2019-10-13 19:30:57.17922] [1873] [debug] [556475e7] GET "/post/DataStructure"
+[2019-10-13 19:30:57.17986] [1873] [debug] [556475e7] Routing to controller "BlogVillain::Controller::Post" and action "fulltitles"
+[2019-10-13 19:30:57.18344] [1873] [debug] [556475e7] Rendering template "post/category.html.ep"
+[2019-10-13 19:30:57.18450] [1873] [debug] [556475e7] Rendering cached template "layouts/default.html.ep"
+[2019-10-13 19:30:57.18477] [1873] [debug] [556475e7] 200 OK (0.00555s, 180.180/s)
+[2019-10-13 19:30:57.26971] [1873] [debug] [7212dc66] GET "/post/categories.css"
+[2019-10-13 19:30:57.27039] [1873] [debug] [7212dc66] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-10-13 19:30:57.27345] [1873] [debug] [7212dc66] Template "post/categories.css.ep" not found
+[2019-10-13 19:30:57.27383] [1873] [debug] [7212dc66] Template "not_found.development.css.ep" not found
+[2019-10-13 19:30:57.27394] [1873] [debug] [7212dc66] Template "not_found.css.ep" not found
+[2019-10-13 19:30:57.27407] [1873] [debug] [7212dc66] Template "not_found.development.html.ep" not found
+[2019-10-13 19:30:57.27418] [1873] [debug] [7212dc66] Template "not_found.html.ep" not found
+[2019-10-13 19:30:57.27431] [1873] [debug] [7212dc66] Rendering cached template "mojo/debug.html.ep"
+[2019-10-13 19:30:57.27892] [1873] [debug] [7212dc66] 404 Not Found (0.0092s, 108.696/s)
+[2019-10-13 19:30:57.90083] [1873] [debug] [e70b240f] GET "/post/DataStructure/Graph"
+[2019-10-13 19:30:57.90127] [1873] [debug] [e70b240f] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-10-13 19:30:57.92217] [1873] [debug] [e70b240f] Rendering template "post/post.html.ep"
+[2019-10-13 19:30:57.92334] [1873] [debug] [e70b240f] Rendering cached template "layouts/default.html.ep"
+[2019-10-13 19:30:57.92359] [1873] [debug] [e70b240f] 200 OK (0.022752s, 43.952/s)
+[2019-10-13 20:45:53.15386] [1873] [debug] [b52e9dda] GET "/post/DataStructure/Graph"
+[2019-10-13 20:45:53.15412] [1873] [debug] [b52e9dda] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-10-13 20:45:53.17103] [1873] [debug] [b52e9dda] Rendering cached template "post/post.html.ep"
+[2019-10-13 20:45:53.17151] [1873] [debug] [b52e9dda] Rendering cached template "layouts/default.html.ep"
+[2019-10-13 20:45:53.17185] [1873] [debug] [b52e9dda] 200 OK (0.017979s, 55.620/s)
+[2019-10-14 23:17:06.27603] [6618] [debug] [9444f12b] GET "/"
+[2019-10-14 23:17:06.27708] [6618] [debug] [9444f12b] Rendering template "home.html.ep"
+[2019-10-14 23:17:06.27797] [6618] [debug] [9444f12b] Rendering template "layouts/default.html.ep"
+[2019-10-14 23:17:06.28006] [6618] [debug] [9444f12b] 200 OK (0.003963s, 252.334/s)
+[2019-10-14 23:17:06.28314] [6618] [debug] [2a3b8b7b] GET "/robots.txt"
+[2019-10-14 23:17:06.28466] [6618] [debug] [2a3b8b7b] Template "not_found.development.html.ep" not found
+[2019-10-14 23:17:06.28484] [6618] [debug] [2a3b8b7b] Template "not_found.html.ep" not found
+[2019-10-14 23:17:06.28499] [6618] [debug] [2a3b8b7b] Rendering template "mojo/debug.html.ep"
+[2019-10-14 23:17:06.30101] [6618] [debug] [2a3b8b7b] 404 Not Found (0.017748s, 56.344/s)
+[2019-10-14 23:17:07.44149] [6618] [debug] [1875b771] GET "/post/categories"
+[2019-10-14 23:17:07.60680] [6618] [debug] [1875b771] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-10-14 23:17:07.64131] [6618] [debug] [1875b771] Rendering template "post/categories.html.ep"
+[2019-10-14 23:17:07.64319] [6618] [debug] [1875b771] Rendering cached template "layouts/default.html.ep"
+[2019-10-14 23:17:07.64350] [6618] [debug] [1875b771] 200 OK (0.202001s, 4.950/s)
+[2019-10-14 23:17:07.80994] [6618] [debug] [481a659b] GET "/post/categories.css"
+[2019-10-14 23:17:07.81162] [6618] [debug] [481a659b] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-10-14 23:17:07.81448] [6618] [debug] [481a659b] Template "post/categories.css.ep" not found
+[2019-10-14 23:17:07.81518] [6618] [debug] [481a659b] Template "not_found.development.css.ep" not found
+[2019-10-14 23:17:07.81565] [6618] [debug] [481a659b] Template "not_found.css.ep" not found
+[2019-10-14 23:17:07.81613] [6618] [debug] [481a659b] Template "not_found.development.html.ep" not found
+[2019-10-14 23:17:07.81648] [6618] [debug] [481a659b] Template "not_found.html.ep" not found
+[2019-10-14 23:17:07.81666] [6618] [debug] [481a659b] Rendering cached template "mojo/debug.html.ep"
+[2019-10-14 23:17:07.82303] [6618] [debug] [481a659b] 404 Not Found (0.013102s, 76.324/s)
+[2019-10-14 23:17:09.71634] [6618] [debug] [bc781c53] GET "/post/DataStructure"
+[2019-10-14 23:17:09.71667] [6618] [debug] [bc781c53] Routing to controller "BlogVillain::Controller::Post" and action "fulltitles"
+[2019-10-14 23:17:09.71953] [6618] [debug] [bc781c53] Rendering template "post/category.html.ep"
+[2019-10-14 23:17:09.72066] [6618] [debug] [bc781c53] Rendering cached template "layouts/default.html.ep"
+[2019-10-14 23:17:09.72093] [6618] [debug] [bc781c53] 200 OK (0.004584s, 218.150/s)
+[2019-10-14 23:17:09.85940] [6618] [debug] [bfc5a1fa] GET "/post/categories.css"
+[2019-10-14 23:17:09.85967] [6618] [debug] [bfc5a1fa] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-10-14 23:17:09.86085] [6618] [debug] [bfc5a1fa] Template "post/categories.css.ep" not found
+[2019-10-14 23:17:09.86106] [6618] [debug] [bfc5a1fa] Template "not_found.development.css.ep" not found
+[2019-10-14 23:17:09.86121] [6618] [debug] [bfc5a1fa] Template "not_found.css.ep" not found
+[2019-10-14 23:17:09.86140] [6618] [debug] [bfc5a1fa] Template "not_found.development.html.ep" not found
+[2019-10-14 23:17:09.86155] [6618] [debug] [bfc5a1fa] Template "not_found.html.ep" not found
+[2019-10-14 23:17:09.86169] [6618] [debug] [bfc5a1fa] Rendering cached template "mojo/debug.html.ep"
+[2019-10-14 23:17:09.86708] [6618] [debug] [bfc5a1fa] 404 Not Found (0.007605s, 131.492/s)
+[2019-10-14 23:17:10.67073] [6618] [debug] [60f7fbe4] GET "/post/DataStructure/Graph"
+[2019-10-14 23:17:10.67107] [6618] [debug] [60f7fbe4] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-10-14 23:17:10.68767] [6618] [debug] [60f7fbe4] Rendering template "post/post.html.ep"
+[2019-10-14 23:17:10.68907] [6618] [debug] [60f7fbe4] Rendering cached template "layouts/default.html.ep"
+[2019-10-14 23:17:10.68949] [6618] [debug] [60f7fbe4] 200 OK (0.018736s, 53.373/s)
+[2019-10-14 23:26:06.28941] [6618] [debug] [0cb32416] GET "/post/DataStructure/Graph"
+[2019-10-14 23:26:06.28965] [6618] [debug] [0cb32416] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-10-14 23:26:06.30725] [6618] [debug] [0cb32416] Rendering cached template "post/post.html.ep"
+[2019-10-14 23:26:06.30853] [6618] [debug] [0cb32416] Rendering cached template "layouts/default.html.ep"
+[2019-10-14 23:26:06.30898] [6618] [debug] [0cb32416] 200 OK (0.019539s, 51.180/s)
+[2019-10-14 23:34:17.30711] [6618] [debug] [19a214f8] GET "/post/DataStructure/Graph"
+[2019-10-14 23:34:17.30731] [6618] [debug] [19a214f8] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-10-14 23:34:17.32692] [6618] [debug] [19a214f8] Rendering cached template "post/post.html.ep"
+[2019-10-14 23:34:17.32733] [6618] [debug] [19a214f8] Rendering cached template "layouts/default.html.ep"
+[2019-10-14 23:34:17.32759] [6618] [debug] [19a214f8] 200 OK (0.020479s, 48.831/s)
+[2019-10-14 23:35:09.12226] [6618] [debug] [8af6a69f] GET "/post/DataStructure/Graph"
+[2019-10-14 23:35:09.12280] [6618] [debug] [8af6a69f] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-10-14 23:35:09.14383] [6618] [debug] [8af6a69f] Rendering cached template "post/post.html.ep"
+[2019-10-14 23:35:09.14428] [6618] [debug] [8af6a69f] Rendering cached template "layouts/default.html.ep"
+[2019-10-14 23:35:09.14451] [6618] [debug] [8af6a69f] 200 OK (0.022272s, 44.899/s)
+[2019-10-14 23:35:57.16420] [6618] [debug] [d01542b6] GET "/post/DataStructure/Graph"
+[2019-10-14 23:35:57.16441] [6618] [debug] [d01542b6] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-10-14 23:35:57.17997] [6618] [debug] [d01542b6] Rendering cached template "post/post.html.ep"
+[2019-10-14 23:35:57.18038] [6618] [debug] [d01542b6] Rendering cached template "layouts/default.html.ep"
+[2019-10-14 23:35:57.18063] [6618] [debug] [d01542b6] 200 OK (0.016424s, 60.887/s)
+[2019-10-15 00:03:45.44785] [6618] [debug] [f3a489e8] GET "/post/DataStructure/Graph"
+[2019-10-15 00:03:45.44805] [6618] [debug] [f3a489e8] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-10-15 00:03:45.46644] [6618] [debug] [f3a489e8] Rendering cached template "post/post.html.ep"
+[2019-10-15 00:03:45.46794] [6618] [debug] [f3a489e8] Rendering cached template "layouts/default.html.ep"
+[2019-10-15 00:03:45.46874] [6618] [debug] [f3a489e8] 200 OK (0.020836s, 47.994/s)

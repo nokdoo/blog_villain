@@ -135,7 +135,7 @@ Kruskal 알고리즘을 살펴보자.
 
 <pre><code class="plaintext">
 # G 의 minimum spanning tree 의 간선 집합을 반환한다.
-function KruskalMST({G}): set
+function KruskalMST(undirected graph G): set
 
     # 반환할 트리를 초기화.
     E' <- MakeEmptySet()
@@ -163,6 +163,40 @@ function KruskalMST({G}): set
 
 =head3 Single-Source Least-Cost Paths
 
+<G> 의 각 간선에 숫자를 표시해 정점 간 이동 비용을 나타내자. 정점 간 비용은 c(u, v) 로 나타낸다.
+
+경로의 비용은 한 정점에서 다른 정점으로 이동할 때 필요한 비용의 합이라 하자. 최소 비용 경로는 어떻게 찾을 수 있을까?
+여기서 비용 대신에 거리를 나타내면 최소 이동 거리를 찾는 것과 같아진다.
+
+이를 위해 Dijkstra 알고리즘이 존재한다.
+
+=head4 Dijkstra 알고리즘
+
+B<source vertex> S 로부터 모든 정점까지의 비용을 계산한다.
+
+
+=begin html
+
+<pre><code class="plaintext">
+procedure DijkstraLeastCostPaths(directed graph G, vertex S):
+# 각 정점까지의 거리를 잠정적인 거리로 생각하고, S 까지의 거리는 0, 다른 정점 까지의 거리를 infinite number 로 설정한다.
+    U <- MakeEmptySet()
+    foreach vertex v in G do
+        Distance(v) <- infinite number
+        Insert(v, U)
+    Distance(S) <- 0
+
+    repeat |G| times
+        v <- any member of U with minimum distance
+        Delete(v, U)
+        foreach neighbor w of v do
+            if Member(w, U) then
+                Distance(w) <- min(Distance(w), Distance(v) + c(v,w))
+</code></pre>
+
+=end html
+
+
 
 =head2 All Pairs Least-Cost Paths
 
@@ -176,7 +210,7 @@ n 개의 정점을 B<source vertext> 로 놓고 탐색하면 원하는 정보를
 
 <pre><code class="plaintext">
 # {u, v} 의 비용을 리턴.
-# {u, v} 가 존재하지 않는다면 infinity number 를 리턴.
+# {u, v} 가 존재하지 않는다면 infinite number 를 리턴.
 # {u, u} 의 비용은 0
 c(u, v)
 
@@ -184,7 +218,7 @@ c(u, v)
 # U : 정점의 집합. 초기값은 비어있다.
 
 # 그래프 G 의 정점 간 최소 비용을 찾음
-procedure FloydWarshallAllLeastCostPaths(<G>) :
+procedure FloydWarshallAllLeastCostPaths(directed graph G) :
     
     # Cost_U[u, v] 는, U 의 한 정점을 중간 지점으로 삼아 정점 u 부터 정점 v 까지 이동하는 최소 비용을 나타낸다.
     # U 값은 현재 비어 있는 상태. 따라서 중간 지점으므로 Cost_U[u, v] 는 c(u, v) 와 같다.
