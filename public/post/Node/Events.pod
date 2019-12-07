@@ -1,0 +1,173 @@
+=encoding utf8
+=pod
+
+=head1 NAME
+
+Event
+
+=head1 DESCRIPTION
+
+Node.js 의 많은 core API 는 비동기 이벤트 기반 아키텍처를 중심으로 만들어졌다. 이 아키텍처에서는 이미터라 불리는 특정 객체들이,
+함수 객체(리스너)가 호출되도록 하는 named event 를 발생시킨다.
+
+예를 들어, I<net.Server> 객체는 peer 가 연결될 때 이벤트를 발생시키고, I<fs.ReadStream> 객체는 파일이 열릴 때, stream 객체는
+데이터를 읽을 수 있을 때 이벤트를 발생시킨다.
+
+이미터는 B<EventEmitter> 클래스의 인스턴스다. EventEmitter 로부터 상속받은 I<on()> 함수를 가지는데,
+이 함수는 하나 이상의 함수를 해당 이미터에 의해 발생된 named event 에 등록하는 기능을 한다.
+
+이미터가 이벤트를 발생시킬 때, 해당 이벤트에 등록된 모든 함수들은 비동기적으로 호출된다. 호출된 리스너에 의해 반환된 값들은 무시되거나 버려진다.
+
+다음 코드는 B<EventEmitter> 인스턴스와 그 리스너를 보여준다. 
+
+=begin html
+
+<pre><code class="javascript">
+ const EventEmitter = require('events');
+ 
+ class MyEmitter extends EventEmitter {}
+ 
+ const myEmitter = new MyEmitter();
+ myEmitter.on('event', () => {
+   console.log('an event occurred!');
+ });
+ myEmitter.emit('event');
+</code></pre>
+
+=end html
+
+I<on()> 메소드는 리스너를 등록하는데 사용되고, I<emit()> 메소드는 이벤트를 트리거하기 위해 사용된다.
+
+=head2 Passing arguments and this to listeners
+
+I<emit()> 메소드는 리스너 함수에 임의의 인자 집합을 넘길 수 있게 해준다. 
+I<this> 키워드는 일반적인 리스너 함수가 호출될 때 리스너가 등록된 B<EventEmitter> 를 참조하도록 만들어졌다.
+
+=begin html
+
+<pre><code class="javascript">
+ const myEmitter = new MyEmitter();
+ myEmitter.on('event', function(a, b) {
+   console.log(a, b, this, this === myEmitter);
+   // Prints:
+   //   a b MyEmitter {
+   //     domain: null,
+   //     _events: { event: [Function] },
+   //     _eventsCount: 1,
+   //     _maxListeners: undefined } true
+ });
+ myEmitter.emit('event', 'a', 'b');
+</code></pre>
+
+=end html
+
+위의 코드에서 함수 부분을 arrow function 으로 바꾸면, this 는 B<EventEmitter> 인스턴스를 가리키지 않는다.
+
+=head2 Asynchronous vs Synchronous
+
+B<EventEmitter> 는 리스너들을 등록된 순서로, 동기적으로 호출한다. 이것은 이벤트를 적절히 나열하고 race condition 과 로직 오류를 피하게 해준다. 
+필요한 경우, 리스너 함수는 I<setImmediate()> 또는 I<process.nextTick()> 메소드를 사용하는 연산의 비동기 모드로 변경될 수 있다.
+
+=begin html
+
+<pre><code class="javascript">
+ const myEmitter = new MyEmitter();
+ myEmitter.on('event', (a, b) => {
+   setImmediate(() => {
+     console.log('this happens asynchronously');
+   });
+ });
+ myEmitter.emit('event', 'a', 'b');
+</code></pre>
+
+=end html
+
+=head2 Handling events only once
+
+리스너가 I<on()> 메소드를 통해 등록될 때, 리스너는 named event 가 발생될 때마다 호출된다.
+
+=begin html
+
+<pre><code class="javascript">
+ const myEmitter = new MyEmitter();
+ let m = 0;
+ myEmitter.on('event', () => {
+   console.log(++m);
+ });
+ myEmitter.emit('event');
+ // Prints: 1
+ myEmitter.emit('event');
+ // Prints: 2
+</code></pre>
+
+=end html
+
+I<once()> 메소드를 사용해서, 하나의 특정 이벤트에 대해 한 번 실행되는 리스너를 등록하는 것이 가능하다. 
+해당 이벤트가 발생되면 이 리스너는 등록이 해제되고, 그 후에 호출된다.
+
+=begin html
+
+<pre><code class="javascript">
+ const myEmitter = new MyEmitter();
+ let m = 0;
+ myEmitter.once('event', () => {
+   console.log(++m);
+ });
+ myEmitter.emit('event');
+ // Prints: 1
+ myEmitter.emit('event');
+ // Ignored
+</code></pre>
+
+=end html
+
+=head2 Error events
+
+B<EventEmitter> 인스턴스에서 에러가 발생하면 I<error> 이벤트에 대한 action 이 처리된다. 이것은 Node.js 의 특별한 케이스로 다뤄진다.
+
+B<EventEmitter> 가 I<error> 이벤트에 대한 리스너가 하나 이상 등록되지 않은 상태에서 I<error> 이벤트가 발생되면 에러는 던져지고, 
+stack trace 가 출력되며, Node.js 프로세스는 종료된다.
+
+=begin html
+
+<pre><code class="javascript">
+ const myEmitter = new MyEmitter();
+ myEmitter.emit(error, new Error('whoops!'));
+ // Throws and crashes Node.js
+</code></pre>
+
+=end html
+
+I<error> 이벤트에 대한 리스너를 항상 추가하자.
+
+
+=begin html
+
+<pre><code class="javascript">
+ const myEmitter = new MyEmitter();
+ myEmitter.on(error, (err) => {
+   console.error('whoops! there was an error');
+ });
+ myEmitter.emit(error, new Error('whoops!'));
+ // Prints: whoops! there was an error
+</code></pre>
+
+=end html
+
+=head2 Class: EventEmitter
+
+B<EventEmitter> 클래스는 B<events> 모듈에 정의되어 있다.
+
+=begin html
+
+<pre><code class="javascript">
+ const EventEmitter = require('events');
+</code></pre>
+
+=end html
+
+B<EventEmitter> 는 새로운 리스너가 추가될 때 I<newListener> 이벤트를 발생시키고, 
+리스너를 제거할 때 I<removeListener> 이벤트를 발생시킨다.
+
+=cut
+

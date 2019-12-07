@@ -1,0 +1,60 @@
+=encoding utf8
+
+=pod
+
+=head1 NAME
+
+Sets with Special Operations
+
+=head1 Priority Queue
+
+입력 순서와 관계없이 데이터가 가지고 있는 값의 크기 순으로 추출하는 자료구조.
+
+=head2 Heaps
+
+=head3 partially ordered tree
+
+각 노드의 우선순위가 그 자식 노드와 같거나 작은 이진트리. 즉, 루트 노드는 가장 작은 값을 가지고 있다. 
+그리고 왼쪽 자식 노드와 오른쪽 자식 노드의 순서를 따지지 않는다.
+
+=begin html
+
+<pre><code class="plaintext">
+procedure HeapInsert(key K, info I, heap h):
+    H <- Table(h)
+    n <- Size(h)
+    if n == N then error        # Heap is full
+    m <- n
+    while m > 0 and K < Key(H[(m-1)/2]) do
+        H[m] <- H[(m-1)/2]
+        m <- (m-1)/2
+    Key(H[m]) <- K
+    Info(H[m]) <- I
+    size(h) <- n+1
+
+function HeapDeleteMin(heap h): info
+    H <- Table(h)
+    n <- Size(h)
+    if n == 0 then error        # Heap is empty
+    I <- Info(H[0])
+    K <- Key(H[n-1])
+    m <- 0
+    while ( 2m + 1 < n and K > Key(H[2m+1]) )
+        or ( 2m + 2 < n and K > Key(H[2m+2]) ) do
+        if 2m + 2 < n then
+            if Key(H[2m+1]) < Key(H[2m+2]) then
+                p <- 2m + 1
+            else
+                p <- 2m + 2
+        else
+            p <- n - 1
+        H[m] <- H[p]
+        m <- p
+    H[m] <- H[n-1]
+    Size(h) <- n - 1
+    return I
+</code></pre>
+
+=end html
+
+=cut

@@ -1,4 +1,5 @@
 % layout 'default';
+ %= stylesheet '/css/post.css'
  %= stylesheet '/highlight/styles/obsidian.css'
  %= javascript '/highlight/highlight.pack.js', style=>'Obsidian'
  %= javascript begin 
