@@ -1,4 +1,5 @@
 requires 'Mojolicious';
+requires 'Mojo::Base';
 requires 'DBIx::Class::Schema';
 requires 'DBIx::Class::Schema::Config';
 requires 'HTML::TreeBuilder';

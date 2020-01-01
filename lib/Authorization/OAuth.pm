@@ -17,11 +17,11 @@ our $client_secret = 'iVKGOkClmj';
 
 my %auth_url = (
         naver => "https://nid.naver.com/oauth2.0/authorize?",
-        );
+);
 
 my %token_url = (
         naver => "https://nid.naver.com/oauth2.0/token?",
-        );
+);
 
 sub _state_token {
     my $service_provider = shift;

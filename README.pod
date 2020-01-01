@@ -7,7 +7,13 @@
 
  $ source /path/.profile
 
- $ carton install cp
+ $ carton install (cp??)
+
+ $ sudo cpan YAML
+
+ $ sudo cpan YAML::Tiny
+
+ $ sudo cpan Log::Log4perl
 
  $ perl deploy.pl
 

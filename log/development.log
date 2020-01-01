@@ -46655,3 +46655,134 @@ Compilation failed in require at (eval 174) line 1.
 [2019-12-04 23:51:58.48541] [2278] [debug] [dd86f13c] Rendering cached template "post/post.html.ep"
 [2019-12-04 23:51:58.48858] [2278] [debug] [dd86f13c] Rendering cached template "layouts/default.html.ep"
 [2019-12-04 23:51:58.48940] [2278] [debug] [dd86f13c] 200 OK (0.017184s, 58.194/s)
+[2019-12-31 23:09:51.07115] [13663] [debug] [2bb33259] GET "/"
+[2019-12-31 23:09:51.07226] [13663] [debug] [2bb33259] Rendering template "home.html.ep"
+[2019-12-31 23:09:51.07325] [13663] [debug] [2bb33259] Rendering template "layouts/default.html.ep"
+[2019-12-31 23:09:51.07953] [13663] [debug] [2bb33259] 200 OK (0.008283s, 120.729/s)
+[2019-12-31 23:09:54.59103] [13663] [debug] [d00c734a] GET "/"
+[2019-12-31 23:09:54.59147] [13663] [debug] [d00c734a] Rendering cached template "home.html.ep"
+[2019-12-31 23:09:54.59167] [13663] [debug] [d00c734a] Rendering cached template "layouts/default.html.ep"
+[2019-12-31 23:09:54.59232] [13663] [debug] [d00c734a] 200 OK (0.001277s, 783.085/s)
+[2019-12-31 23:10:10.41332] [13663] [debug] [49166668] GET "/post/categories"
+[2019-12-31 23:10:10.69029] [13663] [debug] [49166668] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-12-31 23:10:10.69929] [13663] [error] [49166668] DBIx::Class::Storage::DBI::_connect(): You did not provide any connection_info at /home/nokdoot/git/blog_villain/script/../lib/BlogVillain/Model/Post.pm line 14
+
+[2019-12-31 23:10:10.69953] [13663] [debug] [49166668] Template "exception.development.html.ep" not found
+[2019-12-31 23:10:10.69969] [13663] [debug] [49166668] Template "exception.html.ep" not found
+[2019-12-31 23:10:10.69981] [13663] [debug] [49166668] Rendering template "mojo/debug.html.ep"
+[2019-12-31 23:10:10.71252] [13663] [debug] [49166668] 500 Internal Server Error (0.299212s, 3.342/s)
+[2019-12-31 23:14:25.99227] [13899] [debug] [8b3b9b41] GET "/post/categories"
+[2019-12-31 23:14:26.22910] [13899] [debug] [8b3b9b41] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-12-31 23:14:26.23796] [13899] [error] [8b3b9b41] DBIx::Class::Storage::DBI::_connect(): You did not provide any connection_info at /home/nokdoot/git/blog_villain/script/../lib/BlogVillain/Model/Post.pm line 14
+
+[2019-12-31 23:14:26.23852] [13899] [debug] [8b3b9b41] Template "exception.development.html.ep" not found
+[2019-12-31 23:14:26.23866] [13899] [debug] [8b3b9b41] Template "exception.html.ep" not found
+[2019-12-31 23:14:26.23878] [13899] [debug] [8b3b9b41] Rendering template "mojo/debug.html.ep"
+[2019-12-31 23:14:26.25153] [13899] [debug] [8b3b9b41] 500 Internal Server Error (0.259329s, 3.856/s)
+[2019-12-31 23:33:20.12102] [14515] [debug] [b61464c6] GET "/post/categories"
+[2019-12-31 23:33:20.34649] [14515] [debug] [b61464c6] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-12-31 23:33:20.35480] [14515] [error] [b61464c6] DBIx::Class::Storage::DBI::_connect(): You did not provide any connection_info at /home/nokdoot/git/blog_villain/script/../lib/BlogVillain/Model/Post.pm line 16
+
+[2019-12-31 23:33:20.35534] [14515] [debug] [b61464c6] Template "exception.development.html.ep" not found
+[2019-12-31 23:33:20.35549] [14515] [debug] [b61464c6] Template "exception.html.ep" not found
+[2019-12-31 23:33:20.35561] [14515] [debug] [b61464c6] Rendering template "mojo/debug.html.ep"
+[2019-12-31 23:33:20.36813] [14515] [debug] [b61464c6] 500 Internal Server Error (0.247178s, 4.046/s)
+[2019-12-31 23:43:43.51178] [16019] [debug] [628a8e86] GET "/post/categories"
+[2019-12-31 23:43:43.74844] [16019] [debug] [628a8e86] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-12-31 23:43:43.77499] [16019] [debug] [628a8e86] Rendering template "post/categories.html.ep"
+[2019-12-31 23:43:43.77740] [16019] [debug] [628a8e86] Rendering template "layouts/default.html.ep"
+[2019-12-31 23:43:43.77873] [16019] [debug] [628a8e86] 200 OK (0.267038s, 3.745/s)
+[2019-12-31 23:43:43.83469] [16019] [debug] [ceb6e28d] GET "/post/categories.css"
+[2019-12-31 23:43:43.83535] [16019] [debug] [ceb6e28d] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-12-31 23:43:43.83703] [16019] [debug] [ceb6e28d] Template "post/categories.css.ep" not found
+[2019-12-31 23:43:43.83731] [16019] [debug] [ceb6e28d] Template "not_found.development.css.ep" not found
+[2019-12-31 23:43:43.83745] [16019] [debug] [ceb6e28d] Template "not_found.css.ep" not found
+[2019-12-31 23:43:43.83758] [16019] [debug] [ceb6e28d] Template "not_found.development.html.ep" not found
+[2019-12-31 23:43:43.83771] [16019] [debug] [ceb6e28d] Template "not_found.html.ep" not found
+[2019-12-31 23:43:43.83783] [16019] [debug] [ceb6e28d] Rendering template "mojo/debug.html.ep"
+[2019-12-31 23:43:43.85292] [16019] [debug] [ceb6e28d] 404 Not Found (0.018217s, 54.894/s)
+[2019-12-31 23:43:47.69973] [16019] [debug] [72c73419] GET "/post/FreeBSD"
+[2019-12-31 23:43:47.70158] [16019] [debug] [72c73419] Routing to controller "BlogVillain::Controller::Post" and action "fulltitles"
+[2019-12-31 23:43:47.71382] [16019] [debug] [72c73419] Rendering template "post/category.html.ep"
+[2019-12-31 23:43:47.72066] [16019] [debug] [72c73419] Rendering cached template "layouts/default.html.ep"
+[2019-12-31 23:43:47.72179] [16019] [debug] [72c73419] 200 OK (0.022043s, 45.366/s)
+[2019-12-31 23:43:47.86823] [16019] [debug] [061a4d19] GET "/post/categories.css"
+[2019-12-31 23:43:47.86890] [16019] [debug] [061a4d19] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-12-31 23:43:47.87172] [16019] [debug] [061a4d19] Template "post/categories.css.ep" not found
+[2019-12-31 23:43:47.87231] [16019] [debug] [061a4d19] Template "not_found.development.css.ep" not found
+[2019-12-31 23:43:47.87274] [16019] [debug] [061a4d19] Template "not_found.css.ep" not found
+[2019-12-31 23:43:47.87313] [16019] [debug] [061a4d19] Template "not_found.development.html.ep" not found
+[2019-12-31 23:43:47.87348] [16019] [debug] [061a4d19] Template "not_found.html.ep" not found
+[2019-12-31 23:43:47.87374] [16019] [debug] [061a4d19] Rendering cached template "mojo/debug.html.ep"
+[2019-12-31 23:43:47.88608] [16019] [debug] [061a4d19] 404 Not Found (0.017766s, 56.287/s)
+[2019-12-31 23:43:48.99294] [16019] [debug] [ecc91217] GET "/post/FreeBSD/Shell/StartupFiles"
+[2019-12-31 23:43:48.99486] [16019] [debug] [ecc91217] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-12-31 23:43:49.02922] [16019] [debug] [ecc91217] Rendering template "post/post.html.ep"
+[2019-12-31 23:43:49.03346] [16019] [debug] [ecc91217] Rendering cached template "layouts/default.html.ep"
+[2019-12-31 23:43:49.03436] [16019] [debug] [ecc91217] 200 OK (0.041408s, 24.150/s)
+[2019-12-31 23:44:04.78346] [16019] [debug] [f6b2e316] GET "/post/categories"
+[2019-12-31 23:44:04.78415] [16019] [debug] [f6b2e316] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-12-31 23:44:04.78667] [16019] [debug] [f6b2e316] Rendering cached template "post/categories.html.ep"
+[2019-12-31 23:44:04.79050] [16019] [debug] [f6b2e316] Rendering cached template "layouts/default.html.ep"
+[2019-12-31 23:44:04.79133] [16019] [debug] [f6b2e316] 200 OK (0.00786s, 127.226/s)
+[2019-12-31 23:44:04.92610] [16019] [debug] [eb5e4e7d] GET "/post/categories.css"
+[2019-12-31 23:44:04.92697] [16019] [debug] [eb5e4e7d] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-12-31 23:44:04.93095] [16019] [debug] [eb5e4e7d] Template "post/categories.css.ep" not found
+[2019-12-31 23:44:04.93180] [16019] [debug] [eb5e4e7d] Template "not_found.development.css.ep" not found
+[2019-12-31 23:44:04.93241] [16019] [debug] [eb5e4e7d] Template "not_found.css.ep" not found
+[2019-12-31 23:44:04.93303] [16019] [debug] [eb5e4e7d] Template "not_found.development.html.ep" not found
+[2019-12-31 23:44:04.93360] [16019] [debug] [eb5e4e7d] Template "not_found.html.ep" not found
+[2019-12-31 23:44:04.93402] [16019] [debug] [eb5e4e7d] Rendering cached template "mojo/debug.html.ep"
+[2019-12-31 23:44:04.95129] [16019] [debug] [eb5e4e7d] 404 Not Found (0.025135s, 39.785/s)
+[2019-12-31 23:44:06.42697] [16019] [debug] [7bd55dbb] GET "/post/Perl"
+[2019-12-31 23:44:06.42867] [16019] [debug] [7bd55dbb] Routing to controller "BlogVillain::Controller::Post" and action "fulltitles"
+[2019-12-31 23:44:06.43596] [16019] [debug] [7bd55dbb] Rendering cached template "post/category.html.ep"
+[2019-12-31 23:44:06.44674] [16019] [debug] [7bd55dbb] Rendering cached template "layouts/default.html.ep"
+[2019-12-31 23:44:06.44777] [16019] [debug] [7bd55dbb] 200 OK (0.020787s, 48.107/s)
+[2019-12-31 23:44:06.62446] [16019] [debug] [d0ba992b] GET "/post/categories.css"
+[2019-12-31 23:44:06.62522] [16019] [debug] [d0ba992b] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-12-31 23:44:06.62854] [16019] [debug] [d0ba992b] Template "post/categories.css.ep" not found
+[2019-12-31 23:44:06.62930] [16019] [debug] [d0ba992b] Template "not_found.development.css.ep" not found
+[2019-12-31 23:44:06.62976] [16019] [debug] [d0ba992b] Template "not_found.css.ep" not found
+[2019-12-31 23:44:06.63017] [16019] [debug] [d0ba992b] Template "not_found.development.html.ep" not found
+[2019-12-31 23:44:06.63052] [16019] [debug] [d0ba992b] Template "not_found.html.ep" not found
+[2019-12-31 23:44:06.63078] [16019] [debug] [d0ba992b] Rendering cached template "mojo/debug.html.ep"
+[2019-12-31 23:44:06.64426] [16019] [debug] [d0ba992b] 404 Not Found (0.019759s, 50.610/s)
+[2019-12-31 23:44:09.34114] [16019] [debug] [6e996451] GET "/post/Perl/Devel/Size"
+[2019-12-31 23:44:09.34218] [16019] [debug] [6e996451] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-12-31 23:44:09.36539] [16019] [debug] [6e996451] Rendering cached template "post/post.html.ep"
+[2019-12-31 23:44:09.36742] [16019] [debug] [6e996451] Rendering cached template "layouts/default.html.ep"
+[2019-12-31 23:44:09.36869] [16019] [debug] [6e996451] 200 OK (0.027506s, 36.356/s)
+[2019-12-31 23:44:16.50284] [16019] [debug] [4c348dcd] GET "/post/categories"
+[2019-12-31 23:44:16.50392] [16019] [debug] [4c348dcd] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-12-31 23:44:16.50812] [16019] [debug] [4c348dcd] Rendering cached template "post/categories.html.ep"
+[2019-12-31 23:44:16.51278] [16019] [debug] [4c348dcd] Rendering cached template "layouts/default.html.ep"
+[2019-12-31 23:44:16.51409] [16019] [debug] [4c348dcd] 200 OK (0.011209s, 89.214/s)
+[2019-12-31 23:44:16.68237] [16019] [debug] [1de36576] GET "/post/categories.css"
+[2019-12-31 23:44:16.68327] [16019] [debug] [1de36576] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-12-31 23:44:16.68682] [16019] [debug] [1de36576] Template "post/categories.css.ep" not found
+[2019-12-31 23:44:16.68798] [16019] [debug] [1de36576] Template "not_found.development.css.ep" not found
+[2019-12-31 23:44:16.68877] [16019] [debug] [1de36576] Template "not_found.css.ep" not found
+[2019-12-31 23:44:16.68972] [16019] [debug] [1de36576] Template "not_found.development.html.ep" not found
+[2019-12-31 23:44:16.69053] [16019] [debug] [1de36576] Template "not_found.html.ep" not found
+[2019-12-31 23:44:16.69095] [16019] [debug] [1de36576] Rendering cached template "mojo/debug.html.ep"
+[2019-12-31 23:44:16.70250] [16019] [debug] [1de36576] 404 Not Found (0.0201s, 49.751/s)
+[2019-12-31 23:44:19.05211] [16019] [debug] [6822a945] GET "/post/OS"
+[2019-12-31 23:44:19.05321] [16019] [debug] [6822a945] Routing to controller "BlogVillain::Controller::Post" and action "fulltitles"
+[2019-12-31 23:44:19.05867] [16019] [debug] [6822a945] Rendering cached template "post/category.html.ep"
+[2019-12-31 23:44:19.06014] [16019] [debug] [6822a945] Rendering cached template "layouts/default.html.ep"
+[2019-12-31 23:44:19.06110] [16019] [debug] [6822a945] 200 OK (0.008957s, 111.645/s)
+[2019-12-31 23:44:19.19973] [16019] [debug] [c13aab50] GET "/post/categories.css"
+[2019-12-31 23:44:19.20066] [16019] [debug] [c13aab50] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2019-12-31 23:44:19.20472] [16019] [debug] [c13aab50] Template "post/categories.css.ep" not found
+[2019-12-31 23:44:19.20565] [16019] [debug] [c13aab50] Template "not_found.development.css.ep" not found
+[2019-12-31 23:44:19.20625] [16019] [debug] [c13aab50] Template "not_found.css.ep" not found
+[2019-12-31 23:44:19.20669] [16019] [debug] [c13aab50] Template "not_found.development.html.ep" not found
+[2019-12-31 23:44:19.20705] [16019] [debug] [c13aab50] Template "not_found.html.ep" not found
+[2019-12-31 23:44:19.20731] [16019] [debug] [c13aab50] Rendering cached template "mojo/debug.html.ep"
+[2019-12-31 23:44:19.21819] [16019] [debug] [c13aab50] 404 Not Found (0.018427s, 54.268/s)
+[2019-12-31 23:44:21.62105] [16019] [debug] [9b8aaa5d] GET "/post/OS/RustOS/minimal_rust_kernel"
+[2019-12-31 23:44:21.62212] [16019] [debug] [9b8aaa5d] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2019-12-31 23:44:21.72786] [16019] [debug] [9b8aaa5d] Rendering cached template "post/post.html.ep"
+[2019-12-31 23:44:21.72906] [16019] [debug] [9b8aaa5d] Rendering cached template "layouts/default.html.ep"
+[2019-12-31 23:44:21.72997] [16019] [debug] [9b8aaa5d] 200 OK (0.108904s, 9.182/s)
