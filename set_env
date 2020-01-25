@@ -10,7 +10,7 @@ if [ -z "$BLOGVILLAIN_HOME" ]; then
 	echo "" >> $PROFILE
 	echo "" >> $PROFILE
 	echo "# set ENV for BlogVillain" >> $PROFILE
-	echo "export BLOGVILLAIN_HOME=$HOME/blog_villain" >> $PROFILE
+	echo "export BLOGVILLAIN_HOME=$PWD" >> $PROFILE
 fi
 
 source "$PROFILE";

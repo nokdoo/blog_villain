@@ -2,5 +2,5 @@
 *.swp
 local/
 cpanfile.snapshot
-/log
+log/
 private/

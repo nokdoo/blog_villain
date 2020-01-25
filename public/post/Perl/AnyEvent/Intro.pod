@@ -1,0 +1,283 @@
+=encoding utf8
+
+=head1 NAME
+
+AnyEvent::Intro - AnyEvent 에 대한 설명
+
+=head2 What is AnyEvent?
+
+AnyEvent 는 event-based 프로그래밍을 위한 프레임워크다. 
+일반적으로 프레임워크를 사용하면 다른 프레임워크를 함께 사용할 수 없다.
+
+AnyEvent 는 이와 다르게 다른 이벤트 루프들 위에 존재하는 추상적인 레이어다. 
+비슷한 예로, 데이터베이스 API 의 추상인 DBI 가 있다.
+
+AnyEvent 의 주된 목적은 프레임워크의 선택을 모듈 개발자에서 프로그램 개발자에게 넘겨주는 것이다.
+따라서 프로그램 개발자는 event-based 코드를 먼저 작성하고 프레임워크를 선택할 수 있다. 
+
+또한 AnyEvent 는 다른 모듈에 종족되지 않고 순수 펄로만 작성되었기 때문에 다른 모듈에 의존성을 가지지 않는다.
+Net::IRC 모듈의 경우 모듈 자체의 이벤트 루프를 사용하기 때문에 다른 모듈에 통합시킬 수 없다.
+LWP 모듈의 경우 이벤트에 대한 인터페이스가 없고, blocking 모듈이기 때문에,
+사용자는 프로세스를 새로 실행시키거나, 포크하거나, 스레드를 사용해야하는 문제가 있다.
+
+AnyEvent 는 XS-module 에 의존하는 것과 (Net::IRC) 
+사용자가 특정 이벤트 루프만을 사용하도록 강요하는 딜레마를 해결한다.
+
+어떤 모듈 개발자가 AnyEvent 를 사용해 모듈을 만들었다면, 그 모듈은 다른 모듈에 의해
+이벤트 루트에 관련없이 사용될 수 있다.
+
+=head2 Introduction to Event-Based Programming
+
+이벤트를 사용하는 프로그래밍이 정확이 뭘까? 
+특정 동작을 기다리는 동안 프로그램이 다른 일을 할 수 있게 하는 것이다.
+다음의 예제 코드는 프로그램이 사용자 입력을 기다리는 동안 다른 작업을 수행하도록 한다.
+
+B<다음 코드는 정상적으로 실행되지 않는다. 다음 절에서 설명한다.>
+
+=begin html
+
+<pre><code class="perl">
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use feature qw/ say /;
+
+use AnyEvent;
+
+$|=1; say "enter your name> ";
+
+my $name;
+
+my $wait_for_input = AnyEvent->io (
+   fh   => \*STDIN, # which file handle to check
+   poll => "r",     # which event to wait for ("r"ead data)
+   cb   => sub {    # what callback to execute
+      $name = <STDIN>; # read it
+      print $name;
+   }
+);
+
+# do something else here
+say 'after event';
+
+</code></pre>
+
+=end html
+
+AnyEvent->io 에 의해 리턴된 객체는 B<interest> 라고 하며 B<watcher> 라고 불린다.
+
+여러 이벤트를 사용한다면 이런 B<interest> 는 잊혀지기 쉽기 때문에, AnyEvent 는
+오랫동안 사용되지 않는 B<interest> 를 제거한다.
+
+=head2 Condition Variables
+
+event-based 프로그램들은 때때로 블록되어야 한다. 아무런 작업이 존재하지 않거나
+모든 작업이 새로운 이벤트가 도착하기를 기다려야 하는 상황이 있기 때문이다.
+
+위의 코드를 예로 들면 callback 이 실행되지 않는데, 이는 이벤트 루프가 블록된 상태이기 때문이다.
+
+AnyEvent 에서는 이를 B<condition variables> 로 관리한다.
+
+condition variables 은 다음 두 부류로 나뉜다
+
+=over 4
+
+=item * producer
+
+condition 을 감지하거나 표시하는 코드
+
+=item * consumer
+
+실행 코드가 condition 을 기다리는 코드
+
+=back
+
+위의 코드에서 producer 는 event callback 이고, consumer 는 아직 작성되지 않았다.
+각각이 실행 스코프라고 보면 될듯.
+
+코드를 새롭게 작성해보자.
+
+=begin html
+
+<pre><code class="perl">
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use feature qw/ say /;
+
+use AnyEvent;
+
+$| = 1; say "enter your name> ";
+
+my $name;
+
+my $name_ready = AnyEvent->condvar;
+
+my $wait_for_input = AnyEvent->io (
+   fh   => \*STDIN,
+   poll => "r",
+# producer of condition
+   cb   => sub {
+      $name = <STDIN>;
+      $name_ready->send;
+   }
+);
+
+# do something else here
+say "code above event I/O";
+
+# now wait until the name is available:
+$name_ready->recv;
+
+undef $wait_for_input; # watcher no longer needed
+
+say "your name is $name\n";
+
+</code></pre>
+
+=end html
+
+I<< AnyEvent->condvar >> 메소드로 condition variable 을 생성한다.
+이제 콜백 안에서 condition variable 을 이벤트 루프에 전달함으로써
+이를 기다리는 실행 코드를 다음 동작으로 넘어가도록 한다.
+
+실행 코드란 I<< $name_ready->recv >> 를 호출하는 코드를 말한다. 즉,
+producer 는 I<send> 를 호출하고, consumer 는 I<recv> 를 호출한다.
+
+아직 I<send> 가 호출되지 않았다면, I<< $name_ready->recv >> 는
+condition variable 이 true 로 될 때까지 프로그램을 중단한다.
+
+위 코드는 다음처럼 정리될 수 있다.
+
+=begin html
+
+<pre><code class="perl">
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use feature qw/ say /;
+
+use AnyEvent;
+
+$| = 1; say "enter your name> ";
+
+my $name_ready = AnyEvent->condvar;
+
+my $wait_for_input = AnyEvent->io (
+   fh => \*STDIN, poll => "r",
+   cb => sub { $name_ready->send (scalar <STDIN>) }
+);
+
+# do something else here
+
+# now wait and fetch the name
+my $name = $name_ready->recv;
+
+undef $wait_for_input; # watcher no longer needed
+
+say "your name is $name\n";
+</code></pre>
+
+=end html
+
+I<send> 와 I<recv> 는 이름에서 알 수 있듯이 데이터를 주고 받는 기능을 제공한다.
+
+이때 I<send> 에 데이터로 넘어가는 인자들은 모두 I<recv> 에서 그대로 받는다.
+
+condition variables 은 다음의 여러 종류로 정의될 수 있다
+
+=over 4
+
+=item * callback
+
+코드가 실행할 수 있는 콜백, 또는 실행되기를 기다리는 콜백.
+
+=item * signal
+
+실행 코드가 전달할 수 있는 신호, 또는 신호를 기다리는 실행코드.
+
+=item * merge point
+
+독립적으로 분기된 프로그램이 하나로 합쳐지는 지점.
+
+=item * transaction
+
+=item * promise
+
+=back
+
+=head3 Methods For Producer
+
+Producer 로서 동작하기 위한 메소드들.
+
+=over 4
+
+=item * B<< $cv->send >>
+
+=item * B<< $cv->croak($error) >>
+
+=item * B<< $cv->begin, $cv->end >>
+
+=back
+
+
+=head3 Methods For Consumer
+
+=over 4
+
+=item * B<< $cv->recv >>
+
+
+=item * B<< $bool >>
+
+
+=item * B<< $cb = $cv->cb >>
+
+
+=back
+
+=head2 The "main loop"
+
+대부분의 event-based 프레임워크는 "main loop" 또는 "event loop run function" 이라고
+불리는 함수를 갖는다.
+
+I<recv> 처럼 이 함수는 이벤트 루프가 사용자가 관심있는 이벤트를 찾도록 만든다.
+
+이해를 돕기 위해 Gtk, Tk 같은 외부 이벤트 루프 없이 
+AnyEvent 만을 사용해서 간단한 프로그램을 만들어보자.
+
+앞의 예제 코드처럼 I/O 를 이용한 프로그래밍은 매우 중요하지만, 이것이 전부는 아니다.
+두 번째로 중요한 이벤트 소스는 clock 이다. 예를 들어 HTTP 요청을 할 때
+서버에서 일정 시간동안 응답이 없다면 시간초과로 처리하고 싶은 경우가 있다.
+
+이런 타이머 이벤트는 AnyEvent->timer 메소드 호출을 통해 만들어진다.
+
+=begin html
+
+<pre><code class="perl">
+use AnyEvent;
+
+my $cv = AnyEvent->condvar;
+
+my $wait_one_and_a_half_seconds = AnyEvent->timer (
+   after => 1.5,  # after how many seconds to invoke the cb?
+   cb    => sub { # the callback to invoke
+      $cv->send;
+   },
+);
+
+# can do something else here
+
+# now wait till our time has come
+$cv->recv;
+</code></pre>
+
+=end html
+
+I/O watcher 에서는 읽을 데이터가 존재하면 언제라도 콜백이 호출되었지만, 타이머와 관련된 코드는
+단 한 번만 호출되고 버려진다.
+
+=cut
