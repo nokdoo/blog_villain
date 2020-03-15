@@ -1,0 +1,59 @@
+=encoding utf8
+
+=pod
+
+=head1 NAME
+
+ECMAScript Overview
+
+=head1 DESCRIPTION
+
+ECMAScript 에 대해 개괄적인 설명을 한다.
+
+=head1 ECMAScript Overview
+
+이 절에서 설명하는 내용은 명확한 표준으로 정의되어 있지 않다.
+
+ECMAScript 은 I<object> 에 기반한 언어다. 
+ECMAScript 프로그램은 object 들의 연결로 이루어져 있다.
+
+object 는 0 개 이상의 I<property> 를 갖고, 각각의 property 는 attribute 를 가지며 
+이것은 property 가 어떻게 사용되는지 정의한다.
+
+만일 writable attribute 가 false 로 정의되어 있다면 해당 property 를 수정하려는 행위는 
+실패할 것이다.
+
+property 는 다른 object, I<primitive value>, I<function> 을 담는 컨테이너다.
+
+primitive value 는 다음의 I<built-in type> 이 될 수 있다. B<Undefined>, B<Null>, B<Boolean>, B<Number>, B<BigInt>, B<String>, B<Symbol>.
+
+object 는 I<Object> 의 property 다.
+
+function 은 I<callable> object 다.
+
+ECMAScript 은 ECMAScript entity 를 더욱 풍성하게 만드는 I<built-in object> 를 제공한다.
+
+=over 4
+
+=item * 런타임에 근본적으로 필요한 B<Object>, B<Function>, B<Boolean>, B<Symbol>, B<Error> object.
+
+=item * 숫자를 다루는 B<Math>, B<Number>, B<Date> object.
+
+=item * 문자를 처리하는 B<String>, B<RegExp> object.
+
+=item * 인덱스를 사용하는 B<Array> indexed object.
+
+=item * 키를 사용하는 B<Map>, B<Set> keyed object.
+
+=item * 구조적 데이터를 지원하는 B<JSON>, B<ArrayBuffer>, B<SharedArrayBuffer>, B<DataView> object.
+
+=item * generator function 과 B<Promise> 를 포함하는 추상과 
+B<Proxy>, B<Reflect> 를 포함하는 reflection object 에 대한 제어를 제공하는 object.
+
+=back
+
+ECMAScript 은 I<built-in operator> 를 제공한다. 
+
+
+
+=cut

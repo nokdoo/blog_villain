@@ -47382,3 +47382,433 @@ Compilation failed in require at (eval 174) line 1.
 [2020-01-25 17:32:21.82706] [19012] [debug] [7438cf19] Rendering cached template "post/post.html.ep"
 [2020-01-25 17:32:21.82782] [19012] [debug] [7438cf19] Rendering cached template "layouts/default.html.ep"
 [2020-01-25 17:32:21.82823] [19012] [debug] [7438cf19] 200 OK (0.06461s, 15.477/s)
+[2020-02-08 21:27:45.15867] [1986] [debug] [2cd4bd8c] GET "/"
+[2020-02-08 21:27:45.16199] [1986] [debug] [2cd4bd8c] Rendering template "home.html.ep"
+[2020-02-08 21:27:45.16391] [1986] [debug] [2cd4bd8c] Rendering template "layouts/default.html.ep"
+[2020-02-08 21:27:45.16757] [1986] [debug] [2cd4bd8c] 200 OK (0.008936s, 111.907/s)
+[2020-02-08 21:27:46.26454] [1986] [debug] [f48bd656] GET "/post/categories"
+[2020-02-08 21:27:46.53687] [1986] [debug] [f48bd656] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-02-08 21:27:46.58136] [1986] [debug] [f48bd656] Rendering template "post/categories.html.ep"
+[2020-02-08 21:27:46.58357] [1986] [debug] [f48bd656] Rendering cached template "layouts/default.html.ep"
+[2020-02-08 21:27:46.58387] [1986] [debug] [f48bd656] 200 OK (0.31944s, 3.130/s)
+[2020-02-08 21:27:46.64891] [1986] [debug] [55ac0fc3] GET "/post/categories.css"
+[2020-02-08 21:27:46.64940] [1986] [debug] [55ac0fc3] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-02-08 21:27:46.65085] [1986] [debug] [55ac0fc3] Template "post/categories.css.ep" not found
+[2020-02-08 21:27:46.65113] [1986] [debug] [55ac0fc3] Template "not_found.development.css.ep" not found
+[2020-02-08 21:27:46.65131] [1986] [debug] [55ac0fc3] Template "not_found.css.ep" not found
+[2020-02-08 21:27:46.65150] [1986] [debug] [55ac0fc3] Template "not_found.development.html.ep" not found
+[2020-02-08 21:27:46.65166] [1986] [debug] [55ac0fc3] Template "not_found.html.ep" not found
+[2020-02-08 21:27:46.65182] [1986] [debug] [55ac0fc3] Rendering template "mojo/debug.html.ep"
+[2020-02-08 21:27:46.67232] [1986] [debug] [55ac0fc3] 404 Not Found (0.023386s, 42.761/s)
+[2020-02-08 21:27:54.99103] [1986] [debug] [57eb1503] GET "/post/categories"
+[2020-02-08 21:27:54.99151] [1986] [debug] [57eb1503] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-02-08 21:27:54.99288] [1986] [debug] [57eb1503] Rendering cached template "post/categories.html.ep"
+[2020-02-08 21:27:54.99475] [1986] [debug] [57eb1503] Rendering cached template "layouts/default.html.ep"
+[2020-02-08 21:27:54.99516] [1986] [debug] [57eb1503] 200 OK (0.004132s, 242.014/s)
+[2020-02-08 21:27:55.05424] [1986] [debug] [c8993f9e] GET "/post/categories.css"
+[2020-02-08 21:27:55.05443] [1986] [debug] [c8993f9e] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-02-08 21:27:55.05526] [1986] [debug] [c8993f9e] Template "post/categories.css.ep" not found
+[2020-02-08 21:27:55.05541] [1986] [debug] [c8993f9e] Template "not_found.development.css.ep" not found
+[2020-02-08 21:27:55.05550] [1986] [debug] [c8993f9e] Template "not_found.css.ep" not found
+[2020-02-08 21:27:55.05559] [1986] [debug] [c8993f9e] Template "not_found.development.html.ep" not found
+[2020-02-08 21:27:55.05568] [1986] [debug] [c8993f9e] Template "not_found.html.ep" not found
+[2020-02-08 21:27:55.05574] [1986] [debug] [c8993f9e] Rendering cached template "mojo/debug.html.ep"
+[2020-02-08 21:27:55.05859] [1986] [debug] [c8993f9e] 404 Not Found (0.004333s, 230.787/s)
+[2020-02-08 21:27:55.79498] [1986] [debug] [09db50b3] GET "/post/categories"
+[2020-02-08 21:27:55.79579] [1986] [debug] [09db50b3] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-02-08 21:27:55.79906] [1986] [debug] [09db50b3] Rendering cached template "post/categories.html.ep"
+[2020-02-08 21:27:55.80449] [1986] [debug] [09db50b3] Rendering cached template "layouts/default.html.ep"
+[2020-02-08 21:27:55.80615] [1986] [debug] [09db50b3] 200 OK (0.011066s, 90.367/s)
+[2020-02-08 21:27:55.88103] [1986] [debug] [592d3404] GET "/post/categories.css"
+[2020-02-08 21:27:55.88124] [1986] [debug] [592d3404] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-02-08 21:27:55.88222] [1986] [debug] [592d3404] Template "post/categories.css.ep" not found
+[2020-02-08 21:27:55.88245] [1986] [debug] [592d3404] Template "not_found.development.css.ep" not found
+[2020-02-08 21:27:55.88259] [1986] [debug] [592d3404] Template "not_found.css.ep" not found
+[2020-02-08 21:27:55.88271] [1986] [debug] [592d3404] Template "not_found.development.html.ep" not found
+[2020-02-08 21:27:55.88280] [1986] [debug] [592d3404] Template "not_found.html.ep" not found
+[2020-02-08 21:27:55.88291] [1986] [debug] [592d3404] Rendering cached template "mojo/debug.html.ep"
+[2020-02-08 21:27:55.88628] [1986] [debug] [592d3404] 404 Not Found (0.005229s, 191.241/s)
+[2020-02-08 21:27:55.91636] [1986] [debug] [1c753116] GET "/post/categories"
+[2020-02-08 21:27:55.91667] [1986] [debug] [1c753116] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-02-08 21:27:55.91793] [1986] [debug] [1c753116] Rendering cached template "post/categories.html.ep"
+[2020-02-08 21:27:55.91923] [1986] [debug] [1c753116] Rendering cached template "layouts/default.html.ep"
+[2020-02-08 21:27:55.91957] [1986] [debug] [1c753116] 200 OK (0.00321s, 311.526/s)
+[2020-02-08 21:27:55.97975] [1986] [debug] [2849aaef] GET "/post/categories.css"
+[2020-02-08 21:27:55.98007] [1986] [debug] [2849aaef] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-02-08 21:27:55.98128] [1986] [debug] [2849aaef] Template "post/categories.css.ep" not found
+[2020-02-08 21:27:55.98151] [1986] [debug] [2849aaef] Template "not_found.development.css.ep" not found
+[2020-02-08 21:27:55.98162] [1986] [debug] [2849aaef] Template "not_found.css.ep" not found
+[2020-02-08 21:27:55.98172] [1986] [debug] [2849aaef] Template "not_found.development.html.ep" not found
+[2020-02-08 21:27:55.98181] [1986] [debug] [2849aaef] Template "not_found.html.ep" not found
+[2020-02-08 21:27:55.98188] [1986] [debug] [2849aaef] Rendering cached template "mojo/debug.html.ep"
+[2020-02-08 21:27:55.98472] [1986] [debug] [2849aaef] 404 Not Found (0.004955s, 201.816/s)
+[2020-02-08 21:27:56.05160] [1986] [debug] [bbb655de] GET "/post/categories"
+[2020-02-08 21:27:56.05204] [1986] [debug] [bbb655de] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-02-08 21:27:56.05373] [1986] [debug] [bbb655de] Rendering cached template "post/categories.html.ep"
+[2020-02-08 21:27:56.05488] [1986] [debug] [bbb655de] Rendering cached template "layouts/default.html.ep"
+[2020-02-08 21:27:56.05531] [1986] [debug] [bbb655de] 200 OK (0.00368s, 271.739/s)
+[2020-02-08 21:27:56.12056] [1986] [debug] [78fd7e33] GET "/post/categories.css"
+[2020-02-08 21:27:56.12079] [1986] [debug] [78fd7e33] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-02-08 21:27:56.12192] [1986] [debug] [78fd7e33] Template "post/categories.css.ep" not found
+[2020-02-08 21:27:56.12228] [1986] [debug] [78fd7e33] Template "not_found.development.css.ep" not found
+[2020-02-08 21:27:56.12253] [1986] [debug] [78fd7e33] Template "not_found.css.ep" not found
+[2020-02-08 21:27:56.12278] [1986] [debug] [78fd7e33] Template "not_found.development.html.ep" not found
+[2020-02-08 21:27:56.12304] [1986] [debug] [78fd7e33] Template "not_found.html.ep" not found
+[2020-02-08 21:27:56.12321] [1986] [debug] [78fd7e33] Rendering cached template "mojo/debug.html.ep"
+[2020-02-08 21:27:56.12857] [1986] [debug] [78fd7e33] 404 Not Found (0.007973s, 125.423/s)
+[2020-02-08 21:27:56.19940] [1986] [debug] [09267422] GET "/post/categories"
+[2020-02-08 21:27:56.19997] [1986] [debug] [09267422] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-02-08 21:27:56.20206] [1986] [debug] [09267422] Rendering cached template "post/categories.html.ep"
+[2020-02-08 21:27:56.20340] [1986] [debug] [09267422] Rendering cached template "layouts/default.html.ep"
+[2020-02-08 21:27:56.20378] [1986] [debug] [09267422] 200 OK (0.00437s, 228.833/s)
+[2020-02-08 21:27:56.25273] [1986] [debug] [e0101435] GET "/post/categories.css"
+[2020-02-08 21:27:56.25295] [1986] [debug] [e0101435] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-02-08 21:27:56.25389] [1986] [debug] [e0101435] Template "post/categories.css.ep" not found
+[2020-02-08 21:27:56.25409] [1986] [debug] [e0101435] Template "not_found.development.css.ep" not found
+[2020-02-08 21:27:56.25420] [1986] [debug] [e0101435] Template "not_found.css.ep" not found
+[2020-02-08 21:27:56.25430] [1986] [debug] [e0101435] Template "not_found.development.html.ep" not found
+[2020-02-08 21:27:56.25441] [1986] [debug] [e0101435] Template "not_found.html.ep" not found
+[2020-02-08 21:27:56.25453] [1986] [debug] [e0101435] Rendering cached template "mojo/debug.html.ep"
+[2020-02-08 21:27:56.25938] [1986] [debug] [e0101435] 404 Not Found (0.006556s, 152.532/s)
+[2020-02-08 21:28:06.33940] [1986] [debug] [bc70e5dd] GET "/post/categories"
+[2020-02-08 21:28:06.34028] [1986] [debug] [bc70e5dd] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-02-08 21:28:06.34450] [1986] [debug] [bc70e5dd] Rendering cached template "post/categories.html.ep"
+[2020-02-08 21:28:06.35156] [1986] [debug] [bc70e5dd] Rendering cached template "layouts/default.html.ep"
+[2020-02-08 21:28:06.35247] [1986] [debug] [bc70e5dd] 200 OK (0.013023s, 76.787/s)
+[2020-02-08 21:28:06.41510] [1986] [debug] [469c28c7] GET "/post/categories.css"
+[2020-02-08 21:28:06.41536] [1986] [debug] [469c28c7] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-02-08 21:28:06.41633] [1986] [debug] [469c28c7] Template "post/categories.css.ep" not found
+[2020-02-08 21:28:06.41650] [1986] [debug] [469c28c7] Template "not_found.development.css.ep" not found
+[2020-02-08 21:28:06.41660] [1986] [debug] [469c28c7] Template "not_found.css.ep" not found
+[2020-02-08 21:28:06.41669] [1986] [debug] [469c28c7] Template "not_found.development.html.ep" not found
+[2020-02-08 21:28:06.41678] [1986] [debug] [469c28c7] Template "not_found.html.ep" not found
+[2020-02-08 21:28:06.41685] [1986] [debug] [469c28c7] Rendering cached template "mojo/debug.html.ep"
+[2020-02-08 21:28:06.42035] [1986] [debug] [469c28c7] 404 Not Found (0.005245s, 190.658/s)
+[2020-02-08 21:28:07.51652] [1986] [debug] [79758aa8] GET "/post/Javascript"
+[2020-02-08 21:28:07.51827] [1986] [debug] [79758aa8] Routing to controller "BlogVillain::Controller::Post" and action "fulltitles"
+[2020-02-08 21:28:07.53078] [1986] [debug] [79758aa8] Rendering template "post/category.html.ep"
+[2020-02-08 21:28:07.53883] [1986] [debug] [79758aa8] Rendering cached template "layouts/default.html.ep"
+[2020-02-08 21:28:07.54029] [1986] [debug] [79758aa8] 200 OK (0.023725s, 42.150/s)
+[2020-02-08 21:28:07.64609] [1986] [debug] [e57705b9] GET "/post/categories.css"
+[2020-02-08 21:28:07.64673] [1986] [debug] [e57705b9] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-02-08 21:28:07.64784] [1986] [debug] [e57705b9] Template "post/categories.css.ep" not found
+[2020-02-08 21:28:07.64806] [1986] [debug] [e57705b9] Template "not_found.development.css.ep" not found
+[2020-02-08 21:28:07.64820] [1986] [debug] [e57705b9] Template "not_found.css.ep" not found
+[2020-02-08 21:28:07.64830] [1986] [debug] [e57705b9] Template "not_found.development.html.ep" not found
+[2020-02-08 21:28:07.64843] [1986] [debug] [e57705b9] Template "not_found.html.ep" not found
+[2020-02-08 21:28:07.64851] [1986] [debug] [e57705b9] Rendering cached template "mojo/debug.html.ep"
+[2020-02-08 21:28:07.65135] [1986] [debug] [e57705b9] 404 Not Found (0.005276s, 189.538/s)
+[2020-02-08 21:28:08.58269] [1986] [debug] [41e8c61f] GET "/post/Javascript/ECMAScript/Overview"
+[2020-02-08 21:28:08.58519] [1986] [debug] [41e8c61f] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-02-08 21:28:08.63323] [1986] [debug] [41e8c61f] Rendering template "post/post.html.ep"
+[2020-02-08 21:28:08.63644] [1986] [debug] [41e8c61f] Rendering cached template "layouts/default.html.ep"
+[2020-02-08 21:28:08.63703] [1986] [debug] [41e8c61f] 200 OK (0.054353s, 18.398/s)
+[2020-02-08 21:38:09.72557] [1986] [debug] [c31d5be9] GET "/post/Javascript/ECMAScript/Overview"
+[2020-02-08 21:38:09.72585] [1986] [debug] [c31d5be9] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-02-08 21:38:09.73299] [1986] [debug] [c31d5be9] Rendering cached template "post/post.html.ep"
+[2020-02-08 21:38:09.73366] [1986] [debug] [c31d5be9] Rendering cached template "layouts/default.html.ep"
+[2020-02-08 21:38:09.73409] [1986] [debug] [c31d5be9] 200 OK (0.008505s, 117.578/s)
+[2020-02-08 22:10:41.93621] [1986] [debug] [39050316] GET "/post/Javascript/ECMAScript/Overview"
+[2020-02-08 22:10:41.93761] [1986] [debug] [39050316] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-02-08 22:10:41.94910] [1986] [debug] [39050316] Rendering cached template "post/post.html.ep"
+[2020-02-08 22:10:41.95354] [1986] [debug] [39050316] Rendering cached template "layouts/default.html.ep"
+[2020-02-08 22:10:41.95679] [1986] [debug] [39050316] 200 OK (0.019606s, 51.005/s)
+[2020-02-08 22:10:49.93546] [1986] [debug] [67b98f68] GET "/post/Javascript/ECMAScript/Overview"
+[2020-02-08 22:10:49.93605] [1986] [debug] [67b98f68] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-02-08 22:10:49.95416] [1986] [debug] [67b98f68] Rendering cached template "post/post.html.ep"
+[2020-02-08 22:10:49.95508] [1986] [debug] [67b98f68] Rendering cached template "layouts/default.html.ep"
+[2020-02-08 22:10:49.95554] [1986] [debug] [67b98f68] 200 OK (0.020094s, 49.766/s)
+[2020-02-08 22:11:42.37803] [1986] [debug] [090a9afb] GET "/post/Javascript/ECMAScript/Overview"
+[2020-02-08 22:11:42.37891] [1986] [debug] [090a9afb] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-02-08 22:11:42.43254] [1986] [debug] [090a9afb] Rendering cached template "post/post.html.ep"
+[2020-02-08 22:11:42.43367] [1986] [debug] [090a9afb] Rendering cached template "layouts/default.html.ep"
+[2020-02-08 22:11:42.43422] [1986] [debug] [090a9afb] 200 OK (0.056194s, 17.795/s)
+[2020-03-15 18:04:28.11493] [1817] [debug] [08434a17] GET "/"
+[2020-03-15 18:04:28.11789] [1817] [debug] [08434a17] Rendering template "home.html.ep"
+[2020-03-15 18:04:28.11962] [1817] [debug] [08434a17] Rendering template "layouts/default.html.ep"
+[2020-03-15 18:04:28.12534] [1817] [debug] [08434a17] 200 OK (0.010354s, 96.581/s)
+[2020-03-15 18:04:30.35095] [1817] [debug] [579d0469] GET "/post/categories"
+[2020-03-15 18:04:30.53176] [1817] [debug] [579d0469] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-03-15 18:04:30.57459] [1817] [debug] [579d0469] Rendering template "post/categories.html.ep"
+[2020-03-15 18:04:30.57661] [1817] [debug] [579d0469] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:04:30.57690] [1817] [debug] [579d0469] 200 OK (0.225966s, 4.425/s)
+[2020-03-15 18:04:30.64867] [1817] [debug] [a9147184] GET "/post/categories.css"
+[2020-03-15 18:04:30.64918] [1817] [debug] [a9147184] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-03-15 18:04:30.65053] [1817] [debug] [a9147184] Template "post/categories.css.ep" not found
+[2020-03-15 18:04:30.65095] [1817] [debug] [a9147184] Template "not_found.development.css.ep" not found
+[2020-03-15 18:04:30.65124] [1817] [debug] [a9147184] Template "not_found.css.ep" not found
+[2020-03-15 18:04:30.65153] [1817] [debug] [a9147184] Template "not_found.development.html.ep" not found
+[2020-03-15 18:04:30.65177] [1817] [debug] [a9147184] Template "not_found.html.ep" not found
+[2020-03-15 18:04:30.65193] [1817] [debug] [a9147184] Rendering template "mojo/debug.html.ep"
+[2020-03-15 18:04:30.66586] [1817] [debug] [a9147184] 404 Not Found (0.017179s, 58.211/s)
+[2020-03-15 18:04:39.79586] [1817] [debug] [1013c9e2] GET "/post/categories"
+[2020-03-15 18:04:39.79623] [1817] [debug] [1013c9e2] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-03-15 18:04:39.79738] [1817] [debug] [1013c9e2] Rendering cached template "post/categories.html.ep"
+[2020-03-15 18:04:39.79903] [1817] [debug] [1013c9e2] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:04:39.79944] [1817] [debug] [1013c9e2] 200 OK (0.003565s, 280.505/s)
+[2020-03-15 18:04:39.83184] [1817] [debug] [170aa443] GET "/post/categories.css"
+[2020-03-15 18:04:39.83210] [1817] [debug] [170aa443] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-03-15 18:04:39.83330] [1817] [debug] [170aa443] Template "post/categories.css.ep" not found
+[2020-03-15 18:04:39.83349] [1817] [debug] [170aa443] Template "not_found.development.css.ep" not found
+[2020-03-15 18:04:39.83359] [1817] [debug] [170aa443] Template "not_found.css.ep" not found
+[2020-03-15 18:04:39.83419] [1817] [debug] [170aa443] Template "not_found.development.html.ep" not found
+[2020-03-15 18:04:39.83446] [1817] [debug] [170aa443] Template "not_found.html.ep" not found
+[2020-03-15 18:04:39.83479] [1817] [debug] [170aa443] Rendering cached template "mojo/debug.html.ep"
+[2020-03-15 18:04:39.83945] [1817] [debug] [170aa443] 404 Not Found (0.007604s, 131.510/s)
+[2020-03-15 18:05:04.15337] [1817] [debug] [74e6f9a0] GET "/post/categories"
+[2020-03-15 18:05:04.15377] [1817] [debug] [74e6f9a0] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-03-15 18:05:04.15533] [1817] [debug] [74e6f9a0] Rendering cached template "post/categories.html.ep"
+[2020-03-15 18:05:04.15787] [1817] [debug] [74e6f9a0] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:05:04.15828] [1817] [debug] [74e6f9a0] 200 OK (0.004919s, 203.293/s)
+[2020-03-15 18:05:04.18891] [1817] [debug] [4f41044e] GET "/post/categories.css"
+[2020-03-15 18:05:04.18925] [1817] [debug] [4f41044e] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-03-15 18:05:04.19104] [1817] [debug] [4f41044e] Template "post/categories.css.ep" not found
+[2020-03-15 18:05:04.19160] [1817] [debug] [4f41044e] Template "not_found.development.css.ep" not found
+[2020-03-15 18:05:04.19197] [1817] [debug] [4f41044e] Template "not_found.css.ep" not found
+[2020-03-15 18:05:04.19229] [1817] [debug] [4f41044e] Template "not_found.development.html.ep" not found
+[2020-03-15 18:05:04.19260] [1817] [debug] [4f41044e] Template "not_found.html.ep" not found
+[2020-03-15 18:05:04.19275] [1817] [debug] [4f41044e] Rendering cached template "mojo/debug.html.ep"
+[2020-03-15 18:05:04.19924] [1817] [debug] [4f41044e] 404 Not Found (0.010319s, 96.909/s)
+[2020-03-15 18:05:06.98422] [1817] [debug] [5eb0f7f5] GET "/post/Vimscript"
+[2020-03-15 18:05:06.98643] [1817] [debug] [5eb0f7f5] Routing to controller "BlogVillain::Controller::Post" and action "fulltitles"
+[2020-03-15 18:05:06.99787] [1817] [debug] [5eb0f7f5] Rendering template "post/category.html.ep"
+[2020-03-15 18:05:07.00242] [1817] [debug] [5eb0f7f5] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:05:07.00381] [1817] [debug] [5eb0f7f5] 200 OK (0.019571s, 51.096/s)
+[2020-03-15 18:05:07.05904] [1817] [debug] [3fea954e] GET "/post/categories.css"
+[2020-03-15 18:05:07.05949] [1817] [debug] [3fea954e] Routing to controller "BlogVillain::Controller::Post" and action "categories"
+[2020-03-15 18:05:07.06098] [1817] [debug] [3fea954e] Template "post/categories.css.ep" not found
+[2020-03-15 18:05:07.06124] [1817] [debug] [3fea954e] Template "not_found.development.css.ep" not found
+[2020-03-15 18:05:07.06135] [1817] [debug] [3fea954e] Template "not_found.css.ep" not found
+[2020-03-15 18:05:07.06144] [1817] [debug] [3fea954e] Template "not_found.development.html.ep" not found
+[2020-03-15 18:05:07.06153] [1817] [debug] [3fea954e] Template "not_found.html.ep" not found
+[2020-03-15 18:05:07.06159] [1817] [debug] [3fea954e] Rendering cached template "mojo/debug.html.ep"
+[2020-03-15 18:05:07.06434] [1817] [debug] [3fea954e] 404 Not Found (0.005299s, 188.715/s)
+[2020-03-15 18:09:27.34520] [1817] [debug] [cd35c25a] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 18:09:27.34588] [1817] [debug] [cd35c25a] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 18:09:27.35086] [1817] [debug] [cd35c25a] Rendering template "post/post.html.ep"
+[2020-03-15 18:09:27.35314] [1817] [debug] [cd35c25a] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:09:27.35371] [1817] [debug] [cd35c25a] 200 OK (0.008494s, 117.730/s)
+[2020-03-15 18:09:49.52107] [1817] [debug] [6ca3629e] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 18:09:49.52195] [1817] [debug] [6ca3629e] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 18:09:49.52747] [1817] [debug] [6ca3629e] Rendering cached template "post/post.html.ep"
+[2020-03-15 18:09:49.52953] [1817] [debug] [6ca3629e] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:09:49.53047] [1817] [debug] [6ca3629e] 200 OK (0.009432s, 106.022/s)
+[2020-03-15 18:09:50.70215] [1817] [debug] [d9d8ebdd] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 18:09:50.70239] [1817] [debug] [d9d8ebdd] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 18:09:50.70409] [1817] [debug] [d9d8ebdd] Rendering cached template "post/post.html.ep"
+[2020-03-15 18:09:50.70465] [1817] [debug] [d9d8ebdd] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:09:50.70494] [1817] [debug] [d9d8ebdd] 200 OK (0.002781s, 359.583/s)
+[2020-03-15 18:09:50.84085] [1817] [debug] [53832fff] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 18:09:50.84128] [1817] [debug] [53832fff] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 18:09:50.84472] [1817] [debug] [53832fff] Rendering cached template "post/post.html.ep"
+[2020-03-15 18:09:50.84648] [1817] [debug] [53832fff] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:09:50.84792] [1817] [debug] [53832fff] 200 OK (0.007035s, 142.146/s)
+[2020-03-15 18:09:50.95820] [1817] [debug] [bc919447] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 18:09:50.95847] [1817] [debug] [bc919447] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 18:09:50.96202] [1817] [debug] [bc919447] Rendering cached template "post/post.html.ep"
+[2020-03-15 18:09:50.96325] [1817] [debug] [bc919447] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:09:50.96420] [1817] [debug] [bc919447] 200 OK (0.005953s, 167.983/s)
+[2020-03-15 18:10:09.53135] [1817] [debug] [39c2283f] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 18:10:09.53161] [1817] [debug] [39c2283f] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 18:10:09.53323] [1817] [debug] [39c2283f] Rendering cached template "post/post.html.ep"
+[2020-03-15 18:10:09.53380] [1817] [debug] [39c2283f] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:10:09.53406] [1817] [debug] [39c2283f] 200 OK (0.002713s, 368.596/s)
+[2020-03-15 18:10:16.22685] [1817] [debug] [b24fdc1b] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 18:10:16.22717] [1817] [debug] [b24fdc1b] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 18:10:16.23630] [1817] [debug] [b24fdc1b] Rendering cached template "post/post.html.ep"
+[2020-03-15 18:10:16.23686] [1817] [debug] [b24fdc1b] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:10:16.23718] [1817] [debug] [b24fdc1b] 200 OK (0.010328s, 96.824/s)
+[2020-03-15 18:11:32.83525] [1817] [debug] [6983aac8] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 18:11:32.83546] [1817] [debug] [6983aac8] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 18:11:32.83819] [1817] [debug] [6983aac8] Rendering cached template "post/post.html.ep"
+[2020-03-15 18:11:32.83874] [1817] [debug] [6983aac8] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:11:32.83900] [1817] [debug] [6983aac8] 200 OK (0.003742s, 267.237/s)
+[2020-03-15 18:11:40.16907] [1817] [debug] [8a7aa8b6] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 18:11:40.16962] [1817] [debug] [8a7aa8b6] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 18:11:40.17284] [1817] [debug] [8a7aa8b6] Rendering cached template "post/post.html.ep"
+[2020-03-15 18:11:40.17382] [1817] [debug] [8a7aa8b6] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:11:40.17460] [1817] [debug] [8a7aa8b6] 200 OK (0.005487s, 182.249/s)
+[2020-03-15 18:11:41.12847] [1817] [debug] [b1e4ae25] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 18:11:41.12889] [1817] [debug] [b1e4ae25] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 18:11:41.13225] [1817] [debug] [b1e4ae25] Rendering cached template "post/post.html.ep"
+[2020-03-15 18:11:41.13358] [1817] [debug] [b1e4ae25] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:11:41.13443] [1817] [debug] [b1e4ae25] 200 OK (0.005922s, 168.862/s)
+[2020-03-15 18:11:41.25205] [1817] [debug] [90a3dfc3] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 18:11:41.25263] [1817] [debug] [90a3dfc3] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 18:11:41.25446] [1817] [debug] [90a3dfc3] Rendering cached template "post/post.html.ep"
+[2020-03-15 18:11:41.25502] [1817] [debug] [90a3dfc3] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:11:41.25530] [1817] [debug] [90a3dfc3] 200 OK (0.003269s, 305.904/s)
+[2020-03-15 18:31:50.38308] [1817] [debug] [51d20cb4] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 18:31:50.38436] [1817] [debug] [51d20cb4] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 18:31:50.39162] [1817] [debug] [51d20cb4] Rendering cached template "post/post.html.ep"
+[2020-03-15 18:31:50.39427] [1817] [debug] [51d20cb4] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:31:50.39570] [1817] [debug] [51d20cb4] 200 OK (0.012607s, 79.321/s)
+[2020-03-15 18:31:54.41215] [1817] [debug] [5c5a62ae] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 18:31:54.41296] [1817] [debug] [5c5a62ae] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 18:31:54.42856] [1817] [debug] [5c5a62ae] Rendering cached template "post/post.html.ep"
+[2020-03-15 18:31:54.43183] [1817] [debug] [5c5a62ae] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 18:31:54.43408] [1817] [debug] [5c5a62ae] 200 OK (0.02185s, 45.767/s)
+[2020-03-15 19:38:17.73822] [1817] [debug] [bfe453d8] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 19:38:17.73935] [1817] [debug] [bfe453d8] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 19:38:17.74897] [1817] [debug] [bfe453d8] Rendering cached template "post/post.html.ep"
+[2020-03-15 19:38:17.75701] [1817] [debug] [bfe453d8] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 19:38:17.75929] [1817] [debug] [bfe453d8] 200 OK (0.020984s, 47.655/s)
+[2020-03-15 19:38:22.30583] [1817] [debug] [6119d94d] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 19:38:22.30685] [1817] [debug] [6119d94d] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 19:38:22.31626] [1817] [debug] [6119d94d] Rendering cached template "post/post.html.ep"
+[2020-03-15 19:38:22.31871] [1817] [debug] [6119d94d] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 19:38:22.32073] [1817] [debug] [6119d94d] 200 OK (0.014789s, 67.618/s)
+[2020-03-15 19:38:23.52446] [1817] [debug] [fc2d37fa] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 19:38:23.52523] [1817] [debug] [fc2d37fa] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 19:38:23.53426] [1817] [debug] [fc2d37fa] Rendering cached template "post/post.html.ep"
+[2020-03-15 19:38:23.53857] [1817] [debug] [fc2d37fa] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 19:38:23.54052] [1817] [debug] [fc2d37fa] 200 OK (0.015977s, 62.590/s)
+[2020-03-15 19:42:35.74114] [1817] [debug] [a534e9dc] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 19:42:35.74222] [1817] [debug] [a534e9dc] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 19:42:35.75260] [1817] [debug] [a534e9dc] Rendering cached template "post/post.html.ep"
+[2020-03-15 19:42:35.75695] [1817] [debug] [a534e9dc] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 19:42:35.75834] [1817] [debug] [a534e9dc] 200 OK (0.017154s, 58.295/s)
+[2020-03-15 19:54:18.28398] [1817] [debug] [8006816f] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 19:54:18.28516] [1817] [debug] [8006816f] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 19:54:18.33208] [1817] [debug] [8006816f] Rendering cached template "post/post.html.ep"
+[2020-03-15 19:54:18.33581] [1817] [debug] [8006816f] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 19:54:18.33802] [1817] [debug] [8006816f] 200 OK (0.053969s, 18.529/s)
+[2020-03-15 20:00:01.19951] [1817] [debug] [98b199fb] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:00:01.20080] [1817] [debug] [98b199fb] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:00:01.24222] [1817] [error] [98b199fb] Can't locate object method "as_HTML" via package " " (perhaps you forgot to load " "?) at /home/nokdoot/git/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 31.
+
+[2020-03-15 20:00:01.24275] [1817] [debug] [98b199fb] Template "exception.development.html.ep" not found
+[2020-03-15 20:00:01.24322] [1817] [debug] [98b199fb] Template "exception.html.ep" not found
+[2020-03-15 20:00:01.24363] [1817] [debug] [98b199fb] Rendering cached template "mojo/debug.html.ep"
+[2020-03-15 20:00:01.25392] [1817] [debug] [98b199fb] 500 Internal Server Error (0.054413s, 18.378/s)
+[2020-03-15 20:00:04.26607] [1817] [debug] [c0f8a62e] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:00:04.26707] [1817] [debug] [c0f8a62e] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:00:04.31971] [1817] [error] [c0f8a62e] Can't locate object method "as_HTML" via package " " (perhaps you forgot to load " "?) at /home/nokdoot/git/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 31.
+
+[2020-03-15 20:00:04.32070] [1817] [debug] [c0f8a62e] Template "exception.development.html.ep" not found
+[2020-03-15 20:00:04.32148] [1817] [debug] [c0f8a62e] Template "exception.html.ep" not found
+[2020-03-15 20:00:04.32198] [1817] [debug] [c0f8a62e] Rendering cached template "mojo/debug.html.ep"
+[2020-03-15 20:00:04.34562] [1817] [debug] [c0f8a62e] 500 Internal Server Error (0.079453s, 12.586/s)
+[2020-03-15 20:00:16.47055] [1817] [debug] [1b834bc9] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:00:16.47208] [1817] [debug] [1b834bc9] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:00:16.48346] [1817] [debug] [1b834bc9] Rendering cached template "post/post.html.ep"
+[2020-03-15 20:00:16.48796] [1817] [debug] [1b834bc9] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 20:00:16.49022] [1817] [debug] [1b834bc9] 200 OK (0.019608s, 51.000/s)
+[2020-03-15 20:00:17.84695] [1817] [debug] [9a8160f1] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:00:17.84813] [1817] [debug] [9a8160f1] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:00:17.85215] [1817] [debug] [9a8160f1] Rendering cached template "post/post.html.ep"
+[2020-03-15 20:00:17.85406] [1817] [debug] [9a8160f1] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 20:00:17.85502] [1817] [debug] [9a8160f1] 200 OK (0.008051s, 124.208/s)
+[2020-03-15 20:05:37.16756] [5653] [debug] [08434a17] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:05:37.54667] [5653] [debug] [08434a17] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:05:37.59600] [5653] [debug] [08434a17] Rendering template "post/post.html.ep"
+[2020-03-15 20:05:37.59846] [5653] [debug] [08434a17] Rendering template "layouts/default.html.ep"
+[2020-03-15 20:05:37.60205] [5653] [debug] [08434a17] 200 OK (0.434645s, 2.301/s)
+[2020-03-15 20:06:05.54582] [5653] [debug] [579d0469] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:06:05.54692] [5653] [debug] [579d0469] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:06:05.60805] [5653] [error] [579d0469] Can't locate object method "as_HTML" via package " " (perhaps you forgot to load " "?) at /home/nokdoot/git/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 31.
+
+[2020-03-15 20:06:05.60924] [5653] [debug] [579d0469] Template "exception.development.html.ep" not found
+[2020-03-15 20:06:05.61021] [5653] [debug] [579d0469] Template "exception.html.ep" not found
+[2020-03-15 20:06:05.61106] [5653] [debug] [579d0469] Rendering template "mojo/debug.html.ep"
+[2020-03-15 20:06:05.70529] [5653] [debug] [579d0469] 500 Internal Server Error (0.159406s, 6.273/s)
+[2020-03-15 20:07:37.02906] [5728] [debug] [08434a17] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:07:37.34484] [5728] [debug] [08434a17] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:07:37.39363] [5728] [error] [08434a17] Can't locate object method "as_HTML" via package " " (perhaps you forgot to load " "?) at /home/nokdoot/git/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 33.
+
+[2020-03-15 20:07:37.39429] [5728] [debug] [08434a17] Template "exception.development.html.ep" not found
+[2020-03-15 20:07:37.39456] [5728] [debug] [08434a17] Template "exception.html.ep" not found
+[2020-03-15 20:07:37.39482] [5728] [debug] [08434a17] Rendering template "mojo/debug.html.ep"
+[2020-03-15 20:07:37.41436] [5728] [debug] [08434a17] 500 Internal Server Error (0.385504s, 2.594/s)
+[2020-03-15 20:08:01.33741] [5732] [debug] [08434a17] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:08:01.75447] [5732] [debug] [08434a17] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:08:01.81128] [5732] [error] [08434a17] Can't locate object method "as_HTML" via package " " (perhaps you forgot to load " "?) at /home/nokdoot/git/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 33.
+
+[2020-03-15 20:08:01.81355] [5732] [debug] [08434a17] Template "exception.development.html.ep" not found
+[2020-03-15 20:08:01.81482] [5732] [debug] [08434a17] Template "exception.html.ep" not found
+[2020-03-15 20:08:01.81555] [5732] [debug] [08434a17] Rendering template "mojo/debug.html.ep"
+[2020-03-15 20:08:01.85264] [5732] [debug] [08434a17] 500 Internal Server Error (0.515335s, 1.940/s)
+[2020-03-15 20:08:09.57612] [5732] [debug] [579d0469] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:08:09.57726] [5732] [debug] [579d0469] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:08:09.64267] [5732] [error] [579d0469] Can't locate object method "as_HTML" via package " " (perhaps you forgot to load " "?) at /home/nokdoot/git/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 33.
+
+[2020-03-15 20:08:09.64363] [5732] [debug] [579d0469] Template "exception.development.html.ep" not found
+[2020-03-15 20:08:09.64426] [5732] [debug] [579d0469] Template "exception.html.ep" not found
+[2020-03-15 20:08:09.64468] [5732] [debug] [579d0469] Rendering cached template "mojo/debug.html.ep"
+[2020-03-15 20:08:09.66882] [5732] [debug] [579d0469] 500 Internal Server Error (0.092657s, 10.792/s)
+[2020-03-15 20:08:43.85851] [5739] [debug] [08434a17] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:08:44.20498] [5739] [debug] [08434a17] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:08:44.25222] [5739] [error] [08434a17] Can't locate object method "as_HTML" via package " " (perhaps you forgot to load " "?) at /home/nokdoot/git/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 33.
+
+[2020-03-15 20:08:44.25287] [5739] [debug] [08434a17] Template "exception.development.html.ep" not found
+[2020-03-15 20:08:44.25307] [5739] [debug] [08434a17] Template "exception.html.ep" not found
+[2020-03-15 20:08:44.25320] [5739] [debug] [08434a17] Rendering template "mojo/debug.html.ep"
+[2020-03-15 20:08:44.27302] [5739] [debug] [08434a17] 500 Internal Server Error (0.414517s, 2.412/s)
+[2020-03-15 20:16:13.50178] [6074] [debug] [08434a17] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:16:13.90963] [6074] [debug] [08434a17] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:16:13.96042] [6074] [error] [08434a17] Can't locate object method "blessed" via package "HTML::Element" at /home/nokdoot/git/blog_villain/script/../lib/BlogVillain/Controller/Post.pm line 34.
+
+[2020-03-15 20:16:13.96102] [6074] [debug] [08434a17] Template "exception.development.html.ep" not found
+[2020-03-15 20:16:13.96117] [6074] [debug] [08434a17] Template "exception.html.ep" not found
+[2020-03-15 20:16:13.96129] [6074] [debug] [08434a17] Rendering template "mojo/debug.html.ep"
+[2020-03-15 20:16:13.97959] [6074] [debug] [08434a17] 500 Internal Server Error (0.477994s, 2.092/s)
+[2020-03-15 20:28:07.50818] [6389] [debug] [08434a17] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:28:07.77674] [6389] [debug] [08434a17] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:28:07.82474] [6389] [debug] [08434a17] Rendering template "post/post.html.ep"
+[2020-03-15 20:28:07.82738] [6389] [debug] [08434a17] Rendering template "layouts/default.html.ep"
+[2020-03-15 20:28:07.82928] [6389] [debug] [08434a17] 200 OK (0.321136s, 3.114/s)
+[2020-03-15 20:41:41.78233] [6394] [debug] [08434a17] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:41:42.06101] [6394] [debug] [08434a17] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:41:42.10210] [6394] [debug] [08434a17] Rendering template "post/post.html.ep"
+[2020-03-15 20:41:42.10415] [6394] [debug] [08434a17] Rendering template "layouts/default.html.ep"
+[2020-03-15 20:41:42.10555] [6394] [debug] [08434a17] 200 OK (0.323463s, 3.092/s)
+[2020-03-15 20:44:15.86678] [6394] [debug] [579d0469] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:44:15.86781] [6394] [debug] [579d0469] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:44:15.91617] [6394] [debug] [579d0469] Rendering cached template "post/post.html.ep"
+[2020-03-15 20:44:15.92092] [6394] [debug] [579d0469] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 20:44:15.92227] [6394] [debug] [579d0469] 200 OK (0.05546s, 18.031/s)
+[2020-03-15 20:44:17.31273] [6394] [debug] [a9147184] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:44:17.31399] [6394] [debug] [a9147184] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:44:17.35377] [6394] [debug] [a9147184] Rendering cached template "post/post.html.ep"
+[2020-03-15 20:44:17.35618] [6394] [debug] [a9147184] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 20:44:17.35832] [6394] [debug] [a9147184] 200 OK (0.045552s, 21.953/s)
+[2020-03-15 20:44:23.15154] [6394] [debug] [1013c9e2] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:44:23.15243] [6394] [debug] [1013c9e2] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:44:23.18702] [6394] [debug] [1013c9e2] Rendering cached template "post/post.html.ep"
+[2020-03-15 20:44:23.19018] [6394] [debug] [1013c9e2] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 20:44:23.19218] [6394] [debug] [1013c9e2] 200 OK (0.040597s, 24.632/s)
+[2020-03-15 20:44:44.45501] [6394] [debug] [170aa443] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:44:44.45595] [6394] [debug] [170aa443] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:44:44.50250] [6394] [debug] [170aa443] Rendering cached template "post/post.html.ep"
+[2020-03-15 20:44:44.50627] [6394] [debug] [170aa443] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 20:44:44.50825] [6394] [debug] [170aa443] 200 OK (0.053192s, 18.800/s)
+[2020-03-15 20:44:45.44491] [6394] [debug] [74e6f9a0] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:44:45.44635] [6394] [debug] [74e6f9a0] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:44:45.48474] [6394] [debug] [74e6f9a0] Rendering cached template "post/post.html.ep"
+[2020-03-15 20:44:45.48798] [6394] [debug] [74e6f9a0] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 20:44:45.48962] [6394] [debug] [74e6f9a0] 200 OK (0.044628s, 22.407/s)
+[2020-03-15 20:44:46.15854] [6394] [debug] [4f41044e] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:44:46.15950] [6394] [debug] [4f41044e] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:44:46.20397] [6394] [debug] [4f41044e] Rendering cached template "post/post.html.ep"
+[2020-03-15 20:44:46.20677] [6394] [debug] [4f41044e] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 20:44:46.20803] [6394] [debug] [4f41044e] 200 OK (0.049482s, 20.209/s)
+[2020-03-15 20:44:46.41404] [6394] [debug] [5eb0f7f5] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:44:46.41465] [6394] [debug] [5eb0f7f5] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:44:46.44094] [6394] [debug] [5eb0f7f5] Rendering cached template "post/post.html.ep"
+[2020-03-15 20:44:46.44265] [6394] [debug] [5eb0f7f5] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 20:44:46.44359] [6394] [debug] [5eb0f7f5] 200 OK (0.029516s, 33.880/s)
+[2020-03-15 20:44:46.47262] [6394] [debug] [3fea954e] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:44:46.47308] [6394] [debug] [3fea954e] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:44:46.48781] [6394] [debug] [3fea954e] Rendering cached template "post/post.html.ep"
+[2020-03-15 20:44:46.48864] [6394] [debug] [3fea954e] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 20:44:46.48904] [6394] [debug] [3fea954e] 200 OK (0.016415s, 60.920/s)
+[2020-03-15 20:44:46.64664] [6394] [debug] [cd35c25a] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:44:46.64697] [6394] [debug] [cd35c25a] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:44:46.66855] [6394] [debug] [cd35c25a] Rendering cached template "post/post.html.ep"
+[2020-03-15 20:44:46.66954] [6394] [debug] [cd35c25a] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 20:44:46.67005] [6394] [debug] [cd35c25a] 200 OK (0.023393s, 42.748/s)
+[2020-03-15 20:44:46.81296] [6394] [debug] [6ca3629e] GET "/post/Vimscript/LearmVimscriptTheHardWay"
+[2020-03-15 20:44:46.81433] [6394] [debug] [6ca3629e] Routing to controller "BlogVillain::Controller::Post" and action "get"
+[2020-03-15 20:44:46.83207] [6394] [debug] [6ca3629e] Rendering cached template "post/post.html.ep"
+[2020-03-15 20:44:46.83411] [6394] [debug] [6ca3629e] Rendering cached template "layouts/default.html.ep"
+[2020-03-15 20:44:46.83515] [6394] [debug] [6ca3629e] 200 OK (0.022154s, 45.139/s)

@@ -28,7 +28,11 @@ sub get {
     my $post      = BlogVillain::Model::Post->find( $category, $fulltitle );
     $post->make_idx_and_content;
 
-    my @content   = join q{}, map { $_->as_HTML } @{ $post->{content} };
+    my @content   
+        = join q{}, 
+          map { $_->as_HTML } 
+## content 가 ' ' 인 경우가 있더라... 그래서 grep 으로 걸러줌
+          grep { $_->isa('HTML::Element') } @{ $post->{content} };
     my $index     = $post->{index}->as_HTML if $post->{index};
     my $title     = $post->{title};
     $self->stash(

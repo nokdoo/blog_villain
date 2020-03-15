@@ -32,12 +32,10 @@ sub search_fulltitles_of {
 
 sub find {
 	my ($class, $category, $fulltitle) = @_;
-	my $post = $schema->resultset('Post')->find(
-		{
-            category => $category,
-    		fulltitle => $fulltitle,
-        }
-	) or die "Error: on [Model::Post]\t$fulltitle\n";
+	my $post = $schema->resultset('Post')->find({
+        category => $category,
+        fulltitle => $fulltitle,
+	}) or die "Error: on [Model::Post]\t$fulltitle\n";
 	return BlogVillain::Post->new( { $post->get_columns } );
 }
 
