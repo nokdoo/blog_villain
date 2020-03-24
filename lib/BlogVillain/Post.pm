@@ -8,6 +8,7 @@ use HTML::TreeBuilder;
 use Mojo::DOM::HTML;
 use Sub::Override;
 use IO::String;
+use feature qw / say /;
 
 my %langs = (
     c    => 1,
@@ -71,13 +72,9 @@ sub make_idx_and_content {
 	my $self = shift;
 	$self->makehtml() unless defined $self->{html};
 	$self->{index} 
-        = $self->{html} 
-           ->look_down(_tag=>'div', class=>'indexgroup');
+        = $self->{html}->look_down(_tag=>'div', class=>'indexgroup');
 	$self->{index}->detach if defined $self->{index};
 
-    # deprecated
-	# my @pre_tags = $self->{html}->look_down(_tag=>'pre');
-    # _set_class_for_highlight(\@pre_tags);
 	$self->{content} = $self->{html}
                         ->look_down(_tag=>'body')->content;
 }

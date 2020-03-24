@@ -25,7 +25,7 @@ sub get {
     my $self      = shift;
     my $category  = $self->stash('category');
     my $fulltitle = $self->stash('fulltitle');
-    my $post      = BlogVillain::Model::Post->find( $category, $fulltitle );
+    my $post      = BlogVillain::Model::Post->find($category, $fulltitle);
     $post->make_idx_and_content;
 
     my @content   

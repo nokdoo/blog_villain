@@ -9,7 +9,7 @@
 %# %= javascript '/highlight/prism.js'
 <div class="index_of_post">
 	<div class="box_of_index">
-		<%== $index %>
+		<%== $index ? $index : '' %>
 	</div>
 </div>
 
