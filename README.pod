@@ -17,6 +17,8 @@
 
  $ perl deploy.pl
 
+ dbix schema 에러가 난다면 deploy 를 실행시켜서 생성되는 yml 파일을 다시 만들어보자. 위에 --- 이런거 완전히 지우기
+
 =head1 Tasks
 
  # pod2html

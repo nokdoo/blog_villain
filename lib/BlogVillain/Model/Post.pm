@@ -6,6 +6,7 @@ use Pod::Simple::HTML;
 use BlogVillain::Schema;
 use BlogVillain::Post;
 use Data::Dumper;
+use feature qw/ say /;
 
 my $schema = BlogVillain::Schema->connect('BLOGVILLAIN_DATABASE');
 
