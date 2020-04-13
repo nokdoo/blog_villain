@@ -239,5 +239,171 @@ I<\> 를 입력하면 최종적으로 I<dd> 가 실행될 것이다.
 
 B<I<항상 map 대신 noremap 을 사용하자.>>
 
+=head1 Leaders
+
+지금까지 mapping 을 통해 새로운 명령어를 추가했지만 한 가지 문제가 남아있다.
+새롭게 추가된 명령어가 기존의 vim 명령어를 덮어씌워버린다면?
+
+이에 대비하기 위해 다음의 여섯 키를 조합하자.
+
+=over
+
+=item * -
+
+=item * H
+
+=item * L
+
+=item * <space>
+
+=item * <cr>
+
+=item * <bs>
+
+=back
+
+이 키들은 어떤 명령어와도 연결되어 있지 않다. 이들 중 하나를 prefix 로서 사용해보자.
+
+=begin html
+
+<pre><code class='vim hljs'>
+:nnoremap -d dd
+</code></pre>
+
+=end html
+
+vim 에서는 prefix 라는 용어를 I<leader> 라고 부른다. 그리고 다음과 같은 설정을 지원한다.
+
+=begin html
+
+<pre><code class='vim hljs'>
+:let mapleader = "-"
+
+:nnoremap <leader>d dd
+</code></pre>
+
+=end html
+
+이를 통해 앞서 봤었던 I<-d> 명령어를 새롭게 정의할 수 있다. 
+많은 vim plugin 들이 기본적으로 <leader> 를 mapping 에 사용하고 있기 때문에 익숙해지면 좋다.
+
+=head2 Local Leader
+
+leader 말고도 B<local leader> 라는 개념이 있는데, 이는 특정 파일에 대해 mapping 을 적용하기 위해 사용된다.
+자세한 내용은 나중에 다루도록 한다.
+
+=head1 Editing Your Vimrc
+
+지금까지 우리는 vimrc 를 수정하고 적용하기 위해서 vim 을 다시 실행했을 것이다.
+
+집중력을 잃지 않기 위해 더 나은 방법을 찾아보자.
+
+=head2 Editing Mapping and Sourcing Mapping
+
+=begin html
+
+<pre><code class='vim hljs'>
+:nnoremap <leader>ev :vsp $MYVIMRC<cr>
+:nnoremap <leader>sv :source $MYVIMRC<cr>
+</code></pre>
+
+=end html
+
+각각의 명령어는 "edit vimrc", "source vimrc" 의 약어이다.
+B<ev> 명령어를 사용하면 vimrc 파일을 수정하기 위해 새로운 창이 열리게 되고,
+B<sv> 명령어를 사용하면 vimrc 파일을 현재 vim 에 적용시킨다.
+
+=head1 Abbreviations And Substitute
+
+=begin html
+
+<pre><code class='vim hljs'>
+:iabbrev waht what
+</code></pre>
+
+=end html
+
+이제 "I don't know waht should I do" 를 직접 입력해보자.
+
+이 mapping 은 입력모드에서 vim 이 입력받은 특정 단어를 다음의 단어로 교체해주는
+기능을 한다. 오타 수정에 쓰이며 특정 단어에 대한 약어를 지정할 수도 있다.
+
+=head1 Disable mapping
+
+특정 모드에서 빠져나오기 위해서 <esc> 를 사용해왔다. 어떤 사람들은 이를 위해
+다른 키를 매핑해놓기도 하는데, 그 과정에 <esc> 를 블록시켜 머릿 속에서
+지우는 훈련을 하기도 한다.
+
+=begin html
+
+<pre><code class='vim hljs'>
+:inoremap <esc> <nop>
+</code></pre>
+
+=end html
+
+이 mapping 을 만들어 두면 입력모드에서 <esc> 는 더이상 동작하지 않는다.
+
+* <esc> 의 대체 mapping 은 <c-c>, <c-[> 가 있으니 당황하지 말고 빠져나오자.
+
+=head1 Buffer-Local Options and Mappings
+
+지금까지 option, mapping, abbreviation 에 대해 알아봤다.
+이제 이들을 하나의 buffer 에 놓으려하는데, 그 전에 기초를 다질 필요가 있다.
+
+하나의 vim 에서 I<vs> 명령어를 이용해 두 파일을 열어보자. (각각을 foo, bar 라 하자.)
+
+그리고 foo 에서 다음의 명령어를 지정하자.
+
+=begin html
+
+<pre><code class='vim hljs'>
+:nnoremap <leader>d dd
+:nnoremap <buffer> <leader>x dd
+</code></pre>
+
+=end html
+
+<leader>d 와 <leader>x 를 입력하면 둘 다 한 줄을 삭제하는 기능을 할 것이다.
+
+이제 <c-w> + 화살표(혹은 hjkl) 를 이용해 bar 파일로 커서를 옮겨보고 같은 명령어를 입력해보자.
+
+두 번째 명령어는 foo 파일에서 동작했던 것과 다를 것이다. 왜 그럴까?
+
+여기에 buffer 라는 개념이 등장한다. 분리된 화면은 각각 독립적인 buffer 를 가지고 있고,
+두 번째 명령어는 현재 buffer 에서 명령어를 설정하기 때문이다.
+
+이렇게 buffer 에서 mapping 을 지정하는 것을 buffer-local mapping 이라 한다.
+그리고 <buffer> <leader> 명령어 대신 <localleader> 를 사용하면 된다.
+
+이렇게 두 개의 leader 가 존재하는 이유는 namespace 를 지켜주기 위해서다.
+예로, vim 플러그인을 만들 때 다른 사람의 설정을 망가뜨리지 않도록 도와준다.
+
+하지만 <localleader> 를 vimrc 에 지정하면 모든 버퍼가 이를 공유하게 되므로 효과를 받지 못한다.
+
+=head2 Settings and Shadowing
+
+다음은 특정 버퍼에서 set 이 적용하는 방법이다.
+
+=begin html
+
+<pre><code class='vim hljs'>
+:setlocal nonumber
+</code></pre>
+
+=end html
+
+
+=begin html
+
+<pre><code class='vim hljs'>
+:nnoremap <buffer> Q x
+" vs
+:nnoremap Q dd
+</code></pre>
+
+=end html
+
+첫 번째 명령이 더 명시적이기 때문에 두 번째 명령은 동작하지 않는다.
 
 =cut
