@@ -1,0 +1,23 @@
+=encoding utf8
+
+=pod
+
+=head1 NAME
+
+Cognito
+
+=head1 DESCRIPTION
+
+Cognito 문서 요약
+
+=head1 User Pool
+
+=over 4
+
+=item * third party 로부터 발급받은 token 관리
+
+=item * 
+
+=back
+
+=cut

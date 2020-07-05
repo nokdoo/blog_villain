@@ -76,7 +76,8 @@ sub file_to_post {
 
 sub _create {
     my $post = shift;
-    $schema->resultset('Post')->create($post)
+    $schema->resultset('Post')
+        ->create($post)
         or croak "Error of creating";
 }
 

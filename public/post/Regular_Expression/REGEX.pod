@@ -17,17 +17,13 @@ regex 의 기능을 정리한다. 간단하거나 써본적 없는 기능은 명
 
 =item * character-class metacharacter - character class 안에서 사용되는 metacharacter
 
-=back
+=item * metacharacter - 특별한 의미를 갖는 문자
 
-=head1 Metacharacters
-
-=over 4
-
-=item * B<< \<metacharacter> >> - escaped character, metacharacter를 리터럴 문자로 인식
+=item * literal - 그대로 표기되는 문자
 
 =back
 
-=head2 Quantifiers
+=head1 Quantifiers
 
 =over 4
 
@@ -40,14 +36,6 @@ regex 의 기능을 정리한다. 간단하거나 써본적 없는 기능은 명
 =item * B<{min,max}> - range
 
 =back
-
-
-
-
-
-
-
-
 
 =head1 Character Representations
 
@@ -71,10 +59,13 @@ regex 의 기능을 정리한다. 간단하거나 써본적 없는 기능은 명
 
 =item * B<\t> - Horizon tab <HT>
 
-
 =item * B<\v> - Vertical tab <VT>
 
 =back
+
+=head2 Escaped Character: \<metacharacter>
+
+metacharacter를 리터럴 문자로 인식
 
 =head2 Octal, Hex, Unicode Escapes
 
@@ -269,7 +260,6 @@ parentheses 의 3번 기능을 무시
 =item * B</i> - 대소문자를 구분하지 않음.
 
 =item * B</x> - regex 의 빈칸과 주석을 무시
-
 
 =back
 

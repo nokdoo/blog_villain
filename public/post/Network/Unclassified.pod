@@ -1,0 +1,17 @@
+=encoding utf8
+
+=pod
+
+=head1 Datagram
+
+클라이언트와 서버는 TCP socket 과 같은 채널을 통해서 통신한다. 이들은 연결을 수립하고, 통신하고, 연결을 해제하는 기본 동작을 갖는다.
+
+client --- | channel | --- communicate --- | channel | --- server
+
+클라이언트와 서버는 datagram 을 통해 통신하고 패킷을 주고 받는다. 
+
+클라이언트와 서버는 point to point channel 에 관심가지지 않아도 된다.
+
+datagram 은 독립적이며 도착과 도착시간, 내용을 보장해주지 않는다.
+
+=cut

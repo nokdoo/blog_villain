@@ -1,0 +1,35 @@
+=encoding utf8
+
+=pod
+
+=head1 NAME
+
+Introduction
+
+=head1 DESCRIPTION
+
+네트워크에 대한 개괄적인 설명
+
+=head2 1.2 NETWORK HARDWARE
+
+=head3 Transmission Technology
+
+통신 방법에는 크게 두 가지가 있다.
+
+=over 4
+
+=item * point-to-point (=unicasting)
+
+특정 사용자와 통신하는 기술
+
+=item * broadcast
+
+네트워크의 모든 사용자에게 packet 을 보내는 기술
+
+packet 의 한 address field 에 특정 사용자를 지정할 수 있다. 다를 사용자들은 이 packet 을 무시한다. wifi 가 이 원리를 이용한다.
+
+address field 에 특정 code 를 사용하면 모든 사용자를 통신 대상으로 지정할 수 있다.
+
+
+
+=cut
