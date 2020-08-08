@@ -1,0 +1,7 @@
+#!/usr/bin/env perl
+
+my $morbo = system 'carton exec morbo blog_villain';
+my $watch_pod = system './watch-pod';
+
+print $result;
+print $watch_pod;

@@ -41,6 +41,8 @@ sub get {
         title   => $title,
     );
     
+    my $html = $self->render_to_string(template => 'post/post');
+    
     $self->render( template => 'post/post' );
 }
 

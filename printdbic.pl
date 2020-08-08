@@ -5,8 +5,11 @@ use warnings;
 use lib './';
 use Term::ANSIColor;
 use Data::Dumper;
+use Cwd qw(abs_path);
 
-my $driver = "DBI:SQLite:dbname=$ENV{BLOGVILLAIN_HOME}/db/blog_villain.db;";
+my $path = abs_path;
+say "sqlite db root path: $path";
+my $driver = "DBI:SQLite:dbname=$path/db/blog_villain.db;";
 my $host = "";
 my $port = "";
 
@@ -17,7 +20,6 @@ my $hash = {
 	BLOGVILLAIN_DATABASE => {
 		dsn => "$driver$host$port", 
 		user => 'blog_villain', 
-		password => '1353',
 		dbd_opts => {
 			AutoCommit => 1
 		}

@@ -1,0 +1,47 @@
+=encoding utf8
+
+=pod
+
+=head1 NAME
+
+Array
+
+=head1 DESCRIPTION
+
+배열과 관련된 자료구조와 그 알고리즘을 다룬다.
+
+=head1 Constant Time Initialization
+
+연속적인 메모리에 생성된 배열은 초기화하는데 시간이 걸린다는 단점이 있다.
+
+사용할 수 있는 메모리가 충분할 경우 constant time 에 배열을 초기화 하는 방법을 다뤄보자.
+
+=begin html
+
+<pre><code class='plaintext hljs'>
+procedure Initialize(Array A, value v):
+    A.Count <- 0
+    A.Default <- v
+
+function Valid(integer i, Array A): boolean
+    return 0 <= A.When[i] < A.Count and A.Which[A.When[i]] = i
+
+function Access(integer i, Array A): value
+    if A.Valid(i) then
+        return A[i]
+    else
+        return A.Default
+
+procedure Assign(Array A, integer i, value v):
+    if not A.Valid(i) then
+        A.When[i] <- A.Count
+        A.Which[A.Count] <- i
+        A.Count <- A.Count + 1
+    A[i] <- v
+</code></pre>
+
+=end html
+
+
+
+=cut

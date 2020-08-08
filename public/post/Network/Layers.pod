@@ -1,0 +1,230 @@
+=encoding utf8
+
+=pod
+
+=head1 NAME
+
+Network Layers
+
+=head1 DESCRIPTION
+
+=head1 TERMINOLOGY
+
+=over 4
+
+=item * RTT(round-trip time)
+
+클라이언트의 요청에서 시작해 서버의 응답이 오는데까지 걸리는 시간.
+
+=back
+
+네트워크 계층
+
+=head1 Application Layer
+
+프로세스는 네트워크를 통해 다른 프로세스에 데이터를 전송할 때 socket 을 사용한다.
+
+데이터를 전송할 때 수신 프로세스의 정보로는 host, port 를 알아야한다.
+
+=head2 protocol
+
+SMTP, Telnet, HTTP, FTP, SIP, RTP 등
+
+이들은 모두 transport 계층 프로토콜인 TCP 또는 UDP 를 사용한다. UDP 를 사용하는 프로그램이라도 요즘에는 많은 방화벽들이 UDP 트래픽을 차단하기 때문에 
+그 대안으로 TCP 를 사용하도록 설계되어 있다.
+
+=head3 STMP
+
+HTTP 는 정보를 요청하는 PULL 프로토콜이지만, STMP 는 정보를 밀어넣는 PUSH 프로토콜이다.
+
+이메일 전달 과정. 각 server 는 이메일 전송을 위해 각 메세지를 큐에 담아 전송한다.
+
+user agent ---SMTP---> email server(sender) ---SMTP---> email server(receiver) ---POP3 | IMAP | HTTP---> user agent
+
+user agent 는 서버가 아니기 때문에 항상 SMTP 의 PUSH 동작을 수행할 수 없다. 따라서 수신 측의 email server -> user agent 프로토콜은 
+POP3(Post Office Protocol - Version3), IMAP(Internet Mail Access Protocol), HTTP 와 같은 프로토콜이 사용된다.
+
+웹 기반 이메일은 HTTP 프로토콜이다.
+
+
+=head2 Socket
+
+socket 은 Application 계층과 Transport 계층 사이의 인터페이스다. Application 개발자는 Transport 계층을 직접 제어할 수 없고,
+프로토콜의 선택, 최대 버퍼크기, 최대 세그먼트 크기 등 매개변수들을 socket 에 전달함으로써 Transport 계층을 제어할 수 있다.
+
+=head2 Persistent connection
+
+application 개발자는 다음의 두 가지 중 하나를 선택해야 한다,
+
+- 각 요구/응답이 분리된 TCP 에서 보내져야 하는가? (non-persistent connection)
+
+매번 3 hand-shake 를 수행하기 때문에 모든 요청은 2 RTT 를 필요로 한다.
+
+- 각 요구/응답이 하나의 TCP 에서 보내져야 하는가? (persistent connection)
+
+서버에서 TCP 버퍼를 할당하고 유지되어야 하는데, 클라이언트가 많다면 심각한 부담을 줄 수 있다.
+
+최초의 요청에 1 RTT 를 필요로 하고, 이후의 요청은 1 RTT 만을 필요로 한다.
+
+이 하나의 connection 을 통해 여러 객체를 요청할 수 있는데, 이때 각각의 객체가 완료되는 것을 기다리지않고 연속적으로 수행될 수 있다. = pipelining.
+
+서버는 일정 시간 사용되지 않으면 연결을 닫는다.
+
+=head2 DNS
+
+=over 4
+
+=item * hostname -> www.blogvillain.com
+
+=item * ip -> xxx.xxx.xxx.xxx
+
+4 byte
+
+=item * DNS (domain name system) 
+
+사람이 식별하기 쉬운 hostname 을 라우터가 식별하기 쉬운 ip 로 바꿔주는 디렉토리 서비스
+
+=back
+
+DNS 는 하나의 시스템으로 여러 DNS 서버들이 계층구조로 이루어진 분산 데이터베이스다. 
+
+호스트가 이 분산 데이터베이스로 질의하는 프로토콜을 지칭하기도 한다. DNS 프로토콜은 포트 53번을 이용하며 UDP 상에서 수행된다.
+
+호스트는 다른 프로토콜에서 사용하는 hostname 을 ip 로 변경하기 위해서 DNS 서버에 hostname 에 대한 ip 를 요청한다. 
+실제 네트워크 동작과는 별개로 추가적인 네트워크 통신이 이루어지기 때문에 추가 지연이 발생한다. cache 가 있기 때문에 어느정도 걱정을 덜을 수는 있다.
+
+=over 4
+
+=item * hostname -> ip 변환 과정
+
+application ---host name---> DNS client on computer ---> local DNS server ---> DNS network (port: 53, UDP)(|black box|)
+
+=back
+
+=head3 |black box|
+
+DNS 서버는 세 가지 종류가 있다. 
+
+=over 4
+
+=item * ROOT DNS
+
+=item * TLD DNS (top-level domain DNS), com, org, edu, ...
+
+=item * authoritative DNS
+
+=back
+
+DNS 클라이언트는 ROOT DNS 에 접속하게 되고, ROOT DNS 는 hostname 을 읽어 TLD DNS 에 해당하는 IP 주소를 보낸다.
+
+DNS 클라이언트는 다시 TLD DNS 에 접속하고, TLD DNS 는 authoritative DNS 에 해당하는 IP 주소를 보낸다.
+
+DNS 클라이언트는 또 다시 authoritative DNS 에 해당하는 IP 주소를 보낸다.
+
+authoritative DNS 는 일종의 기관 DNS 라고 보면된다. (hostname 이 www.blogvillain.com 이었다면, dns.blogvillain.com 을 의미)
+이 DNS 에서 목적지 호스트를 찾아 IP 를 돌려주면 hostname 에 대한 IP 값을 알아내게 된다.
+
+=head3 resource record
+
+DNS 서버는 hostname 을 ip 주소로 매핑하기 위해 resource record 를 저장한다. 그리고 DNS 서버는 응답으로 하나 이상의 resource record 를 가진 메시지로 응답한다.
+
+resource record 는 다음 4개의 필드를 가진 tuple 이다.
+
+=over 4
+
+=item name
+
+=item value
+
+=item type
+
+=item TTL
+
+=back
+
+type=A 라면 name 은 hostname 이고 value 는 그 ip 주소다. (relay1.bar.foo.com, xxx.xxx.xxx.xxx, A, TTL)
+
+type=NS 라면 name 은 도메인이고, value 는 도메인 내부 호스트에 대한 authoritative DNS 의 hostname 이다.(foo.com, dns.foo.com, NS, TTL)
+
+type=CNAME 라면 name 은 hostname alias, value 는 정식 hostname 이다. (foo.com, relay1.bar.foo.com, CNAME)
+
+type=MX 라면 name 은 hostname alias, value 는 메일서버의 정식 이름이다. (foo.com, mail.bar.foo.com, MX)
+
+* NS resource record 가 존재한다면 authoritative DNS 의 ip 정보를 가진 A resource record 또한 존재한다. ( authoritative DNS 로 찾아가야 하니까 )
+
+ex) (foo.com, dns.foo.com, NS, TTL) (dns.foo.com, xxx.xxx.xxx.xxx, A, TTL)
+
+
+
+=head1 Transport Layer
+
+
+=head2 lossing packet(?)
+
+=over 4
+
+=item * router buffer overflow
+
+=item * bit error on packet -> host 또는 router 에서 버려짐
+
+=back
+
+=> 신뢰적 데이터 전송 필요 = Transport 계층의 역할
+
+=head2 처리량
+
+두 프로세스간 통신 세션에서의 비트 전송량
+
+대역폭은 세션들이 공유하고, 이 세션의 수는 항상 변하기 때문에 프로세스간 처리량은 항상 달라진다.
+
+Application 이 일정한 처리량을 요구할 수 있는데 transport 프로토콜이 현재 이 처리량을 제공할 수 없다면, application 은 이 연결을 포기하거나 낮은 속도로 인코딩해야한다.
+(= bandwidth-sensitive application)
+
+일정 처리량을 고집하지 않고 현재 사용할 수 있는 처리량에 순응하는 application 을 elastic application 이라한다.
+
+=head2 protocol
+
+transport 계층 프로토콜은 timing guarantee 를 제공할 수 있다. 게임이나 통화 등 실시간 통신에 필요한 기술. 
+(실제로 TCP, UDP 에서는 처리량과 timing guarantee 를 제공하지는 않는다)
+
+transport 계층 프로토콜은 송신자로부터 받은 데이터와 수신자에게 보낼 데이터에 대한 보안, 암호화를 제공한다.
+
+application 이 선택해야하는 프로토콜의 종류
+
+=over 4
+
+=item * TCP
+
+=over 4
+
+=item * 연결 지향형 서비스
+
+핸드 셰이킹 - 두 프로세스 간 소켓에서 이뤄짐.
+
+양쪽 모두 동시에 전송 가능 = full-duplex
+
+=item * 신뢰적인 데이터 전송 서비스
+
+=item * 혼잡제어
+
+프로세스가 아닌 세상의 인터넷 환경을 위한 제어
+
+=back
+
+=item * UDP
+
+소켓을 통하는 것은 TCP 와 같지만 항상 전달에 성공하는 것을 보장하지 않으며 보내는 메세지의 순서도 보장해주지 않는다.
+
+=back
+
+=head3 SSL
+
+TCP, UDP 는 암호화를 제공하지 않는다. 이 때문에 TCP 를 강화한 SSL(Secure Sockets Layers) 가 개발되었다. 여기에서 강화되었다는 것의 의미는
+새로운 프로토콜이 아닌 application 계층에거 구현되어 TCP 를 보완한 것을 의미한다. 암호화, 데이터 무결성, 종단 인증이 프로세스 대 프로세스 보안으로
+구현된 것이다. 따라서 application 이 SSL 을 이용하고자 한다면 클라이언트와 서버 모두 SSL 코드를 포함해야 한다.
+
+SSL 은 TCP 과 유사한 소켓 API 를 가지고 있다. 송신 프로세스는 SSL 에 평문 데이터를 전달하고 SSL 은 데이터를 암호화한 뒤 TCP 소켓에 전달한다.
+수신측의 SSL 은 다시 암호화된 데이터를 평문 데이터로 만들어 수신 프로세스에 전달한다.
+
+
+=cut

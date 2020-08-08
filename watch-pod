@@ -4,9 +4,9 @@ use strict;
 use warnings;
 use Data::Dumper;
 use feature qw/ say /;
-
-use lib "$ENV{BLOGVILLAIN_HOME}/lib";
-use BlogVillain::Schema;
+use Cwd qw(abs_path);
+use local::lib 'local';
+use lib 'lib';
 
 use AnyEvent::Loop;
 use AnyEvent;
@@ -14,17 +14,20 @@ use AnyEvent::Filesys::Notify;
 use POSIX qw ( strftime );
 use Carp;
 
+use BlogVillain::Schema;
+
+my $root = abs_path();
 my $schema = BlogVillain::Schema->connect('BLOGVILLAIN_DATABASE');
 my $notifier = AnyEvent::Filesys::Notify->new(
-    dirs     => [ "$ENV{BLOGVILLAIN_HOME}\/public\/post\/" ],
+    dirs     => [ "$root/public\/post\/" ],
     # Optional depending on underlying watcher
     interval => 2.0,             
     filter   => sub { 
-        shift =~ m|$ENV{BLOGVILLAIN_HOME}/public/post/.*\.pod$|x 
+        shift =~ m|$root/public/post/.*\.pod$|x 
     },
     cb       => sub {
         my (@events) = @_;
-        open (my $log, '>>', "$ENV{BLOGVILLAIN_HOME}/log/watch-pod.log");
+        open (my $log, '>>', "$root/log/watch-pod.log");
         for my $event ( @events ) {
             my $post = file_to_post($event);
             my $time = localtime;
@@ -56,7 +59,7 @@ sub file_to_post {
 
     $file     =~ s/\.pod$//; # .pod is not needed anymore
     #remove absolute path
-    $file     =~ s|$ENV{BLOGVILLAIN_HOME}/public/post/||;
+    $file     =~ s|$root/public/post/||;
 
     my $category = $1 if $file =~ m|(.*?)\/|;
 

@@ -1,5 +1,0 @@
-#!/usr/bin/env perl
-
-my $result = system 'morbo ./script/blog_villain';
-
-print $result;
