@@ -21,13 +21,12 @@ docker --version
 =begin html
 
 <pre><code class='bash hljs'>
-# hello-world image 를 실행한다.
-$ docker image ls # 현재 다운로드된 image 목록을 보여준다.
+# 현재 다운로드된 image 목록을 보여준다.
+docker image ls 
 
 # --tag, tag를 추가입력.
 # . 은 현재 디렉토리의 Dockefile 을 읽는듯.
-$ docker build --tag <image>:<tag> .
-
+docker build --tag <image>:<tag> .
 </code></pre>
 
 =end html
@@ -37,21 +36,28 @@ $ docker build --tag <image>:<tag> .
 =begin html
 
 <pre><code class='bash hljs'>
-$ docker run <hello-world> 
+# hello-world image 를 실행한다.
+docker run <hello-world> 
 
 # --publish, 컨테이너에 접근할 외부 포트, 컨테이너 내부 프로세스의 포트
 # --detach, 백그라운드 실행
 # --name, 이후에 커맨드로 참조할 컨테이너의 이름
 # tagName, 실행할 이미지의 태그이름
-$ docker run --publish 8000:8080 --detach --name <container-name> <tag>
+docker run --publish 8000:8080 --detach --name <container-name> <image>:<tag>
 
 # 현재 실행 중인 container 를 보여준다.
 # --all 은 docker run image 로부터 실행되었던 모든 container 를 보여준다.  
-$ docker ps --all 
+docker ps --all 
 
 docker rm --force <container-name>
 
+# 이미 존재하는 컨테이너를 실행
+docer start <container-name|id>
+
 docker stop <container-name>
+
+# 실행중인 컨테이너에 들어가는 방법 (확실하지 않음, 도커는 실행환경일뿐 인스턴스가 아니라 애초에 불가능할지도)
+docker exec -it <container-name> bash
 </code></pre>
 
 =end html
@@ -61,10 +67,10 @@ docker stop <container-name>
 =begin html
 
 <pre><code class='bash hljs'>
-$ docker login
+docker login
 
 # 
-$ docker tag <image>:<tag> <docker-id>/<repository-name>:<tag>
+docker tag <image>:<tag> <docker-id>/<repository-name>:<tag>
 </code></pre>
 
 =end html
