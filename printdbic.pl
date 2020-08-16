@@ -2,13 +2,14 @@
 
 use strict;
 use warnings;
-use lib './';
+use local::lib 'local';
+
 use Term::ANSIColor;
 use Data::Dumper;
 use Cwd qw(abs_path);
+use feature qw/ say /;
 
 my $path = abs_path;
-say "sqlite db root path: $path";
 my $driver = "DBI:SQLite:dbname=$path/db/blog_villain.db;";
 my $host = "";
 my $port = "";

@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 use Data::Dumper;
+use local::lib 'local';
 use YAML::Tiny;
 use Log::Log4perl qw(:easy);
 Log::Log4perl->easy_init($DEBUG);

@@ -11,7 +11,7 @@ use feature qw/ say /;
 sub categories {
     my $self = shift;
     $self->stash(categories => BlogVillain::Model::Post->search_categories());
-    $self->render();
+    $self->render(template => 'post/categories');
 }
 
 sub fulltitles {
