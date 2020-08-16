@@ -1,0 +1,43 @@
+=encoding utf8
+
+=pod
+
+=head1 NAME
+
+OS - cpu
+
+=head1 DESCRIPTION
+
+cpu 와 관련된 내용을 다룬다.
+
+=head1 cpu EXCEPTION
+
+다양한 상황에서 cpu 에러가 발생할 수 있으므로, 이를 처리하기 위해 핸들러 함수를 제공하는 interrupt descriptor table 를 만들어줘야 한다.
+
+예외는 현재 instruction 에서 문제가 생겼을 경우 신호를 보낸다. 그러면 cpu 는 현자 작업을 중단하고 특정 예외처리 핸들러 함수를 실행한다.
+
+x86 에는 약 20가지의 cpu 예외 타입이 존재한다.
+
+=over *
+
+=item * Page Fault
+
+정상적이지 않은 memory 위치에 엑세스 할 때 발생한다.
+
+=item * Invalid Opcode
+
+현재 instruction 이 유효하지 않을 때 발생한다.
+
+=item * General Protection Fault
+
+....
+
+=item * Double Fault
+
+page fault 가 일어나면 예외처리 함수가 실행되는데, 이 함수를 실행하는 와중에도 또다른 예외가 발생하면 이 예외가 발생한다.
+
+=item * Triple Fault
+
+double fault 와 같은 이유로 발생하며, 이때는 예외를 처리하지 않고 cpu 를 초기화하고 os 를 재부팅한다.
+
+=cut
