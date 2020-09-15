@@ -19,3 +19,4 @@ requires 'Readonly';
 requires 'AnyEvent::Loop';
 requires 'AnyEvent::Filesys::Notify';
 requires 'DBD::SQLite';
+
