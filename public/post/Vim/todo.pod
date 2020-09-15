@@ -10,9 +10,9 @@ todo
 
 사용하기에 아직 이해가 부족하면 (X)와 함께 이유를 달아놓는다.
 
-=head1 :Lex
+=head1 :Lex (X)
 
-왼쪽에 파일탐색기 버퍼가 열리면서 파일을 선택하면 오른쪽에서 파일이 열린다. (X)
+왼쪽에 파일탐색기 버퍼가 열리면서 파일을 선택하면 오른쪽에서 파일이 열린다.
 
 파일 탐색기의 디렉토리를 expand 하고 싶은데 방법이 없을까?
 
@@ -26,6 +26,8 @@ vim -R 모드로 파일을 여는 방법이 필요하다.
 
 일단 이걸 추천해주긴 하던데?
 
+=head1 autocmd TextChanged,TextChangedI <buffer> :w (X)
 
+readonly 모드에서 수정을 하려고하면 autocmd가 실행되면서 에러가 발생. readonly에서 autocmd가 실행되지 않도록 막아야함.
 
 =cut
