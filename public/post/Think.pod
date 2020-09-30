@@ -1,0 +1,15 @@
+=pod
+
+=head1 NAME
+
+Think
+
+=head1 DESCRIPTION
+
+개발에 대한 생각들을 정리
+
+=head1 Naming
+
+함수는 항상 동사여야 한다는 것이 마음에 들지 않는다.
+
+=cut
