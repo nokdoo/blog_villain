@@ -20,7 +20,7 @@ vim -R 모드로 파일을 여는 방법이 필요하다.
 
 =head1 :set statusline=
 
-옵션들 쭉 읽어보고 적용해볼만한 것 추가해보기.
+옵션들 쭉 읽어보고 적용해볼만한 것 추가해보기. mastering vim 36 페이지.
 
 :set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
 
@@ -29,5 +29,45 @@ vim -R 모드로 파일을 여는 방법이 필요하다.
 =head1 autocmd TextChanged,TextChangedI <buffer> :w (X)
 
 readonly 모드에서 수정을 하려고하면 autocmd가 실행되면서 에러가 발생. readonly에서 autocmd가 실행되지 않도록 막아야함.
+
+=head1 speak (익숙해지자)
+
+vim 의 명령어는 <verb><modifier><noun>의 묶음으로 동작한다.
+
+=head2 verbs
+
+=head2 modifiers
+
+i - inner
+
+a - around
+
+NUMBER - number
+
+t - until
+
+f - find
+
+/ - find in regex
+
+=head2 nouns
+
+w, W
+
+b, B
+
+e, E
+
+s - sentence
+
+p - paragraph
+
+t - tag
+
+b - block
+
+=head1 dot
+
+dot은 buffer에 변화를 주는 동작만을 기억한다.
 
 =cut
